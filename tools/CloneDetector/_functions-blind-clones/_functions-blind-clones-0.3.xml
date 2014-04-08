@@ -1,0 +1,2276 @@
+<clones>
+<systeminfo processor="nicad3" system="_" granularity="unctions-blind" threshold="30%" minlines="10" maxlines="2500"/>
+<cloneinfo npcs="2956" npairs="454"/>
+<runinfo ncompares="48894" cputime="720000"/>
+
+<clone nlines="42" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="477" endline="529" pcid="2233"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="417" endline="470" pcid="2232"></source>
+</clone>
+
+<clone nlines="35" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="10" endline="54" pcid="2888"></source>
+<source file="../kraw.java" startline="10" endline="54" pcid="2923"></source>
+</clone>
+
+<clone nlines="24" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/TextAreaFigure.java" startline="652" endline="684" pcid="2114"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/TextFigure.java" startline="188" endline="212" pcid="2819"></source>
+</clone>
+
+<clone nlines="21" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ElbowHandle.java" startline="86" endline="109" pcid="2668"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ElbowHandle.java" startline="111" endline="133" pcid="2669"></source>
+</clone>
+
+<clone nlines="21" similarity="90">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/TextAreaTool.java" startline="359" endline="386" pcid="2190"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/TextAreaTool.java" startline="322" endline="348" pcid="2189"></source>
+</clone>
+
+<clone nlines="20" similarity="95">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="386" endline="410" pcid="2231"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="359" endline="384" pcid="2230"></source>
+</clone>
+
+<clone nlines="20" similarity="80">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ZoomDrawingView.java" startline="230" endline="251" pcid="1883"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ZoomDrawingView.java" startline="201" endline="223" pcid="1882"></source>
+</clone>
+
+<clone nlines="19" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/samples/nothing/NothingApplet.java" startline="28" endline="54" pcid="148"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/samples/nothing/NothingApp.java" startline="37" endline="63" pcid="146"></source>
+</clone>
+
+<clone nlines="19" similarity="78">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ZoomDrawingView.java" startline="201" endline="223" pcid="1882"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ZoomDrawingView.java" startline="257" endline="276" pcid="1884"></source>
+</clone>
+
+<clone nlines="18" similarity="72">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="364" endline="381" pcid="1043"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/samples/javadraw/JavaDrawApp.java" startline="158" endline="174" pcid="108"></source>
+</clone>
+
+<clone nlines="18" similarity="94">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeConnectionHandle.java" startline="92" endline="111" pcid="946"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ConnectionHandle.java" startline="74" endline="93" pcid="776"></source>
+</clone>
+
+<clone nlines="17" similarity="82">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="173" endline="191" pcid="2218"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/JPanelDesktop.java" startline="35" endline="51" pcid="1684"></source>
+</clone>
+
+<clone nlines="17" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="130" endline="151" pcid="2623"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="102" endline="124" pcid="2622"></source>
+</clone>
+
+<clone nlines="17" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/CompositeFigureCreationTool.java" startline="34" endline="52" pcid="1663"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/NestedCreationTool.java" startline="32" endline="47" pcid="2205"></source>
+</clone>
+
+<clone nlines="16" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/applet/DrawApplet.java" startline="477" endline="494" pcid="183"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/applet/DrawApplet.java" startline="461" endline="475" pcid="182"></source>
+</clone>
+
+<clone nlines="15" similarity="86">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="931" endline="947" pcid="1098"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="913" endline="926" pcid="1097"></source>
+</clone>
+
+<clone nlines="15" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="137" endline="150" pcid="2216"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="122" endline="135" pcid="2215"></source>
+</clone>
+
+<clone nlines="15" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="137" endline="150" pcid="2216"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="152" endline="165" pcid="2217"></source>
+</clone>
+
+<clone nlines="15" similarity="86">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/TriangleRotationHandle.java" startline="79" endline="98" pcid="2023"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/PolygonScaleHandle.java" startline="87" endline="109" pcid="2073"></source>
+</clone>
+
+<clone nlines="15" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="122" endline="135" pcid="2215"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="152" endline="165" pcid="2217"></source>
+</clone>
+
+<clone nlines="14" similarity="85">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/html/ResourceContentProducer.java" startline="62" endline="79" pcid="2346"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/html/URLContentProducer.java" startline="66" endline="83" pcid="2260"></source>
+</clone>
+
+<clone nlines="14" similarity="78">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="277" endline="289" pcid="2225"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="130" endline="141" pcid="1757"></source>
+</clone>
+
+<clone nlines="14" similarity="71">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/UngroupCommand.java" startline="77" endline="94" pcid="2531"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="189" endline="203" pcid="2628"></source>
+</clone>
+
+<clone nlines="14" similarity="71">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/UngroupCommand.java" startline="77" endline="94" pcid="2531"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="173" endline="187" pcid="2627"></source>
+</clone>
+
+<clone nlines="14" similarity="71">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/UngroupCommand.java" startline="77" endline="94" pcid="2531"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/AlignCommand.java" startline="161" endline="177" pcid="753"></source>
+</clone>
+
+<clone nlines="14" similarity="78">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/UngroupCommand.java" startline="77" endline="94" pcid="2531"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ConnectionTool.java" startline="396" endline="412" pcid="816"></source>
+</clone>
+
+<clone nlines="14" similarity="71">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/UngroupCommand.java" startline="77" endline="94" pcid="2531"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="79" endline="93" pcid="833"></source>
+</clone>
+
+<clone nlines="14" similarity="71">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/UngroupCommand.java" startline="77" endline="94" pcid="2531"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/SendToBackCommand.java" startline="64" endline="77" pcid="262"></source>
+</clone>
+
+<clone nlines="14" similarity="71">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/CompositeFigure.java" startline="490" endline="504" pcid="298"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/CompositeFigure.java" startline="469" endline="482" pcid="297"></source>
+</clone>
+
+<clone nlines="14" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/util/RedoCommand.java" startline="33" endline="51" pcid="1236"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/util/UndoCommand.java" startline="39" endline="58" pcid="1187"></source>
+</clone>
+
+<clone nlines="14" similarity="78">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/StandardDrawingView.java" startline="673" endline="686" pcid="437"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/StandardDrawingView.java" startline="694" endline="707" pcid="438"></source>
+</clone>
+
+<clone nlines="13" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="189" endline="203" pcid="2628"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="173" endline="187" pcid="2627"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="189" endline="203" pcid="2628"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/AlignCommand.java" startline="161" endline="177" pcid="753"></source>
+</clone>
+
+<clone nlines="13" similarity="84">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="189" endline="203" pcid="2628"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="79" endline="93" pcid="833"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="189" endline="203" pcid="2628"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="95" endline="109" pcid="834"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="189" endline="203" pcid="2628"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/SendToBackCommand.java" startline="64" endline="77" pcid="262"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="173" endline="187" pcid="2627"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/AlignCommand.java" startline="161" endline="177" pcid="753"></source>
+</clone>
+
+<clone nlines="13" similarity="84">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="173" endline="187" pcid="2627"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="79" endline="93" pcid="833"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="173" endline="187" pcid="2627"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="95" endline="109" pcid="834"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ConnectedTextTool.java" startline="173" endline="187" pcid="2627"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/SendToBackCommand.java" startline="64" endline="77" pcid="262"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/AlignCommand.java" startline="161" endline="177" pcid="753"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="79" endline="93" pcid="833"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/AlignCommand.java" startline="161" endline="177" pcid="753"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/SendToBackCommand.java" startline="64" endline="77" pcid="262"></source>
+</clone>
+
+<clone nlines="13" similarity="92">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/PolygonScaleHandle.java" startline="164" endline="176" pcid="2079"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/TriangleRotationHandle.java" startline="143" endline="155" pcid="2029"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/PolygonScaleHandle.java" startline="164" endline="176" pcid="2079"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/PolygonHandle.java" startline="83" endline="96" pcid="1721"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/PolygonScaleHandle.java" startline="164" endline="176" pcid="2079"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/RadiusHandle.java" startline="111" endline="121" pcid="2681"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ConnectionTool.java" startline="396" endline="412" pcid="816"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/PasteCommand.java" startline="88" endline="102" pcid="996"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="79" endline="93" pcid="833"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="95" endline="109" pcid="834"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="79" endline="93" pcid="833"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/SendToBackCommand.java" startline="64" endline="77" pcid="262"></source>
+</clone>
+
+<clone nlines="13" similarity="76">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/TriangleRotationHandle.java" startline="143" endline="155" pcid="2029"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/PolygonHandle.java" startline="83" endline="96" pcid="1721"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/PasteCommand.java" startline="88" endline="102" pcid="996"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/SendToBackCommand.java" startline="64" endline="77" pcid="262"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeConnectionHandle.java" startline="174" endline="185" pcid="951"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ConnectionHandle.java" startline="142" endline="152" pcid="781"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/PolygonHandle.java" startline="83" endline="96" pcid="1721"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/RadiusHandle.java" startline="111" endline="121" pcid="2681"></source>
+</clone>
+
+<clone nlines="12" similarity="91">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/PolygonHandle.java" startline="83" endline="96" pcid="1721"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/PolyLineHandle.java" startline="97" endline="108" pcid="2608"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="111" endline="121" pcid="1755"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="96" endline="106" pcid="1754"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="111" endline="121" pcid="1755"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="84" endline="94" pcid="1753"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="111" endline="121" pcid="1755"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="830" endline="839" pcid="1090"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="111" endline="121" pcid="1755"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="819" endline="828" pcid="1089"></source>
+</clone>
+
+<clone nlines="12" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="96" endline="106" pcid="1754"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="84" endline="94" pcid="1753"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="96" endline="106" pcid="1754"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="830" endline="839" pcid="1090"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="96" endline="106" pcid="1754"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="819" endline="828" pcid="1089"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="84" endline="94" pcid="1753"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="830" endline="839" pcid="1090"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="84" endline="94" pcid="1753"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="819" endline="828" pcid="1089"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/AbstractTool.java" startline="225" endline="238" pcid="712"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/AbstractTool.java" startline="212" endline="223" pcid="711"></source>
+</clone>
+
+<clone nlines="12" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../texgram_contents/kraw.java" startline="398" endline="409" pcid="2912"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="12" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="426" endline="437" pcid="2914"></source>
+<source file="../kraw.java" startline="426" endline="437" pcid="2949"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="12" similarity="75">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="12" similarity="83">
+<source file="../kraw.java" startline="398" endline="409" pcid="2947"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="11" similarity="90">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/CompositeFigure.java" startline="291" endline="301" pcid="284"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/CompositeFigure.java" startline="277" endline="289" pcid="283"></source>
+</clone>
+
+<clone nlines="11" similarity="90">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/samples/pert/PertApplication.java" startline="31" endline="49" pcid="42"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/samples/pert/PertApplet.java" startline="27" endline="41" pcid="40"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/CompositeFigure.java" startline="448" endline="458" pcid="296"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/CompositeFigure.java" startline="434" endline="443" pcid="295"></source>
+</clone>
+
+<clone nlines="11" similarity="100">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../kraw.java" startline="478" endline="489" pcid="2953"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="11" similarity="90">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChopBoxConnector.java" startline="41" endline="54" pcid="353"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChopBoxConnector.java" startline="56" endline="69" pcid="354"></source>
+</clone>
+
+<clone nlines="11" similarity="100">
+<source file="../kraw.java" startline="177" endline="191" pcid="2932"></source>
+<source file="../texgram_contents/kraw.java" startline="177" endline="191" pcid="2897"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../texgram_contents/kraw.java" startline="478" endline="489" pcid="2918"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="11" similarity="81">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/RadiusHandle.java" startline="111" endline="121" pcid="2681"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/PolyLineHandle.java" startline="97" endline="108" pcid="2608"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/RadiusHandle.java" startline="111" endline="121" pcid="2681"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/BoxHandleKit.java" startline="141" endline="152" pcid="577"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/MDIDesktopPane.java" startline="259" endline="268" pcid="2223"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/SplitPaneDesktop.java" startline="105" endline="113" pcid="1731"></source>
+</clone>
+
+<clone nlines="11" similarity="90">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/PolygonTool.java" startline="61" endline="73" pcid="2041"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/figures/ScribbleTool.java" startline="57" endline="68" pcid="2468"></source>
+</clone>
+
+<clone nlines="11" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ZoomDrawingView.java" startline="425" endline="434" pcid="1901"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ZoomDrawingView.java" startline="414" endline="423" pcid="1898"></source>
+</clone>
+
+<clone nlines="11" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="830" endline="839" pcid="1090"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="819" endline="828" pcid="1089"></source>
+</clone>
+
+<clone nlines="11" similarity="81">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="830" endline="839" pcid="1090"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="808" endline="817" pcid="1088"></source>
+</clone>
+
+<clone nlines="11" similarity="81">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="819" endline="828" pcid="1089"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="808" endline="817" pcid="1088"></source>
+</clone>
+
+<clone nlines="11" similarity="72">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ConnectionTool.java" startline="223" endline="233" pcid="797"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ConnectionTool.java" startline="314" endline="324" pcid="803"></source>
+</clone>
+
+<clone nlines="11" similarity="81">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/StandardDrawingView.java" startline="533" endline="544" pcid="421"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/CompositeFigure.java" startline="434" endline="443" pcid="295"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="466" endline="475" pcid="2952"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="453" endline="462" pcid="2951"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="440" endline="449" pcid="2950"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="385" endline="394" pcid="2946"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="371" endline="380" pcid="2945"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="358" endline="367" pcid="2944"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="345" endline="354" pcid="2943"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="332" endline="341" pcid="2942"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="318" endline="327" pcid="2941"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="305" endline="313" pcid="2940"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="292" endline="301" pcid="2939"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="279" endline="288" pcid="2938"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="266" endline="275" pcid="2937"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../kraw.java" startline="214" endline="230" pcid="2934"></source>
+<source file="../texgram_contents/kraw.java" startline="214" endline="230" pcid="2899"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="466" endline="475" pcid="2917"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="453" endline="462" pcid="2916"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="440" endline="449" pcid="2915"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="385" endline="394" pcid="2911"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../texgram_contents/kraw.java" startline="371" endline="380" pcid="2910"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="358" endline="367" pcid="2909"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../texgram_contents/kraw.java" startline="345" endline="354" pcid="2908"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="332" endline="341" pcid="2907"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="318" endline="327" pcid="2906"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="305" endline="313" pcid="2905"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="292" endline="301" pcid="2904"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../texgram_contents/kraw.java" startline="279" endline="288" pcid="2903"></source>
+<source file="../texgram_contents/kraw.java" startline="266" endline="275" pcid="2902"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ScalingGraphics.java" startline="265" endline="274" pcid="1940"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ScalingGraphics.java" startline="254" endline="263" pcid="1939"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ScalingGraphics.java" startline="265" endline="274" pcid="1940"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ScalingGraphics.java" startline="243" endline="252" pcid="1938"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ScalingGraphics.java" startline="254" endline="263" pcid="1939"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ScalingGraphics.java" startline="243" endline="252" pcid="1938"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/zoom/ZoomDrawingView.java" startline="385" endline="396" pcid="1896"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/StandardDrawingView.java" startline="638" endline="650" pcid="433"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/DesktopEventService.java" startline="62" endline="70" pcid="1749"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/SplitPaneDesktop.java" startline="105" endline="113" pcid="1731"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/contrib/CTXCommandMenu.java" startline="116" endline="124" pcid="1677"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/util/CommandMenu.java" startline="82" endline="90" pcid="1578"></source>
+</clone>
+
+<clone nlines="10" similarity="80">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="777" endline="785" pcid="1085"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/application/DrawApplication.java" startline="766" endline="775" pcid="1084"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="43" endline="52" pcid="829"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/SendToBackCommand.java" startline="35" endline="44" pcid="258"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ChangeAttributeCommand.java" startline="43" endline="52" pcid="829"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/BringToFrontCommand.java" startline="35" endline="44" pcid="673"></source>
+</clone>
+
+<clone nlines="10" similarity="90">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ConnectionTool.java" startline="314" endline="324" pcid="803"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/ConnectionHandle.java" startline="142" endline="152" pcid="781"></source>
+</clone>
+
+<clone nlines="10" similarity="100">
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/SendToBackCommand.java" startline="35" endline="44" pcid="258"></source>
+<source file="../NiCad-3.5/examples/JHotDraw54b1/src/CH/ifa/draw/standard/BringToFrontCommand.java" startline="35" endline="44" pcid="673"></source>
+</clone>
+
+</clones>

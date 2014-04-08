@@ -1,0 +1,81 @@
+#!/bin/bash 
+
+#echo "dan"
+
+##Usage
+## ./convert_APK_Java
+
+## Description: Converts all apk files in a given directory to .java
+
+
+
+dirName=inputAPKs/
+
+### convert individual file
+convertAPK (){
+	#	echo "convert - $1"
+#echo $1
+#appName=$(basename $1 .apk) 
+	appName=`echo $1 | cut -d\. -f1`
+#	appName=${appName}
+
+
+#echo $appName
+
+
+
+
+#exit
+
+	# This is the main directory all of the java output will be going to
+	mkdir -p javaOutput
+
+	cd javaOutput
+	mkdir -p $appName
+	directoryName=javaOutput/$appName
+	dirAndAppName=$directoryName/$1
+	echo $dirAndAppName
+	cd ..
+
+	## Move file to be analyzed to a temp location
+	cp $1 $directoryName
+	
+	##java -jar apktool1.5.2/apktool.jar d -f textgram.apk 
+	java -jar apktool1.5.2/apktool.jar d -f $dirAndAppName
+exit
+	jar xvf $directoryName/$1 classes.dex
+	mv classes.dex $directoryName/
+
+	./dex2jar-0.0.9.15/dex2jar.sh $directoryName/classes.dex 
+	jar xvf $directoryName/classes_dex2jar.jar 
+
+	cd $directoryName
+	jar xvf classes_dex2jar.jar
+
+	## Now convert all of the .class files to .java
+	cd ../..
+
+	FILES=$(find $directoryName -type f -name '*.class')
+	for f in $FILES
+	do
+		string=$f
+
+		## alter to get rid of the "else" clause
+		if [[ $string != *'$'*  ]]
+#		if [[ $string =~ .*\$.* ]]
+		then
+			./jad -v -s java -o -d $directoryName $f
+		fi
+	done
+
+	# Remove all of the files that are not.java
+
+}
+
+
+## Loop through all the contents of the main APK directory
+FILES=$(find $dirName -type f -name '*.apk')
+for f in $FILES
+do
+	convertAPK $(basename $f)
+done
