@@ -28,19 +28,12 @@ angular.module('androidApp.controllers', []).
     }
     
   }).
-  controller('DataController', function ($scope, $http) {
+  controller('DataController', function ($scope, ApkInfo) {
 
-    // Rows of APK data from the database
-    $http({
-        method: 'GET',
-        url: '/api/rows'
-      }).
-      success(function (data, status, headers, config) {
-        $scope.rows = data;
-        $scope.totalItems = $scope.rows.length;
-      }).
-      error(function (data, status, headers, config) {
-        $scope.rows = 'Error!';
+    // Get APK data from the database
+    ApkInfo.query(function (response) {
+      $scope.rows = response;
+      $scope.totalItems = $scope.rows.length;
     });
 
     // Download format dropdown
@@ -70,12 +63,6 @@ angular.module('androidApp.controllers', []).
     $scope.currentPage = 1;
     $scope.itemsPerPage = 25;
     $scope.maxSize = 5;
-
-    $scope.getPaginatedRows = function() {
-      if ($scope.rows) {
-        return $scope.rows.slice(($scope.currentPage - 1) * $scope.itemsPerPage, ($scope.itemsPerPage * $scope.currentPage) - 1);
-      }
-    };
 
   }).
   controller('AboutController', function ($scope) {
