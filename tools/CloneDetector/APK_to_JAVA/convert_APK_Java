@@ -4,13 +4,22 @@
 ##Usage
 ## ./convert_APK_Java
 
+## To log: ./convert_APK_Java >file.log 2>%1
+
 ## Description: Converts all apk files in a given directory to .java
 
 
+#### Todo:
+## Put convertAPK into its own unix script
+## Log all activity to an external file
+## 		Check logs into GIT?
 
+
+## Location of all apk files to be analyzed
 dirName=inputAPKs/
 
 ### convert individual file
+### Might not be a bad idea to refactor this out
 convertAPK (){
 
 	## Replace all the periods in the apk to allow the better creation of the output foldername
@@ -18,7 +27,7 @@ convertAPK (){
 	outputFolderName=${1//[.]/%}
 
 
-	# This is the main directory all of the java output will be going to
+	# Main directory all of the java output will be going to
 	mkdir -p javaOutput
 
 
@@ -54,15 +63,14 @@ convertAPK (){
 	do
 		string=$f
 
-		## alter to get rid of the "else" clause
 		if [[ $string != *'$'*  ]]
-#		if [[ $string =~ .*\$.* ]]
 		then
 			./jad -v -s java -o -d $directoryName $f
 		fi
 	done
 
 	cd $directoryName
+
 	## Remove all of the files that are not .java
 	find . -name '*.class' -type f -exec rm {} +
 	rm -rf yuku
