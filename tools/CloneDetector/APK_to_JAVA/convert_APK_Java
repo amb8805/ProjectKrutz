@@ -1,6 +1,5 @@
 #!/bin/bash 
 
-#echo "dan"
 
 ##Usage
 ## ./convert_APK_Java
@@ -13,36 +12,31 @@ dirName=inputAPKs/
 
 ### convert individual file
 convertAPK (){
-	#	echo "convert - $1"
-#echo $1
-#appName=$(basename $1 .apk) 
-	appName=`echo $1 | cut -d\. -f1`
-#	appName=${appName}
 
+	## Replace all the periods in the apk to allow the better creation of the output foldername
+	## Replace . with %
+	outputFolderName=${1//[.]/%}
 
-#echo $appName
-
-
-
-
-#exit
 
 	# This is the main directory all of the java output will be going to
 	mkdir -p javaOutput
 
+
 	cd javaOutput
-	mkdir -p $appName
-	directoryName=javaOutput/$appName
+	mkdir -p $outputFolderName
+
+	directoryName=javaOutput/$outputFolderName
 	dirAndAppName=$directoryName/$1
 	echo $dirAndAppName
 	cd ..
 
-	## Move file to be analyzed to a temp location
-	cp $1 $directoryName
-	
+	## Move file to be analyzed
+	cp inputAPKs/$1 $directoryName
+
 	##java -jar apktool1.5.2/apktool.jar d -f textgram.apk 
 	java -jar apktool1.5.2/apktool.jar d -f $dirAndAppName
-exit
+
+
 	jar xvf $directoryName/$1 classes.dex
 	mv classes.dex $directoryName/
 
@@ -68,8 +62,22 @@ exit
 		fi
 	done
 
-	# Remove all of the files that are not.java
+	cd $directoryName
+	## Remove all of the files that are not .java
+	find . -name '*.class' -type f -exec rm {} +
+	rm -rf yuku
+	rm -rf ambilwarna
+	rm -rf eu
+	rm -rf com
+	rm -rf codeadore
+	rm -rf android
+	rm classes_dex2jar.jar
+	rm classes.dex
 
+	echo "Java files created: " 
+	find . -type f -name '*.java' | wc -l
+	
+	cd ../..
 }
 
 
@@ -79,3 +87,6 @@ for f in $FILES
 do
 	convertAPK $(basename $f)
 done
+
+
+### Todo: check logs into GIT
