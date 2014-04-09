@@ -2,21 +2,6 @@
 	cursor: pointer;
 }
 
-.navbar-nav > li > a,
-.navbar-header > a {
-	padding-top: 30px !important;
-	padding-bottom: 30px !important;
-}
-
-.navbar-header > button {
-	margin-top: 23px !important;
-	margin-bottom: 23px !important;
-}
-
 body {
-	padding-top: 80px;
-}
-
-#header {
-	background-color: #A4C739;
+	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

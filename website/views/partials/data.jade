@@ -1,6 +1,19 @@
 div.container
 	div.row
-		div.col-lg-10
+		div.col-lg-6.col-lg-offset-6
+			div.input-group
+				input.form-control(type='text', ng-model='selected', typeahead='row as row.Name for row in rows | filter:$viewValue | limitTo:8')
+				span.input-group-btn
+					button.btn.btn-default(type='button')
+						span.glyphicon.glyphicon-search
+	div.row
+		div.col-lg-6
+			p.input-group
+				input.form-control(type='text', ng-model='dt', is-open='opened', datepicker-options='options', close-text='Close')
+				span.input-group-btn
+					button.btn.btn-default(ng-click='open($event)')
+						span.glyphicon.glyphicon-calendar
+		div.col-lg-4
 			ui-select(ng-model='format.selected', theme='bootstrap')
 				match(placeholder='Select download format...') {{ $select.selected }}
 				choices(repeat='item in formats | filter: $select.search')
@@ -22,14 +35,14 @@ div.container
 							th Release Date
 							th File Size
 					tbody
-						tr(ng-repeat='row in rows | startFrom:(currentPage - 1) * itemsPerPage | limitTo:itemsPerPage')
-							td {{ row.Name }}
-							td {{ row.Version }}
-							td {{ row.Developer }}
-							td {{ row.Genre }}
-							td {{ row.Rating }}
-							td {{ row.DatePublished }}
-							td {{ row.FileSize }}
+						tr(ng-repeat='apk in apks | startFrom:(currentPage - 1) * itemsPerPage | limitTo:itemsPerPage')
+							td {{ apk.Name }}
+							td {{ apk.Version }}
+							td {{ apk.Developer }}
+							td {{ apk.Genre }}
+							td {{ apk.Rating }}
+							td {{ apk.DatePublished }}
+							td {{ apk.FileSize }}
 
 	div.row
 		div.col-lg-12.text-center

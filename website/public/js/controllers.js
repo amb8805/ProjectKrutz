@@ -28,12 +28,12 @@ angular.module('androidApp.controllers', []).
     }
     
   }).
-  controller('DataController', function ($scope, ApkInfo) {
+  controller('DataController', function ($scope, ApkService) {
 
     // Get APK data from the database
-    ApkInfo.query(function (response) {
-      $scope.rows = response;
-      $scope.totalItems = $scope.rows.length;
+    ApkService.query(function (response) {
+      $scope.apks = response;
+      $scope.totalItems = $scope.apks.length;
     });
 
     // Download format dropdown
@@ -63,6 +63,26 @@ angular.module('androidApp.controllers', []).
     $scope.currentPage = 1;
     $scope.itemsPerPage = 25;
     $scope.maxSize = 5;
+
+    // Search bar
+    $scope.selected = undefined;
+
+    // Datepicker
+    $scope.today = function() {
+      $scope.dt = new Date();
+    };
+    $scope.today();
+
+    $scope.clear = function () {
+      $scope.dt = null;
+    };
+    
+    $scope.open = function ($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
+    };
 
   }).
   controller('AboutController', function ($scope) {

@@ -4,8 +4,10 @@
 
 angular.module('androidApp.filters', []).
 	filter('startFrom', function () {
-		return function (rows, start) {
-			return rows.slice(start);
+		return function (apks, start) {
+			if (apks) {
+				return apks.slice(start);
+			}
 		}
 	}).
 

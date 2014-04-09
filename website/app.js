@@ -4,16 +4,12 @@
  */
 
 var express = require('express'),
-  sqlite3 = require('sqlite3').verbose(),
   routes = require('./routes'),
   api = require('./routes/api'),
   http = require('http'),
   path = require('path');
 
 var app = module.exports = express();
-
-var file = '../Evolution of Android Applications.sqlite';
-var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
 
 /**
@@ -50,11 +46,7 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // JSON API
-app.get('/api/rows', function (req, res) {
-  db.all('SELECT * FROM ApkInformation', function (err, rows) {
-    res.send(rows);
-  });
-});
+app.get('/api/apks', api.getApkList);
 
 // Redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

@@ -3,8 +3,8 @@
 /* Services */
 
 angular.module('androidApp.services', ['ngResource']).
-	factory('ApkInfo', function ($resource) {
-		return $resource('api/rows', {});
+	factory('ApkService', function ($resource) {
+		return $resource('api/apks', {});
   	}).
 
 	value('version', '0.1');
