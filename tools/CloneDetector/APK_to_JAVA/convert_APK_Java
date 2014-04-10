@@ -22,14 +22,23 @@ dirName=inputAPKs/
 ### Might not be a bad idea to refactor this out
 convertAPK (){
 
+#echo "hi"
+#./jad  -v -diss -s java -o -d javaOutput/pandora%apk javaOutput/pandora%apk/com/crashlytics/android/C.class
+
+
+
+
+
+#exit
+
+	inputFileName=$(basename $1 .apk)
+
 	## Replace all the periods in the apk to allow the better creation of the output foldername
 	## Replace . with %
 	outputFolderName=${1//[.]/%}
 
-
 	# Main directory all of the java output will be going to
 	mkdir -p javaOutput
-
 
 	cd javaOutput
 	mkdir -p $outputFolderName
@@ -42,10 +51,7 @@ convertAPK (){
 	## Move file to be analyzed
 	cp inputAPKs/$1 $directoryName
 
-	##java -jar apktool1.5.2/apktool.jar d -f textgram.apk 
 	java -jar apktool1.5.2/apktool.jar d -f $dirAndAppName
-
-
 	jar xvf $directoryName/$1 classes.dex
 	mv classes.dex $directoryName/
 
@@ -55,9 +61,9 @@ convertAPK (){
 	cd $directoryName
 	jar xvf classes_dex2jar.jar
 
-	## Now convert all of the .class files to .java
 	cd ../..
-
+	
+	## Now convert all of the .class files to .java
 	FILES=$(find $directoryName -type f -name '*.class')
 	for f in $FILES
 	do
@@ -65,13 +71,20 @@ convertAPK (){
 
 		if [[ $string != *'$'*  ]]
 		then
-			./jad -v -s java -o -d $directoryName $f
+		echo $f "-" echo $directoryName
+
+			#echo ./jad -v -s java -o -d $directoryName $f
+#			 ./jad -v -s java -o -d $directoryName $f
+			 ./jad -v -diss -s java -o -d $directoryName $f
+			
 		fi
 	done
 
 	cd $directoryName
 
 	## Remove all of the files that are not .java
+
+	## FIX THIS TO EXPICILTY JUST LEAVE IN JAVA FILES
 	find . -name '*.class' -type f -exec rm {} +
 	rm -rf yuku
 	rm -rf ambilwarna
@@ -86,7 +99,39 @@ convertAPK (){
 	find . -type f -name '*.java' | wc -l
 	
 	cd ../..
+
+	## Remove the folder created by the apktool1.5.2/apktool.jar command	
+	rm -rf $inputFileName
+	
+	## Remove other uneeded files that are created as well
+	rm -rf com
+	rm -rf javax
+	rm -rf org
+	rm -rf yuku
+	rm -rf eu
+	rm -rf codeadore
+	rm -rf crittercism
+	rm -rf android
+	rm -rf injector_manifest_modules
+
 }
+
+
+
+### Create the log that the script is running
+## Change directory
+#mkdir -p logs
+
+
+
+
+## Remove spaces in the filenames. This will cause probems for the rest of the application.
+find $dirName -name '* *' | while read file;
+do
+	target=`echo "$file" | sed 's/ /_/g'`;
+	echo "Renaming '$file' to '$target'";
+	mv "$file" "$target";
+done;
 
 
 ## Loop through all the contents of the main APK directory
@@ -97,4 +142,7 @@ do
 done
 
 
-### Todo: check logs into GIT
+### Todo: 
+# Check logs into GIT
+# Check with many different filetypes
+# Make sure to remove all uneeded files. 
