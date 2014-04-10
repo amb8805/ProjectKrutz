@@ -1,25 +1,24 @@
 div.container
 	div.row
 		div.col-lg-6.col-lg-offset-6
-			div.input-group
-				input.form-control(type='text', ng-model='selected', typeahead='row as row.Name for row in rows | filter:$viewValue | limitTo:8')
-				span.input-group-btn
-					button.btn.btn-default(type='button')
-						span.glyphicon.glyphicon-search
+			form.form-inline
+				div.input-group
+					input.form-control(type='text', ng-model='selected', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8')
+					span.input-group-btn
+						button.btn.btn-default(type='button')
+							span.glyphicon.glyphicon-search
+				div(ng-controller='AdvancedSearchController')
+					button.btn.btn-primary(type='button', ng-click='open()') Advanced
 	div.row
 		div.col-lg-6
-			p.input-group
-				input.form-control(type='text', ng-model='dt', is-open='opened', datepicker-options='options', close-text='Close')
-				span.input-group-btn
-					button.btn.btn-default(ng-click='open($event)')
-						span.glyphicon.glyphicon-calendar
-		div.col-lg-4
-			ui-select(ng-model='format.selected', theme='bootstrap')
-				match(placeholder='Select download format...') {{ $select.selected }}
-				choices(repeat='item in formats | filter: $select.search')
-					div(ng-bind-html='item | highlight: $select.search')
-		div.col-lg-2
-			button.btn.btn-primary(type='button', ng-model='format.selected') Download
+			
+		div.col-lg-6
+			form.form-group
+				ui-select(ng-model='format.selected', theme='bootstrap')
+					match(placeholder='Select download format...') {{ $select.selected }}
+					choices(repeat='item in formats | filter: $select.search')
+						div(ng-bind-html='item | highlight: $select.search')
+				button#download-btn.btn.btn-primary(type='button', ng-model='format.selected') Download
 
 	div.row
 		div.col-lg-12

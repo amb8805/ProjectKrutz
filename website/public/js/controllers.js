@@ -3,15 +3,22 @@
 /* Controllers */
 
 angular.module('androidApp.controllers', []).
-  controller('AppController', function ($scope, $location) {
+  controller('AppController', function ($scope, $location, ApkService) {
 
+    // Get APK data from the database
+    ApkService.query(function (response) {
+      $scope.apks = response;
+    });
+
+    // Logic for navbar
     $scope.isCollapsed = true;
 
-    $scope.$on('$routeChangeSuccess', function() {
+    $scope.$on('$routeChangeSuccess', function () {
       $scope.isCollapsed = true;
     });
 
-    $scope.getClass = function(path) {
+    // Logic for routing
+    $scope.getClass = function (path) {
       if (path === '/') {
         if ($location.path() === '/') {
           return 'active';
@@ -28,26 +35,20 @@ angular.module('androidApp.controllers', []).
     }
     
   }).
-  controller('DataController', function ($scope, ApkService) {
-
-    // Get APK data from the database
-    ApkService.query(function (response) {
-      $scope.apks = response;
-      $scope.totalItems = $scope.apks.length;
-    });
+  controller('DataController', function ($scope) {
 
     // Download format dropdown
     $scope.disabled = undefined;
 
-    $scope.enable = function() {
+    $scope.enable = function () {
       $scope.disabled = false;
     };
 
-    $scope.disable = function() {
+    $scope.disable = function () {
       $scope.disabled = true;
     };
 
-    $scope.clear = function() {
+    $scope.clear = function () {
       $scope.format.selected = undefined;
     };
 
@@ -64,24 +65,36 @@ angular.module('androidApp.controllers', []).
     $scope.itemsPerPage = 25;
     $scope.maxSize = 5;
 
+    $scope.$watch('apks', function () {
+      $scope.totalItems = $scope.apks.length;
+    });
+
     // Search bar
     $scope.selected = undefined;
 
-    // Datepicker
-    $scope.today = function() {
-      $scope.dt = new Date();
-    };
-    $scope.today();
+  }).
+  controller('AdvancedSearchController', function ($scope, $modal, $log) {
 
-    $scope.clear = function () {
-      $scope.dt = null;
-    };
-    
-    $scope.open = function ($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
+    $scope.open = function () {
 
-      $scope.opened = true;
+      var modalInstance = $modal.open({
+        templateUrl : 'partials/advanced',
+        controller  : 'AdvancedSearchInstanceController',
+        resolve     : {
+        
+        } 
+      });
+
+      modalInstance.result.then(function () {
+        
+      });
+    };
+
+  }).
+  controller('AdvancedSearchInstanceController', function ($scope, $modalInstance) {
+
+    $scope.ok = function () {
+      $modalInstance.close();
     };
 
   }).
