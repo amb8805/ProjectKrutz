@@ -11,8 +11,18 @@ mkdir -p logs
 
 #
 ### Perform java conversion
-./APK_to_JAVA/convert_APK_Java.sh
+#	./APK_to_JAVA/convert_APK_Java.sh
 
+
+
+### Perform Findbugs
+#./findbugs/findbugs.sh 
+
+
+
+
+### Find the clones in the system
+./CloneDetection/clones.sh
 
 ### Remove un-needed files
 ### No needed for now
