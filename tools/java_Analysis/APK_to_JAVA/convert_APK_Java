@@ -3,7 +3,7 @@
 ##Usage
 ## ./convert_APK_Java
 
-## Description: Converts all apk files in a given directory to .java
+## Description: Converts all apk files in a given directory to .java !
 
 
 ## Location of all apk files to be analyzed
