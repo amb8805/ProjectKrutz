@@ -93,6 +93,10 @@ convertAPK (){
 		fi
 	done
 
+### Remove all but the java files using this
+### Make sure to be in the correct directory
+# rm -fr `find . -type f -print | sed '/\.java$/d'`
+
 
 	cd ../$directoryName
 
