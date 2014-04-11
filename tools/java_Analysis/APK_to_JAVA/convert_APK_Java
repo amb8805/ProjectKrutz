@@ -1,0 +1,165 @@
+#!/bin/bash 
+
+
+##Usage
+## ./convert_APK_Java
+
+## To log: ./convert_APK_Java >file.log 2>%1
+
+## Description: Converts all apk files in a given directory to .java
+
+
+#### Todo:
+## Put convertAPK into its own unix script
+## Log all activity to an external file
+## 		Check logs into GIT?
+
+
+## Location of all apk files to be analyzed
+dirName=inputAPKs/
+
+### convert individual file
+### Might not be a bad idea to refactor this out
+convertAPK (){
+
+#echo "hi"
+#./jad  -v -diss -s java -o -d javaOutput/pandora%apk javaOutput/pandora%apk/com/crashlytics/android/C.class
+
+
+
+
+
+#exit
+
+	inputFileName=$(basename $1 .apk)
+
+	## Replace all the periods in the apk to allow the better creation of the output foldername
+	## Replace . with %
+	outputFolderName=${1//[.]/%}
+
+	# Main directory all of the java output will be going to
+	mkdir -p ../javaOutput
+
+	cd ../javaOutput
+
+	mkdir -p $outputFolderName
+
+
+	directoryName=javaOutput/$outputFolderName
+	dirAndAppName=$directoryName/$1
+
+#	echo $dirAndAppName
+	cd ../APK_to_JAVA
+
+	#echo $directoryName
+	
+	## Move file to be analyzed
+	
+	cp inputAPKs/$1 ../$directoryName
+	#cp inputAPKs/$1 $directoryName
+
+	
+
+
+	java -jar apktool1.5.2/apktool.jar d -f ../$dirAndAppName
+
+
+	jar xvf ../$directoryName/$1 classes.dex
+	mv classes.dex ../$directoryName/
+
+	./dex2jar-0.0.9.15/dex2jar.sh ../$directoryName/classes.dex 
+	jar xvf ../$directoryName/classes_dex2jar.jar 
+
+	cd ../$directoryName
+	jar xvf classes_dex2jar.jar
+
+	#cd ../../
+	cd ../../APK_to_JAVA/
+
+	## Now convert all of the .class files to .java
+	FILES=$(find ../$directoryName -type f -name '*.class')
+	for f in $FILES
+	do
+		string=$f
+
+		if [[ $string != *'$'*  ]]
+		then
+		#echo $f "-" echo $directoryName
+
+			#echo ./jad -v -s java -o -d $directoryName $f
+#			 ./jad -v -s java -o -d $directoryName $f
+			 ./jad -v -diss -s java -o -d ../$directoryName $f
+			
+		fi
+	done
+
+
+	cd ../$directoryName
+
+	## Remove all of the files that are not .java
+
+	## FIX THIS TO EXPICILTY JUST LEAVE IN JAVA FILES
+#	find . -name '*.class' -type f -exec rm {} +
+#	rm -rf yuku
+#	rm -rf ambilwarna
+#	rm -rf eu
+#	rm -rf com
+#	rm -rf codeadore
+#	rm -rf android
+#	rm classes_dex2jar.jar
+#	rm classes.dex
+
+	echo "Java files created: " 
+	find . -type f -name '*.java' | wc -l
+	
+#	cd ../..
+
+	## Remove the folder created by the apktool1.5.2/apktool.jar command	
+#	rm -rf $inputFileName
+	
+	## Remove other uneeded files that are created as well
+#	rm -rf com
+#	rm -rf javax
+#	rm -rf org
+#	rm -rf yuku
+#	rm -rf eu
+#	rm -rf codeadore
+#	rm -rf crittercism
+#	rm -rf android
+#	rm -rf injector_manifest_modules
+
+}
+
+
+
+### Create the log that the script is running
+## Change directory
+#mkdir -p logs
+
+
+
+
+## Remove spaces in the filenames. This will cause probems for the rest of the application.
+find $dirName -name '* *' | while read file;
+do
+	target=`echo "$file" | sed 's/ /_/g'`;
+	echo "Renaming '$file' to '$target'";
+	mv "$file" "$target";
+done;
+
+
+## Loop through all the contents of the main APK directory
+FILES=$(find $dirName -type f -name '*.apk')
+for f in $FILES
+do
+	convertAPK $(basename $f)
+done
+
+
+### Todo: 
+# Check logs into GIT
+# Check with many different filetypes
+# Make sure to remove all uneeded files. 
+# Log information
+#	Number of files created in number of directories
+# 
