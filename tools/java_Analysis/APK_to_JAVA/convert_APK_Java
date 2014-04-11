@@ -1,35 +1,19 @@
 #!/bin/bash 
 
-
 ##Usage
 ## ./convert_APK_Java
 
-## To log: ./convert_APK_Java >file.log 2>%1
-
 ## Description: Converts all apk files in a given directory to .java
-
-
-#### Todo:
-## Put convertAPK into its own unix script
-## Log all activity to an external file
-## 		Check logs into GIT?
 
 
 ## Location of all apk files to be analyzed
 dirName=inputAPKs/
 
+
 ### convert individual file
 ### Might not be a bad idea to refactor this out
 convertAPK (){
 
-#echo "hi"
-#./jad  -v -diss -s java -o -d javaOutput/pandora%apk javaOutput/pandora%apk/com/crashlytics/android/C.class
-
-
-
-
-
-#exit
 
 	inputFileName=$(basename $1 .apk)
 
@@ -39,12 +23,8 @@ convertAPK (){
 
 	# Main directory all of the java output will be going to
 	mkdir -p ../javaOutput
-
 	cd ../javaOutput
-
 	mkdir -p $outputFolderName
-
-
 	directoryName=javaOutput/$outputFolderName
 	dirAndAppName=$directoryName/$1
 
@@ -52,17 +32,13 @@ convertAPK (){
 	cd ../APK_to_JAVA
 
 	#echo $directoryName
-	
+
 	## Move file to be analyzed
-	
+
 	cp inputAPKs/$1 ../$directoryName
 	#cp inputAPKs/$1 $directoryName
 
-	
-
-
 	java -jar apktool1.5.2/apktool.jar d -f ../$dirAndAppName
-
 
 	jar xvf ../$directoryName/$1 classes.dex
 	mv classes.dex ../$directoryName/
@@ -84,20 +60,13 @@ convertAPK (){
 
 		if [[ $string != *'$'*  ]]
 		then
-		#echo $f "-" echo $directoryName
-
-			#echo ./jad -v -s java -o -d $directoryName $f
-#			 ./jad -v -s java -o -d $directoryName $f
 			 ./jad -v -diss -s java -o -d ../$directoryName $f
-			
 		fi
 	done
 
 ### Remove all but the java files using this
 ### Make sure to be in the correct directory
 # rm -fr `find . -type f -print | sed '/\.java$/d'`
-
-
 	cd ../$directoryName
 
 	## Remove all of the files that are not .java
@@ -113,6 +82,9 @@ convertAPK (){
 #	rm classes_dex2jar.jar
 #	rm classes.dex
 
+	### Remove all of the files that are not .java files
+	rm -fr `find . -type f -print | sed '/\.java$/d'`
+	
 	echo "Java files created: " 
 	find . -type f -name '*.java' | wc -l
 	
@@ -131,7 +103,8 @@ convertAPK (){
 #	rm -rf crittercism
 #	rm -rf android
 #	rm -rf injector_manifest_modules
-
+cd ../../APK_to_JAVA
+pwd
 }
 
 
@@ -139,8 +112,6 @@ convertAPK (){
 ### Create the log that the script is running
 ## Change directory
 #mkdir -p logs
-
-
 
 
 ## Remove spaces in the filenames. This will cause probems for the rest of the application.
@@ -167,3 +138,6 @@ done
 # Log information
 #	Number of files created in number of directories
 # 
+
+
+## To log: ./convert_APK_Java >file.log 2>%1
