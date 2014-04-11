@@ -10,9 +10,7 @@ mkdir -p logs
 #./mkmanifest.sh APK_to_JAVA
 
 #
-## Perform java conversion
-
-
+### Perform java conversion
 ./APK_to_JAVA/convert_APK_Java.sh
 
 

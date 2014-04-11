@@ -8,7 +8,6 @@
 ## Location of directory holding all java conversion functionality
 apk_Conv_dir=APK_to_JAVA
 
-
 ## Location of all apk files to be analyzed
 APKInputDir=$apk_Conv_dir/inputAPKS
 
@@ -19,7 +18,7 @@ convertAPK (){
 	inputFileName=$(basename $1 .apk)
 
 	### Application Name without .apk
-	#appName=${1//.apk/""}
+	appName=${1//.apk/""}
 
 	## Replace all the periods in the apk to allow the better creation of the output foldername
 	## Replace . with %
@@ -34,15 +33,13 @@ convertAPK (){
 	dirAndAppName=$JavaOutputDir/$1
 	mkdir -p $JavaOutputDir
 
-
 	cp $APKInputDir/$1 $JavaOutputDir
 
 	## Start analyzing the apk files
-
 	java -jar $apk_Conv_dir/apktool1.5.2/apktool.jar d -f $dirAndAppName
 
 	### Not sure why it creates an output file here, but delete it
-	### It is messy
+	### This is a messy fix
 	rm -rf $inputFileName
 
 	## Create the dex file
@@ -73,11 +70,10 @@ convertAPK (){
 	## Remove all of the files that are not java files
  	rm -fr `find $JavaOutputDir -type f -print | sed '/\.java$/d'`
 
-	echo "Java files created: " 
-	find $JavaOutputDir -type f -name '*.java' | wc -l
+ 	## Log the results
+	echo "	*****Output Dir: " `echo $JavaOutputDir` >> logs/convert_apk.log
+	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l` >> logs/convert_apk.log
 }
-
-
 
 
 
@@ -89,22 +85,24 @@ do
 	mv "$file" "$target";
 done;
 
+## Create the log
+touch logs/convert_apk.log
+echo "Start Date:" `date` >> logs/convert_apk.log
 
 ## Loop through all the contents of the main APK directory
 FILES=$(find $APKInputDir -type f -name '*.apk')
 for f in $FILES
 do
+	#echo $f
 	convertAPK $(basename $f)
 done
+
+### Log end date/time
+echo "End Date:" `date` >> logs/convert_apk.log
 
 
 ### Todo: 
 # Check logs into GIT
-# Check with many different filetypes
-# Make sure to remove all uneeded files. 
-# Log information
-#	Number of files created in number of directories
-# 
-
+# Check with many different apk types
 
 ## To log: ./convert_APK_Java >file.log 2>%1
