@@ -2,14 +2,29 @@
 
 #### Description: Invokes the creation of all
 
+## Make sure that the logs directory exists
+mkdir -p logs 
 
 ## Create manifest file inside of APK-> Java Conversion
-echo "Create Manifest files"
+### No needed for now
+#./mkmanifest.sh APK_to_JAVA
 
-./mkmanifest APK_to_JAVA
-
-
+#
 ## Perform java conversion
+
+
+./APK_to_JAVA/convert_APK_Java.sh
+
+
+### Remove un-needed files
+### No needed for now
+#./rmjunk.sh APK_to_JAVA
+
+
+
+### Check the logs into git
+
+
 
 
 #### Todo: 
