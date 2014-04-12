@@ -8,7 +8,6 @@ echo
 if [ $(date +%u) -eq 1 ]
 then
         echo "today is Monday"
-        #srapy scrape
 elif [ $(date +%u) -eq 2 ]
 then
         echo "today is Tuesday"
@@ -38,15 +37,22 @@ do
         O_F=$APK${f#../../testAndroidApps/}
               OUTPUT_FOLDER=${O_F%.apk}$OUTPUT
 
-        echo "*************************************"
-        echo $f
-        echo $OUTPUT_FOLDER
-        pwd
-        echo "*************************************"
+        echo “**********Stowaway***********”
+        echo ${f#../../testAndroidApps/}
 
         mkdir $OUTPUT_FOLDER
 
-        bash ./stowaway.sh $f $OUTPUT_FOLDER&>../../../output.txt
+        bash ./stowaway.sh $f $OUTPUT_FOLDER &>../../../output.txt
+	
+	cd $OUTPUT_FOLDER
+		
+	for line in $(cat Overprivilege)
+	do
+		echo $line
+		# instead of echoing put this into the database 
+	done 
+
+	cd ../../Stowaway-1.2.4
 done
 
 popd
@@ -54,8 +60,8 @@ popd
 echo
 pushd ./scraper
 echo "Inserting into the database now"
-sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ApkInformation (Name,Version,Rating) VALUES ('ShannonsApp','1.0','5.0');"
-sqlite3 Evolution\ of\ Android\ Applications.sqlite "SELECT Rating FROM ApkInformation WHERE Name = 'ShannonsApp'"
+#sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ApkInformation (Name,Version,Rating) VALUES ('ShannonsApp','1.0','5.0');"
+#sqlite3 Evolution\ of\ Android\ Applications.sqlite "SELECT Rating FROM ApkInformation WHERE Name = 'ShannonsApp'"
 popd
 
 echo "Starting Androguard"
@@ -65,9 +71,9 @@ pushd ./tools/androguard
 FILES=../testAndroidApps/*
 for f in $FILES
 do
-        echo "***********AndroRisk for $f******************"
-        ./androrisk.py -m -i $f
-        echo "***********AndroAPKInfo for $f **************"
+#       echo "***********AndroRisk for ${f#../testAndroidApps/} ***********"
+        #./androrisk.py -m -i $f
+        echo "********AndroAPKInfo for ${f#../testAndroidApps/} ***********"
         #./androapkinfo.py -i $f
 done
 
