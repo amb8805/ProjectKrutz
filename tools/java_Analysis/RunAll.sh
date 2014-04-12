@@ -10,8 +10,9 @@ mkdir -p logs
 #./mkmanifest.sh APK_to_JAVA
 
 #
-### Perform java conversion
-#	./APK_to_JAVA/convert_APK_Java.sh
+### Perform java conversion of APK files to java
+
+	./APK_to_JAVA/convert_APK_Java.sh
 
 
 
@@ -19,10 +20,8 @@ mkdir -p logs
 #./findbugs/findbugs.sh 
 
 
-
-
 ### Find the clones in the system
-./CloneDetection/clones.sh
+#./CloneDetection/clones.sh
 
 ### Remove un-needed files
 ### No needed for now
