@@ -55,35 +55,38 @@ convertAPK (){
 	cd ../../ 
 
 
-echo `date` 
+	#echo `date` ## Keep this for measuring conversion times 
 	## Now convert all of the .class files to .java
 	FILES=$(find $JavaOutputDir -type f -name '*.class')
 	for f in $FILES
 	do
 		string=$f
-#echo $f
-#exit
 
 		if [[ $string != *'$'*  ]]
 		then
 			temp=$(basename $f)
-		#	echo "Converted " $(basename $f) " to " ${temp//.class/".java"}
+			echo "Converted " $(basename $f) " to " ${temp//.class/".java"}
 		
-		### A faster decompiler should be used
+			### A faster decompiler should be used
 			java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $f > ${f//.class/".java"}
 			#java -jar $apk_Conv_dir/cfr_0_78.jar $f > ${f//.class/".java"}
 		fi
 	done
-echo `date` 
+	#echo `date` ## Keep this for measuring conversion times
 
-	## Remove all of the files that are not java files
-# 	rm -fr `find $JavaOutputDir -type f -print | sed '/\.java$/d'`
+	### Remove all of the files that are not java files
+	### Remove from now since we need the .class files for findbugs
+ 	#rm -fr `find $JavaOutputDir -type f -print | sed '/\.java$/d'`
 
  	## Log the results
 	echo "	*****Output Dir: " `echo $JavaOutputDir` >> logs/convert_apk.log
-	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l` >> logs/convert_apk.log
-}
+	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l`
 
+	## Output the results to the user
+#	echo "	*****Output Dir: " `echo $JavaOutputDir` >> logs/convert_apk.log
+#	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l` 
+
+}
 
 
 ## Remove spaces in the filenames. This will cause probems for the rest of the application.
@@ -112,6 +115,8 @@ echo "End Date:" `date` >> logs/convert_apk.log
 
 ### Todo: 
 # Check logs into GIT
-# Check with many different apk types
+# Check with many different .apk files
+# Find a faster decompilation method
+# Put a counter x/x, on the decompilation process 
 
 ## To log: ./convert_APK_Java >file.log 2>%1
