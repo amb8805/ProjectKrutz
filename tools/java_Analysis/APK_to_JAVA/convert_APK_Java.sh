@@ -82,8 +82,8 @@ convertAPK (){
 	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l`
 
 	## Output the results to the user
-	echo "	*****Output Dir: " `echo $JavaOutputDir` >> logs/convert_apk.log
-	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l` 
+#	echo "	*****Output Dir: " `echo $JavaOutputDir` >> logs/convert_apk.log
+#	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l` 
 
 }
 
@@ -114,6 +114,8 @@ echo "End Date:" `date` >> logs/convert_apk.log
 
 ### Todo: 
 # Check logs into GIT
-# Check with many different apk types
+# Check with many different .apk files
+# Find a faster decompilation method
+# Put a counter x/x, on the decompilation process 
 
 ## To log: ./convert_APK_Java >file.log 2>%1

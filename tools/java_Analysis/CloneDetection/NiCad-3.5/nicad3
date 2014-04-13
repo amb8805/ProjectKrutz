@@ -9,4 +9,4 @@ LIB=.
 SYS=Ubuntu
 
 # Now run the appropriate version
-$LIB/scripts/NiCadPair-$SYS $LIB $*
+echo `$LIB/scripts/NiCadPair-$SYS $LIB $*`

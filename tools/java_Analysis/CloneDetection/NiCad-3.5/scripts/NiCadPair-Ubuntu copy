@@ -10,9 +10,9 @@ usage() {
     echo ""
 }
 
-#echo ""
-#echo "NiCad3 Clone Detector v3.5 (19 Mar 2013)"
-#echo ""
+echo ""
+echo "NiCad3 Clone Detector v3.5 (19 Mar 2013)"
+echo ""
 
 # check we have TXL
 txlversion=`txl -V 2>&1 | grep 10.[56]`
@@ -91,23 +91,23 @@ then
     exit 99
 fi
 
-#DK echo "config=${config}"
+echo "config=${config}"
 
 # get NiCad3 configuration parameters
 source ${config}
 
-#DK echo "system=${system}"
-#DK echo "threshold=${threshold}"
-#DK echo "granularity=${granularity}"
-#DK echo "language=${language}"
-#DK echo "transform=${transform}"
-#DK echo "rename=${rename}"
-#DK echo "filter=${filter}"
-#DK echo "abstract=${abstract}"
-#DK echo "normalize=${normalize}"
-#DK echo "cluster=${cluster}"
-#DK echo "report=${report}"
-#DK echo ""
+echo "system=${system}"
+echo "threshold=${threshold}"
+echo "granularity=${granularity}"
+echo "language=${language}"
+echo "transform=${transform}"
+echo "rename=${rename}"
+echo "filter=${filter}"
+echo "abstract=${abstract}"
+echo "normalize=${normalize}"
+echo "cluster=${cluster}"
+echo "report=${report}"
+echo ""
 
 # Check we have a system
 if [ ! -d "${system}" ]
@@ -117,23 +117,22 @@ then
 fi
 
 # Extract potential clones
-## DK removed, does not seem to be needed
-#date
+date
 datestamp=`date +%F-%T`
-#DK echo ""
+echo ""
 
 if [ -s "${system}_${granularity}.xml" ]
 then
     echo "Using previously extracted ${granularity} from ${language} files in ${system}"
-#DK     echo > ${system}_${granularity}-clones-${datestamp}.log 2>&1
+    echo > ${system}_${granularity}-clones-${datestamp}.log 2>&1
 else
-  #DK   echo "Extracting ${granularity} from ${language} files in ${system}"
+    echo "Extracting ${granularity} from ${language} files in ${system}"
     time ${lib}/scripts/Extract ${granularity} ${language} ${system} > ${system}_${granularity}-clones-${datestamp}.log 2>&1
 fi
-#exit
-result=$?
 
-#DK echo ""
+result=$?
+echo ""
+
 if [ $result -ge 99 ]
 then
     echo "*** ERROR: Extraction failed, code $result"
@@ -141,6 +140,7 @@ then
     echo ""
     exit 99
 fi
+
 
 # Check for parsing problems
 syntaxerrors=`(grep "TXL019[12]E" ${system}_${granularity}-clones-${datestamp}.log | wc -l)`
@@ -156,9 +156,9 @@ then
 fi
 
 npcs=`grep "^<source " ${system}_${granularity}.xml | wc -l`
+echo "Extracted ${npcs} ${granularity}"
+echo ""
 
-#echo "Extracted ${npcs} ${granularity}"
-#DK echo ""
 pcfile=${system}_${granularity}
 
 # Check for transforming to be done
@@ -173,7 +173,7 @@ then
     fi
 
     result=$?
-  #DK   echo ""
+    echo ""
 
     if [ $result != 0 ]
     then
@@ -193,12 +193,12 @@ then
     then
 	echo "Using previously ${rename} renamed extracted ${granularity} from ${language} files in ${system}"
     else
-	#DK echo "Applying ${rename} renaming to extracted ${granularity} from ${language} files in ${system}"
+	echo "Applying ${rename} renaming to extracted ${granularity} from ${language} files in ${system}"
 	time ${lib}/scripts/Rename ${granularity} ${language} ${pcfile}.xml ${rename} >> ${system}_${granularity}-clones-${datestamp}.log 2>&1
     fi
 
     result=$?
-   #DK  echo ""
+    echo ""
 
     if [ $result != 0 ]
     then
@@ -223,7 +223,7 @@ then
     fi
 
     result=$?
-  #DK   echo ""
+    echo ""
 
     if [ $result != 0 ]
     then
@@ -248,7 +248,7 @@ then
     fi
 
     result=$?
-   #DK  echo ""
+    echo ""
 
     if [ $result != 0 ]
     then
@@ -287,11 +287,12 @@ then
 fi
 
 # Find near-miss clones
-#DK echo "Finding clones between ${minsize} and ${maxsize} lines at UPI threshold ${threshold}"
+echo "Finding clones between ${minsize} and ${maxsize} lines at UPI threshold ${threshold}"
 time ${lib}/scripts/FindClonePairs ${pcfile}.xml ${threshold} ${minsize} ${maxsize} >> ${system}_${granularity}-clones-${datestamp}.log 2>&1
 
 result=$?
-#DK echo ""
+echo ""
+
 if [ $result != 0 ]
 then
 echo "*** ERROR: Clone analysis failed, code $result"
@@ -299,9 +300,10 @@ echo "Detailed log in ${system}_${granularity}-clones-${datestamp}.log"
 echo ""
 exit 99
 fi
-### DK Removed this line, does not seem to be needed
-#temp=grep "^Found " ${system}_${granularity}-clones-${datestamp}.log | tail -1
+
+grep "^Found " ${system}_${granularity}-clones-${datestamp}.log | tail -1
 echo ""
+
 if [ "${cluster}" == "yes" ]
 then
     # Compute clone classes
@@ -404,7 +406,6 @@ then
 	exit 99
     fi
 
-
     if [ "${cluster}" == "yes" ]
     then
         time ${lib}/scripts/GetNormSource ${pcfile}.xml ${pcfile}-clones/*-clones-0.[0-9]-classes.xml >> ${system}_${granularity}-clones-${datestamp}.log 2>&1
@@ -427,7 +428,6 @@ then
 
     result=$?
     echo ""
-
 
     if [ $result != 0 ]
     then
@@ -454,38 +454,10 @@ then
     fi
 fi
 
-
-### Removed by DK
-#echo "Done."
-#echo ""
-#echo "Detailed log in ${system}_${granularity}-clones-${datestamp}.log"
-#echo "Results in ${pcfile}-clones"
-#echo ""
-#date
-#echo ""
-
-
-
-### This is all an ugly hack, but it seems to work
-### The only goal here is to tget the total number of clones found
-temp=`grep "^Found " ${system}_${granularity}-clones-${datestamp}.log | tail -1`
-temp=${temp//Found /""}
-temp=${temp//clone/""}
-temp=${temp//pairs/""}
-echo $temp
-
-#appName=${1//.apk/""}
-
-
-#### DK remove created files
-#### It would probably be cleaner to keep them from being created in the first place
-rm ${system}_${granularity}-clones-${datestamp}.log
-rm ${system}_${granularity}.xml
-rm ${system}_${granularity}-${rename}.xml
-rm -rf ${system}_${granularity}-${rename}-clones
-
-#echo ${rename}
-
-
-
-
+echo "Done."
+echo ""
+echo "Detailed log in ${system}_${granularity}-clones-${datestamp}.log"
+echo "Results in ${pcfile}-clones"
+echo ""
+date
+echo ""
