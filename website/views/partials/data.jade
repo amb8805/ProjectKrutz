@@ -1,23 +1,26 @@
 div.container
 	div.row
-		div.col-lg-6.col-lg-offset-6
-			form.form-inline
-				div.input-group
-					input.form-control(type='text', ng-model='selected', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8')
-					span.input-group-btn
-						button.btn.btn-default(type='button')
-							span.glyphicon.glyphicon-search
-				div(ng-controller='AdvancedSearchController')
-					button.btn.btn-primary(type='button', ng-click='open()') Advanced
+		div.col-lg-12
+			form.form-inline(role='form')
+				div.form-group
+					label(for='searchBar') Search:	
+					input#searchBar.form-control(type='text', ng-model='selected', ng-controller='SearchController', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8')
+				button.btn.btn-primary(ng-controller='ModalController', type='button', ng-click='open()') Advanced
 	div.row
-		div.col-lg-6
-			
-		div.col-lg-6
-			form.form-group
-				ui-select(ng-model='format.selected', theme='bootstrap')
+		//
+			div.col-lg-6
+				p.input-group(ng-controller='DateController')
+					input.form-control(type='text', datepicker-popup='MMMM dd, yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close')
+					span.input-group-btn
+						button.btn.btn-default(ng-click='open($event)')
+							i.glyphicon.glyphicon-calendar
+		div.col-lg-12
+			form.form-group(ng-controller='DownloadController')
+				label(for='downloadDropdown') Download format:
+				ui-select#downloadDropdown(ng-model='format.selected', theme='bootstrap')
 					match(placeholder='Select download format...') {{ $select.selected }}
-					choices(repeat='item in formats | filter: $select.search')
-						div(ng-bind-html='item | highlight: $select.search')
+					choices(repeat='format in formats | filter: $select.search')
+						div(ng-bind-html='format | highlight: $select.search')
 				button#download-btn.btn.btn-primary(type='button', ng-model='format.selected') Download
 
 	div.row

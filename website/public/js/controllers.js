@@ -37,7 +37,95 @@ angular.module('androidApp.controllers', []).
   }).
   controller('DataController', function ($scope) {
 
-    // Download format dropdown
+    $scope.totalItems = 1;
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 25;
+    $scope.maxSize = 5;
+
+    $scope.$watch('apks', function () {
+      if ($scope.apks) {
+        $scope.totalItems = $scope.apks.length;
+      }
+    });
+
+  }).
+  controller('SearchController', function ($scope) {
+
+    $scope.selected = undefined;
+
+  }).
+  controller('ModalController', function ($scope, $modal, $log) {
+
+    $scope.open = function () {
+
+      var modalInstance = $modal.open({
+        templateUrl : 'partials/advanced',
+        controller  : 'ModalInstanceController',
+        resolve     : {
+        
+        } 
+      });
+
+      modalInstance.result.then(function () {
+        
+      });
+    };
+
+  }).
+  controller('ModalInstanceController', function ($scope, $modalInstance) {
+
+    $scope.ok = function () {
+      $modalInstance.close();
+    };
+
+  }).
+  controller('GenreController', function ($scope) {
+
+    $scope.disabled = undefined;
+
+    $scope.enable = function () {
+      $scope.disabled = false;
+    };
+
+    $scope.disable = function () {
+      $scope.disabled = true;
+    };
+
+    $scope.clear = function () {
+      $scope.format.selected = undefined;
+    };
+
+    // TODO: Make this not hard coded
+    $scope.genre = {};
+    $scope.genres = [
+      'Books & Reference', 
+      'Business',
+      'Comics', 
+      'Communication',
+      'Education',
+      'Entertainment',
+      'Finance',
+      'Health & Fitness', 
+      'Libraries & Demo',
+      'Lifestyle',
+      'Live Wallpaper',
+      'Media & Video',
+      'Medical',
+      'Music & Audio',
+      'News & Magazines',
+      'Personalization',
+      'Photography',
+      'Productivity',
+      'Shopping',
+      'Social',
+      'Sports',
+      'Tools',
+      'Transportation'
+    ];
+
+  }).
+  controller('DownloadController', function ($scope) {
+
     $scope.disabled = undefined;
 
     $scope.enable = function () {
@@ -59,45 +147,28 @@ angular.module('androidApp.controllers', []).
       'CSV'
     ];
 
-    // Pagination
-    $scope.totalItems = 1;
-    $scope.currentPage = 1;
-    $scope.itemsPerPage = 25;
-    $scope.maxSize = 5;
-
-    $scope.$watch('apks', function () {
-      $scope.totalItems = $scope.apks.length;
-    });
-
-    // Search bar
-    $scope.selected = undefined;
-
   }).
-  controller('AdvancedSearchController', function ($scope, $modal, $log) {
+  /*
+  controller('DateController', function ($scope) {
 
-    $scope.open = function () {
+    $scope.today = function() {
+      $scope.dt = new Date();
+    };
+    $scope.today();
 
-      var modalInstance = $modal.open({
-        templateUrl : 'partials/advanced',
-        controller  : 'AdvancedSearchInstanceController',
-        resolve     : {
-        
-        } 
-      });
+    $scope.clear = function () {
+      $scope.dt = null;
+    };
 
-      modalInstance.result.then(function () {
-        
-      });
+    $scope.open = function ($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
     };
 
   }).
-  controller('AdvancedSearchInstanceController', function ($scope, $modalInstance) {
-
-    $scope.ok = function () {
-      $modalInstance.close();
-    };
-
-  }).
+  */
   controller('AboutController', function ($scope) {
 
     $scope.message = 'About';

@@ -1,6 +1,51 @@
 div.modal-header
-	h1 Advanced Search
+	h3 Advanced Search
 div.modal-body
-	p This is the body
+	h4 APK Information
+	form.form-horizontal(role='form')
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='nameInput') Name
+			div.col-sm-9
+				input#nameInput.form-control
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='versionInput') Version
+			div.col-sm-9
+				input#versionInput.form-control
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='developerInput') Developer
+			div.col-sm-9
+				input#developerInput.form-control(type='text', ng-model='selected', typeahead='apk as apk.Developer for apk in apks | filter:$viewValue | limitTo:8')
+		div.form-group(ng-controller='GenreController')
+			div.col-sm-3
+				label.control-label.pull-right(for='genreInput') Genre
+			div.col-sm-9
+				ui-select#genreInput(ng-model='genre.selected', theme='bootstrap')
+					match {{ $select.selected }}
+					choices(repeat='genre in genres | filter: $select.search')
+						div(ng-bind-html='genre | highlight: $select.search')
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='userRatingInput') User Rating
+			div.col-sm-9#userRatingInput
+				input.form-control.small-input
+				div.to to
+				input.form-control.small-input
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='releaseDateInput') Release Date
+			div.col-sm-9
+				input#releaseDateInput.form-control
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='fileSizeInput') File Size
+			div.col-sm-9#fileSizeInput
+				input.form-control.small-input
+				div.to to
+				input.form-control.small-input
+	h4 Permissions
+	h4 Risk
 div.modal-footer
 	button.btn.btn-primary(type='button', ng-click='ok()') OK

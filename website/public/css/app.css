@@ -6,9 +6,18 @@ body {
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-#download-btn {
-	position: absolute;
-	right: 0;
+label, input {
+	margin-right: 10px;
+}
+
+.small-input {
+	width: 150px;
+	display: inline-block;
+}
+
+.to {
+	padding-right: 12px;
+	display: inline-block;
 }
 
 .ui-select-bootstrap {
