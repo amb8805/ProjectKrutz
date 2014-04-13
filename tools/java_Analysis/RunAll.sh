@@ -17,11 +17,11 @@ mkdir -p logs
 
 
 ### Perform Findbugs
-#./findbugs/findbugs.sh 
+./findbugs/findbugs.sh 
 
 
 ### Find the clones in the system
-./CloneDetection/runclones.sh
+#./CloneDetection/runclones.sh
 
 ### Remove un-needed files
 ### No needed for now

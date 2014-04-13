@@ -74,8 +74,9 @@ convertAPK (){
 	done
 	#echo `date` ## Keep this for measuring conversion times
 
-	## Remove all of the files that are not java files
- 	rm -fr `find $JavaOutputDir -type f -print | sed '/\.java$/d'`
+	### Remove all of the files that are not java files
+	### Remove from now since we need the .class files for findbugs
+ 	#rm -fr `find $JavaOutputDir -type f -print | sed '/\.java$/d'`
 
  	## Log the results
 	echo "	*****Output Dir: " `echo $JavaOutputDir` >> logs/convert_apk.log
