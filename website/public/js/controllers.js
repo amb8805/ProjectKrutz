@@ -37,6 +37,12 @@ angular.module('androidApp.controllers', []).
   }).
   controller('DataController', function ($scope) {
 
+    // Toggle view button
+
+    $scope.toggleViewModel = 'Table';
+
+    // Pagination
+
     $scope.totalItems = 1;
     $scope.currentPage = 1;
     $scope.itemsPerPage = 25;

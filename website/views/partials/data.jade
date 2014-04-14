@@ -1,10 +1,16 @@
 div.container
 	div.row
-		div.col-lg-12
-			form.form-inline(role='form')
-				div.form-group
-					label(for='searchBar') Search:	
-					input#searchBar.form-control(type='text', ng-model='selected', ng-controller='SearchController', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8')
+		div.col-lg-6.col-lg-offset-6
+			div.col-sm-10
+				form.form-inline(role='form')
+					label(for='searchForm') Search:
+					div#searchForm.form-group.pull-right
+						div.input-group
+							input.form-control(type='text', ng-model='selected', ng-controller='SearchController', placeholder='Search for an app by name...', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8')
+							span.input-group-btn
+								button.btn.btn-default(type='button')
+									span.glyphicon.glyphicon-search
+			div.col-sm-2
 				button.btn.btn-primary(ng-controller='ModalController', type='button', ng-click='open()') Advanced
 	div.row
 		//
@@ -14,15 +20,23 @@ div.container
 					span.input-group-btn
 						button.btn.btn-default(ng-click='open($event)')
 							i.glyphicon.glyphicon-calendar
-		div.col-lg-12
-			form.form-group(ng-controller='DownloadController')
-				label(for='downloadDropdown') Download format:
-				ui-select#downloadDropdown(ng-model='format.selected', theme='bootstrap')
-					match(placeholder='Select download format...') {{ $select.selected }}
-					choices(repeat='format in formats | filter: $select.search')
-						div(ng-bind-html='format | highlight: $select.search')
-				button#download-btn.btn.btn-primary(type='button', ng-model='format.selected') Download
-
+		div.col-lg-6
+			form.form-inline(role='form')
+				label(for='toggleView') Toggle view:
+				div#toggleView.btn-group
+					button.btn.btn-default(type='button', ng-model='toggleViewModel', btn-radio='"Table"') Table
+					button.btn.btn-default(type='button', ng-model='toggleViewModel', btn-radio='"Chart"') Chart
+		div.col-lg-6
+			div.col-sm-10(ng-controller='DownloadController')
+				form.form-inline(role='form')
+					label(for='downloadForm') Download:
+					div#downloadForm.form-group.pull-right
+						ui-select(ng-model='format.selected', theme='bootstrap')
+							match(placeholder='Select download format...') {{ $select.selected }}
+							choices(repeat='format in formats | filter: $select.search')
+								div(ng-bind-html='format | highlight: $select.search')
+			div.col-sm-2
+				button.btn.btn-primary(type='button', ng-model='format.selected') Download
 	div.row
 		div.col-lg-12
 			div.table-responsive

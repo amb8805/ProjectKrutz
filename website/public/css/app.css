@@ -2,16 +2,16 @@
 	cursor: pointer;
 }
 
-body {
-	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
 label, input {
 	margin-right: 10px;
 }
 
+.row {
+	padding-bottom: 10px;
+}
+
 .small-input {
-	width: 150px;
+	width: 175px;
 	display: inline-block;
 }
 
@@ -20,7 +20,29 @@ label, input {
 	display: inline-block;
 }
 
-.ui-select-bootstrap {
-	display: inline-block;
-	width: 300px;
+#searchForm > .input-group {
+	width: 350px;
+}
+
+.form-inline > label {
+	padding-top: 7px;
+}
+
+.form-inline div.ui-select-bootstrap.dropdown.ng-pristine.ng-valid,
+.form-inline button.btn.btn-default.form-control.ui-select-match,
+.form-inline input.form-control.ui-select-search.ng-pristine.ng-valid {
+	width: 350px;
+}
+
+#header {
+	width: 100%;
+	min-height: 325px;
+	padding-bottom: 125px;
+	background-image: url('../img/android_permissions.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% auto;
+	padding-top: 125px;
+	color: #fff;
+	background-position: center;
 }
