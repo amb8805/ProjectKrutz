@@ -7,22 +7,22 @@ div.modal-body
 			div.col-sm-3
 				label.control-label.pull-right(for='nameInput') Name
 			div.col-sm-9
-				input#nameInput.form-control
+				input#nameInput.form-control(type='text', ng-model='filter.name')
 		div.form-group
 			div.col-sm-3
 				label.control-label.pull-right(for='versionInput') Version
 			div.col-sm-9
-				input#versionInput.form-control
+				input#versionInput.form-control(type='number', step='any', ng-model='filter.version')
 		div.form-group
 			div.col-sm-3
 				label.control-label.pull-right(for='developerInput') Developer
 			div.col-sm-9
-				input#developerInput.form-control(type='text', ng-model='selected', typeahead='apk as apk.Developer for apk in apks | filter:$viewValue | limitTo:8')
+				input#developerInput.form-control(type='text', ng-model='filter.developer')
 		div.form-group(ng-controller='GenreController')
 			div.col-sm-3
 				label.control-label.pull-right(for='genreInput') Genre
 			div.col-sm-9
-				ui-select#genreInput(ng-model='genre.selected', theme='bootstrap')
+				ui-select#genreInput(ng-model='filter.genre.selected', theme='bootstrap')
 					match {{ $select.selected }}
 					choices(repeat='genre in genres | filter: $select.search')
 						div(ng-bind-html='genre | highlight: $select.search')
@@ -30,22 +30,43 @@ div.modal-body
 			div.col-sm-3
 				label.control-label.pull-right(for='userRatingInput') User Rating
 			div.col-sm-9#userRatingInput
-				input.form-control.small-input
-				div.to to
-				input.form-control.small-input
+				div.row
+					div.col-sm-5
+						input.form-control(type='number', min='1', max='5', ng-model='filter.userRatingFrom')
+					div.col-sm-2.text-center
+						span to
+					div.col-sm-5
+						input.form-control(type='number', min='1', max='5', ng-model='filter.userRatingTo')
 		div.form-group
 			div.col-sm-3
 				label.control-label.pull-right(for='releaseDateInput') Release Date
-			div.col-sm-9
-				input#releaseDateInput.form-control
+			div.col-sm-9#releaseDateInput
+				div.row
+					div.col-sm-5
+						p.input-group(ng-controller='DateController')
+							input.form-control(type='text', datepicker-popup='MMMM dd, yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close')
+							span.input-group-btn
+								button.btn.btn-default(ng-click='open($event)')
+									i.glyphicon.glyphicon-calendar
+					div.col-sm-2.text-center
+						span to
+					div.col-sm-5
+						p.input-group(ng-controller='DateController')
+							input.form-control(type='text', datepicker-popup='MMMM dd, yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close')
+							span.input-group-btn
+								button.btn.btn-default(ng-click='open($event)')
+									i.glyphicon.glyphicon-calendar
 		div.form-group
 			div.col-sm-3
 				label.control-label.pull-right(for='fileSizeInput') File Size
 			div.col-sm-9#fileSizeInput
-				input.form-control.small-input
-				div.to to
-				input.form-control.small-input
-	h4 Permissions
-	h4 Risk
+				div.row
+					div.col-sm-5
+						input.form-control
+					div.col-sm-2.text-center
+						span to
+					div.col-sm-5
+						input.form-control
 div.modal-footer
 	button.btn.btn-primary(type='button', ng-click='ok()') OK
+	button.btn.btn-danger(type='button', ng-click='cancel()') Cancel

@@ -45,8 +45,9 @@ if (app.get('env') === 'production') {
 app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
-// JSON API
-app.get('/api/apks', api.getApkList);
+// API to query the database
+app.get('/apks', api.getApkList);
+app.get('/filter?name=":name"&version=":version"&developer=":developer"&genre=":genre"&userRating=":userRating"&releaseDate=":releaseDate"&fileSize=":fileSize"', api.filterApkList);
 
 // Redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

@@ -13,13 +13,6 @@ div.container
 			div.col-sm-2
 				button.btn.btn-primary(ng-controller='ModalController', type='button', ng-click='open()') Advanced
 	div.row
-		//
-			div.col-lg-6
-				p.input-group(ng-controller='DateController')
-					input.form-control(type='text', datepicker-popup='MMMM dd, yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close')
-					span.input-group-btn
-						button.btn.btn-default(ng-click='open($event)')
-							i.glyphicon.glyphicon-calendar
 		div.col-lg-6
 			form.form-inline(role='form')
 				label(for='toggleView') Toggle view:

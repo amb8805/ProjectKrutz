@@ -3,14 +3,16 @@
 /* Controllers */
 
 angular.module('androidApp.controllers', []).
-  controller('AppController', function ($scope, $location, ApkService) {
+  controller('AppController', function ($scope, $location, Apk) {
 
     // Get APK data from the database
-    ApkService.query(function (response) {
+
+    Apk.query(function (response) {
       $scope.apks = response;
     });
 
     // Logic for navbar
+
     $scope.isCollapsed = true;
 
     $scope.$on('$routeChangeSuccess', function () {
@@ -18,6 +20,7 @@ angular.module('androidApp.controllers', []).
     });
 
     // Logic for routing
+
     $scope.getClass = function (path) {
       if (path === '/') {
         if ($location.path() === '/') {
@@ -65,23 +68,46 @@ angular.module('androidApp.controllers', []).
     $scope.open = function () {
 
       var modalInstance = $modal.open({
-        templateUrl : 'partials/advanced',
-        controller  : 'ModalInstanceController',
-        resolve     : {
-        
+        templateUrl: 'partials/advanced',
+        controller: 'ModalInstanceController',
+        resolve: {
+          
         } 
       });
 
-      modalInstance.result.then(function () {
-        
+      modalInstance.result.then(function (params) {
+        // TODO: Use params to generate SQL statement
       });
     };
 
   }).
   controller('ModalInstanceController', function ($scope, $modalInstance) {
 
+    $scope.filter = {
+      name: null,
+      version: null,
+      developer: null,
+      genre: {},
+      userRatingFrom: null,
+      userRatingTo: null,
+      releaseDateFrom: null,
+      releaseDateTo: null,
+      fileSize: null
+    };
+
     $scope.ok = function () {
-      $modalInstance.close();
+      $modalInstance.close({
+        name: $scope.filter.name, 
+        version: $scope.filter.version, 
+        developer: $scope.filter.developer, 
+        genre: $scope.filter.genre.selected,
+        userRatingFrom: $scope.filter.userRatingFrom,
+        userRatingTo: $scope.filter.userRatingTo,
+      });
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
     };
 
   }).
@@ -130,6 +156,25 @@ angular.module('androidApp.controllers', []).
     ];
 
   }).
+  controller('DateController', function ($scope) {
+
+    $scope.today = function() {
+      $scope.dt = new Date();
+    };
+    $scope.today();
+
+    $scope.clear = function () {
+      $scope.dt = null;
+    };
+
+    $scope.open = function ($event) {
+      $event.preventDefault();
+      $event.stopPropagation();
+
+      $scope.opened = true;
+    };
+
+  }).
   controller('DownloadController', function ($scope) {
 
     $scope.disabled = undefined;
@@ -154,27 +199,6 @@ angular.module('androidApp.controllers', []).
     ];
 
   }).
-  /*
-  controller('DateController', function ($scope) {
-
-    $scope.today = function() {
-      $scope.dt = new Date();
-    };
-    $scope.today();
-
-    $scope.clear = function () {
-      $scope.dt = null;
-    };
-
-    $scope.open = function ($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-
-      $scope.opened = true;
-    };
-
-  }).
-  */
   controller('AboutController', function ($scope) {
 
     $scope.message = 'About';
