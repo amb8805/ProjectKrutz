@@ -3,11 +3,11 @@
 /* Controllers */
 
 angular.module('androidApp.controllers', []).
-  controller('AppController', function ($scope, $location, Apk) {
+  controller('AppController', function ($scope, $location, ApkService) {
 
     // Get APK data from the database
 
-    Apk.query(function (response) {
+    ApkService.apks.query(function (response) {
       $scope.apks = response;
     });
 
@@ -17,6 +17,10 @@ angular.module('androidApp.controllers', []).
 
     $scope.$on('$routeChangeSuccess', function () {
       $scope.isCollapsed = true;
+    });
+
+    $scope.$on('filterApks', function (event, data) {
+      $scope.apks = data;
     });
 
     // Logic for routing
@@ -57,26 +61,47 @@ angular.module('androidApp.controllers', []).
       }
     });
 
+    // Selected download format and all available formats
+
+    $scope.format = {};
+    $scope.formats = [
+      'XML',
+      'JSON',
+      'CSV'
+    ];
+
   }).
   controller('SearchController', function ($scope) {
 
     $scope.selected = undefined;
 
+    $scope.clear = function () {
+      $scope.selected = undefined;
+    }
+
+    $scope.search = function (apk) {
+      // TODO: Display page for individual APK
+    };
+
   }).
-  controller('ModalController', function ($scope, $modal, $log) {
+  controller('ModalController', function ($scope, $modal, $log, ApkService) {
+
+    // Opens the modal window
 
     $scope.open = function () {
 
       var modalInstance = $modal.open({
         templateUrl: 'partials/advanced',
         controller: 'ModalInstanceController',
-        resolve: {
-          
-        } 
+        resolve: {} 
       });
 
+      // Filter the APK table with the advanced serach results
+
       modalInstance.result.then(function (params) {
-        // TODO: Use params to generate SQL statement
+        ApkService.search.query(params, function (response) {
+          $scope.$emit('filterApks', response);
+        });
       });
     };
 
@@ -84,18 +109,21 @@ angular.module('androidApp.controllers', []).
   controller('ModalInstanceController', function ($scope, $modalInstance) {
 
     $scope.filter = {
-      name: null,
-      version: null,
-      developer: null,
+      name: undefined,
+      version: undefined,
+      developer: undefined,
       genre: {},
-      userRatingFrom: null,
-      userRatingTo: null,
-      releaseDateFrom: null,
-      releaseDateTo: null,
-      fileSize: null
+      userRatingFrom: undefined,
+      userRatingTo: undefined,
+      releaseDateFrom: undefined,
+      releaseDateTo: undefined,
+      fileSizeFrom: undefined,
+      fileSizeTo: undefined,
+      fileSizeFromUnit: 'M',
+      fileSizeToUnit: 'M'
     };
 
-    $scope.ok = function () {
+    $scope.search = function () {
       $modalInstance.close({
         name: $scope.filter.name, 
         version: $scope.filter.version, 
@@ -103,6 +131,12 @@ angular.module('androidApp.controllers', []).
         genre: $scope.filter.genre.selected,
         userRatingFrom: $scope.filter.userRatingFrom,
         userRatingTo: $scope.filter.userRatingTo,
+        releaseDateFrom: $scope.filter.releaseDateFrom,
+        releaseDateTo: $scope.filter.releaseDateTo,
+        fileSizeFrom: $scope.filter.fileSizeFrom,
+        fileSizeTo: $scope.filter.fileSizeTo,
+        fileSizeFromUnit: $scope.filter.fileSizeFromUnit,
+        fileSizeToUnit: $scope.filter.fileSizeToUnit
       });
     };
 
@@ -110,58 +144,35 @@ angular.module('androidApp.controllers', []).
       $modalInstance.dismiss('cancel');
     };
 
+    $scope.setUnit = function (bound, unit) {
+      if (bound == 'from') {
+        $scope.filter.fileSizeFromUnit = unit;
+      }
+      else if (bound == 'to') {
+        $scope.filter.fileSizeToUnit = unit;
+      }
+    };
+
   }).
-  controller('GenreController', function ($scope) {
-
-    $scope.disabled = undefined;
-
-    $scope.enable = function () {
-      $scope.disabled = false;
-    };
-
-    $scope.disable = function () {
-      $scope.disabled = true;
-    };
+  controller('GenreInputController', function ($scope, ApkService) {
 
     $scope.clear = function () {
-      $scope.format.selected = undefined;
+      $scope.filter.genre.selected = undefined;
     };
 
-    // TODO: Make this not hard coded
-    $scope.genre = {};
-    $scope.genres = [
-      'Books & Reference', 
-      'Business',
-      'Comics', 
-      'Communication',
-      'Education',
-      'Entertainment',
-      'Finance',
-      'Health & Fitness', 
-      'Libraries & Demo',
-      'Lifestyle',
-      'Live Wallpaper',
-      'Media & Video',
-      'Medical',
-      'Music & Audio',
-      'News & Magazines',
-      'Personalization',
-      'Photography',
-      'Productivity',
-      'Shopping',
-      'Social',
-      'Sports',
-      'Tools',
-      'Transportation'
-    ];
+    // Get list of genres from APK info in the database
+
+    ApkService.genres.query(function (response) {
+      $scope.genres = [];
+      for (var i = 0; i < response.length; i++) {
+        $scope.genres.push(response[i].Genre);
+      }
+    });
 
   }).
-  controller('DateController', function ($scope) {
+  controller('DateInputController', function ($scope) {
 
-    $scope.today = function() {
-      $scope.dt = new Date();
-    };
-    $scope.today();
+    $scope.dt = new Date();
 
     $scope.clear = function () {
       $scope.dt = null;
@@ -173,30 +184,6 @@ angular.module('androidApp.controllers', []).
 
       $scope.opened = true;
     };
-
-  }).
-  controller('DownloadController', function ($scope) {
-
-    $scope.disabled = undefined;
-
-    $scope.enable = function () {
-      $scope.disabled = false;
-    };
-
-    $scope.disable = function () {
-      $scope.disabled = true;
-    };
-
-    $scope.clear = function () {
-      $scope.format.selected = undefined;
-    };
-
-    $scope.format = {};
-    $scope.formats = [
-      'XML',
-      'JSON',
-      'CSV'
-    ];
 
   }).
   controller('AboutController', function ($scope) {

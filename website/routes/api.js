@@ -19,16 +19,42 @@ exports.getApkList = function (req, res) {
 	});
 };
 
-exports.filterApkList = function (req, res) {
-	var name = req.params.name;
-	var version = req.params.version;
-	var developer = req.params.developer;
-	var genre = req.params.genre;
-	var userRating = req.params.userRating;
-	var releaseDate = req.params.releaseDate;
-	var fileSize = req.params.fileSize;
+exports.getGenreList = function (req, res) {
 
-	db.all('SELECT * FROM ApkInformation WHERE Name LIKE "%' + name + '%" WHERE Version LIKE "%' + version + '% WHERE Developer LIKE "%' + developer + '%" WHERE Genre="' + genre + '"', function (err, apks) {
+	db.all('SELECT DISTINCT Genre FROM ApkInformation ORDER BY Genre', function (err, genres) {
+		res.send(genres);
+	});
+
+};
+
+exports.getFilteredApkList = function (req, res) {
+	
+	var statement = 'SELECT * FROM ApkInformation';
+
+	if (req.query.name) {
+		statement += ' WHERE Name LIKE "%' + req.query.name + '%"';
+	}
+	if (req.query.version) {
+		statement += ' WHERE Version LIKE "%' + req.query.version + '%"';
+	}
+	if (req.query.developer) {
+		statement += ' WHERE Developer LIKE "%' + req.query.developer + '%"';
+	}
+	if (req.query.genre) {
+		statement += ' WHERE Genre LIKE"%' + req.query.genre + '%"';
+	}
+	if (req.query.userRatingFrom && req.query.userRatingTo) {
+		statement += ' WHERE Rating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
+	}
+	if (req.query.releaseDateFrom && req.query.releaseDateTo) {
+		statement += ' WHERE DatePublished BETWEEN ' + req.query.releaseDateFrom + ' AND ' + req.query.releaseDateTo;
+	}
+	if (req.query.fileSizeFrom && req.query.fileSizeTo) {
+		statement += ' WHERE FileSize BETWEEN "' + req.query.fileSizeFrom + req.query.fileSizeFromUnit + '" AND "' + req.query.fileSizeTo + req.query.fileSizeToUnit + '"';
+	}
+
+	db.all(statement, function (err, apks) {
 		res.send(apks);
 	});
+	
 };

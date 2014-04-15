@@ -2,14 +2,14 @@ div.container
 	div.row
 		div.col-lg-6.col-lg-offset-6
 			div.col-sm-10
-				form.form-inline(role='form')
+				form.form-inline(role='form', ng-controller='SearchController')
 					label(for='searchForm') Search:
 					div#searchForm.form-group.pull-right
 						div.input-group
-							input.form-control(type='text', ng-model='selected', ng-controller='SearchController', placeholder='Search for an app by name...', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8')
+							input.form-control(type='text', ng-model='selected', placeholder='Search for an app by name...', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8', typeahead-on-select='search($item)')
 							span.input-group-btn
-								button.btn.btn-default(type='button')
-									span.glyphicon.glyphicon-search
+								button.btn.btn-default(type='button', ng-click='clear()')
+									span.glyphicon.glyphicon-remove
 			div.col-sm-2
 				button.btn.btn-primary(ng-controller='ModalController', type='button', ng-click='open()') Advanced
 	div.row
@@ -20,7 +20,7 @@ div.container
 					button.btn.btn-default(type='button', ng-model='toggleViewModel', btn-radio='"Table"') Table
 					button.btn.btn-default(type='button', ng-model='toggleViewModel', btn-radio='"Chart"') Chart
 		div.col-lg-6
-			div.col-sm-10(ng-controller='DownloadController')
+			div.col-sm-10
 				form.form-inline(role='form')
 					label(for='downloadForm') Download:
 					div#downloadForm.form-group.pull-right

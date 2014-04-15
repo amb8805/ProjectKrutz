@@ -47,7 +47,8 @@ app.get('/partials/:name', routes.partials);
 
 // API to query the database
 app.get('/apks', api.getApkList);
-app.get('/filter?name=":name"&version=":version"&developer=":developer"&genre=":genre"&userRating=":userRating"&releaseDate=":releaseDate"&fileSize=":fileSize"', api.filterApkList);
+app.get('/genres', api.getGenreList);
+app.get('/search', api.getFilteredApkList);
 
 // Redirect all others to the index (HTML5 history)
 app.get('*', routes.index);
