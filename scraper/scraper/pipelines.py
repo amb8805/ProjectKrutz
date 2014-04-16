@@ -45,7 +45,7 @@ class SQLiteStorePipeline(object):
 class APKFilesPipeline(FilesPipeline):
     def file_name(self, item):
         name = item['name'].replace('/', '_')
-        return re.sub('\s+', '-', name + '_' + item['software_version'])
+        return re.sub('\s+', '_', name + '-' + item['software_version'])
 
     def get_media_requests(self, item, info):
         return [Request(x, meta={'file_name': self.file_name(item)}) for x in item.get(self.FILES_URLS_FIELD, [])]
