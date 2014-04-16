@@ -9,6 +9,7 @@ var androidApp = angular.module('androidApp', [
   'androidApp.directives',
   'ui.bootstrap',
   'ui.select',
+  'angles',
   'ngSanitize',
   'ngRoute'
 ]);
@@ -17,7 +18,7 @@ androidApp.config(function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
       templateUrl : 'partials/home',
-      controller  : 'AppController'
+      controller  : 'HomeController'
     })
 
     .when('/data', {
