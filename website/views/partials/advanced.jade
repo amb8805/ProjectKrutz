@@ -37,7 +37,7 @@ div.modal-body
 				div.row
 					div.col-sm-5
 						input.form-control(type='number', min='1', max='5', ng-model='filter.userRatingFrom')
-					div.col-sm-2.text-center
+					div.col-sm-1.text-center
 						span to
 					div.col-sm-5
 						input.form-control(type='number', min='1', max='5', ng-model='filter.userRatingTo')
@@ -52,7 +52,7 @@ div.modal-body
 							span.input-group-btn
 								button.btn.btn-default(ng-click='open($event)')
 									i.glyphicon.glyphicon-calendar
-					div.col-sm-2.text-center
+					div.col-sm-1.text-center
 						span to
 					div.col-sm-5
 						p.input-group(ng-controller='DateInputController')
@@ -76,7 +76,7 @@ div.modal-body
 										a(ng-click='setUnit("from", "M")') Megabytes (M)
 									li 
 										a(ng-click='setUnit("from", "k")') Kilobytes (k)
-					div.col-sm-2.text-center
+					div.col-sm-1.text-center
 						span to
 					div.col-sm-5
 						div.input-group

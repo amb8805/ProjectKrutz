@@ -2,37 +2,65 @@
 	cursor: pointer;
 }
 
-label, input {
-	margin-right: 10px;
-}
-
 .row {
-	padding-bottom: 10px;
+	padding: 5px 0;
 }
 
-#searchForm > .input-group {
-	width: 350px;
+hr {
+	margin-top: 0;
+}
+
+section {
+	padding-top: 50px;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+#data, 
+#about {
+	margin-top: 20px;
+}
+
+label {
+	padding-top: 7px;
 }
 
 .form-inline > label {
 	padding-top: 7px;
 }
 
-.form-inline div.ui-select-bootstrap.dropdown.ng-pristine.ng-valid,
-.form-inline button.btn.btn-default.form-control.ui-select-match,
-.form-inline input.form-control.ui-select-search.ng-pristine.ng-valid {
-	width: 350px;
+.modal-dialog {
+	width: 45%;
 }
 
 #header {
 	width: 100%;
-	min-height: 325px;
-	padding-bottom: 125px;
+	padding: 160px 20px;
 	background-image: url('../img/android_permissions.jpg');
 	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: 100% auto;
-	padding-top: 125px;
+	background-position: center center;
+	background-size: cover;
 	color: #fff;
-	background-position: center;
+	position: relative;
+	text-align: center;
+}
+
+#header .header-holder {
+	max-width: 825px;
+}
+
+.divider {
+	width: 50px;
+	height: 2px;
+	background-color: #fff;
+	margin: 15px auto;
+}
+
+#footer {
+	width: 100%;
+	margin-top: 50px;
+	height: 75px;
+	background-color: #f5f5f5;
 }

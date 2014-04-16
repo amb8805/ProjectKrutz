@@ -185,9 +185,4 @@ angular.module('androidApp.controllers', []).
       $scope.opened = true;
     };
 
-  }).
-  controller('AboutController', function ($scope) {
-
-    $scope.message = 'About';
-
   });

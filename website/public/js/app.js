@@ -27,7 +27,7 @@ androidApp.config(function ($routeProvider, $locationProvider) {
 
     .when('/about', {
       templateUrl : 'partials/about',
-      controller  : 'AboutController'
+      controller  : 'AppController'
     });
 
   $locationProvider.html5Mode(true);
