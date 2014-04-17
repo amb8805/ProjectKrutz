@@ -9,6 +9,23 @@ from scrapy.contrib.pipeline.files import FilesPipeline
 from scrapy.http import Request
 from scraper.items import ApkItem
 
+# Creates a unique identifier for the APK
+class UniqueIdentifierPipeline(object):
+    def process_item(self, item, spider):
+        try:
+            self.conn.execute('SELECT MAX(ApkUniqueID) FROM ApkInformation')
+            result = self.conn.fetchone()
+
+            # Create the next unique identifier. If the first item
+            # is being inserted into the database, its id is 1.
+            if result is not None:
+                item['id'] = result[0] + 1
+            else:
+                item['id'] = 1
+            return item
+        except Exception as e:
+            raise DropItem('An error occurred: %s' % e.message)
+
 # Stores the APK information in the database
 class SQLiteStorePipeline(object):
     filename = '../Evolution of Android Applications.sqlite'
@@ -24,7 +41,7 @@ class SQLiteStorePipeline(object):
     # into the database.
     def process_item(self, item, spider):
         try:
-            self.conn.execute('INSERT INTO ApkInformation (Name, Version, Rating, DatePublished, FileSize, NumberOfDownloads, URL, Genre, OSSupported, Developer) VALUES(?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'],item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['url'], item['genre'], item['operating_systems'], item['developer']))
+            self.conn.execute('INSERT INTO ApkInformation (Name, Version, Rating, DatePublished, FileSize, NumberOfDownloads, URL, Genre, OSSupported, Developer, SourceID) VALUES(?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'],item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['url'], item['genre'], item['operating_systems'], item['developer'], item['source_id']))
             return item
         except Exception as e:
             raise DropItem('%s <%s>' % (e.message, item['url']))
@@ -41,15 +58,8 @@ class SQLiteStorePipeline(object):
             self.conn.close()
             self.conn = None
 
-# Names the downloaded file in the format APK-Name_Version.apk
+# Names the downloaded file with its unique identifier
 class APKFilesPipeline(FilesPipeline):
-    def file_name(self, item):
-        name = item['name'].replace('/', '_')
-        return re.sub('\s+', '_', name + '-' + item['software_version'])
-
-    def get_media_requests(self, item, info):
-        return [Request(x, meta={'file_name': self.file_name(item)}) for x in item.get(self.FILES_URLS_FIELD, [])]
-
     def file_path(self, request, response=None, info=None):
         media_ext = path.splitext(request.url)[1]
 
@@ -61,4 +71,4 @@ class APKFilesPipeline(FilesPipeline):
         elif media_ext != '.apk':
             raise DropItem('File is not an APK file: %s' % request.url)
 
-        return 'full/%s%s' % (request.meta['file_name'], media_ext)
+        return 'full/%s%s' % (item['id'], media_ext)

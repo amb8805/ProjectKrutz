@@ -33,3 +33,4 @@ class APKTOPSpider(CrawlSpider):
         
         if download_url and google_play_url:
             yield Request(google_play_url[0], meta={'url': response.url, 'file_urls': [download_url[0]], 'come_from': self.name}, callback=parse_app)
+            

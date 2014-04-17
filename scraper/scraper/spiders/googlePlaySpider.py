@@ -94,3 +94,4 @@ class GooglePlaySpider(CrawlSpider):
 			yield Request(base_path + '&start=' + str(start_number) + '&num=24', callback=self.parse_search)
 
 		return
+		

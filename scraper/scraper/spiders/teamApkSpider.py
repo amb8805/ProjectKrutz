@@ -41,3 +41,4 @@ class TeamApkSpider(CrawlSpider):
     # Download the APK file
     def after_post(self, response):
         yield Request(response.meta['google_play_url'], meta={'url': response.meta['url'], 'file_urls': [response.url], 'come_from': self.name}, callback=parse_app)
+        
