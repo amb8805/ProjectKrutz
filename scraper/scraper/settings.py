@@ -4,6 +4,7 @@ SPIDER_MODULES = ['scraper.spiders']
 NEWSPIDER_MODULE = 'scraper.spiders'
 
 ITEM_PIPELINES = {
+	'scraper.pipelines.UniqueIdentifierPipeline' : 100,
 	'scraper.pipelines.SQLiteStorePipeline' : 300,
 	'scraper.pipelines.APKFilesPipeline' : 800,
 }

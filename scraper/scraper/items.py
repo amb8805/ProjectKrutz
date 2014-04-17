@@ -2,6 +2,10 @@ from scrapy.item import Item, Field
 
 class ApkItem(Item):
 
+    # Unique identifier and APK source
+    id = Field()
+    source_id = Field()
+
     # App name, developer, and genre
     name = Field()
     developer = Field()

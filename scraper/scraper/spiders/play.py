@@ -11,6 +11,9 @@ def parse_app(response):
 
     # Special logic for GooglePlaySpider
     if response.meta['come_from'] == 'googleplay':
+
+        item['source_id'] = 2
+
         price = sel.xpath('//meta[@itemprop="price"]/@content').extract()[0]
 
         # We are only downloading free apps
@@ -40,6 +43,15 @@ def parse_app(response):
     else:
         item['url'] = response.meta['url']
         item['file_urls'] = response.meta['file_urls']
+
+        if response.meta['come_from'] == 'apktop':
+            item['source_id'] = 1
+        elif response.meta['come_from'] == 'teamapk':
+            item['source_id'] = 1
+        elif response.meta['come_from'] == 'fdroid':
+            item['source_id'] = 1
+        else:
+            item['source_id'] = 1
 
     info_container = sel.xpath('//div[@class="info-container"]')
     item['name'] = info_container.xpath('//div[@class="document-title"]/div/text()').extract()[0]
