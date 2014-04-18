@@ -8,12 +8,8 @@ var file = '../Evolution of Android Applications.sqlite';
 var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
 exports.getApkList = function (req, res) {
-	/*
-		SELECT info.*, permissions.*
-		FROM ApkInformation info, PERMISSIONS permissions
-		WHERE info.Name=permissions.Name
-		AND info.Version=permissions.Name
-	*/
+
+	// TODO: Have this select information from all tables
 	db.all('SELECT * FROM ApkInformation', function (err, apks) {
 		res.send(apks);
 	});
