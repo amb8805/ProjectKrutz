@@ -1,1 +1,0 @@
-Note: When deploying this to the server, you will likely need to use a 64 bit version of Nicad.
