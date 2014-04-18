@@ -39,7 +39,7 @@ do
         O_F=$APK${f#../../testAndroidApps/}
         OUTPUT_FOLDER=${O_F%.apk}$OUTPUT
 
-        echo “**********Stowaway***********”
+        echo **********Stowaway***********
         echo ${f#../../testAndroidApps/}
 
         mkdir $OUTPUT_FOLDER
@@ -60,11 +60,11 @@ done
 popd
 
 echo
-pushd ./scraper
+
 echo "Inserting into the database now"
 #sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ApkInformation (Name,Version,Rating) VALUES ('ShannonsApp','1.0','5.0');"
-#sqlite3 Evolution\ of\ Android\ Applications.sqlite "SELECT Rating FROM ApkInformation WHERE Name = 'ShannonsApp'"
-popd
+sqlite3 Evolution\ of\ Android\ Applications.sqlite "SELECT Rating FROM ApkInformation WHERE Name = 'ShannonsApp'"
+
 echo
 echo "Starting Androguard"
 
@@ -85,6 +85,9 @@ do
 		if [[ $line == *VALUE* ]]
 		then
 			echo FUZZY RISK $line
+			#num=${line#VALUE}
+			num="40"
+			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ApkStats (ApkName,ApkVersion,FuzzyRiskValue) VALUES ('ShannonsApp','1.0',$((num)));"
 			#instead insert into database
 		elif [[ $line == ERROR* ]]
 		then
