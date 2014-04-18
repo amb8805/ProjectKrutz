@@ -1,4 +1,5 @@
 import re
+import uuid
 import sqlite3
 from os import path
 from scrapy import log
@@ -12,19 +13,8 @@ from scraper.items import ApkItem
 # Creates a unique identifier for the APK
 class UniqueIdentifierPipeline(object):
     def process_item(self, item, spider):
-        try:
-            self.conn.execute('SELECT MAX(ApkUniqueID) FROM ApkInformation')
-            result = self.conn.fetchone()
-
-            # Create the next unique identifier. If the first item
-            # is being inserted into the database, its id is 1.
-            if result is not None:
-                item['id'] = result[0] + 1
-            else:
-                item['id'] = 1
-            return item
-        except Exception as e:
-            raise DropItem('An error occurred: %s' % e.message)
+        item['id'] = str(uuid.uuid4())
+        return item
 
 # Stores the APK information in the database
 class SQLiteStorePipeline(object):
@@ -41,7 +31,7 @@ class SQLiteStorePipeline(object):
     # into the database.
     def process_item(self, item, spider):
         try:
-            self.conn.execute('INSERT INTO ApkInformation (Name, Version, Rating, DatePublished, FileSize, NumberOfDownloads, URL, Genre, OSSupported, Developer, SourceID) VALUES(?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'],item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['url'], item['genre'], item['operating_systems'], item['developer'], item['source_id']))
+            self.conn.execute('INSERT INTO ApkInformation (Name, Version, Rating, DatePublished, FileSize, NumberOfDownloads, URL, Genre, OSSupported, Developer, SourceID, ApkUniqueID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'],item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['url'], item['genre'], item['operating_systems'], item['developer'], item['source_id'], item['id']))
             return item
         except Exception as e:
             raise DropItem('%s <%s>' % (e.message, item['url']))
@@ -60,15 +50,17 @@ class SQLiteStorePipeline(object):
 
 # Names the downloaded file with its unique identifier
 class APKFilesPipeline(FilesPipeline):
+    def get_media_requests(self, item, info):
+        return [Request(x, meta={'apk_id': item['id']}) for x in item.get(self.FILES_URLS_FIELD, [])]
+
     def file_path(self, request, response=None, info=None):
         media_ext = path.splitext(request.url)[1]
 
         # For Google Play spider, which yields something along the lines of ".apk?h=syrPj2oViqBMGpbX5XEB7g&t=1396043020"
         if len(media_ext) > 4 and media_ext.startswith('.apk'):
             media_ext = media_ext[:4]
-
         # Ignore any files that are not APK files
         elif media_ext != '.apk':
             raise DropItem('File is not an APK file: %s' % request.url)
 
-        return 'full/%s%s' % (item['id'], media_ext)
+        return 'full/%s%s' % (request.meta['apk_id'], media_ext)
