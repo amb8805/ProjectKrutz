@@ -1,5 +1,7 @@
 #!/bin/bash 
 ### Run checkstyle on all files
+### A generic listing of warnings is output to the user
+###		This list of evaluation criteria may be found at: all-checkstyle-checks.xml
 
 
 ### Todo
@@ -16,7 +18,8 @@ inputDirectory=../large_test/
 cd checkstyle/
 
 ### Loop through all files in the input directory
-for i in $(find $inputDirectory -mindepth 1 -type d ) # mindepth ignore the top layer
+#for i in $(find $inputDirectory -mindepth 1 -type d ) # mindepth ignore the top layer
+for i in $(find $inputDirectory -maxdepth 1 -mindepth 1 -type d ) # maxdepth to only start with the top level, but mindepth to ignore it.
 do
 	### This could be written cleaner
 	appName=${i//apk/""}
