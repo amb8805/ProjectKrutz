@@ -31,7 +31,7 @@ class SQLiteStorePipeline(object):
     # into the database.
     def process_item(self, item, spider):
         try:
-            self.conn.execute('INSERT INTO ApkInformation (Name, Version, Rating, DatePublished, FileSize, NumberOfDownloads, URL, Genre, OSSupported, Developer, SourceID, ApkUniqueID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'],item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['url'], item['genre'], item['operating_systems'], item['developer'], item['source_id'], item['id']))
+            self.conn.execute('INSERT INTO ApkInformation (Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, NumberOfDownloads, OperatingSystems, URL, SourceId, ApkId) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'], item['developer'], item['genre'], item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['operating_systems'], item['url'], item['source_id'], item['id']))
             return item
         except Exception as e:
             raise DropItem('%s <%s>' % (e.message, item['url']))
