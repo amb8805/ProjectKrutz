@@ -5,44 +5,84 @@
 #	Analyzes the 
 
 
+#### Check to make sure that java is installed
+if type -p java; then
+    echo "Java Found"
+else
+    echo "Java not found"
+	exit
+fi
+
+
+
+
+
+
 #### Input location for all apk files
 ## This will need to be changed based on the final configuration
-inputLocation=../APKInputfiles
-
-
+inputLocation=../testAndroidApps
+logDir=logs
+logFile=runAll.log
 
 #ls $inputLocation
 
 ## Make sure that the logs directory exists
-mkdir -p logs 
+mkdir -p $logDir 
 
-## Create manifest file inside of APK-> Java Conversion
-### No needed for now
-#./mkmanifest.sh APK_to_JAVA
+### Delete the log file if it exists
+rm -f $logDir/$logFile 
+touch $logDir/$logFile
 
-#
+
+date1=$(date +"%s") # Start Run Time
+#### Add Starting message into Logs
+#echo "RunAll Start:" `date` >> $logDir/$logFile
+
+
+
+
+#### Add message about starting Java conversion to logs
+
 ### Perform java conversion of APK files to java
-#./APK_to_JAVA/convert_APK_Java.sh $inputLocation
+#echo "Java Conversion:" `date` >> $logDir/$logFile
+./APK_to_JAVA/convert_APK_Java.sh $inputLocation
 
 
 ### Perform Findbugs
-./findbugs/findbugs.sh
+### This is commented out because it takes too long to run
+#./findbugs/findbugs.sh
 
-#dan=`./findbugs/findbugs.sh` 
-#echo test
-#echo Values: $dan
-#echo done
+### This code is being left in 
+#### dan=`./findbugs/findbugs.sh` 
+##### echo test
+###### echo Values: $dan
+###### echo done
+
+
+
 
 ### Find the clones in the system
+#echo "Clones:" `date` >> $logDir/$logFile
 #./CloneDetection/runclones.sh
 
-### Remove un-needed files
-### No needed for now
-#./rmjunk.sh APK_to_JAVA
 
 
 
-### Check the logs into git
+#### CheckStyle
+#echo "CheckStyle:" `date` >> $logDir/$logFile
+#./checkstyle/CheckStyle.sh
+
+
+
+date2=$(date +"%s")
+diff=$(($date2-$date1))
+#echo "RunAll End:" `date` >> $logDir/$logFile
+#echo "Total Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logDir/$logFile
+
+### TODO
+### 	Check the logs into git
+### 		The entire directory may be checked in.
+###		
 
 
 
@@ -50,3 +90,8 @@ mkdir -p logs
 #### Todo: 
 # Add Logging
 # Place results into database
+# Remove java and .class files at the end
+
+cat $logDir/$logFile
+
+echo done

@@ -4,22 +4,30 @@
 ## ./convert_APK_Java
 
 ## Description: Converts all apk files in a given directory to .java x
+### Make sure that open-jdk is installed 
+### 	sudo apt-get install openjdk-7-jdk
+
 
 ## Location of directory holding all java conversion functionality
 apk_Conv_dir=APK_to_JAVA
 
-## Location of all apk files to be analyzed
-#APKInputDir=$apk_Conv_dir/inputAPKS
-
 ###Input location with all of the 
 APKInputDir=$1 
 
+logLocation=logs/convert_apk.log
 
+### Remove the log if it is there
+rm -f $logLocation
+## Create the log
+touch $logLocation
+
+date1=$(date +"%s") # Start Run Time
 
 ### convert individual file
 ### Refactor this out to a different file
 convertAPK (){
 
+	echo "Begin Analyzing:" `date` " " $1 >> $logLocation
 	inputFileName=$(basename $1 .apk)
 
 	### Application Name without .apk
@@ -36,6 +44,7 @@ convertAPK (){
 
 	JavaOutputDir=javaOutput/$outputFolderName
 	dirAndAppName=$JavaOutputDir/$1
+
 	mkdir -p $JavaOutputDir
 
 	cp $APKInputDir/$1 $JavaOutputDir
@@ -43,6 +52,7 @@ convertAPK (){
 	## Start analyzing the apk files
 	java -jar $apk_Conv_dir/apktool1.5.2/apktool.jar d -f $dirAndAppName
 
+	
 	### Not sure why it creates an output file here, but delete it
 	### This is a messy fix
 	rm -rf $inputFileName
@@ -61,37 +71,35 @@ convertAPK (){
 
 
 	
-#### TEMPORARILY REMOVED SINCE IT TAKES TOO LONG
-#### LOOKING FOR A FASTER OPTION
 
-#echo `date` ## Keep this for measuring conversion times 
 	## Now convert all of the .class files to .java
-#	FILES=$(find $JavaOutputDir -type f -name '*.class')
-#	for f in $FILES
-#	do
-#		string=$f
+	FILES=$(find $JavaOutputDir -type f -name '*.class')
+	for f in $FILES
+	do
+		string=$f
 
-#		if [[ $string != *'$'*  ]]
-#		then
-#			temp=$(basename $f)
-#			echo "Converted " $(basename $f) " to " ${temp//.class/".java"}
+		if [[ $string != *'$'*  ]]
+		then
+			temp=$(basename $f)
+			echo "Converted " $(basename $f) " to " ${temp//.class/".java"}
 		
 			### A faster decompiler should be used
-#			java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $f > ${f//.class/".java"}
+			java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $f > ${f//.class/".java"}
 			#java -jar $apk_Conv_dir/cfr_0_78.jar $f > ${f//.class/".java"}
-#		fi
-#	done
+		fi
+	done
 	#echo `date` ## Keep this for measuring conversion times
 
 	### Remove all of the files that are not java files
 	### Remove from now since we need the .class files for findbugs
+	### This is commented out because these files are needed by other analyzation tools
  	#rm -fr `find $JavaOutputDir -type f -print | sed '/\.java$/d'`
 
  	## Log the results
  	classFileCount=`find $JavaOutputDir -type f -name '*.class' | wc -l`
  	javaFileCount=`find $JavaOutputDir -type f -name '*.class' | wc -l`
 
-	echo "	*****Output Dir: " `echo $JavaOutputDir` "Classfiles " `echo $classFileCount` >> logs/convert_apk.log
+	echo "	*****Output Dir: " `echo $JavaOutputDir` "Classfiles " `echo $classFileCount` >> $logLocation
 	echo "	" `echo $appName` " Class Files Created: " $classFileCount
 
 	##### INSERT THE NUMBER OF CLASS FILES CREATED INTO THE SQLITE DATABASE
@@ -104,10 +112,6 @@ convertAPK (){
 
 }
 
-## Clear out the log file
-rm -f logs/convert_apk.log
-touch logs/convert_apk.log
-
 ## Remove spaces in the filenames. This will cause probems for the rest of the application.
 find $APKInputDir -name '* *' | while read file;
 do
@@ -116,8 +120,7 @@ do
 	mv "$file" "$target";
 done;
 
-## Create the log
-touch logs/convert_apk.log
+
 echo "Start Date:" `date` >> logs/convert_apk.log
 
 ## Loop through all the contents of the main APK directory
@@ -129,14 +132,14 @@ do
 done
 
 ### Log end date/time
-echo "End Date:" `date` >> logs/convert_apk.log
+
+date2=$(date +"%s")
+diff=$(($date2-$date1))
+echo "convert_APK End:" `date` >> $logLocation
+echo "Total Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
 
 
-### THIS IS NOT WORKING
-### CHECK THE LOGFILE INTO GITHUB
-#git commit logs/convert_apk.log
-#git status
-#git push origin master
+
 
 
 ### Todo: 
