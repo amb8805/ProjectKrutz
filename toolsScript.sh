@@ -52,18 +52,15 @@ do
 	do
 		echo $line
 		# instead of echoing put this into the database 
+		cd ../../../../
+		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO PERMISSIONS (ApkName,ApkVersion,${line#android.permission.}) VALUES ('howsitgoing','1.0',1);"
+		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
 	done 
 
 	cd ../../Stowaway-1.2.4
 done
 
 popd
-
-echo
-
-echo "Inserting into the database now"
-#sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ApkInformation (Name,Version,Rating) VALUES ('ShannonsApp','1.0','5.0');"
-sqlite3 Evolution\ of\ Android\ Applications.sqlite "SELECT Rating FROM ApkInformation WHERE Name = 'ShannonsApp'"
 
 echo
 echo "Starting Androguard"
@@ -85,17 +82,20 @@ do
 		if [[ $line == *VALUE* ]]
 		then
 			echo FUZZY RISK $line
-			#num=${line#VALUE}
-			num="40"
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ApkStats (ApkName,ApkVersion,FuzzyRiskValue) VALUES ('ShannonsApp','1.0',$((num)));"
+			cd ../../
+			num=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
+			float=${num/.*}
+			int=$((float))
+			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ApkStats (ApkName,ApkVersion,FuzzyRiskValue) VALUES ('howsitgoing','1.0',$int);"
 			#instead insert into database
+			cd ./tools/androguard
 		elif [[ $line == ERROR* ]]
 		then
 			echo FUZZY RISK $line
 		fi
 	done < $OUTPUT_FILE
 	
-        echo "********AndroAPKInfo for ${f#../testAndroidApps/} ***********"
+        #echo "********AndroAPKInfo for ${f#../testAndroidApps/} ***********"
         #./androapkinfo.py -i $f
 	echo
 done
