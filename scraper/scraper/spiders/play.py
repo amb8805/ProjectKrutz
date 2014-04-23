@@ -45,11 +45,11 @@ def parse_app(response):
         item['file_urls'] = response.meta['file_urls']
 
         if response.meta['come_from'] == 'apktop':
-            item['source_id'] = 1
+            item['source_id'] = 3
         elif response.meta['come_from'] == 'teamapk':
-            item['source_id'] = 1
+            item['source_id'] = 4
         elif response.meta['come_from'] == 'fdroid':
-            item['source_id'] = 1
+            item['source_id'] = 5
         else:
             item['source_id'] = 1
 
