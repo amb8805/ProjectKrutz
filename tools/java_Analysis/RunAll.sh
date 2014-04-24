@@ -6,6 +6,8 @@
 
 
 #### Check to make sure that java is installed
+#### Probably change this to check for open jdk ?
+
 if type -p java; then
     echo "Java Found"
 else
@@ -45,7 +47,7 @@ date1=$(date +"%s") # Start Run Time
 
 ### Perform java conversion of APK files to java
 #echo "Java Conversion:" `date` >> $logDir/$logFile
-./APK_to_JAVA/convert_APK_Java.sh $inputLocation
+#./APK_to_JAVA/convert_APK_Java.sh $inputLocation
 
 
 ### Perform Findbugs
@@ -62,8 +64,8 @@ date1=$(date +"%s") # Start Run Time
 
 
 ### Find the clones in the system
-#echo "Clones:" `date` >> $logDir/$logFile
-#./CloneDetection/runclones.sh
+echo "Clones:" `date` >> $logDir/$logFile
+./CloneDetection/runclones.sh
 
 
 
