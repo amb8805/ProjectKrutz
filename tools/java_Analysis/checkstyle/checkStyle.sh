@@ -3,16 +3,25 @@
 ### A generic listing of warnings is output to the user
 ###		This list of evaluation criteria may be found at: all-checkstyle-checks.xml
 
+logLocation=logs/checkstyle.log
 
-### Todo
-# Put all of this into a log
+
+### Remove the log if it is there
+rm -f $logLocation
+
+## Create the log
+touch $logLocation
+
+echo "CheckStyle Start:" `date` >> $logLocation
+
 
 ### Helpful date website http://stackoverflow.com/questions/8903239/how-to-calculate-time-difference-in-bash-script
 ### Date/Time when the script begins to run
 date1=$(date +"%s")
 
+
 ### Location of all files to be analyzed
-inputDirectory=../large_test/
+inputDirectory=../javaOutput
 #inputDirectory=../testinput/
 
 cd checkstyle/
@@ -29,9 +38,14 @@ do
 	### Begin running checkstyle on each
 	rm -f temp.txt
 	touch temp.txt
+
+	
+	
+	####java -jar checkstyle-5.7-all.jar -c all-checkstyle-checks.xml $inputDirectory/$i/*
 	
 	### Written to temp file since a variable is too long to parse afterwards
 	temp="`java -jar checkstyle-5.7-all.jar -c all-checkstyle-checks.xml $inputDirectory/$i/* 2>&1 > temp.txt`"
+
 	fileTarget=temp.txt
 	defectCount=`grep -o '.java' $fileTarget | wc -l`
 
@@ -43,14 +57,19 @@ do
 
 	rm -f temp.txt
 
+	echo "Current Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds. for " `echo $appName` "Defect Count:" `echo $defectCount` >> ../$logLocation
+
+	
+	
+	### These values can be used to put into the database
 	echo FileName: $appName
 	echo DefectCount: $defectCount
 
 done
 
-### Put this into a log
-echo "$(($diff / 60)) minutes and $(($diff % 60)) seconds elapsed. - Total Time" 
-
-
+date2=$(date +"%s")
+diff=$(($date2-$date1))
+echo "CheckStyle Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> ../$logLocation
+echo "CheckStyle End:" `date` >> ../$logLocation
 
 

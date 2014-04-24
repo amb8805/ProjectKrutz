@@ -18,8 +18,6 @@ fi
 
 
 
-
-
 #### Input location for all apk files
 ## This will need to be changed based on the final configuration
 inputLocation=../testAndroidApps
@@ -32,13 +30,15 @@ logFile=runAll.log
 mkdir -p $logDir 
 
 ### Delete the log file if it exists
-rm -f $logDir/$logFile 
+rm -f $logDir/*.log
+
+
 touch $logDir/$logFile
 
 
 date1=$(date +"%s") # Start Run Time
 #### Add Starting message into Logs
-#echo "RunAll Start:" `date` >> $logDir/$logFile
+echo "RunAll Start:" `date` >> $logDir/$logFile
 
 
 
@@ -64,27 +64,22 @@ date1=$(date +"%s") # Start Run Time
 
 
 ### Find the clones in the system
-echo "Clones:" `date` >> $logDir/$logFile
-./CloneDetection/runclones.sh
+#echo "Clones:" `date` >> $logDir/$logFile
+#./CloneDetection/runclones.sh
 
 
 
 
 #### CheckStyle
-#echo "CheckStyle:" `date` >> $logDir/$logFile
-#./checkstyle/CheckStyle.sh
+echo "CheckStyle:" `date` >> $logDir/$logFile
+./checkstyle/CheckStyle.sh
 
 
 
 date2=$(date +"%s")
 diff=$(($date2-$date1))
-#echo "RunAll End:" `date` >> $logDir/$logFile
-#echo "Total Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logDir/$logFile
-
-### TODO
-### 	Check the logs into git
-### 		The entire directory may be checked in.
-###		
+echo "RunAll End:" `date` >> $logDir/$logFile
+echo "Total Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logDir/$logFile
 
 
 
@@ -92,8 +87,6 @@ diff=$(($date2-$date1))
 #### Todo: 
 # Add Logging
 # Place results into database
+# Check logs into git
 # Remove java and .class files at the end
 
-cat $logDir/$logFile
-
-echo done
