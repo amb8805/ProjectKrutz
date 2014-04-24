@@ -33,7 +33,7 @@ def parse_app(response):
 
         # If a download URL is not sent back, we know that an error occurred
         if 'url' not in post_data:
-            log.msg('< %s >' % response.url, level=log.ERROR)
+            log.msg('An error occurred, so a download URL was not retrieved <%s>' % response.url, level=log.ERROR)
             return
 
         item['url'] = response.url
