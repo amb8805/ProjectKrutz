@@ -26,8 +26,8 @@ total_defects=2
 tempDefects=5
 total_defects=$(($total_defects + $tempDefects))
 
-echo $total_defects
-exit
+#echo $total_defects
+#exit
 
 #touch test.txt
 #ls $inputLocation

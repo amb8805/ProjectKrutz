@@ -69,9 +69,6 @@ convertAPK (){
 	jar xvf classes_dex2jar.jar 
 	cd ../../ 
 
-
-	
-
 	## Now convert all of the .class files to .java
 	FILES=$(find $JavaOutputDir -type f -name '*.class')
 	for f in $FILES
@@ -85,7 +82,11 @@ convertAPK (){
 		
 			### A faster decompiler should be used
 			java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $f > ${f//.class/".java"}
-			#java -jar $apk_Conv_dir/cfr_0_78.jar $f > ${f//.class/".java"}
+				#java -jar $apk_Conv_dir/cfr_0_78.jar $f > ${f//.class/".java"}
+			
+			### Remove the top line from each file which is just dummy output
+			sed -i 1d $JavaOutputDir/${temp//.class/".java"}
+	
 		fi
 	done
 	#echo `date` ## Keep this for measuring conversion times
