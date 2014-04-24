@@ -1,3 +1,4 @@
+import re
 import requests
 from scrapy import log
 from scrapy.selector import Selector
@@ -31,9 +32,8 @@ def parse_app(response):
 
         post_data = requests.post('http://api.evozi.com/apk-downloader/download', data=data).json()
 
-        # If a download URL is not sent back, we know that an error occurred
-        if 'url' not in post_data:
-            log.msg('An error occurred, so a download URL was not retrieved <%s>' % response.url, level=log.ERROR)
+        if post_data['status'] == 'error':
+            log.msg('%s <%s>' % (post_data['data'], response.url), level=log.ERROR)
             return
 
         item['url'] = response.url
