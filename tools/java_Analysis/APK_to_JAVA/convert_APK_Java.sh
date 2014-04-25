@@ -144,8 +144,6 @@ echo "Total Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logL
 
 
 ### Todo: 
-# Check logs into GIT
-# Check with many different .apk files
 # Find a faster decompilation method
 # Put a counter x/x, on the decompilation process 
 

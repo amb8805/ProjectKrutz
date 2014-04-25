@@ -46,12 +46,12 @@ echo "RunAll Start:" `date` >> $logDir/$logFile
 #### Add message about starting Java conversion to logs
 
 ### Perform java conversion of APK files to java
-#echo "Java Conversion:" `date` >> $logDir/$logFile
-#./APK_to_JAVA/convert_APK_Java.sh $inputLocation
+echo "Java Conversion:" `date` >> $logDir/$logFile
+./APK_to_JAVA/convert_APK_Java.sh $inputLocation
 
 
 ### Perform Findbugs
-### This is commented out because it takes too long to run
+### This is git commented out because it takes too long to run
 #./findbugs/findbugs.sh
 
 ### This code is being left in 
@@ -64,8 +64,8 @@ echo "RunAll Start:" `date` >> $logDir/$logFile
 
 
 ### Find the clones in the system
-#echo "Clones:" `date` >> $logDir/$logFile
-#./CloneDetection/runclones.sh
+echo "Clones:" `date` >> $logDir/$logFile
+./CloneDetection/runclones.sh
 
 
 

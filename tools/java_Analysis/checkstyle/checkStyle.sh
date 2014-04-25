@@ -67,6 +67,11 @@ do
 
 done
 
+
+###TODO
+# Clear out everything in the javaOutput directory but "placeholder.txt"
+
+
 date2=$(date +"%s")
 diff=$(($date2-$date1))
 echo "CheckStyle Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> ../$logLocation
