@@ -53,9 +53,14 @@ do
 		echo $line
 		# instead of echoing put this into the database 
 		cd ../../../../
+		# make sure the permission is in the permissions table and get the ID number
+		# get the ID from ApkInfo based on the filename (includes .apk)
+		# put into the Overprivilege table an entry for apkid and perm id
 		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO PERMISSIONS (ApkName,ApkVersion,${line#android.permission.}) VALUES ('howsitgoing','1.0',1);"
 		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
 	done 
+
+	#add another for loop here for underprivileged
 
 	cd ../../Stowaway-1.2.4
 done
@@ -86,7 +91,7 @@ do
 			num=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
 			float=${num/.*}
 			int=$((float))
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ApkStats (ApkName,ApkVersion,FuzzyRiskValue) VALUES ('howsitgoing','1.0',$int);"
+			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES (${f#../testAndroidApps/},$int);"
 			#instead insert into database
 			cd ./tools/androguard
 		elif [[ $line == ERROR* ]]

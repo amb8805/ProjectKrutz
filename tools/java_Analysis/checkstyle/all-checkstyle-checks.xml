@@ -782,12 +782,13 @@
 
         <!-- Checks correct indentation of Java Code. !-->
         <!-- See http://checkstyle.sf.net/config_misc.html !-->
+<!--
         <module name="Indentation">
             <property name="basicOffset"     value="4"/>
             <property name="braceAdjustment" value="0"/>
             <property name="caseIndent"      value="4"/>
         </module>
-
+-->
         <!-- Checks that the outer type name and the file name match. !-->
         <!-- See http://checkstyle.sourceforge.net/config_misc.html#OuterTypeFilename !-->
         <module name="OuterTypeFilename"/>
@@ -1050,7 +1051,9 @@
 
         <!-- Checks that the whitespace around the Generic tokens < and > is correct to the typical convention. !-->
         <!-- See http://checkstyle.sourceforge.net/config_whitespace.html#GenericWhitespace !-->
-        <module name="GenericWhitespace"/>
+<!--      
+	  <module name="GenericWhitespace"/>
+-->
 
         <!-- Checks the padding between the identifier of a method definition, !-->
         <!-- constructor definition, method call, or constructor invocation; and the left parenthesis of the parameter list. !-->
@@ -1063,11 +1066,12 @@
 
         <!-- Checks that there is no whitespace after a token. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
+		<!--
         <module name="NoWhitespaceAfter">
             <property name="allowLineBreaks" value="true"/>
             <property name="tokens"          value="ARRAY_INIT, BNOT, DEC, DOT, INC, LNOT, UNARY_MINUS, UNARY_PLUS"/>
         </module>
-
+-->
         <!-- Checks that there is no whitespace before a token. !-->
         <!-- See http://checkstyle.sf.net/config_whitespace.html !-->
 			<!-- DK
