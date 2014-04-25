@@ -24,11 +24,28 @@ def parse_app(response):
 
         package_name = response.url[response.url.find('id=') + 3:]
 
+        ### USING API KEY: ###
+        # data = {
+        #     'packagename': package_name,
+        #     'fetch': 'false',
+        #     'api_key': api_key
+        # }
+        ######################
+
+        download_page = requests.get('http://apps.evozi.com/apk-downloader/')
+
+        ### NOT USING API KEY: ###
+        var_key = re.search("data:\s+{packagename:\s+packagename,\s+([-\w]*):\s+[-\w]*,", download_page.text, re.MULTILINE).group(1)
+        var_name, var_value = re.search("var\s+fetched_desc = '';\r*\n*\s+var\s+(\w*)\s+=\s+\"([-\w]*)\";", download_page.text, re.MULTILINE).groups()
+        timestamp = re.search(", t: (\w*)", download_page.text, re.MULTILINE).group(1)
+
         data = {
             'packagename': package_name,
-            'fetch': 'false',
-            'api_key': api_key
+            var_key: var_value,
+            't': timestamp,
+            'fetch': 'false'
         }
+        ##########################
 
         post_data = requests.post('http://api.evozi.com/apk-downloader/download', data=data).json()
 
