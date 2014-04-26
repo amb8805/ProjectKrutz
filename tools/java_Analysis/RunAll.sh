@@ -76,6 +76,12 @@ echo "CheckStyle:" `date` >> $logDir/$logFile
 
 
 
+
+
+### Remove the created javaoutput.
+echo "Remove Java Output" `date` >> $logDir/$logFile
+rm -rf javaOutput
+
 date2=$(date +"%s")
 diff=$(($date2-$date1))
 echo "RunAll End:" `date` >> $logDir/$logFile
