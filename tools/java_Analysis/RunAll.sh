@@ -1,8 +1,8 @@
 #!/bin/bash 
 
 ### Description: 
-#	Converts all APK files to java class files
-#	Analyzes the 
+###		Converts all APK files to java class files
+###		Analyzes the .class and .java files
 
 
 #### Check to make sure that java is installed
@@ -16,22 +16,17 @@ else
 fi
 
 
-
-
 #### Input location for all apk files
 ## This will need to be changed based on the final configuration
 inputLocation=../testAndroidApps
 logDir=logs
 logFile=runAll.log
 
-#ls $inputLocation
-
 ## Make sure that the logs directory exists
 mkdir -p $logDir 
 
 ### Delete the log file if it exists
 rm -f $logDir/*.log
-
 
 touch $logDir/$logFile
 
@@ -41,46 +36,37 @@ date1=$(date +"%s") # Start Run Time
 echo "RunAll Start:" `date` >> $logDir/$logFile
 
 
+### Check to make sure that there are files to analyze
+apkCount=`find $inputLocation -type f -name '*.apk' | wc -l`
+if [[ $apkCount<1 ]]
+then
+		### Nothing to do
+		echo "No APK files to analyze:" `date` >> $logDir/$logFile
+		echo "No APK files to analyze"
+else
+
+	### Perform java conversion of APK files to java
+	echo "Java Conversion:" `date` >> $logDir/$logFile
+	./APK_to_JAVA/convert_APK_Java.sh $inputLocation
 
 
-#### Add message about starting Java conversion to logs
-
-### Perform java conversion of APK files to java
-echo "Java Conversion:" `date` >> $logDir/$logFile
-./APK_to_JAVA/convert_APK_Java.sh $inputLocation
+	### Find the clones in the system
+	echo "Clones:" `date` >> $logDir/$logFile
+	./CloneDetection/runclones.sh
 
 
-### Perform Findbugs
-### This is git commented out because it takes too long to run
-#./findbugs/findbugs.sh
-
-### This code is being left in 
-#### dan=`./findbugs/findbugs.sh` 
-##### echo test
-###### echo Values: $dan
-###### echo done
-
-
-
-
-### Find the clones in the system
-echo "Clones:" `date` >> $logDir/$logFile
-./CloneDetection/runclones.sh
+	#### CheckStyle
+	echo "CheckStyle:" `date` >> $logDir/$logFile
+	./checkstyle/CheckStyle.sh
 
 
 
 
-#### CheckStyle
-echo "CheckStyle:" `date` >> $logDir/$logFile
-./checkstyle/CheckStyle.sh
+	### Remove the created javaoutput.
+	echo "Remove Java Output" `date` >> $logDir/$logFile
+	rm -rf javaOutput
 
-
-
-
-
-### Remove the created javaoutput.
-echo "Remove Java Output" `date` >> $logDir/$logFile
-rm -rf javaOutput
+fi
 
 date2=$(date +"%s")
 diff=$(($date2-$date1))

@@ -46,7 +46,6 @@ convertAPK (){
 	dirAndAppName=$JavaOutputDir/$1
 
 	mkdir -p $JavaOutputDir
-	touch $JavaOutputDir/placeholder.txt
 
 	cp $APKInputDir/$1 $JavaOutputDir
 
@@ -70,6 +69,12 @@ convertAPK (){
 	jar xvf classes_dex2jar.jar 
 	cd ../../ 
 
+	### Get number of classes to be analyzed
+	### This will provide a rough estimate of the classes to be analyzed
+	classCompareCount=`find $JavaOutputDir -type f -name '*.class' | wc -l`
+	echo "Classes to convert:" $classCompareCount  `date` >> logs/convert_apk.log
+	count=1
+
 	## Now convert all of the .class files to .java
 	FILES=$(find $JavaOutputDir -type f -name '*.class')
 	for f in $FILES
@@ -79,48 +84,43 @@ convertAPK (){
 		if [[ $string != *'$'*  ]]
 		then
 			temp=$(basename $f)
-			echo "Converted " $(basename $f) " to " ${temp//.class/".java"}
+			echo $count"/" $classCompareCount " Converted " $(basename $f) " to " ${temp//.class/".java"}
 
-		#echo $f
 		
 			### A faster decompiler should be used
 			java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $f > ${f//.class/".java"}
 				#java -jar $apk_Conv_dir/cfr_0_78.jar $f > ${f//.class/".java"}
 
-#echo $f
-#echo ${f//.class/".java"}
-
-
-
-
-#echo $JavaOutputDir/${temp//.class/".java"}
 			
 			### Remove the top line from each file which is just dummy output
 			### Check to make sure that the top line contains the decompliling message
 			if [[ `head -1 ${f//.class/".java"}`  == *Decompiling* ]]
 			then
 				sed -i 1d ${f//.class/".java"} ## messy
-				#echo $f
 			fi
 		fi
+		count=$((count+1))
 	done
-	#echo `date` ## Keep this for measuring conversion times
-
-	### Remove all of the files that are not java files
-	### Remove from now since we need the .class files for findbugs
-	### This is commented out because these files are needed by other analyzation tools
- 	#rm -fr `find $JavaOutputDir -type f -print | sed '/\.java$/d'`
-
+		
  	## Log the results
  	classFileCount=`find $JavaOutputDir -type f -name '*.class' | wc -l`
- 	javaFileCount=`find $JavaOutputDir -type f -name '*.class' | wc -l`
+ 	javaFileCount=`find $JavaOutputDir -type f -name '*.java' | wc -l`
 
 	echo "	*****Output Dir: " `echo $JavaOutputDir` "Classfiles " `echo $classFileCount` >> $logLocation
 	echo "	" `echo $appName` " Class Files Created: " $classFileCount
 
+	echo "	*****Output Dir: " `echo $JavaOutputDir` "Javafiles " `echo $javaFileCount` >> $logLocation
+	echo "	" `echo $appName` " Java Files Created: " $javaFileCount
+
 	##### INSERT THE NUMBER OF CLASS FILES CREATED INTO THE SQLITE DATABASE
 	#####  # Of class files: $classFileCount
 	#####  File name: $JavaOutputDir
+
+
+	##### INSERT THE NUMBER OF Java FILES CREATED INTO THE SQLITE DATABASE
+	#####  # Of Java files: $javaFileCount
+	#####  File name: $JavaOutputDir
+
 
 	## Output the results to the user
 #	echo "	*****Output Dir: " `echo $JavaOutputDir` >> logs/convert_apk.log
@@ -160,6 +160,4 @@ echo "Total Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logL
 
 ### Todo: 
 # Find a faster decompilation method
-# Put a counter x/x, on the decompilation process 
 
-## To log: ./convert_APK_Java >file.log 2>%1

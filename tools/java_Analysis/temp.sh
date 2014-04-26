@@ -1,14 +1,10 @@
 #!/bin/bash 
 
-inputFileName=Rfc822InputFilter.java
+input=javaOutput
 
 
-# sed -i 1d $JavaOutputDir/${temp//.class/".java"}
+#	files=$(find $input -type f -name '*.class') | wc -l
 
+classCount=`find $input -type f -name '*.class' | wc -l`
 
-
-
-
-
-cd javaOutput
-ls *|grep -v placeholder.txt |xargs rm -rf
+	echo $files
