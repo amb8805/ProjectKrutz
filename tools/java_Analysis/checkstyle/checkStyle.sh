@@ -3,7 +3,7 @@
 ### A generic listing of warnings is output to the user
 ###		This list of evaluation criteria may be found at: all-checkstyle-checks.xml
 
-logLocation=logs/checkstyle.log
+logLocation=../../logs/checkstyle.log
 
 
 ### Remove the log if it is there

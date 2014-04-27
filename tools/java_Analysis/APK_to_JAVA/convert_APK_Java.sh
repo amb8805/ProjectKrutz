@@ -14,7 +14,7 @@ apk_Conv_dir=APK_to_JAVA
 ###Input location with all of the 
 APKInputDir=$1 
 
-logLocation=logs/convert_apk.log
+logLocation=../../logs/convert_apk.log
 
 ### Remove the log if it is there
 rm -f $logLocation
@@ -72,8 +72,7 @@ convertAPK (){
 	### Get number of classes to be analyzed
 	### This will provide a rough estimate of the classes to be analyzed
 	classCompareCount=`find $JavaOutputDir -type f -name '*.class' | wc -l`
-	echo "Classes to convert:" $classCompareCount  `date` >> logs/convert_apk.log
-	count=1
+	echo "Classes to convert:" $classCompareCount  `date` >> $logLocation
 
 	## Now convert all of the .class files to .java
 	FILES=$(find $JavaOutputDir -type f -name '*.class')
@@ -114,16 +113,20 @@ convertAPK (){
 
 	##### INSERT THE NUMBER OF CLASS FILES CREATED INTO THE SQLITE DATABASE
 	#####  # Of class files: $classFileCount
-	#####  File name: $JavaOutputDir
+	#####  File name: $1
+	cd ../../  #moving to the directory with the database
+	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$1';"`
+	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET ClassFiles=$classFileCount WHERE ApkId=$rowid;"	
 
 
 	##### INSERT THE NUMBER OF Java FILES CREATED INTO THE SQLITE DATABASE
 	#####  # Of Java files: $javaFileCount
 	#####  File name: $JavaOutputDir
-
+	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET JavaFiles=$javaFileCount WHERE ApkId=$rowid;"	
+	cd tools/java_Analysis #going back to where you were before
 
 	## Output the results to the user
-#	echo "	*****Output Dir: " `echo $JavaOutputDir` >> logs/convert_apk.log
+#	echo "	*****Output Dir: " `echo $JavaOutputDir` >> $logLocation
 #	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l` 
 
 }
@@ -137,7 +140,7 @@ do
 done;
 
 
-echo "Start Date:" `date` >> logs/convert_apk.log
+echo "Start Date:" `date` >> $logLocation
 
 ## Loop through all the contents of the main APK directory
 FILES=$(find $APKInputDir -type f -name '*.apk')

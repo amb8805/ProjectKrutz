@@ -1,0 +1,11 @@
+Start Date: Sun Apr 27 22:40:40 UTC 2014
+Begin Analyzing: Sun Apr 27 22:40:40 UTC 2014   Pinterest_1.0.3.apk
+Classes to convert: 2 Sun Apr 27 22:43:05 UTC 2014
+	*****Output Dir:  javaOutput/Pinterest_1%0%3%apk Classfiles  2
+	*****Output Dir:  javaOutput/Pinterest_1%0%3%apk Javafiles  2
+Begin Analyzing: Sun Apr 27 22:43:07 UTC 2014   textgram.apk
+Classes to convert: 0 Sun Apr 27 22:45:09 UTC 2014
+	*****Output Dir:  javaOutput/textgram%apk Classfiles  0
+	*****Output Dir:  javaOutput/textgram%apk Javafiles  0
+convert_APK End: Sun Apr 27 22:45:09 UTC 2014
+Total Time 4 minutes and 29 seconds.

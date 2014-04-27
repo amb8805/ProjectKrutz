@@ -26,7 +26,7 @@ logFile=runAll.log
 mkdir -p $logDir 
 
 ### Delete the log file if it exists
-rm -f $logDir/*.log
+#rm -f $logDir/*.log  ##This is now in the toolsScript.sh instead - Shannon
 
 touch $logDir/$logFile
 

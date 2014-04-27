@@ -11,7 +11,7 @@ echo "Run Clones: "
 date1=$(date +"%s")
 
 
-logLocation=logs/clones.log
+logLocation=../../logs/clones.log
 
 ### Location of Clone Detection Functionality
 cloneDetectionLocation=CloneDetection

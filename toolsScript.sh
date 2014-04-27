@@ -5,7 +5,7 @@ clear
 echo "The script starts now"
 echo
 
-rm logs/stowAwayoutput.log
+rm -f logs/*.log
 rm -rf logs/AndroRiskOutput
 
 if [ $(date +%u) -eq 1 ]
@@ -70,7 +70,7 @@ do
 	done 
 
 	#add another for loop here for underprivileged
-	for line in $(cat Overprivilege)
+	for line in $(cat Underprivilege)
 	do
 		echo $line
 		# instead of echoing put this into the database 
@@ -113,8 +113,12 @@ do
 			num=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
   			float=${num/.*}
   			int=$((float))
-  			#instead insert into database
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES ($rowid,$int);"
+  			#instead insert into database...I don't know if this is right...
+			{ 
+				sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES ($rowid,$int);"
+			} || {
+				sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET FuzzyRiskValue=$int WHERE ApkId=$rowid;"
+			}
 			cd ./tools/androguard
 		elif [[ $line == ERROR* ]]
 		then
@@ -129,6 +133,12 @@ done
 
 popd
 
-echo "all done with the script!"
+pushd ./tools/java_Analysis
+
+bash RunAll.sh
+
+popd
+
+echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
 exit
