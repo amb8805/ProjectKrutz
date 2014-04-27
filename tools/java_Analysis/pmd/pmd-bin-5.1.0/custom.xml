@@ -1,6 +1,0 @@
-<?xml version="1.0"?><pmd>
-<file name="/mnt/hgfs/shared_win/ProjectKrutz/tools/java_Analysis/pmd/pmd-bin-5.1.0/android.xml">
-<violation line="5" rule="UnusedLocalVariable">
-Avoid unused local variables such as 'fr'
-</violation>
-</file></pmd>
