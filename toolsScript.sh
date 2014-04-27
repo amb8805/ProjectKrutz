@@ -5,7 +5,8 @@ clear
 echo "The script starts now"
 echo
 
-rm output.txt
+rm logs/stowAwayoutput.log
+rm -rf logs/AndroRiskOutput
 
 if [ $(date +%u) -eq 1 ]
 then
@@ -44,7 +45,9 @@ do
 
         mkdir $OUTPUT_FOLDER
 
-        bash ./stowaway.sh $f $OUTPUT_FOLDER &>../../../output.txt
+        bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
+
+        echo "################################################################" &>>../../../logs/stowAwayoutput.log
 	
 	cd $OUTPUT_FOLDER
 
@@ -89,15 +92,15 @@ echo "Starting Androguard"
 
 pushd ./tools/androguard
 
-mkdir ../../AndroRiskOutput
+mkdir ../../logs/AndroRiskOutput
 
 FILES=../testAndroidApps/*
 for f in $FILES
 do
         echo "***********AndroRisk for ${f#../testAndroidApps/} ***********"
         
-	OUTPUT_FILE=../../AndroRiskOutput/${f#../testAndroidApps/}_AndroRisk.txt
-	./androrisk.py -m -i $f &> $OUTPUT_FILE 
+	OUTPUT_FILE=../../logs/AndroRiskOutput/${f#../testAndroidApps/}_AndroRisk.log
+	./androrisk.py -m -i $f &>> $OUTPUT_FILE 
 	
 	while read line;
 	do
@@ -120,7 +123,7 @@ do
 	done < $OUTPUT_FILE
 	
         #echo "********AndroAPKInfo for ${f#../testAndroidApps/} ***********"
-        #./androapkinfo.py -i $f
+        #./androapkinfo.py -i $f &>> $OUTPUT_FILE 
 	echo
 done
 

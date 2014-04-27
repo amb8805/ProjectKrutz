@@ -19,7 +19,7 @@ fi
 #### Input location for all apk files
 ## This will need to be changed based on the final configuration
 inputLocation=../testAndroidApps
-logDir=logs
+logDir=../../logs
 logFile=runAll.log
 
 ## Make sure that the logs directory exists
