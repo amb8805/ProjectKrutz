@@ -47,20 +47,37 @@ do
         bash ./stowaway.sh $f $OUTPUT_FOLDER &>../../../output.txt
 	
 	cd $OUTPUT_FOLDER
-		
+
+	cd ../../../../
+	# get the ID from ApkInfo based on the filename (includes .apk)
+	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#../../testAndroidApps/}';"`
+	cd ./tools/stowaway/${OUTPUT_FOLDER#../}	
+
+
 	for line in $(cat Overprivilege)
 	do
 		echo $line
 		# instead of echoing put this into the database 
 		cd ../../../../
 		# make sure the permission is in the permissions table and get the ID number
-		# get the ID from ApkInfo based on the filename (includes .apk)
+		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
 		# put into the Overprivilege table an entry for apkid and perm id
-		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO PERMISSIONS (ApkName,ApkVersion,${line#android.permission.}) VALUES ('howsitgoing','1.0',1);"
+		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
 		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
 	done 
 
 	#add another for loop here for underprivileged
+	for line in $(cat Overprivilege)
+	do
+		echo $line
+		# instead of echoing put this into the database 
+		cd ../../../../
+		# make sure the permission is in the permissions table and get the ID number
+		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+		# put into the Overprivilege table an entry for apkid and perm id
+		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
+		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
+	done 
 
 	cd ../../Stowaway-1.2.4
 done
@@ -86,13 +103,15 @@ do
 	do
 		if [[ $line == *VALUE* ]]
 		then
-			echo FUZZY RISK $line
+			echo FUZZY RISK VALUE ${line#VALUE}
 			cd ../../
+			#select from apk information the row id where apkid = filename
+			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#../testAndroidApps/}';"`
 			num=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
-			float=${num/.*}
-			int=$((float))
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES (${f#../testAndroidApps/},$int);"
-			#instead insert into database
+  			float=${num/.*}
+  			int=$((float))
+  			#instead insert into database
+			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES ($rowid,$int);"
 			cd ./tools/androguard
 		elif [[ $line == ERROR* ]]
 		then
