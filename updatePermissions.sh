@@ -9,6 +9,8 @@
 
 
 echo "Update Permissions"
+
+chmod -R a+x toolsScript.sh
 chmod -R a+x tools/java_Analysis/APK_to_JAVA/convert_APK_Java.sh
 chmod -R a+x tools/java_Analysis/APK_to_JAVA/dex2jar-0.0.9.15/dex2jar.sh
 chmod -R a+x tools/java_Analysis/CloneDetection/runclones.sh

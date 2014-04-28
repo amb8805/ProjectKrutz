@@ -74,6 +74,8 @@ convertAPK (){
 	classCompareCount=`find $JavaOutputDir -type f -name '*.class' | wc -l`
 	echo "Classes to convert:" $classCompareCount  `date` >> $logLocation
 
+	count=0 ### Clear the counter
+	
 	## Now convert all of the .class files to .java
 	FILES=$(find $JavaOutputDir -type f -name '*.class')
 	for f in $FILES
