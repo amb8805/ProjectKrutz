@@ -19,5 +19,6 @@ chmod -R a+x tools/java_Analysis/checkstyle/checkStyle.sh
 chmod -R a+x tools/java_Analysis/CloneDetection/nicad3
 chmod -R a+x tools/androguard/androrisk.py
 chmod -R a+x tools/java_Analysis/CloneDetection/scripts/NiCadPair-Ubuntu
+chmod -R a+x Evolution\ of\ Android\ Applications.sqlite
 
 
