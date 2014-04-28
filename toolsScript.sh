@@ -45,7 +45,7 @@ do
 
         mkdir $OUTPUT_FOLDER
 
-        bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
+     #   bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
 
         echo "################################################################" &>>../../../logs/stowAwayoutput.log
 	
