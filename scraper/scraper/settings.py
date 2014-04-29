@@ -23,6 +23,7 @@ COOKIES_ENABLED = False
 
 # Need to be proxies from the USA to gather data in English
 PROXY_LIST = [
+	'https://209.239.112.104:3128',
 	'https://192.3.25.99:8089',
 	'http://107.6.182.49:3128',
 	'https://174.34.166.10:3128',
