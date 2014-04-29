@@ -10,7 +10,9 @@ ITEM_PIPELINES = {
 }
 
 DOWNLOADER_MIDDLEWARES = {
-	'scraper.middlewares.ProxyMiddleware' : 100,
+	'scraper.middlewares.RandomUserAgentMiddleware' : 200,
+	'scraper.middlewares.ProxyMiddleware' : 400,
+	'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
 }
 
 FILES_STORE = './downloads'
@@ -19,70 +21,29 @@ DOWNLOAD_DELAY = 0.25
 
 COOKIES_ENABLED = False
 
+# Need to be proxies from the USA to gather data in English
 PROXY_LIST = [
-	{
-		'type'	: 'https',
-		'ip'	: '119.31.123.207',
-		'port'	: '8000'
-	},
-	{
-		'type'	: 'https',
-		'ip'	: '203.172.248.70',
-		'port'	: '3128'
-	},
-	{
-		'type'	: 'http',
-		'ip'	: '220.248.180.149',
-		'port'	: '3128'
-	},
-	{
-		'type'	: 'http',
-		'ip'	: '218.28.96.39',
-		'port'	: '3128'
-	},
-	{
-		'type'	: 'https',
-		'ip'	: '202.170.66.204',
-		'port'	: '8080'
-	},
-	{
-		'type'	: 'https',
-		'ip'	: '41.222.196.52',
-		'port'	: '8080'
-	},
-	{
-		'type'	: 'http',
-		'ip'	: '220.248.180.149',
-		'port'	: '3128'
-	},
-	{
-		'type'	: 'http',
-		'ip'	: '221.4.134.231',
-		'port'	: '8080'
-	},
-	{
-		'type'	: 'https',
-		'ip'	: '221.210.5.30',
-		'port'	: '8080'
-	},
-	{
-		'type'	: 'https',
-		'ip'	: '145.255.4.150',
-		'port'	: '8080'
-	},
-	{
-		'type'	: 'http',
-		'ip'	: '89.121.232.210',
-		'port'	: '3128'
-	},
-	{
-		'type'	: 'https',
-		'ip'	: '109.73.70.165',
-		'port'	: '5005'
-	}
+	'https://192.3.25.99:8089',
+	'http://107.6.182.49:3128',
+	'https://174.34.166.10:3128',
+	'https://208.108.209.198:3128',
+	'https://199.101.100.70:8089',
+	'https://192.3.25.99:7808',
+	'http://209.239.112.104:3128',
+	'http://72.167.205.120:80',
+	'http://96.56.105.66:7004',
+	'https://199.101.100.70:7808',
+	'https://23.88.96.2:3128'
+]
+
+USER_AGENT_LIST = [
+	'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/537.13+ (KHTML, like Gecko) Version/5.1.7 Safari/534.57.2',
+	'Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4b) Gecko/20030516 Mozilla Firebird/0.6',
+	'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/36.0.1944.0 Safari/537.36',
+	'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)',
+	'Mozilla/5.0 (Windows NT 5.1; rv:31.0) Gecko/20100101 Firefox/31.0',
+	'Mozilla/5.0 (X11; Linux x86_64; rv:28.0) Gecko/20100101 Firefox/28.0'
 ]
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 # USER_AGENT = 'APK File Scraper (+https://github.com/amb8805/ProjectKrutz)'
-
-USER_AGENT = 'Mozilla/5.0 (Windows; U; Windows NT 5.0; en-US; rv:1.4b) Gecko/20030516 Mozilla Firebird/0.6'
