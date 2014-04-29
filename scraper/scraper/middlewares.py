@@ -1,4 +1,5 @@
 import random
+from scrapy import log
 
 class ProxyMiddleware(object):
 	def __init__(self, settings):
