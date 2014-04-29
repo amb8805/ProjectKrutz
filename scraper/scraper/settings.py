@@ -4,13 +4,13 @@ SPIDER_MODULES = ['scraper.spiders']
 NEWSPIDER_MODULE = 'scraper.spiders'
 
 ITEM_PIPELINES = {
-	# 'scraper.pipelines.UniqueIdentifierPipeline' : 100,
-	# 'scraper.pipelines.SQLiteStorePipeline' : 300,
-	# 'scraper.pipelines.APKFilesPipeline' : 800,
+	'scraper.pipelines.UniqueIdentifierPipeline' : 100,
+	'scraper.pipelines.SQLiteStorePipeline' : 300,
+	'scraper.pipelines.APKFilesPipeline' : 800,
 }
 
 DOWNLOADER_MIDDLEWARES = {
-	# 'scraper.middlewares.ProxyMiddleware' : 100,
+	'scraper.middlewares.ProxyMiddleware' : 100,
 }
 
 FILES_STORE = './downloads'
