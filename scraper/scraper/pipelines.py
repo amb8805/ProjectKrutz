@@ -72,6 +72,7 @@ class EvoziPipeline(object):
             if post_data['status'] == 'error':
                 raise DropItem('%s <%s>' % (post_data['data'], item['url']))
             else:
+                item['file_urls'] = [post_data['url']]
                 return item
         else:
             return item

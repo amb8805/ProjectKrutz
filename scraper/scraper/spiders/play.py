@@ -21,7 +21,6 @@ def parse_app(response):
             return
 
         item['url'] = response.url
-        item['file_urls'] = [post_data['url']]
 
     # Logic for all other Spider objects
     else:
