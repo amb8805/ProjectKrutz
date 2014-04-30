@@ -1,0 +1,62 @@
+div#data.container
+	div.row
+		div.col-md-6.col-md-offset-6
+			div.row
+				div.col-xs-2.col-md-3.text-right
+					label Search:
+				div.col-xs-8.col-md-7
+					div.form-group
+						div.input-group
+							input.form-control(type='text', ng-model='selected', placeholder='Search for an app by name...', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8', typeahead-on-select='search($item)')
+							span.input-group-btn
+								button.btn.btn-default(type='button', ng-click='clear()')
+									span.glyphicon.glyphicon-remove
+				div.col-xs-2
+					button.btn.btn-primary(ng-controller='ModalController', type='button', ng-click='open()') Advanced
+	div.row
+		div.col-md-6.col-md-push-6
+			div.row
+				div.col-xs-2.col-md-3.text-right
+					label Download:
+				div.col-xs-8.col-md-7
+					div.form-group
+						ui-select(ng-model='format.selected', theme='bootstrap')
+							match(placeholder='Select download format...') {{ $select.selected }}
+							choices(repeat='format in formats | filter: $select.search')
+								div(ng-bind-html='format | highlight: $select.search')
+				div.col-xs-2
+					button.btn.btn-primary(type='button', ng-model='format.selected') Download
+		div.col-md-6.col-md-pull-6
+			div.row
+				div.col-xs-2.col-md-3.text-right
+					label Toggle view:
+				div.col-xs-10.col-md-9
+					div.btn-group
+						button.btn.btn-default(type='button', ng-model='toggleViewModel', btn-radio='"Table"') Table
+						button.btn.btn-default(type='button', ng-model='toggleViewModel', btn-radio='"Chart"') Chart
+	div.row
+		div.col-md-12
+			div.table-responsive
+				table.table.table-hover
+					thead
+						tr
+							th Name
+							th Version
+							th Developer
+							th Genre
+							th User Rating
+							th Release Date
+							th File Size
+					tbody
+						tr(ng-repeat='apk in apks | startFrom:(currentPage - 1) * itemsPerPage | limitTo:itemsPerPage')
+							td {{ apk.Name }}
+							td {{ apk.Version }}
+							td {{ apk.Developer }}
+							td {{ apk.Genre }}
+							td {{ apk.Rating }}
+							td {{ apk.DatePublished }}
+							td {{ apk.FileSize }}
+
+	div.row
+		div.col-md-12.text-center
+			pagination.pagination(boundary-links='true', page='currentPage', total-items='totalItems', items-per-page='itemsPerPage', max-size='maxSize', previous-text!='&lsaquo;', next-text!='&rsaquo;', first-text!='&laquo;', last-text!='&raquo;', rotate='false')

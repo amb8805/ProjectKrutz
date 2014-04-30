@@ -1,0 +1,94 @@
+div.modal-header
+	h3 Advanced Search
+div.modal-body
+	h4 APK Information
+	form.form-horizontal(role='form')
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='nameInput') Name
+			div.col-sm-9
+				input#nameInput.form-control(type='text', ng-model='filter.name')
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='versionInput') Version
+			div.col-sm-9
+				input#versionInput.form-control(type='number', step='any', min='0', ng-model='filter.version')
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='developerInput') Developer
+			div.col-sm-9
+				input#developerInput.form-control(type='text', ng-model='filter.developer')
+		div.form-group(ng-controller='GenreInputController')
+			div.col-sm-3
+				label.control-label.pull-right(for='genreInput') Genre
+			div.col-sm-9
+				div.input-group
+					ui-select#genreInput(ng-model='filter.genre.selected', theme='bootstrap')
+						match {{ $select.selected }}
+						choices(repeat='genre in genres | filter: $select.search')
+							div(ng-bind-html='genre | highlight: $select.search')
+					span.input-group-btn
+						button.btn.btn-default(type='button', ng-click='clear()')
+							span.glyphicon.glyphicon-remove
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='userRatingInput') User Rating
+			div.col-sm-9#userRatingInput
+				div.row
+					div.col-sm-5
+						input.form-control(type='number', min='1', max='5', ng-model='filter.userRatingFrom')
+					div.col-sm-1.text-center
+						span to
+					div.col-sm-5
+						input.form-control(type='number', min='1', max='5', ng-model='filter.userRatingTo')
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='releaseDateInput') Release Date
+			div.col-sm-9#releaseDateInput
+				div.row
+					div.col-sm-5
+						p.input-group(ng-controller='DateInputController')
+							input.form-control(type='text', datepicker-popup='MMMM dd, yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close', ng-model='filter.releaseDateFrom')
+							span.input-group-btn
+								button.btn.btn-default(ng-click='open($event)')
+									i.glyphicon.glyphicon-calendar
+					div.col-sm-1.text-center
+						span to
+					div.col-sm-5
+						p.input-group(ng-controller='DateInputController')
+							input.form-control(type='text', datepicker-popup='MMMM dd, yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close', ng-model='filter.releaseDateTo')
+							span.input-group-btn
+								button.btn.btn-default(ng-click='open($event)')
+									i.glyphicon.glyphicon-calendar
+		div.form-group
+			div.col-sm-3
+				label.control-label.pull-right(for='fileSizeInput') File Size
+			div.col-sm-9#fileSizeInput
+				div.row
+					div.col-sm-5
+						div.input-group
+							input.form-control(type='number', step='any', min='0', ng-model='filter.fileSizeFrom')
+							div.input-group-btn
+								button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown') {{ filter.fileSizeFromUnit }}
+									span.caret
+								ul.dropdown-menu
+									li 
+										a(ng-click='setUnit("from", "M")') Megabytes (M)
+									li 
+										a(ng-click='setUnit("from", "k")') Kilobytes (k)
+					div.col-sm-1.text-center
+						span to
+					div.col-sm-5
+						div.input-group
+							input.form-control(type='number', step='any', min='0', ng-model='filter.fileSizeTo')
+							div.input-group-btn
+								button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown') {{ filter.fileSizeToUnit }}
+									span.caret
+								ul.dropdown-menu
+									li 
+										a(ng-click='setUnit("to", "M")') Megabytes (M)
+									li 
+										a(ng-click='setUnit("to", "k")') Kilobytes (k)
+div.modal-footer
+	button.btn.btn-primary(type='button', ng-click='search()') Search
+	button.btn.btn-danger(type='button', ng-click='cancel()') Cancel
