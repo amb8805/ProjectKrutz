@@ -6,7 +6,6 @@ from os import path
 from scrapy import log
 from scrapy import signals
 from scrapy.exceptions import DropItem
-from scrapy.exceptions import CloseSpider
 from scrapy.xlib.pydispatch import dispatcher
 from scrapy.contrib.pipeline.files import FilesPipeline
 from scrapy.http import Request
@@ -72,7 +71,7 @@ class EvoziPipeline(object):
 
             if post_data['status'] == 'error':
                 # TODO: Need to remove the item from the SQL database
-                raise CloseSpider('%s <%s>' % (post_data['data'], item['url']))
+                raise DropItem('%s <%s>' % (post_data['data'], item['url']))
             else:
                 item['file_urls'] = [post_data['url']]
                 return item
