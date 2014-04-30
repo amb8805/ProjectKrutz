@@ -47,8 +47,14 @@ def parse_app(response):
         }
         ##########################
 
-        post_data = requests.post('http://api.evozi.com/apk-downloader/download', data=data).json()
+        evozi_response = requests.post('http://api.evozi.com/apk-downloader/download', data=data)
+        post_data = evozi_response.json()
 
+        if evozi_response.status_code != 200:
+            log.msg('A %d error occurred <%s>' % (evozi_response.status_code, response.url))
+            if post_data['status']:
+                print post_data['status']
+            return
         if post_data['status'] == 'error':
             log.msg('%s <%s>' % (post_data['data'], response.url), level=log.ERROR)
             return
