@@ -1,9 +1,7 @@
 import re
-import requests
 from scrapy import log
 from scrapy.selector import Selector
 from scraper.items import ApkItem
-from key import api_key
 
 # Parse the information for an individual APK from the Google Play store
 def parse_app(response):
@@ -20,43 +18,6 @@ def parse_app(response):
         # We are only downloading free apps
         if price != '0':
             log.msg('Not a free app, skipping item: %s' % response.url, level=log.INFO)
-            return
-
-        package_name = response.url[response.url.find('id=') + 3:]
-
-        ### USING API KEY: ###
-        # data = {
-        #     'packagename': package_name,
-        #     'fetch': 'false',
-        #     'api_key': api_key
-        # }
-        ######################
-
-        download_page = requests.get('http://apps.evozi.com/apk-downloader/')
-
-        ### NOT USING API KEY: ###
-        var_key = re.search("data:\s+{packagename:\s+packagename,\s+([-\w]*):\s+[-\w]*,", download_page.text, re.MULTILINE).group(1)
-        var_name, var_value = re.search("var\s+fetched_desc = '';\r*\n*\s+var\s+(\w*)\s+=\s+\"([-\w]*)\";", download_page.text, re.MULTILINE).groups()
-        timestamp = re.search(", t: (\w*)", download_page.text, re.MULTILINE).group(1)
-
-        data = {
-            'packagename': package_name,
-            var_key: var_value,
-            't': timestamp,
-            'fetch': 'false'
-        }
-        ##########################
-
-        evozi_response = requests.post('http://api.evozi.com/apk-downloader/download', data=data)
-        post_data = evozi_response.json()
-
-        if evozi_response.status_code != 200:
-            log.msg('A %d error occurred <%s>' % (evozi_response.status_code, response.url))
-            if post_data['status']:
-                print post_data['status']
-            return
-        if post_data['status'] == 'error':
-            log.msg('%s <%s>' % (post_data['data'], response.url), level=log.ERROR)
             return
 
         item['url'] = response.url
