@@ -24,15 +24,14 @@ COOKIES_ENABLED = False
 
 # Need to be proxies from the USA to gather data in English
 PROXY_LIST = [
-	'https://209.239.112.104:3128',
 	'https://192.3.25.99:8089',
 	'http://107.6.182.49:3128',
-	'https://208.108.209.198:3128',
 	'https://192.3.25.99:7808',
 	'http://209.239.112.104:3128',
 	'http://72.167.205.120:80',
 	'http://96.56.105.66:7004',
-	'https://209.239.113.15:3128'
+	'https://209.239.113.15:3128',
+	'https://146.120.0.7:8080'
 ]
 
 USER_AGENT_LIST = [
