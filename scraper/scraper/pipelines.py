@@ -2,6 +2,14 @@ import re
 import uuid
 import sqlite3
 import requests
+
+import sys
+from pprint import pprint
+
+from config import *
+from googleplay import GooglePlayAPI
+from helpers import sizeof_fmt
+
 from os import path
 from scrapy import log
 from scrapy import signals
@@ -32,7 +40,7 @@ class SQLiteStorePipeline(object):
     # into the database.
     def process_item(self, item, spider):
         try:
-            self.conn.execute('INSERT INTO ApkInformation (Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, NumberOfDownloads, OperatingSystems, URL, SourceId, ApkId) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'], item['developer'], item['genre'], item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['operating_systems'], item['url'], item['source_id'], item['id']))
+            self.conn.execute('INSERT INTO ApkInformation (Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, NumberOfDownloads, OperatingSystems, URL, SourceId, ApkId, CollectionDate) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'], item['developer'], item['genre'], item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['operating_systems'], item['url'], item['source_id'], item['id'], item['collection_date']))
             return item
         except Exception as e:
             raise DropItem('%s <%s>' % (e.message, item['url']))
@@ -48,6 +56,26 @@ class SQLiteStorePipeline(object):
             self.conn.commit()
             self.conn.close()
             self.conn = None
+
+# Uses https://github.com/egirault/googleplay-api to download APK files from Google Play
+class GooglePlayDownloadPipeline(object):
+    def process_item(self, item, spider):
+        if item['source_id'] == 2:
+            # Connect
+            api = GooglePlayAPI(ANDROID_ID)
+            api.login(GOOGLE_LOGIN, GOOGLE_PASSWORD, AUTH_TOKEN)
+
+            # Get the version code and the offer type from the app details
+            m = api.details(packagename)
+            doc = m.docV2
+            vc = doc.details.appDetails.versionCode
+            ot = doc.offer[0].offerType
+
+            # Download
+            filename = 'full/%s.apk' % item['id']
+            data = api.download(packagename, vc, ot)
+            open(filename, 'wb').write(data)
+        return item
 
 # Sends a POST request to Evozi to get download link for Google Play apps
 class EvoziPipeline(object):
@@ -70,7 +98,6 @@ class EvoziPipeline(object):
             post_data = requests.post('http://api.evozi.com/apk-downloader/download', data=data).json()
 
             if post_data['status'] == 'error':
-                # TODO: Need to remove the item from the SQL database
                 raise DropItem('%s <%s>' % (post_data['data'], item['url']))
             else:
                 item['file_urls'] = [post_data['url']]

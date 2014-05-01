@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 from scrapy import log
 from scrapy.selector import Selector
 from scraper.items import ApkItem
@@ -7,6 +8,9 @@ from scraper.items import ApkItem
 def parse_app(response):
     sel = Selector(response)
     item = ApkItem()
+
+    now = datetime.now()
+    item['collection_date'] = now.strftime('%Y-%m-%d')
 
     # Special logic for GooglePlaySpider
     if response.meta['come_from'] == 'googleplay':
