@@ -3,39 +3,20 @@
 ### Will return a listing of defects & suggestions in the application.
 ###		sudo apt-get install lib32z1-dev   --> This likely needs to be installed
 
-
 logLocation=../../logs/jlint.log
-
 
 ### Remove the log if it is there
 rm -f $logLocation
-
-
-
 
 ## Create the log
 touch $logLocation
 
 echo "Jlint Start:" `date` >> $logLocation
 
-
-
-
-#### Function to get jlint count from the application output
-
-
-
-
-
-
-### Helpful date website http://stackoverflow.com/questions/8903239/how-to-calculate-time-difference-in-bash-script
-### Date/Time when the script begins to run
 date1=$(date +"%s")
 
 ### Location of all files to be analyzed
 inputDirectory=javaOutput
-
-
 
 ### Loop through all of the javaOutput folders
 ### Loop through all of the folders in the input directory
@@ -46,40 +27,39 @@ do
 
 	echo "Begin Jlint Analyzing:" `echo $i` `date` >> $logLocation
 
-
-	jlineCount=0 # Reset the count after each iteration
+	loopCount=0
+	jlintCount=0 # Reset the count after each iteration
 	### Loop through each of these folders and analyze each .class file
 	### This is messy, but I am not sure how else to analyze only class files - dk
 	FILES=$(find $i -type f -name '*.class')
 	for f in $FILES
 	do
-		#echo $f
-		
-		
-		
+		loopCount=$((loopCount+1)) ### Right now this is used for debugging purposes
 		tempoutput=`./jlint/jlint $f`
-		echo hi $tempoutput
-		
-		
-		### Record the output amount in the log
-		
-		### Record the output amount in the database
-		
-		
-		### Print out the output amount
-		
+	
+		### Check to make sure that tempoutput contains "Verifcation Completed"
+		### if not, then skip it
+		if [[ $tempoutput =~ "Verification completed"* ]]
+		then
+			tempResults=`echo $tempoutput | sed -e "s/.*Verification completed: //;s/ reported messages.*//";` #echo $tempoutput
+			#echo $tempResults
+		fi
+		jlintCount=$((jlintCount+tempResults))
+
 	done
-echo "End Jlint Analyzing:" `echo $i` `date` >> $logLocation
+	
+	### Add output to log file
+	echo "JLint Count:" $jlintCount in $i `echo $i` `date` >> $logLocation	
+	
+	#### ADD THIS INFORMATION TO THE DATABASE
+	#### JLint Value: $jlintCount 
+	#### APK File: $i
+	
+	echo JLint Value: $jlintCount APK File: $i
 	
 done
 
-
-
-#./jlint/jlint -java $inputDirectory/Gmail%apk 
-
-
-
-
+	echo "End Jlint Analyzing:" `echo $i` `date` >> $logLocation
 
 date2=$(date +"%s")
 diff=$(($date2-$date1))
@@ -87,5 +67,3 @@ diff=$(($date2-$date1))
 
 echo "JLint Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
 echo "Jlint End:" `date` >> $logLocation
-
-

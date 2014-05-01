@@ -26,7 +26,7 @@ logFile=runAll.log
 mkdir -p $logDir 
 
 ### Delete the log file if it exists
-#rm -f $logDir/*.log  ##This is now in the toolsScript.sh instead - Shannon
+rm -f $logDir/*.log  ##This is now in the toolsScript.sh instead - Shannon
 
 touch $logDir/$logFile
 
@@ -59,7 +59,9 @@ else
 	echo "CheckStyle:" `date` >> $logDir/$logFile
 	./checkstyle/CheckStyle.sh
 
-
+	### Run JLint
+	echo "Start Running JLint:" `date` >> $logDir/$logFile
+	./jlint/run_jlint.sh
 
 
 	### Remove the created javaoutput.
@@ -77,8 +79,5 @@ echo "Total Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logD
 
 
 #### Todo: 
-# Add Logging
-# Place results into database
-# Check logs into git
-# Remove java and .class files at the end
+
 
