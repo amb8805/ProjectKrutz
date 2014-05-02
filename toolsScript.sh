@@ -70,6 +70,11 @@ do
 		cd ../../../../
 		# make sure the permission is in the permissions table and get the ID number
 		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+		if $permRowid != ''
+		then
+			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
+			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+		fi
 		# put into the Overprivilege table an entry for apkid and perm id
 		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
 		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
@@ -83,7 +88,12 @@ do
 		cd ../../../../
 		# make sure the permission is in the permissions table and get the ID number
 		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		# put into the Overprivilege table an entry for apkid and perm id
+		if $permRowid != ''
+		then
+			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
+			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+		fi
+		# put into the Underprivilege table an entry for apkid and perm id
 		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
 		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
 	done 
