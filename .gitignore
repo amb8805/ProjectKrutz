@@ -3,8 +3,6 @@ Compiled source #
 *.com
 *.dll
 *.exe
-*.o
-*.so
 *.pyc
 
 # Packages #
