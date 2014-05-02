@@ -62,7 +62,7 @@ class GooglePlayDownloadPipeline(object):
     def process_item(self, item, spider):
         if item['source_id'] == 2:
             package_name = item['url'][item['url'].find('id=') + 3:]
-            filename = 'full/%s.apk' % item['id']
+            filename = 'downloads/full/%s.apk' % item['id']
 
             # Connect
             api = GooglePlayAPI(ANDROID_ID)
@@ -79,8 +79,8 @@ class GooglePlayDownloadPipeline(object):
             data = api.download(package_name, vc, ot)
             try:
                 open(filename, 'wb').write(data)
-            except:
-                log.msg('Error downloading file from <%s>' % item['url'], level=log.ERROR)
+            except IOError as e:
+                log.msg('%s <%s>' % (e, item['url']), level=log.ERROR)
         return item
 
 # Sends a POST request to Evozi to get download link for Google Play apps
