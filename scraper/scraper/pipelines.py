@@ -61,20 +61,26 @@ class SQLiteStorePipeline(object):
 class GooglePlayDownloadPipeline(object):
     def process_item(self, item, spider):
         if item['source_id'] == 2:
+            package_name = item['url'][item['url'].find('id=') + 3:]
+            filename = 'full/%s.apk' % item['id']
+
             # Connect
             api = GooglePlayAPI(ANDROID_ID)
             api.login(GOOGLE_LOGIN, GOOGLE_PASSWORD, AUTH_TOKEN)
 
             # Get the version code and the offer type from the app details
-            m = api.details(packagename)
+            m = api.details(package_name)
             doc = m.docV2
             vc = doc.details.appDetails.versionCode
             ot = doc.offer[0].offerType
 
             # Download
-            filename = 'full/%s.apk' % item['id']
-            data = api.download(packagename, vc, ot)
-            open(filename, 'wb').write(data)
+            log.msg('Downloading file from <%s>' % item['url'], level=log.INFO)
+            data = api.download(package_name, vc, ot)
+            try:
+                open(filename, 'wb').write(data)
+            except:
+                log.msg('Error downloading file from <%s>' % item['url'], level=log.ERROR)
         return item
 
 # Sends a POST request to Evozi to get download link for Google Play apps
