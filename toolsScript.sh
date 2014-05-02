@@ -32,20 +32,21 @@ rm -rf apkOutput
 mkdir apkOutput
 cd Stowaway-1.2.4
 
-FILES=../../testAndroidApps/*
+PATH='../../../scraper/downloads/full/'
+FILES=../../../scraper/downloads/full/*
 for f in $FILES
 do
         APK="../apkOutput/"
         OUTPUT="_output"
-        O_F=$APK${f#../../testAndroidApps/}
+        O_F=$APK${f#$PATH}
         OUTPUT_FOLDER=${O_F%.apk}$OUTPUT
 
         echo **********Stowaway***********
-        echo ${f#../../testAndroidApps/}
+        echo ${f#$PATH}
 
         mkdir $OUTPUT_FOLDER
 
-     #   bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
+        bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
 
         echo "################################################################" &>>../../../logs/stowAwayoutput.log
 	
@@ -53,9 +54,14 @@ do
 
 	cd ../../../../
 	# get the ID from ApkInfo based on the filename (includes .apk)
-	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#../../testAndroidApps/}';"`
+	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH}';"`
 	cd ./tools/stowaway/${OUTPUT_FOLDER#../}	
 
+	#Here is where we are getting the version number of the app from the manifest
+	line=$(head -n 1 AndroidManifest.xml)
+	nofront=${line#<?xml version='}
+	noback=${nofront#' encoding='utf-8'?>}
+	echo "version number = " $((noback))
 
 	for line in $(cat Overprivilege)
 	do
@@ -93,13 +99,13 @@ echo "Starting Androguard"
 pushd ./tools/androguard
 
 mkdir ../../logs/AndroRiskOutput
-
-FILES=../testAndroidApps/*
+PATH='../../scraper/downloads/full/'
+FILES=../../scraper/downloads/full/*
 for f in $FILES
 do
-        echo "***********AndroRisk for ${f#../testAndroidApps/} ***********"
+        echo "***********AndroRisk for ${f#$PATH} ***********"
         
-	OUTPUT_FILE=../../logs/AndroRiskOutput/${f#../testAndroidApps/}_AndroRisk.log
+	OUTPUT_FILE=../../logs/AndroRiskOutput/${f#$PATH}_AndroRisk.log
 	./androrisk.py -m -i $f &>> $OUTPUT_FILE 
 	
 	while read line;
@@ -109,7 +115,7 @@ do
 			echo FUZZY RISK VALUE ${line#VALUE}
 			cd ../../
 			#select from apk information the row id where apkid = filename
-			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#../testAndroidApps/}';"`
+			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH}';"`
 			num=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
   			float=${num/.*}
   			int=$((float))
@@ -126,7 +132,7 @@ do
 		fi
 	done < $OUTPUT_FILE
 	
-        #echo "********AndroAPKInfo for ${f#../testAndroidApps/} ***********"
+        #echo "********AndroAPKInfo for ${f#$PATH} ***********"
         #./androapkinfo.py -i $f &>> $OUTPUT_FILE 
 	echo
 done
@@ -138,6 +144,14 @@ pushd ./tools/java_Analysis
 bash RunAll.sh
 
 popd
+
+
+## Now we do all the commiting ##
+# what is the fake user info?
+git add .
+git commit -m "Committing the logs and database for the night"
+git push origin master
+
 
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 

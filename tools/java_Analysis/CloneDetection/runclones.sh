@@ -50,6 +50,12 @@ do
 	### This information can also be used to put into the database
 	echo APKFile: $(basename $i)
 	echo CloneCount: $cloneCount
+
+	cd ../../  #moving to the directory with the database
+	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$i';"`
+	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET CodeCloneCount=$cloneCount WHERE ApkId=$rowid;"	
+	
+	cd tools/java_Analysis #going back to where you were before
 	
 	date2=$(date +"%s")
 	diff=$(($date2-$date1))
