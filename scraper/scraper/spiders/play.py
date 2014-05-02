@@ -10,7 +10,7 @@ def parse_app(response):
     item = ApkItem()
 
     now = datetime.now()
-    item['collection_date'] = now.strftime('%Y-%m-%d')
+    item['collection_date'] = now.strftime('%Y-%m-%d %H:%M:%S')
 
     # Special logic for GooglePlaySpider
     if response.meta['come_from'] == 'googleplay':
@@ -21,7 +21,7 @@ def parse_app(response):
 
         # We are only downloading free apps
         if price != '0':
-            log.msg('Not a free app, skipping item: %s' % response.url, level=log.INFO)
+            log.msg('Not a free app, skipping item <%s>' % response.url, level=log.INFO)
             return
 
         item['url'] = response.url
