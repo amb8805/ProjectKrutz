@@ -157,7 +157,7 @@ popd
 
 
 ## Now we do all the commiting ##
-# what is the fake user info?
+# make sure its only the logs and the db
 git add .
 git commit -m "Committing the logs and database for the night"
 git push origin master
