@@ -25,6 +25,25 @@ then
         echo "today is Friday"
 fi
 
+#Using the input variables to assign values to the paths
+#for the source of the apk files
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied, using defaults"
+    PATH='../../../scraper/downloads/full/'
+	FILES=../../../scraper/downloads/full/*
+	PATH_TWO='../../scraper/downloads/full/'
+	FILES_TWO=../../scraper/downloads/full/*
+  else
+  	#This isn't quite right yet, because I don't know how to
+  	#make one a string and one a directory with star on the end...
+  	PATH=$1
+  	FILES=$1
+  	PATH_TWO=${1#../}
+  	FILES_TWO=${1#../}
+fi
+
+
 pushd ./tools/stowaway/Stowaway-1.2.4
 
 cd ../
@@ -32,8 +51,6 @@ rm -rf apkOutput
 mkdir apkOutput
 cd Stowaway-1.2.4
 
-PATH='../../../scraper/downloads/full/'
-FILES=../../../scraper/downloads/full/*
 for f in $FILES
 do
         APK="../apkOutput/"
@@ -109,13 +126,13 @@ echo "Starting Androguard"
 pushd ./tools/androguard
 
 mkdir ../../logs/AndroRiskOutput
-PATH='../../scraper/downloads/full/'
-FILES=../../scraper/downloads/full/*
-for f in $FILES
+PATH_TWO='../../scraper/downloads/full/'
+FILES_TWO=../../scraper/downloads/full/*
+for f in $FILES_TWO
 do
-        echo "***********AndroRisk for ${f#$PATH} ***********"
+        echo "***********AndroRisk for ${f#$PATH_TWO} ***********"
         
-	OUTPUT_FILE=../../logs/AndroRiskOutput/${f#$PATH}_AndroRisk.log
+	OUTPUT_FILE=../../logs/AndroRiskOutput/${f#$PATH_TWO}_AndroRisk.log
 	./androrisk.py -m -i $f &>> $OUTPUT_FILE 
 	
 	while read line;
@@ -125,7 +142,7 @@ do
 			echo FUZZY RISK VALUE ${line#VALUE}
 			cd ../../
 			#select from apk information the row id where apkid = filename
-			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH}';"`
+			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH_TWO}';"`
 			num=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
   			float=${num/.*}
   			int=$((float))
@@ -142,7 +159,7 @@ do
 		fi
 	done < $OUTPUT_FILE
 	
-        #echo "********AndroAPKInfo for ${f#$PATH} ***********"
+        #echo "********AndroAPKInfo for ${f#$PATH_TWO} ***********"
         #./androapkinfo.py -i $f &>> $OUTPUT_FILE 
 	echo
 done
@@ -158,8 +175,8 @@ popd
 
 ## Now we do all the commiting ##
 # make sure its only the logs and the db
-git add .
-git commit -m "Committing the logs and database for the night"
+git commit logs/* -m "Committing the logs for the night"
+git commit Evolution\ of\ Android\ Applications.sqlite -m "Committing the database for the night"
 git push origin master
 
 
