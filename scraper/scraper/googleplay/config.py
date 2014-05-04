@@ -2,7 +2,7 @@
 SEPARATOR = ';'
 
 LANG            = 'en_US' # can be en_US, fr_FR, ...
-ANDROID_ID      = '32cdc659b96fe732'
+ANDROID_ID      = '388a61aae9916c3e'
 GOOGLE_LOGIN    = 'projectkrutz@gmail.com'
 GOOGLE_PASSWORD = 'ProjectKrutz1'
 AUTH_TOKEN      = None

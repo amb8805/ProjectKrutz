@@ -6,9 +6,9 @@ import requests
 import sys
 from pprint import pprint
 
-from googleplay-api.config import *
-from googleplay-api.googleplay import GooglePlayAPI
-from googleplay-api.helpers import sizeof_fmt
+from googleplay.config import *
+from googleplay.googleplay import GooglePlayAPI
+from googleplay.helpers import sizeof_fmt
 
 from os import path
 from scrapy import log
