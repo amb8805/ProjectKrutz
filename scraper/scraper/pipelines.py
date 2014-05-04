@@ -6,9 +6,9 @@ import requests
 import sys
 from pprint import pprint
 
-from config import *
-from googleplay import GooglePlayAPI
-from helpers import sizeof_fmt
+from googleplay-api.config import *
+from googleplay-api.googleplay import GooglePlayAPI
+from googleplay-api.helpers import sizeof_fmt
 
 from os import path
 from scrapy import log
@@ -82,34 +82,6 @@ class GooglePlayDownloadPipeline(object):
             except IOError as e:
                 log.msg('%s <%s>' % (e, item['url']), level=log.ERROR)
         return item
-
-# Sends a POST request to Evozi to get download link for Google Play apps
-class EvoziPipeline(object):
-    def process_item(self, item, spider):
-        if item['source_id'] == 2:
-            package_name = item['url'][item['url'].find('id=') + 3:]
-            download_page = requests.get('http://apps.evozi.com/apk-downloader/')
-
-            var_key = re.search("data:\s+{packagename:\s+packagename,\s+([-\w]*):\s+[-\w]*,", download_page.text, re.MULTILINE).group(1)
-            var_name, var_value = re.search("var\s+fetched_desc = '';\r*\n*\s+var\s+(\w*)\s+=\s+\"([-\w]*)\";", download_page.text, re.MULTILINE).groups()
-            timestamp = re.search(", t: (\w*)", download_page.text, re.MULTILINE).group(1)
-
-            data = {
-                'packagename': package_name,
-                var_key: var_value,
-                't': timestamp,
-                'fetch': 'false'
-            }
-
-            post_data = requests.post('http://api.evozi.com/apk-downloader/download', data=data).json()
-
-            if post_data['status'] == 'error':
-                raise DropItem('%s <%s>' % (post_data['data'], item['url']))
-            else:
-                item['file_urls'] = [post_data['url']]
-                return item
-        else:
-            return item
 
 # Names the downloaded file with its unique identifier
 class APKFilesPipeline(FilesPipeline):
