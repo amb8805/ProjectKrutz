@@ -68,13 +68,15 @@ else
 
 	### Perform java conversion of APK files to java
 	echo "Java Conversion:" `date` >> $logDir/$logFile
-#	./tools/java_Analysis/APK_to_JAVA/convert_APK_Java.sh $inputLocation
+	./tools/java_Analysis/APK_to_JAVA/convert_APK_Java.sh $inputLocation
 
 
+
+exit
 	### Find the clones in the system
 	echo "Clones:" `date` >> $logDir/$logFile
 	./tools/java_Analysis/CloneDetection/runclones.sh $inputLocation
-	exit
+exit
 
 	#### CheckStyle
 	echo "CheckStyle:" `date` >> $logDir/$logFile
