@@ -8,6 +8,13 @@ echo
 rm -f logs/*.log
 rm -rf logs/AndroRiskOutput
 
+date1=$(date +"%s") ## Start date of the script
+logLocation=logs/toolsScript.log
+touch $logLocation
+echo "toolsScript Start:" `date` >> $logLocation
+
+
+
 if [ $(date +%u) -eq 1 ]
 then
         echo "today is Monday"
@@ -25,23 +32,36 @@ then
         echo "today is Friday"
 fi
 
+
 #Using the input variables to assign values to the paths
 #for the source of the apk files
-if [ $# -eq 0 ]
-  then
-    echo "No arguments supplied, using defaults"
-    PATH='../../../scraper/downloads/full/'
-	FILES=../../../scraper/downloads/full/*
-	PATH_TWO='../../scraper/downloads/full/'
-	FILES_TWO=../../scraper/downloads/full/*
-  else
+#if [ $# -eq 0 ]
+ # then
+    #PATH='../../../scraper/downloads/full/'
+	#FILES=../../../scraper/downloads/full/*
+	#PATH_TWO='../../scraper/downloads/full/'
+	#FILES_TWO=../../scraper/downloads/full/*
+	#	echo Files: $FILES
+	#	echo Files2: $FILES_TWO
+	
+#	APK_Input_Path=scraper/downloads/full/
+	#FILES=../../../scraper/downloads/full/*
+#	echo Default: $APK_Input_Path
+	
+#	echo "No arguments supplied, using defaults"
+ # else
   	#This isn't quite right yet, because I don't know how to
   	#make one a string and one a directory with star on the end...
-  	PATH=$1
-  	FILES=$1
-  	PATH_TWO=${1#../}
-  	FILES_TWO=${1#../}
-fi
+  #	PATH=$1
+  #	FILES=$1
+  #	PATH_TWO=${1#../}
+  #	FILES_TWO=${1#../}
+#fi
+
+APK_Input_Path=scraper/downloads/full/
+echo $APK_Input_Path
+
+ls $APK_Input_Path
 
 
 pushd ./tools/stowaway/Stowaway-1.2.4
@@ -50,9 +70,14 @@ cd ../
 rm -rf apkOutput
 mkdir apkOutput
 cd Stowaway-1.2.4
+#exit
 
-for f in $FILES
-do
+#for f in $FILES
+	
+	### Only analyze .apk files
+	FILES=$(find $APK_Input_Path -type f -name '*.apk')
+	for f in $FILES
+	do
         APK="../apkOutput/"
         OUTPUT="_output"
         O_F=$APK${f#$PATH}
@@ -164,22 +189,27 @@ do
 	echo
 done
 
-popd
 
-pushd ./tools/java_Analysis
+cd ../../
 
-bash RunAll.sh
-
-popd
+echo "Start java Analysis:" `date` >> $logLocation
+./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
 
-## Now we do all the commiting ##
-# make sure its only the logs and the db
-git commit logs/* -m "Committing the logs for the night"
-git commit Evolution\ of\ Android\ Applications.sqlite -m "Committing the database for the night"
-git push origin master
+#### Log the conclusion time
+date2=$(date +"%s")
+diff=$(($date2-$date1))
+echo "toolsScript Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
+echo "toolsScript End:" `date` >> $logLocation
+
+
+### Now we do all the commiting ##
+### 	make sure its only the logs and the db
+echo "FIX              Commit Logs and Database to Github"
+#git commit logs/* -m "Committing the logs for the night"
+#git commit Evolution\ of\ Android\ Applications.sqlite -m "Committing the database for the night"
+#git push origin master
 
 
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
-exit

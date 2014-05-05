@@ -5,6 +5,21 @@
 ###		Analyzes the .class and .java files
 
 
+
+### Check to make sure that an argument is actually passed in
+### This input paramter will be the input location of the apk files to be analyzed
+EXPECTED_ARGS=1
+E_BADARGS=65
+if [ $# -ne $EXPECTED_ARGS ]
+then
+  echo "Usage: `basename $0` {arg}"
+  echo "No Expected Input Parameter found"
+#  exit $E_BADARGS
+	exit
+fi
+
+inputLocation=$1 ### The passed in input location of the .apk files which are to be analyzed
+
 #### Check to make sure that java is installed
 #### Probably change this to check for open jdk ?
 
@@ -16,19 +31,25 @@ else
 fi
 
 
+
 #### Input location for all apk files
 ## This will need to be changed based on the final configuration
-inputLocation=../testAndroidApps
-logDir=../../logs
+#inputLocation=../testAndroidApps
+logDir=logs
 logFile=runAll.log
+
 
 ## Make sure that the logs directory exists
 mkdir -p $logDir 
+
 
 ### Delete the log file if it exists
 rm -f $logDir/*.log  ##This is now in the toolsScript.sh instead - Shannon
 
 touch $logDir/$logFile
+
+
+
 
 
 date1=$(date +"%s") # Start Run Time
@@ -47,13 +68,13 @@ else
 
 	### Perform java conversion of APK files to java
 	echo "Java Conversion:" `date` >> $logDir/$logFile
-	./APK_to_JAVA/convert_APK_Java.sh $inputLocation
+#	./tools/java_Analysis/APK_to_JAVA/convert_APK_Java.sh $inputLocation
 
 
 	### Find the clones in the system
 	echo "Clones:" `date` >> $logDir/$logFile
-	./CloneDetection/runclones.sh
-
+	./tools/java_Analysis/CloneDetection/runclones.sh $inputLocation
+	exit
 
 	#### CheckStyle
 	echo "CheckStyle:" `date` >> $logDir/$logFile
