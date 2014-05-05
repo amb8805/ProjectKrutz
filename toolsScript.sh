@@ -63,85 +63,88 @@ echo $APK_Input_Path
 
 ls $APK_Input_Path
 
-
+### All of these directory changes are a nasty hack
 pushd ./tools/stowaway/Stowaway-1.2.4
-
 cd ../
 rm -rf apkOutput
 mkdir apkOutput
 cd Stowaway-1.2.4
-#exit
+cd ../../../
+
+### THIS ALL NEEDS TO BE FIXED
+### THE PATHS AND DIRECTORIES ARE ALL MESSED UP
 
 #for f in $FILES
 	
 	### Only analyze .apk files
-	FILES=$(find $APK_Input_Path -type f -name '*.apk')
-	for f in $FILES
-	do
-        APK="../apkOutput/"
-        OUTPUT="_output"
-        O_F=$APK${f#$PATH}
-        OUTPUT_FOLDER=${O_F%.apk}$OUTPUT
+#	FILES=$(find $APK_Input_Path -type f -name '*.apk')
+#	for f in $FILES
+#	do
 
-        echo **********Stowaway***********
-        echo ${f#$PATH}
 
-        mkdir $OUTPUT_FOLDER
+#        APK="tools/stowaway/apkOutput/"
+#        OUTPUT="_output"
+#        O_F=$APK${f#$PATH}
+#        OUTPUT_FOLDER=${O_F%.apk}$OUTPUT
+#        echo **********Stowaway***********
+#        echo ${f#$PATH}
 
-        bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
+#        mkdir $OUTPUT_FOLDER
+#        bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
 
-        echo "################################################################" &>>../../../logs/stowAwayoutput.log
+
+#        echo "################################################################" &>>../../../logs/stowAwayoutput.log
 	
-	cd $OUTPUT_FOLDER
+#	cd $OUTPUT_FOLDER
 
-	cd ../../../../
+#	cd ../../../../
 	# get the ID from ApkInfo based on the filename (includes .apk)
-	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH}';"`
-	cd ./tools/stowaway/${OUTPUT_FOLDER#../}	
+#	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH}';"`
+#	cd ./tools/stowaway/${OUTPUT_FOLDER#../}	
 
 	#Here is where we are getting the version number of the app from the manifest
-	line=$(head -n 1 AndroidManifest.xml)
-	nofront=${line#<?xml version='}
-	noback=${nofront#' encoding='utf-8'?>}
-	echo "version number = " $((noback))
+#	line=$(head -n 1 AndroidManifest.xml)
+#	nofront=${line#<?xml version='}
+#	noback=${nofront#' encoding='utf-8'?>}
+#	echo "version number = " $((noback))
 
-	for line in $(cat Overprivilege)
-	do
-		echo $line
+#	for line in $(cat Overprivilege)
+#	do
+#		echo $line
 		# instead of echoing put this into the database 
-		cd ../../../../
+#		cd ../../../../
 		# make sure the permission is in the permissions table and get the ID number
-		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		if $permRowid != ''
-		then
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
-			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		fi
+#		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+#		if $permRowid != ''
+#		then
+#			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
+#			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+#		fi
 		# put into the Overprivilege table an entry for apkid and perm id
-		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
-		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
-	done 
+#		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
+#		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
+#	done 
 
 	#add another for loop here for underprivileged
-	for line in $(cat Underprivilege)
-	do
-		echo $line
+#	for line in $(cat Underprivilege)
+#	do
+#		echo $line
 		# instead of echoing put this into the database 
-		cd ../../../../
+#		cd ../../../../
 		# make sure the permission is in the permissions table and get the ID number
-		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		if $permRowid != ''
-		then
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
-			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		fi
+#		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+#		if $permRowid != ''
+#		then
+#			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
+#			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+#		fi
 		# put into the Underprivilege table an entry for apkid and perm id
-		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
-		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
-	done 
+#		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
+#		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
+#	done 
 
-	cd ../../Stowaway-1.2.4
-done
+#	cd ../../Stowaway-1.2.4
+#done
 
 popd
 
@@ -166,20 +169,28 @@ do
 		then
 			echo FUZZY RISK VALUE ${line#VALUE}
 			cd ../../
+
+  			apkID=${f#$PATH_TWO}
+  			apkID=${apkID//.apk/""} ### Remove the apk exension from the apkID
+  			
 			#select from apk information the row id where apkid = filename
-			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH_TWO}';"`
-			num=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
-  			float=${num/.*}
-  			int=$((float))
-  			#instead insert into database...I don't know if this is right...
-			{ 
-				sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES ($rowid,$int);"
-			} || {
-				sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET FuzzyRiskValue=$int WHERE ApkId=$rowid;"
-			}
+			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$apkID';"`
+			
+			fuzzyRiskNum=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
+  			fuzzyRiskfloat=${fuzzyRiskNum/.*}
+  			fuzzyRiskint=$((fuzzyRiskfloat))
+  			
+			### Check to see if the APKID exists in tool results  		
+			APKToolResultsCount=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT count(*) FROM ToolResults WHERE rowid='$rowid';"`
+  			if [[ $APKToolResultsCount -eq 0 ]]; then
+				sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES ($rowid,$fuzzyRiskint);"
+  			else
+      			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET FuzzyRiskValue=$fuzzyRiskint WHERE ApkId=$rowid;"
+       		fi
 			cd ./tools/androguard
 		elif [[ $line == ERROR* ]]
 		then
+
 			echo FUZZY RISK $line
 		fi
 	done < $OUTPUT_FILE
