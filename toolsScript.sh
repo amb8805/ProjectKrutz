@@ -92,7 +92,9 @@ APK_Input_Path=scraper/downloads/full/
 
 #        echo "################################################################" &>>../../../logs/stowAwayoutput.log
 	
-#	cd $OUTPUT_FOLDER
+#	------------------------------------------------------------------------------------------------------------------------------
+
+#cd $OUTPUT_FOLDER
 
 #	cd ../../../../
 	# get the ID from ApkInfo based on the filename (includes .apk)
@@ -169,6 +171,8 @@ echo "toolsScript End:" `date` >> $logLocation
 ### Now we do all the commiting ##
 ### 	make sure its only the logs and the db
 echo "FIX              Commit Logs and Database to Github"
+##if this is the VM then run this
+##put the password into it
 #git commit logs/* -m "Committing the logs for the night"
 #git commit Evolution\ of\ Android\ Applications.sqlite -m "Committing the database for the night"
 #git push origin master
