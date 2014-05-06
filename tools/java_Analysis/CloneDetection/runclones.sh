@@ -10,7 +10,6 @@ echo "Run Clones...... "
 ### Date/Time when the script begins to run
 date1=$(date +"%s")
 
-
 logLocation=logs/clones.log
 
 ### Location of Clone Detection Functionality
@@ -38,28 +37,24 @@ do
     ### Run the clone detection tool on each
 	
 	### Get the total result set from nicad. It is dirty
-#	cloneResults=`./nicad3 blocks java $i blindrename 2>&1`
+	cloneResults=`./nicad3 blocks java $i blindrename 2>&1`
 
 	### Clean the resultset from Nicad to only get the clone count
-cloneCount=777
-#	cloneCount=`sed 's/^.*ResultStart //; s/ResultEnd.*$//' <<< $cloneResults`
+	### This information can also be used to put into the database
+	APKFile=$(basename $i)
+	APKFile=${APKFile//%apk/""} ### Remove the apk exension from the apkID
+
+
+	cloneCount=`sed 's/^.*ResultStart //; s/ResultEnd.*$//' <<< $cloneResults`
 	echo "Total Clones Found: " $(basename $i) $cloneCount
 	
 	### Log the necessary information
 	echo "Clone Detection Start:" `date` >> ../../../$logLocation
 	echo "Total Clones Found: " $(basename $i) $cloneCount >> ../../../$logLocation
-	
-	### This information can also be used to put into the database
-	echo APKFile: $(basename $i)
-	echo CloneCount: $cloneCount
 
 	cd ../../../  #moving to the directory with the database
 	
-	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$i';"`
-echo here: $i
-	echo $rowid
-	
-	exit
+	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
 	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET CodeCloneCount=$cloneCount WHERE ApkId=$rowid;"	
 	
 	#cd tools/java_Analysis #going back to where you were before
@@ -72,5 +67,5 @@ done
 date2=$(date +"%s")
 diff=$(($date2-$date1))
 echo "Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
-echo "Clone Detection End:" `date` >> ../$logLocation
+echo "Clone Detection End:" `date` >> $logLocation
 
