@@ -66,7 +66,7 @@ do
 	echo DefectCount: $defectCount
 
 	cd ../../  #moving to the directory with the database
-	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$i';"`
+	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$appName';"`
 	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET DefectCount=$defectCount WHERE ApkId=$rowid;"	
 	
 	cd tools/java_Analysis #going back to where you were before

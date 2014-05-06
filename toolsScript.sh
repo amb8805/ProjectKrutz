@@ -66,8 +66,8 @@ ls $APK_Input_Path
 ### All of these directory changes are a nasty hack
 pushd ./tools/stowaway/Stowaway-1.2.4
 cd ../
-rm -rf apkOutput
-mkdir apkOutput
+rm -rf ../apkOutput
+mkdir ../apkOutput
 cd Stowaway-1.2.4
 cd ../../../
 
