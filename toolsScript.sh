@@ -8,6 +8,13 @@ echo
 rm -f logs/*.log
 rm -rf logs/AndroRiskOutput
 
+date1=$(date +"%s") ## Start date of the script
+logLocation=logs/toolsScript.log
+touch $logLocation
+echo "toolsScript Start:" `date` >> $logLocation
+
+
+
 if [ $(date +%u) -eq 1 ]
 then
         echo "today is Monday"
@@ -25,98 +32,119 @@ then
         echo "today is Friday"
 fi
 
+
 #Using the input variables to assign values to the paths
 #for the source of the apk files
-if [ $# -eq 0 ]
-  then
-    echo "No arguments supplied, using defaults"
-    PATH='../../../scraper/downloads/full/'
-	FILES=../../../scraper/downloads/full/*
-	PATH_TWO='../../scraper/downloads/full/'
-	FILES_TWO=../../scraper/downloads/full/*
-  else
+#if [ $# -eq 0 ]
+ # then
+    #PATH='../../../scraper/downloads/full/'
+	#FILES=../../../scraper/downloads/full/*
+	#PATH_TWO='../../scraper/downloads/full/'
+	#FILES_TWO=../../scraper/downloads/full/*
+	#	echo Files: $FILES
+	#	echo Files2: $FILES_TWO
+	
+#	APK_Input_Path=scraper/downloads/full/
+	#FILES=../../../scraper/downloads/full/*
+#	echo Default: $APK_Input_Path
+	
+#	echo "No arguments supplied, using defaults"
+ # else
   	#This isn't quite right yet, because I don't know how to
   	#make one a string and one a directory with star on the end...
-  	PATH=$1
-  	FILES=$1
-  	PATH_TWO=${1#../}
-  	FILES_TWO=${1#../}
-fi
+  #	PATH=$1
+  #	FILES=$1
+  #	PATH_TWO=${1#../}
+  #	FILES_TWO=${1#../}
+#fi
 
+APK_Input_Path=scraper/downloads/full/
+echo $APK_Input_Path
 
+ls $APK_Input_Path
+
+### All of these directory changes are a nasty hack
 pushd ./tools/stowaway/Stowaway-1.2.4
-
 cd ../
 rm -rf apkOutput
 mkdir apkOutput
 cd Stowaway-1.2.4
+cd ../../../
 
-for f in $FILES
-do
-        APK="../apkOutput/"
-        OUTPUT="_output"
-        O_F=$APK${f#$PATH}
-        OUTPUT_FOLDER=${O_F%.apk}$OUTPUT
+### THIS ALL NEEDS TO BE FIXED
+### THE PATHS AND DIRECTORIES ARE ALL MESSED UP
 
-        echo **********Stowaway***********
-        echo ${f#$PATH}
-
-        mkdir $OUTPUT_FOLDER
-
-        bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
-
-        echo "################################################################" &>>../../../logs/stowAwayoutput.log
+#for f in $FILES
 	
-	cd $OUTPUT_FOLDER
+	### Only analyze .apk files
+#	FILES=$(find $APK_Input_Path -type f -name '*.apk')
+#	for f in $FILES
+#	do
 
-	cd ../../../../
+
+#        APK="tools/stowaway/apkOutput/"
+#        OUTPUT="_output"
+#        O_F=$APK${f#$PATH}
+#        OUTPUT_FOLDER=${O_F%.apk}$OUTPUT
+#        echo **********Stowaway***********
+#        echo ${f#$PATH}
+
+#        mkdir $OUTPUT_FOLDER
+#        bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
+
+
+#        echo "################################################################" &>>../../../logs/stowAwayoutput.log
+	
+#	cd $OUTPUT_FOLDER
+
+#	cd ../../../../
 	# get the ID from ApkInfo based on the filename (includes .apk)
-	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH}';"`
-	cd ./tools/stowaway/${OUTPUT_FOLDER#../}	
+#	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH}';"`
+#	cd ./tools/stowaway/${OUTPUT_FOLDER#../}	
 
 	#Here is where we are getting the version number of the app from the manifest
-	line=$(head -n 1 AndroidManifest.xml)
-	nofront=${line#<?xml version='}
-	noback=${nofront#' encoding='utf-8'?>}
-	echo "version number = " $((noback))
+#	line=$(head -n 1 AndroidManifest.xml)
+#	nofront=${line#<?xml version='}
+#	noback=${nofront#' encoding='utf-8'?>}
+#	echo "version number = " $((noback))
 
-	for line in $(cat Overprivilege)
-	do
-		echo $line
+#	for line in $(cat Overprivilege)
+#	do
+#		echo $line
 		# instead of echoing put this into the database 
-		cd ../../../../
+#		cd ../../../../
 		# make sure the permission is in the permissions table and get the ID number
-		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		if $permRowid != ''
-		then
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
-			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		fi
+#		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+#		if $permRowid != ''
+#		then
+#			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
+#			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+#		fi
 		# put into the Overprivilege table an entry for apkid and perm id
-		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
-		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
-	done 
+#		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
+#		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
+#	done 
 
 	#add another for loop here for underprivileged
-	for line in $(cat Underprivilege)
-	do
-		echo $line
+#	for line in $(cat Underprivilege)
+#	do
+#		echo $line
 		# instead of echoing put this into the database 
-		cd ../../../../
+#		cd ../../../../
 		# make sure the permission is in the permissions table and get the ID number
-		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		if $permRowid != ''
-		then
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
-			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		fi
+#		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+#		if $permRowid != ''
+#		then
+#			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
+#			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+#		fi
 		# put into the Underprivilege table an entry for apkid and perm id
-		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
-		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
-	done 
+#		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
+#		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
+#	done 
 
-	cd ../../Stowaway-1.2.4
-done
+#	cd ../../Stowaway-1.2.4
+#done
 
 popd
 
@@ -141,20 +169,28 @@ do
 		then
 			echo FUZZY RISK VALUE ${line#VALUE}
 			cd ../../
+
+  			apkID=${f#$PATH_TWO}
+  			apkID=${apkID//.apk/""} ### Remove the apk exension from the apkID
+  			
 			#select from apk information the row id where apkid = filename
-			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH_TWO}';"`
-			num=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
-  			float=${num/.*}
-  			int=$((float))
-  			#instead insert into database...I don't know if this is right...
-			{ 
-				sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES ($rowid,$int);"
-			} || {
-				sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET FuzzyRiskValue=$int WHERE ApkId=$rowid;"
-			}
+			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$apkID';"`
+			
+			fuzzyRiskNum=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
+  			fuzzyRiskfloat=${fuzzyRiskNum/.*}
+  			fuzzyRiskint=$((fuzzyRiskfloat))
+  			
+			### Check to see if the APKID exists in tool results  		
+			APKToolResultsCount=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT count(*) FROM ToolResults WHERE rowid='$rowid';"`
+  			if [[ $APKToolResultsCount -eq 0 ]]; then
+				sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES ($rowid,$fuzzyRiskint);"
+  			else
+      			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET FuzzyRiskValue=$fuzzyRiskint WHERE ApkId=$rowid;"
+       		fi
 			cd ./tools/androguard
 		elif [[ $line == ERROR* ]]
 		then
+
 			echo FUZZY RISK $line
 		fi
 	done < $OUTPUT_FILE
@@ -164,22 +200,27 @@ do
 	echo
 done
 
-popd
 
-pushd ./tools/java_Analysis
+cd ../../
 
-bash RunAll.sh
-
-popd
+echo "Start java Analysis:" `date` >> $logLocation
+./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
 
-## Now we do all the commiting ##
-# make sure its only the logs and the db
-git commit logs/* -m "Committing the logs for the night"
-git commit Evolution\ of\ Android\ Applications.sqlite -m "Committing the database for the night"
-git push origin master
+#### Log the conclusion time
+date2=$(date +"%s")
+diff=$(($date2-$date1))
+echo "toolsScript Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
+echo "toolsScript End:" `date` >> $logLocation
+
+
+### Now we do all the commiting ##
+### 	make sure its only the logs and the db
+echo "FIX              Commit Logs and Database to Github"
+#git commit logs/* -m "Committing the logs for the night"
+#git commit Evolution\ of\ Android\ Applications.sqlite -m "Committing the database for the night"
+#git push origin master
 
 
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
-exit

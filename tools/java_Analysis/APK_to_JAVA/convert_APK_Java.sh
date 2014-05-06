@@ -7,19 +7,19 @@
 ### Make sure that open-jdk is installed 
 ### 	sudo apt-get install openjdk-7-jdk
 
-
 ## Location of directory holding all java conversion functionality
-apk_Conv_dir=APK_to_JAVA
+apk_Conv_dir=tools/java_Analysis/APK_to_JAVA
 
-###Input location with all of the 
+###Input location with all of the .apk files to be analyzed
 APKInputDir=$1 
 
-logLocation=../../logs/convert_apk.log
+logLocation=logs/convert_apk.log
 
 ### Remove the log if it is there
 rm -f $logLocation
 ## Create the log
 touch $logLocation
+
 
 date1=$(date +"%s") # Start Run Time
 
@@ -39,10 +39,11 @@ convertAPK (){
 	##		May need to be refactored 
 	outputFolderName=${1//[.]/%}
 
-	### Main directory all of the java output will be going to
-	mkdir -p javaOutput
+	### Main directory all of the generated java output
+	javaOutputLocation=tools/java_Analysis/javaOutput
+	mkdir -p $javaOutputLocation
 
-	JavaOutputDir=javaOutput/$outputFolderName
+	JavaOutputDir=$javaOutputLocation/$outputFolderName
 	dirAndAppName=$JavaOutputDir/$1
 
 	mkdir -p $JavaOutputDir
@@ -51,7 +52,6 @@ convertAPK (){
 
 	## Start analyzing the apk files
 	java -jar $apk_Conv_dir/apktool1.5.2/apktool.jar d -f $dirAndAppName
-
 	
 	### Not sure why it creates an output file here, but delete it
 	### This is a messy fix
@@ -59,15 +59,19 @@ convertAPK (){
 
 	## Create the dex file
 	jar xvf $JavaOutputDir/$1 classes.dex
-
 	mv classes.dex $JavaOutputDir/
 
 	./$apk_Conv_dir/dex2jar-0.0.9.15/dex2jar.sh $JavaOutputDir/classes.dex 
 
 	## Switching locatins was the only way to have everything output in the appropriate location.
+
+
 	cd $JavaOutputDir
 	jar xvf classes_dex2jar.jar 
 	cd ../../ 
+
+	### An ugly hack
+	cd ../../
 
 	### Get number of classes to be analyzed
 	### This will provide a rough estimate of the classes to be analyzed
@@ -75,7 +79,7 @@ convertAPK (){
 	echo "Classes to convert:" $classCompareCount  `date` >> $logLocation
 
 	count=0 ### Clear the counter
-	
+
 	## Now convert all of the .class files to .java
 	FILES=$(find $JavaOutputDir -type f -name '*.class')
 	for f in $FILES
@@ -113,10 +117,11 @@ convertAPK (){
 	echo "	*****Output Dir: " `echo $JavaOutputDir` "Javafiles " `echo $javaFileCount` >> $logLocation
 	echo "	" `echo $appName` " Java Files Created: " $javaFileCount
 
+
 	##### INSERT THE NUMBER OF CLASS FILES CREATED INTO THE SQLITE DATABASE
 	#####  # Of class files: $classFileCount
 	#####  File name: $1
-	cd ../../  #moving to the directory with the database
+	#cd ../../  #moving to the directory with the database
 	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$1';"`
 	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET ClassFiles=$classFileCount WHERE ApkId=$rowid;"	
 
@@ -128,8 +133,8 @@ convertAPK (){
 	cd tools/java_Analysis #going back to where you were before
 
 	## Output the results to the user
-#	echo "	*****Output Dir: " `echo $JavaOutputDir` >> $logLocation
-#	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l` 
+	#	echo "	*****Output Dir: " `echo $JavaOutputDir` >> $logLocation
+	#	echo "	" `echo $appName` " Files Created: " `find $JavaOutputDir -type f -name '*.java' | wc -l` 
 
 }
 
@@ -141,7 +146,6 @@ do
 	mv "$file" "$target";
 done;
 
-
 echo "Start Date:" `date` >> $logLocation
 
 ## Loop through all the contents of the main APK directory
@@ -152,8 +156,9 @@ do
 	convertAPK $(basename $f)
 done
 
-### Log end date/time
+cd ../../
 
+### Log end date/time
 date2=$(date +"%s")
 diff=$(($date2-$date1))
 echo "convert_APK End:" `date` >> $logLocation
