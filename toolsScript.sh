@@ -14,7 +14,6 @@ touch $logLocation
 echo "toolsScript Start:" `date` >> $logLocation
 
 
-
 if [ $(date +%u) -eq 1 ]
 then
         echo "today is Monday"
@@ -59,17 +58,15 @@ fi
 #fi
 
 APK_Input_Path=scraper/downloads/full/
-echo $APK_Input_Path
 
-ls $APK_Input_Path
 
 ### All of these directory changes are a nasty hack
-pushd ./tools/stowaway/Stowaway-1.2.4
-cd ../
-rm -rf ../apkOutput
-mkdir ../apkOutput
-cd Stowaway-1.2.4
-cd ../../../
+#pushd ./tools/stowaway/Stowaway-1.2.4
+#cd ../
+#rm -rf apkOutput
+#mkdir apkOutput
+#cd Stowaway-1.2.4
+#cd ../../../
 
 ### THIS ALL NEEDS TO BE FIXED
 ### THE PATHS AND DIRECTORIES ARE ALL MESSED UP
@@ -146,65 +143,20 @@ cd ../../../
 #	cd ../../Stowaway-1.2.4
 #done
 
-popd
 
-echo
-echo "Starting Androguard"
+./runstowaway.sh $APK_Input_Path
 
-pushd ./tools/androguard
+exit
+./androguard.sh $APK_Input_Path
 
-mkdir ../../logs/AndroRiskOutput
-PATH_TWO='../../scraper/downloads/full/'
-FILES_TWO=../../scraper/downloads/full/*
-for f in $FILES_TWO
-do
-        echo "***********AndroRisk for ${f#$PATH_TWO} ***********"
-        
-	OUTPUT_FILE=../../logs/AndroRiskOutput/${f#$PATH_TWO}_AndroRisk.log
-	./androrisk.py -m -i $f &>> $OUTPUT_FILE 
-	
-	while read line;
-	do
-		if [[ $line == *VALUE* ]]
-		then
-			echo FUZZY RISK VALUE ${line#VALUE}
-			cd ../../
 
-  			apkID=${f#$PATH_TWO}
-  			apkID=${apkID//.apk/""} ### Remove the apk exension from the apkID
-  			
-			#select from apk information the row id where apkid = filename
-			rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$apkID';"`
-			
-			fuzzyRiskNum=${line#VALUE}   #I am truncating the fuzzy risk number and making it an int
-  			fuzzyRiskfloat=${fuzzyRiskNum/.*}
-  			fuzzyRiskint=$((fuzzyRiskfloat))
-  			
-			### Check to see if the APKID exists in tool results  		
-			APKToolResultsCount=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT count(*) FROM ToolResults WHERE rowid='$rowid';"`
-  			if [[ $APKToolResultsCount -eq 0 ]]; then
-				sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,FuzzyRiskValue) VALUES ($rowid,$fuzzyRiskint);"
-  			else
-      			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET FuzzyRiskValue=$fuzzyRiskint WHERE ApkId=$rowid;"
-       		fi
-			cd ./tools/androguard
-		elif [[ $line == ERROR* ]]
-		then
 
-			echo FUZZY RISK $line
-		fi
-	done < $OUTPUT_FILE
-	
-        #echo "********AndroAPKInfo for ${f#$PATH_TWO} ***********"
-        #./androapkinfo.py -i $f &>> $OUTPUT_FILE 
-	echo
-done
 
 
 cd ../../
 
 echo "Start java Analysis:" `date` >> $logLocation
-./tools/java_Analysis/RunAll.sh $APK_Input_Path
+#./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
 
 #### Log the conclusion time
