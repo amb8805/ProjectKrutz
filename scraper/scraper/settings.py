@@ -26,8 +26,7 @@ COOKIES_ENABLED = False
 PROXY_LIST = [
 	'http://72.167.205.120:80',
 	'https://54.85.145.16:3128',
-	'https://184.82.79.11:3128',
-	'https://74.208.107.67:3128'
+	'https://184.82.79.11:3128'
 ]
 
 USER_AGENT_LIST = [
