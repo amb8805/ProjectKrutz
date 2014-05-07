@@ -53,7 +53,7 @@ do
 	
 	#### ADD THIS INFORMATION TO THE DATABASE
 	#### JLint Value: $jlintCount 
-	#### APK File: $i
+	#### APK File: $i - still needs the .apk removed
 	
 	echo JLint Value: $jlintCount APK File: $i
 	

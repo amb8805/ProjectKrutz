@@ -48,10 +48,6 @@ rm -f $logDir/*.log  ##This is now in the toolsScript.sh instead - Shannon
 
 touch $logDir/$logFile
 
-
-
-
-
 date1=$(date +"%s") # Start Run Time
 #### Add Starting message into Logs
 echo "RunAll Start:" `date` >> $logDir/$logFile
@@ -71,8 +67,6 @@ else
 	./tools/java_Analysis/APK_to_JAVA/convert_APK_Java.sh $inputLocation
 
 
-
-exit
 	### Find the clones in the system
 	echo "Clones:" `date` >> $logDir/$logFile
 	./tools/java_Analysis/CloneDetection/runclones.sh $inputLocation

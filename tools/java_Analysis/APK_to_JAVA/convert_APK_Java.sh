@@ -63,7 +63,7 @@ convertAPK (){
 
 	./$apk_Conv_dir/dex2jar-0.0.9.15/dex2jar.sh $JavaOutputDir/classes.dex 
 
-	## Switching locatins was the only way to have everything output in the appropriate location.
+	## Switching locations was the only way to have everything output in the appropriate location.
 
 
 	cd $JavaOutputDir
@@ -122,7 +122,12 @@ convertAPK (){
 	#####  # Of class files: $classFileCount
 	#####  File name: $1
 	#cd ../../  #moving to the directory with the database
-	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$1';"`
+
+#input="bf383bc2-5917-4ea7-9e24-8d6d69478229"
+
+
+	apkID=${1//.apk/""} ### Remove the apk exension from the apkID
+	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$apkID';"`
 	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET ClassFiles=$classFileCount WHERE ApkId=$rowid;"	
 
 
