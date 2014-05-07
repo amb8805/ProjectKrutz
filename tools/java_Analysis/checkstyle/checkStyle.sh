@@ -3,8 +3,7 @@
 ### A generic listing of warnings is output to the user
 ###		This list of evaluation criteria may be found at: all-checkstyle-checks.xml
 
-logLocation=../../logs/checkstyle.log
-
+logLocation=logs/checkstyle.log
 
 ### Remove the log if it is there
 rm -f $logLocation
@@ -12,19 +11,17 @@ rm -f $logLocation
 ## Create the log
 touch $logLocation
 
-echo "CheckStyle Start:" `date` >> $logLocation
+echo "checkstyle Start:" `date` >> $logLocation
 
-
-### Helpful date website http://stackoverflow.com/questions/8903239/how-to-calculate-time-difference-in-bash-script
-### Date/Time when the script begins to run
 date1=$(date +"%s")
 
 
-### Location of all files to be analyzed
+### Location of the clones to be analyzed
+### This is back up a level since when it is called, it is from the checkstyle directory
 inputDirectory=../javaOutput
-#inputDirectory=../testinput/
 
-cd checkstyle/
+### I do not like doing this, but I do not really know a way around it.
+cd tools/java_Analysis/checkstyle/
 
 ### Loop through all files in the input directory
 #for i in $(find $inputDirectory -mindepth 1 -type d ) # mindepth ignore the top layer
@@ -38,8 +35,6 @@ do
 	### Begin running checkstyle on each
 	rm -f temp.txt
 	touch temp.txt
-
-	
 	
 	####java -jar checkstyle-5.7-all.jar -c all-checkstyle-checks.xml $inputDirectory/$i/*
 	
@@ -49,6 +44,7 @@ do
 	fileTarget=temp.txt
 	defectCount=`grep -o '.java' $fileTarget | wc -l`
 
+
 	date2=$(date +"%s")
 	diff=$(($date2-$date1))
 
@@ -57,30 +53,27 @@ do
 
 	rm -f temp.txt
 
-	echo "Current Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds. for " `echo $appName` "Defect Count:" `echo $defectCount` >> ../$logLocation
-
-	
-	
 	### These values can be used to put into the database
 	echo FileName: $appName
 	echo DefectCount: $defectCount
 
-	cd ../../  #moving to the directory with the database
+	cd ../../../  #moving to the directory with the database
+
+	echo "Current Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds. for " `echo $appName` "Defect Count:" `echo $defectCount` >> $logLocation
+
 	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$appName';"`
 	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET DefectCount=$defectCount WHERE ApkId=$rowid;"	
 	
-	cd tools/java_Analysis #going back to where you were before
+	cd tools/java_Analysis/checkstyle/
 
 done
-
 
 ###TODO
 # Clear out everything in the javaOutput directory but "placeholder.txt"
 
-
+cd ../../../  #moving to the directory with the database
 date2=$(date +"%s")
 diff=$(($date2-$date1))
-echo "CheckStyle Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> ../$logLocation
-echo "CheckStyle End:" `date` >> ../$logLocation
-
+echo "CheckStyle Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
+echo "CheckStyle End:" `date` >> $logLocation
 
