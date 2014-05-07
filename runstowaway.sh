@@ -20,6 +20,18 @@ stowawayOutput=tools/stowaway/apkOutput
 rm -rf $stowawayOutput/
 mkdir -p $stowawayOutput/ 
 
+
+
+# Check to make sure that an argument is actually passed in
+
+
+EXPECTED_ARGS=1
+
+if [ $# -ne $EXPECTED_ARGS ] then
+	echo "Stowaway requires 1 argument, the path to the location of the apk files"
+fi
+
+#The $1 is the given argument which is the path to the files
 FILES=$(find $1 -type f -name '*.apk')
 for f in $FILES
 do
