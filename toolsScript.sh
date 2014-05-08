@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Unless otherwise noted by pushd or cd, you should always be in the overall Project Krutz directory
+# This is the same for runstowaway, 
+
+
 clear
 
 echo "The script starts now"
@@ -32,10 +36,10 @@ then
 fi
 
 # Check to make sure that an argument is actually passed in
+APK_Input_Path="scraper/downloads/full/"
 EXPECTED_ARGS=1
-if [ $# -ne $EXPECTED_ARGS ] then
-	APK_Input_Path=scraper/downloads/full/
-else 
+if [ $# -eq $EXPECTED_ARGS ]
+then
 	APK_Input_Path=$1
 fi
 
@@ -48,7 +52,7 @@ fi
 cd ../../
 
 echo "Start java Analysis:" `date` >> $logLocation
-#./tools/java_Analysis/RunAll.sh $APK_Input_Path
+./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
 
 #### Log the conclusion time

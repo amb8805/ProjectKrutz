@@ -22,7 +22,8 @@ mkdir -p $stowawayOutput/
 # Check to make sure that an argument is actually passed in
 EXPECTED_ARGS=1
 
-if [ $# -ne $EXPECTED_ARGS ] then
+if [ $# -ne $EXPECTED_ARGS ] 
+then
 	echo "Stowaway requires 1 argument, the path to the location of the apk files"
 fi
 

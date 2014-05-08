@@ -17,15 +17,22 @@ echo "Starting Androguard"
 
 mkdir -p logs/AndroRiskOutput
 
+# Check to make sure that an argument is actually passed in
+EXPECTED_ARGS=1
+if [ $# -ne $EXPECTED_ARGS ] 
+then
+	echo "Androguard requires 1 argument, the path to the location of the apk files"
+fi
+
+#The $1 is the given argument for the location of the APKs
 FILES=$(find $1 -type f -name '*.apk')
 for f in $FILES
 do
-    echo "***********AndroRisk for ${f#$PATH_TWO} ***********"
+    fileName=$(basename $f) 
   
-	echo "****Starting AndroGuard for:" ${f#$PATH_TWO} `date` >> $logLocation
+	echo "****Starting AndroGuard for:" $fileName `date` >> $logLocation
   
-	fileName=$(basename $f) 
-	OUTPUT_FILE=../../logs/AndroRiskOutput/${fileName#$PATH_TWO}_AndroRisk.log
+	OUTPUT_FILE=./logs/AndroRiskOutput/$fileName_AndroRisk.log
 
 	pushd ./tools/androguard
 
