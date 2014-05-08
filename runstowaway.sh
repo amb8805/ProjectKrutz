@@ -1,7 +1,7 @@
 #!/bin/bash
 
 date1=$(date +"%s")
-logLocation=logs/stowaway.log
+logLocation=logs/stowawayoutput.log
 
 ### Remove the log if it is there
 rm -f $logLocation
@@ -13,18 +13,13 @@ echo "Stowaway Start:" `date` >> $logLocation
 
 echo "Begin Stowaway"
 
-
-stowawayOutput=tools/stowaway/apkOutput
-
 ### Clean out the APK Output
+stowawayOutput=tools/stowaway/apkOutput
 rm -rf $stowawayOutput/
 mkdir -p $stowawayOutput/ 
 
 
-
 # Check to make sure that an argument is actually passed in
-
-
 EXPECTED_ARGS=1
 
 if [ $# -ne $EXPECTED_ARGS ] then
@@ -40,55 +35,49 @@ do
 
 	APKFile=$(basename $f)
 	APKFile=${APKFile//.apk/""} ### Remove the apk exension from the apkID
-#	echo 35: $APKFile
+	echo $APKFile
 
-
-
-    APK="tools/stowaway/apkOutput/"
+	#Building an output folder for each app inside of the apkOutput folder in stowaway
+    APK="./tools/stowaway/apkOutput/"
     OUTPUT="_output"
-    O_F=$APK${f#$PATH}
-    OUTPUT_FOLDER=$stowawayPath${APKFile}$OUTPUT
+    OUTPUT_FOLDER=$APK$APKFile$OUTPUT
+	echo outputFolder: $OUTPUT_FOLDER
+	mkdir -p $OUTPUT_FOLDER    #what does the -p do here?
 
-	
-#	echo outputFolder: $OUTPUT_FOLDER
-#	exit
-    echo **********Stowaway***********
-    echo ${f#$PATH}
+	# OK so here is the major directory problem.  You need to run stowaway from inside of
+	# the stowaway directory.  This is because there are many paths inside of stowaway.sh 
+	# that are dependent on being in the same directory as the script. So even though it 
+	# may seem to make more sense to do something like this:
+	#	 bash ./tools/stowaway/Stowaway-1.2.4/stowaway.sh $f $OUTPUT_FOLDER
+	# that doesn't work.  What you need to do instead is this:
+	#    bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowawayoutput.log
 
-#	echo 30: $OUTPUT_FOLDER
-	mkdir -p $OUTPUT_FOLDER
-#cd $stowawayPath
-#pwd
-	
-#	exit
-	
-	pwd
-#    bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowAwayoutput.log
- #   bash ./tools/stowaway/Stowaway-1.2.4/stowaway.sh $f $OUTPUT_FOLDER
+	pushd ./tools/stowaway/Stowaway-1.2.4
+	# Possibly there will be problems with just using $f??
+	bash ./stowaway.sh $f ../apkOutput/$APKFile$OUTPUT &>>../../../$logLocation
+	popd #getting out of the directory 
 
-exit
+    echo "################################################################" &>>$logLocation
 
-        echo "################################################################" &>>../../../logs/stowAwayoutput.log
-	
-	cd $OUTPUT_FOLDER
-
-	cd ../../../../
-	# get the ID from ApkInfo based on the filename (includes .apk)
-	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='${f#$PATH}';"`
-	cd ./tools/stowaway/${OUTPUT_FOLDER#../}	
+	# get the ID from ApkInfo based on the filename (does not include .apk)
+	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFILE';"`
 
 	#Here is where we are getting the version number of the app from the manifest
-	line=$(head -n 1 AndroidManifest.xml)
-	nofront=${line#<?xml version='}
+	pushd $OUTPUT_FOLDER
+	firstline=$(head -n 1 AndroidManifest.xml)
+	nofront=${firstline#<?xml version='}
 	noback=${nofront#' encoding='utf-8'?>}
 	echo "version number = " $((noback))
+	popd
 
-	for line in $(cat Overprivilege)
+	#Reading the Over and Under privileged files
+	over="/Overprivilege"
+	under="/Underprivilege"
+
+	while read line
 	do
-		echo $line
-		# instead of echoing put this into the database 
-		cd ../../../../
-		# make sure the permission is in the permissions table and get the ID number
+    	echo $line
+    	# make sure the permission is in the permissions table and get the ID number
 		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
 		if $permRowid != ''
 		then
@@ -97,15 +86,14 @@ exit
 		fi
 		# put into the Overprivilege table an entry for apkid and perm id
 		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
-		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
-	done 
+	done < $OUTPUT_FOLDER$over
+
 
 	#add another for loop here for underprivileged
-	for line in $(cat Underprivilege)
+	while read line
 	do
 		echo $line
 		# instead of echoing put this into the database 
-		cd ../../../../
 		# make sure the permission is in the permissions table and get the ID number
 		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
 		if $permRowid != ''
@@ -115,22 +103,11 @@ exit
 		fi
 		# put into the Underprivilege table an entry for apkid and perm id
 		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
-		cd ./tools/stowaway/${OUTPUT_FOLDER#../}
-	done 
-
-	cd ../../Stowaway-1.2.4
+	done < $OUTPUT_FOLDER$under
 done
 
-
-
-
-
-
-
-
-
-exit
 date2=$(date +"%s")
 diff=$(($date2-$date1))
 echo "Stowaway Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> ../$logLocation
 echo "Stowaway End:" `date` >> ../$logLocation
+exit
