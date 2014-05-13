@@ -28,15 +28,16 @@ fi
 FILES=$(find $1 -type f -name '*.apk')
 for f in $FILES
 do
-    fileName=$(basename $f) 
-  
+    fileName=$(basename $f)
+    fileName=${fileName//.apk/""} ### Remove the apk exension from the apkID 
+  	
 	echo "****Starting AndroGuard for:" $fileName `date` >> $logLocation
-  
-	OUTPUT_FILE=./logs/AndroRiskOutput/$fileName_AndroRisk.log
+  	var=_AndroRisk
+	OUTPUT_FILE=logs/AndroRiskOutput/$fileName$var.log
 
 	pushd ./tools/androguard
-
-	./androrisk.py -m -i ../../$f &>> $OUTPUT_FILE 
+	./androrisk.py -m -i ../../$f &>> ../../$OUTPUT_FILE 
+	popd
 
 	while read line;
 	do
@@ -44,7 +45,6 @@ do
 		if [[ $line == *VALUE* ]]
 		then
 			echo FUZZY RISK VALUE ${line#VALUE}
-			cd ../../
 
 			APKFile=$(basename $f)
 			APKFile=${APKFile//.apk/""} ### Remove the apk exension from the apkID
@@ -65,7 +65,6 @@ do
   			else
       			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET FuzzyRiskValue=$fuzzyRiskint WHERE ApkId=$rowid;"
        		fi
-			cd ./tools/androguard
 		elif [[ $line == ERROR* ]]
 		then
 
@@ -73,8 +72,10 @@ do
 		fi
 	done < $OUTPUT_FILE
 	
-        echo "********AndroAPKInfo for ${f#$PATH_TWO} ***********"
-        ./androapkinfo.py -i $f &>> $OUTPUT_FILE 
+        echo "********AndroAPKInfo for ${fileName} ***********" `date` >> $logLocation
+        pushd ./tools/androguard
+        ./androapkinfo.py -i ../../$f &>> ../../$OUTPUT_FILE 
+        popd
 	echo
 done
 
@@ -82,5 +83,5 @@ echo "AndroGuard Completed"
 
 date2=$(date +"%s")
 diff=$(($date2-$date1))
-echo "AndroGuard Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> ../../$logLocation
-echo "AndoGuard End:" `date` >> ../../$logLocation
+echo "AndroGuard Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
+echo "AndoGuard End:" `date` >> $logLocation
