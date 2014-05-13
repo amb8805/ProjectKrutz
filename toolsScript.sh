@@ -43,7 +43,7 @@ then
 	APK_Input_Path=$1
 fi
 
-#./runstowaway.sh $APK_Input_Path
+./runstowaway.sh $APK_Input_Path
 
 ./androguard.sh $APK_Input_Path
 
