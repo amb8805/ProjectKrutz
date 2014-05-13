@@ -51,24 +51,23 @@ do
 	# may seem to make more sense to do something like this:
 	#	 bash ./tools/stowaway/Stowaway-1.2.4/stowaway.sh $f $OUTPUT_FOLDER
 	# that doesn't work.  What you need to do instead is this:
-	#    bash ./stowaway.sh $f $OUTPUT_FOLDER &>>../../../logs/stowawayoutput.log
+	#    bash ./stowaway.sh ../../../$f $OUTPUT_FOLDER &>>../../../logs/stowawayoutput.log
 
 	pushd ./tools/stowaway/Stowaway-1.2.4
-	# Possibly there will be problems with just using $f??
-	bash ./stowaway.sh $f ../apkOutput/$APKFile$OUTPUT &>>../../../$logLocation
+	bash ./stowaway.sh ../../../$f ../apkOutput/$APKFile$OUTPUT &>>../../../$logLocation
 	popd #getting out of the directory 
 
     echo "################################################################" &>>$logLocation
 
 	# get the ID from ApkInfo based on the filename (does not include .apk)
-	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFILE';"`
+	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
 
 	#Here is where we are getting the version number of the app from the manifest
 	pushd $OUTPUT_FOLDER
 	firstline=$(head -n 1 AndroidManifest.xml)
-	nofront=${firstline#<?xml version='}
-	noback=${nofront#' encoding='utf-8'?>}
-	echo "version number = " $((noback))
+	nofront=${firstline#<?xml version=}
+	versionNumber=`echo $nofront| cut -d'"' -f 2`
+	echo "version number = " $versionNumber
 	popd
 
 	#Reading the Over and Under privileged files
@@ -77,31 +76,35 @@ do
 
 	while read line
 	do
-    	echo $line
+    	var=${line#android.permission.}
+		echo $var
     	# make sure the permission is in the permissions table and get the ID number
-		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		if $permRowid != ''
+    	permRowCount=0
+		permRowCount=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT count(*) FROM Permissions WHERE Name='$var';"`
+		if [ $permRowCount -eq 0 ]
 		then
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
-			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES ('$var');"
 		fi
+		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='$var';"`
 		# put into the Overprivilege table an entry for apkid and perm id
 		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
 	done < $OUTPUT_FOLDER$over
 
 
 	#add another for loop here for underprivileged
+	#there may not be an underprivileged file, in which case this will just not run, which is fine
 	while read line
 	do
-		echo $line
-		# instead of echoing put this into the database 
+		var=${line#android.permission.}
+		echo $var
 		# make sure the permission is in the permissions table and get the ID number
-		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
-		if $permRowid != ''
+		permRowCount=0
+		permRowCount=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT count(*) FROM Permissions WHERE Name='$var';"`
+		if [ $permRowCount -eq 0 ]
 		then
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES (${line#android.permission.});"
-			permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='${line#android.permission.}';"`
+			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES ('$var');"
 		fi
+		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='$var';"`
 		# put into the Underprivilege table an entry for apkid and perm id
 		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
 	done < $OUTPUT_FOLDER$under
@@ -109,6 +112,6 @@ done
 
 date2=$(date +"%s")
 diff=$(($date2-$date1))
-echo "Stowaway Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> ../$logLocation
-echo "Stowaway End:" `date` >> ../$logLocation
+echo "Stowaway Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
+echo "Stowaway End:" `date` >> $logLocation
 exit

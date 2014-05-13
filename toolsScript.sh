@@ -45,14 +45,14 @@ fi
 
 ./runstowaway.sh $APK_Input_Path
 
-./androguard.sh $APK_Input_Path
+#./androguard.sh $APK_Input_Path
 
 
 
-cd ../../
+#cd ../../
 
 echo "Start java Analysis:" `date` >> $logLocation
-./tools/java_Analysis/RunAll.sh $APK_Input_Path
+#./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
 
 #### Log the conclusion time
