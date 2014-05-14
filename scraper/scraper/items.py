@@ -19,6 +19,8 @@ class ApkItem(Item):
     date_published      = Field()
     file_size           = Field()
     num_downloads       = Field()
+    lower_downloads     = Field()
+    upper_downloads     = Field()
     software_version    = Field()
     operating_systems   = Field()
 

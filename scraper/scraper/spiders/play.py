@@ -52,6 +52,8 @@ def parse_app(response):
     item['date_published'] = additional_information.xpath('//div[@itemprop="datePublished"]/text()').extract()[0]
     item['file_size'] = additional_information.xpath('//div[@itemprop="fileSize"]/text()').extract()[0].strip()
     item['num_downloads'] = additional_information.xpath('//div[@itemprop="numDownloads"]/text()').extract()[0].strip()
+    item['lower_downloads'] = item['num_downloads'][0 : (item['num_downloads'].index("-")-1)].strip().replace(',', '')
+    item['upper_downloads'] = item['num_downloads'][item['num_downloads'].index("-") + 1 : ].strip().replace(',', '')
     item['software_version'] = additional_information.xpath('//div[@itemprop="softwareVersion"]/text()').extract()[0].strip()
     item['operating_systems'] = additional_information.xpath('//div[@itemprop="operatingSystems"]/text()').extract()[0].strip()
 
