@@ -3,7 +3,10 @@
 ### Will return a listing of defects & suggestions in the application.
 ###		sudo apt-get install lib32z1-dev   --> This likely needs to be installed
 
-logLocation=../../logs/jlint.log
+
+echo "Run Jlint............"
+
+logLocation=logs/jlint.log
 
 ### Remove the log if it is there
 rm -f $logLocation
@@ -16,7 +19,12 @@ echo "Jlint Start:" `date` >> $logLocation
 date1=$(date +"%s")
 
 ### Location of all files to be analyzed
-inputDirectory=javaOutput
+#inputDirectory=javaOutput
+
+
+### Location of the clones to be analyzed
+inputDirectory=tools/java_Analysis/javaOutput
+
 
 ### Loop through all of the javaOutput folders
 ### Loop through all of the folders in the input directory
@@ -31,12 +39,12 @@ do
 	jlintCount=0 # Reset the count after each iteration
 	### Loop through each of these folders and analyze each .class file
 	### This is messy, but I am not sure how else to analyze only class files - dk
+	
 	FILES=$(find $i -type f -name '*.class')
 	for f in $FILES
 	do
 		loopCount=$((loopCount+1)) ### Right now this is used for debugging purposes
-		tempoutput=`./jlint/jlint $f`
-	
+		tempoutput=`./tools/java_Analysis/jlint/jlint $f`
 		### Check to make sure that tempoutput contains "Verifcation Completed"
 		### if not, then skip it
 		if [[ $tempoutput =~ "Verification completed"* ]]
@@ -56,7 +64,24 @@ do
 	#### APK File: $i - still needs the .apk removed
 	
 	echo JLint Value: $jlintCount APK File: $i
+
+	### Convert the file being analyzed to something usable
+	APKFile=$(basename $i)
+	APKFile=${APKFile//%apk/""} ### Remove the apk exension from the apkID
+
 	
+	#select from apk information the row id where apkid = filename
+	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
+
+	### Check to see if the APKID exists in tool results  		
+	APKToolResultsCount=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT count(*) FROM ToolResults WHERE rowid='$rowid';"`
+
+  	if [[ $APKToolResultsCount -eq 0 ]]; then
+		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,JlintResult) VALUES ($rowid,$jlintCount);"
+  	else
+      	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET JlintResult=$jlintCount WHERE ApkId=$rowid;"
+    fi
+
 done
 
 	echo "End Jlint Analyzing:" `echo $i` `date` >> $logLocation
