@@ -61,8 +61,8 @@ do
 
 	echo "Current Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds. for " `echo $appName` "Defect Count:" `echo $defectCount` >> $logLocation
 
-	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$appName';"`
-	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET DefectCount=$defectCount WHERE ApkId=$rowid;"	
+	rowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$appName';"`
+	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET DefectCount=$defectCount WHERE ApkId=$rowid;"	
 	
 	cd tools/java_Analysis/checkstyle/
 

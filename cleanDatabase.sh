@@ -6,11 +6,11 @@ while read id; do
 		echo "File $file does not exist"
 		array[${#array[*]}]=$id
 	fi
-done < <(sqlite3 Evolution\ of\ Android\ Applications.sqlite "SELECT ApkId FROM ApkInformation")
+done < <(sqlite3 EvolutionOfAndroidApplications.sqlite "SELECT ApkId FROM ApkInformation")
 
 for apk in ${array[@]}; do
 	echo "Removing record $apk from database"
-	sqlite3 Evolution\ of\ Android\ Applications.sqlite "DELETE FROM ApkInformation WHERE ApkId = '$apk'"
+	sqlite3 EvolutionOfAndroidApplications.sqlite "DELETE FROM ApkInformation WHERE ApkId = '$apk'"
 done
 echo "Database cleanup complete"
 
@@ -19,7 +19,7 @@ for file in scraper/downloads/full/*.apk; do
 	name=${file##*/}
 	base=${name%.apk}
 	
-	apk=`sqlite3 Evolution\ of\ Android\ Applications.sqlite "SELECT Name FROM ApkInformation WHERE ApkId='$base'"`
+	apk=`sqlite3 EvolutionOfAndroidApplications.sqlite "SELECT Name FROM ApkInformation WHERE ApkId='$base'"`
 	if [ -z "${apk}" ]; then
 		echo "Deleting file $file"
 		rm -f $file

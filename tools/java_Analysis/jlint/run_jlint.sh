@@ -71,15 +71,15 @@ do
 
 	
 	#select from apk information the row id where apkid = filename
-	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
+	rowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
 
 	### Check to see if the APKID exists in tool results  		
-	APKToolResultsCount=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT count(*) FROM ToolResults WHERE rowid='$rowid';"`
+	APKToolResultsCount=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT count(*) FROM ToolResults WHERE rowid='$rowid';"`
 
   	if [[ $APKToolResultsCount -eq 0 ]]; then
-		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO ToolResults (ApkId,JlintResult) VALUES ($rowid,$jlintCount);"
+		sqlite3 EvolutionOfAndroidApplications.sqlite  "INSERT INTO ToolResults (ApkId,JlintResult) VALUES ($rowid,$jlintCount);"
   	else
-      	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET JlintResult=$jlintCount WHERE ApkId=$rowid;"
+      	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET JlintResult=$jlintCount WHERE ApkId=$rowid;"
     fi
 
 done

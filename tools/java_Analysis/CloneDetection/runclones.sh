@@ -54,8 +54,8 @@ do
 
 	cd ../../../  #moving to the directory with the database
 	
-	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
-	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET CodeCloneCount=$cloneCount WHERE ApkId=$rowid;"	
+	rowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
+	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET CodeCloneCount=$cloneCount WHERE ApkId=$rowid;"	
 	
 	#cd tools/java_Analysis #going back to where you were before
 	date2=$(date +"%s")

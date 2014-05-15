@@ -60,7 +60,7 @@ do
     echo "################################################################" &>>$logLocation
 
 	# get the ID from ApkInfo based on the filename (does not include .apk)
-	appRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
+	appRowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
 
 	#Here is where we are getting the version number of the app from the manifest
 	pushd $OUTPUT_FOLDER
@@ -80,14 +80,14 @@ do
 		echo $var
     	# make sure the permission is in the permissions table and get the ID number
     	permRowCount=0
-		permRowCount=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT count(*) FROM Permissions WHERE Name='$var';"`
+		permRowCount=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT count(*) FROM Permissions WHERE Name='$var';"`
 		if [ $permRowCount -eq 0 ]
 		then
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES ('$var');"
+			sqlite3 EvolutionOfAndroidApplications.sqlite  "INSERT INTO Permissions (Name) VALUES ('$var');"
 		fi
-		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='$var';"`
+		permRowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM Permissions WHERE Name='$var';"`
 		# put into the Overprivilege table an entry for apkid and perm id
-		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
+		sqlite3 EvolutionOfAndroidApplications.sqlite  "INSERT INTO Overprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
 	done < $OUTPUT_FOLDER$over
 
 
@@ -99,14 +99,14 @@ do
 		echo $var
 		# make sure the permission is in the permissions table and get the ID number
 		permRowCount=0
-		permRowCount=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT count(*) FROM Permissions WHERE Name='$var';"`
+		permRowCount=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT count(*) FROM Permissions WHERE Name='$var';"`
 		if [ $permRowCount -eq 0 ]
 		then
-			sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Permissions (Name) VALUES ('$var');"
+			sqlite3 EvolutionOfAndroidApplications.sqlite  "INSERT INTO Permissions (Name) VALUES ('$var');"
 		fi
-		permRowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM Permissions WHERE Name='$var';"`
+		permRowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM Permissions WHERE Name='$var';"`
 		# put into the Underprivilege table an entry for apkid and perm id
-		sqlite3 Evolution\ of\ Android\ Applications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
+		sqlite3 EvolutionOfAndroidApplications.sqlite  "INSERT INTO Underprivileged (PermissionId,ApkId) VALUES ($permRowid,$appRowid);"
 	done < $OUTPUT_FOLDER$under
 done
 
