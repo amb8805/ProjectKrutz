@@ -13,3 +13,16 @@ for apk in ${array[@]}; do
 	sqlite3 Evolution\ of\ Android\ Applications.sqlite "DELETE FROM ApkInformation WHERE ApkId = '$apk'"
 done
 echo "Database cleanup complete"
+
+echo "Begin deleting files that don't have a database record"
+for file in scraper/downloads/full/*.apk; do
+	name=${file##*/}
+	base=${name%.apk}
+	
+	apk=`sqlite3 Evolution\ of\ Android\ Applications.sqlite "SELECT Name FROM ApkInformation WHERE ApkId='$base'"`
+	if [ -z "${apk}" ]; then
+		echo "Deleting file $file"
+		rm -f $file
+	fi
+done
+echo "Finished deleting files"
