@@ -70,20 +70,20 @@ else
 	### Find the clones in the system
 	echo "Clones:" `date` >> $logDir/$logFile
 	./tools/java_Analysis/CloneDetection/runclones.sh $inputLocation
-exit
+
 
 	#### CheckStyle
 	echo "CheckStyle:" `date` >> $logDir/$logFile
-	./checkstyle/CheckStyle.sh
+	./tools/java_Analysis/checkstyle/CheckStyle.sh
 
 	### Run JLint
 	echo "Start Running JLint:" `date` >> $logDir/$logFile
-	./jlint/run_jlint.sh
+	./tools/java_Analysis/jlint/run_jlint.sh
 
 
 	### Remove the created javaoutput.
-	echo "Remove Java Output" `date` >> $logDir/$logFile
-	rm -rf javaOutput
+#	echo "Remove Java Output" `date` >> $logDir/$logFile
+#	rm -rf tools/java_Analysis/javaOutput
 
 fi
 

@@ -43,17 +43,22 @@ then
 	APK_Input_Path=$1
 fi
 
-./runstowaway.sh $APK_Input_Path
+#./runstowaway.sh $APK_Input_Path
 
-./androguard.sh $APK_Input_Path
+#./androguard.sh $APK_Input_Path
 
 
 
 #cd ../../
 
 echo "Start java Analysis:" `date` >> $logLocation
-#./tools/java_Analysis/RunAll.sh $APK_Input_Path
+./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
+## Run the script to modify the apkInformation 
+./modifyAPKInformationDB.sh
+
+echo "Start Checking into GitHub:" `date` >> $logLocation
+#./checkAllIntoGitHub.sh
 
 #### Log the conclusion time
 date2=$(date +"%s")
@@ -61,14 +66,6 @@ diff=$(($date2-$date1))
 echo "toolsScript Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
 echo "toolsScript End:" `date` >> $logLocation
 
-
-### Now we do all the commiting ##
-echo "FIX              Commit Logs and Database to Github"
-##if this is the VM then run this
-##put the password into it
-#git commit logs/* -m "Committing the logs for the night"
-#git commit Evolution\ of\ Android\ Applications.sqlite -m "Committing the database for the night"
-#git push origin master
 
 
 echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
