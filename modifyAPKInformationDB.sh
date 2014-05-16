@@ -3,6 +3,21 @@
 ### Description: This will modify or add informtion to the SQLite APKInformation Table
 ###			This will ultimately be refactored and placed into 
 
+
+#### Convert the date format to one which we can sort
+convert_date () {
+
+	day=${2//,/""}
+    local months=( January February March April May June July August September October November December )
+    local i
+    for (( i=0; i<11; i++ )); do
+        [[ $1 = ${months[$i]} ]] && break
+    done
+    #printf "%4d%02d%02d\n" $3 $(( i+1 )) $2
+    printf "%4d%02d%02d\n" $3 $(( i+1 )) $day
+}
+
+
 #### Directory of APK files to be analyzed
 apkInputDir=scraper/downloads/full
 
@@ -46,9 +61,12 @@ FILES=$(find $apkInputDir -type f -name '*.apk')
 	# Right now the DatePublishedDate is April 5, 2014
 	# This should be saved in the "ModifiedDatePublished" column as 4/5/2014
 	DatePublished=`sqlite3 $dbname "SELECT DatePublished FROM ApkInformation WHERE rowid='$rowid';"`
-	echo $DatePublished
-
-	### Finish this
+	
+	### Convert to modified date published
+	d=$( convert_date $DatePublished )
+	#d=$( convert_date "March 17, 2014" )
+	
+	sqlite3 $dbname  "UPDATE ApkInformation SET modifiedDatePublished=$d WHERE rowid=$rowid;"
 
 done
 
