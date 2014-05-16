@@ -26,7 +26,8 @@ date1=$(date +"%s") # Start Run Time
 ### convert individual file
 ### Refactor this out to a different file
 convertAPK (){
-
+	
+	echo Working DIR: `pwd`
 	echo "Begin Analyzing:" `date` " " $1 >> $logLocation
 	inputFileName=$(basename $1 .apk)
 
@@ -123,19 +124,26 @@ convertAPK (){
 	#####  File name: $1
 	#cd ../../  #moving to the directory with the database
 
-#input="bf383bc2-5917-4ea7-9e24-8d6d69478229"
-
 
 	apkID=${1//.apk/""} ### Remove the apk exension from the apkID
-	rowid=`sqlite3 Evolution\ of\ Android\ Applications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$apkID';"`
-	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET ClassFiles=$classFileCount WHERE ApkId=$rowid;"	
+	rowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$apkID';"`
+	
+	### If the rowID is not found, then insert the value into the database. This should never happen, but this is a failsafe.
+	permRowCount=0
+	permRowCount=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT count(*) FROM toolresults WHERE apkid='$rowid';"`
 
+	if [ $permRowCount -eq 0 ]
+	then
+		sqlite3 EvolutionOfAndroidApplications.sqlite  "INSERT INTO toolresults (ApkId) VALUES ('$rowid');"
+	fi
+
+	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET ClassFiles=$classFileCount WHERE ApkId=$rowid;"	
 
 	##### INSERT THE NUMBER OF Java FILES CREATED INTO THE SQLITE DATABASE
 	#####  # Of Java files: $javaFileCount
 	#####  File name: $JavaOutputDir
-	sqlite3 Evolution\ of\ Android\ Applications.sqlite  "UPDATE ToolResults SET JavaFiles=$javaFileCount WHERE ApkId=$rowid;"	
-	cd tools/java_Analysis #going back to where you were before
+	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET JavaFiles=$javaFileCount WHERE ApkId=$rowid;"	
+	#cd tools/java_Analysis #going back to where you were before
 
 	## Output the results to the user
 	#	echo "	*****Output Dir: " `echo $JavaOutputDir` >> $logLocation
@@ -159,13 +167,15 @@ for f in $FILES
 do
 	#echo $f
 	convertAPK $(basename $f)
+	#echo $(basename $f)
 done
 
-cd ../../
+	#cd ../../
 
 ### Log end date/time
 date2=$(date +"%s")
 diff=$(($date2-$date1))
+
 echo "convert_APK End:" `date` >> $logLocation
 echo "Total Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
 
