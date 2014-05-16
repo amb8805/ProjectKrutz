@@ -22,12 +22,10 @@ FILES=$(find $apkInputDir -type f -name '*.apk')
 	for f in $FILES
 	do
 
-
 	fileName=$(basename $f)
 	apkID=${fileName//.apk/""} ### Remove the apk exension from the apkID
 	#echo $apkID
 	rowid=`sqlite3 $dbname "SELECT rowid FROM ApkInformation WHERE ApkId='$apkID';"`
-
 
 	### Modify the minimum operating system
 	# If the minimum OS is 1.3 and up, the column "ModifiedOS" should read 1.3
@@ -38,13 +36,11 @@ FILES=$(find $apkInputDir -type f -name '*.apk')
 	### Get the size of the apk file & Update the "GeneratedFileSize column" 
 	## Analyze the examined apk file and get its file size. This file size should then be recorded and put into the DB.
 
-
-#### CHECK TO MAKE SURE THAT THIS IS CORRECT
 	### Get the size of the apk file. The extra command has to be used to remove the filename
-	set -- $(du $f)
+	#set -- $(du $f) ## Old version, only reported ~1/2 the size of the file
+	set -- $(du -sb $f)
 	fileSize=$1
 	sqlite3 $dbname  "UPDATE ApkInformation SET GeneratedFileSize=$fileSize WHERE rowid=$rowid;"	
-
 
 	#### Generate the modified PublicationDate
 	# Right now the DatePublishedDate is April 5, 2014
@@ -56,8 +52,6 @@ FILES=$(find $apkInputDir -type f -name '*.apk')
 
 done
 
-	
-	
 date2=$(date +"%s")
 diff=$(($date2-$date1))
 echo "End:" `date` >> $logLocation
