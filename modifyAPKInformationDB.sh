@@ -30,7 +30,20 @@ touch $logLocation
 echo "ModifyAPKInfo Start:" `date` >> $logLocation
 
 
-# a408d63f-b407-45a8-8cb8-b79991e53deb
+#### Loop through all of the records in the database
+#### Done like this since not all of the files are actual APK Files
+
+
+
+
+	sqlite3 $dbname  "UPDATE ApkInformation SET GeneratedFileSize=$fileSize WHERE rowid=$rowid;"	
+
+
+
+exit
+
+
+
 
 #### Loop through all of the apk files in the directory
 FILES=$(find $apkInputDir -type f -name '*.apk')
