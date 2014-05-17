@@ -1,4 +1,5 @@
 import re
+import uuid
 from datetime import datetime
 from scrapy import log
 from scrapy.selector import Selector
@@ -8,6 +9,9 @@ from scraper.items import ApkItem
 def parse_app(response):
     sel = Selector(response)
     item = ApkItem()
+
+    # Creates a unique identifier for the APK
+    item['id'] = str(uuid.uuid4())
 
     now = datetime.now()
     item['collection_date'] = now.strftime('%Y-%m-%d %H:%M:%S')

@@ -1,5 +1,4 @@
 import re
-import uuid
 import sqlite3
 import requests
 
@@ -19,15 +18,9 @@ from scrapy.contrib.pipeline.files import FilesPipeline
 from scrapy.http import Request
 from scraper.items import ApkItem
 
-# Creates a unique identifier for the APK
-class UniqueIdentifierPipeline(object):
-    def process_item(self, item, spider):
-        item['id'] = str(uuid.uuid4())
-        return item
-
 # Stores the APK information in the database
 class SQLiteStorePipeline(object):
-    filename = '../Evolution of Android Applications.sqlite'
+    filename = '../EvolutionOfAndroidApplications.sqlite'
     
     def __init__(self):
         self.conn = None
