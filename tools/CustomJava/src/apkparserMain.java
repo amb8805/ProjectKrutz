@@ -1,18 +1,16 @@
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-//import java.lang XMLReader;
-import java.io.InputStreamReader;
-
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
-import org.w3c.dom.Element;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 
@@ -46,107 +44,28 @@ public class apkparserMain {
 		//System.out.println(u.readDoc(appName));
 	//	System.out.println(RunAPKParser("dan"));
 		//findAPKInformation();
-		testXMLReader();
-	}
-	
-	
-	private void testXMLReader() throws IOException, ParserConfigurationException, SAXException{
-
 		
-	//	File fXmlFile = new File("src/testinput/0.txt");
-		
-//		System.out.println(u.readDoc(xmlFile.getAbsolutePath()));
-	
-		
-		File fXmlFile = new File("src/testinput/0.txt");
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse(fXmlFile);
-	 
-		//optional, but recommended
-		//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
-		doc.getDocumentElement().normalize();
-	 
-		
-		// *********
-		
-		
-		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
-	            .newInstance();
-	    DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-	    Document document = docBuilder.parse(fXmlFile);
-
-	    NodeList nodeList = document.getElementsByTagName("*");
-	    for (int i = 0; i < nodeList.getLength(); i++) {
-	        Node node = nodeList.item(i);
-	        if (node.getNodeType() == Node.ELEMENT_NODE) {
-	            // do something with the current element
-	            System.out.println(node.getNodeName());
-	            System.out.println(node.getNextSibling().getTextContent());
-	        }
-	    }
-		
-		
-		
-		
-		// ********
-		
-		
-		
-		/*
-		System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-		System.out.println("Root element :" + doc.getDocumentElement().getChildNodes());
-	 
-		NodeList nList = doc.getElementsByTagName("intent-filter");
-		System.out.println("Version:" + doc.getElementsByTagName("action android:name"));
-		System.out.println("----------------------------");
-	 
-		
-		
-		
-		for (int temp = 0; temp < nList.getLength(); temp++) {
-	 
-			Node nNode = nList.item(temp);
-	 
-		//	System.out.println("\nCurrent Element :" + nNode.getNodeName());
-		//	System.out.println("\nCurrent Element :" + nNode.getNodeName());
-			
-//			android:versionCode
-			
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-	 
-				Element eElement = (Element) nNode;
-		//		System.out.println("Staff id : " + eElement.getAttribute("action android:name"));
-				
-				System.out.println("Staff id : " + eElement.getAttribute("id"));
-				System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
-				System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
-				System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
-				System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
-	
-			}
-			
-		}
-	   
-		*/
-		
-		
+		parseXMLInfo();
 	}
 	
 	
 	
 	
+	private void parseXMLInfo() throws ParserConfigurationException, SAXException, IOException, InterruptedException{	
+		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+
+		Document doc = docBuilder.parse(new InputSource(new StringReader(findAPKInformation())));
+		readXMLInfo(doc.getDocumentElement());
+		
+		//System.out.println(findAPKInformation());
+	}
 	
-	
-	// Change this to get the xml from a particular .apk file
-	// 
-	
-	// Loop through all of the files in the target directory
-	
-	
+
 	// This will find all of the target apk files, run apkanalyzer on them, and store the information in the SQLiteDB
-	private void findAPKInformation() throws IOException, InterruptedException{
+	private String findAPKInformation() throws IOException, InterruptedException{
 		
+		StringBuilder retVal = new StringBuilder();
 		// Loop through all of the apk files in the target directory
 		File path = new File("src/testinput/testAPKInput");
 		File [] files = path.listFiles();
@@ -162,36 +81,18 @@ public class apkparserMain {
 					//}
 				
 						if(extension.toLowerCase().equals("apk")){
-						//	System.out.println(files[i]);
-						//	System.out.println("Extension:" + extension);
-							parseAPK(RunAPKParser(files[i]));
+							retVal.append(RunAPKParser(files[i]));
 						}
 		        	}
 		        }
 		    		
+		    return retVal.toString();
 	}
 	
-	// parse the xml information and place it into the database
-	private void parseAPK(String xmlInfo){
-		System.out.println(xmlInfo);
-	}
-	
-	
-	
-	
+
 	// Analyze the target .apk file and return its generated XML information
 	private String RunAPKParser(File inputFile) throws IOException, InterruptedException{
 	
-		
-//		System.out.println(inputFile.getAbsolutePath());
-//		System.exit(0);
-	
-		//Runtime.getRuntime().exec("java -jar ./apkparser/APKParser.jar");
-	//System.out.println(inputFile.getAbsolutePath());
-
-		//    Process proc = Runtime.getRuntime().exec("java -jar src/apkparser/APKParser.jar " + inputFile);
-	    //	Process proc = Runtime.getRuntime().exec("java -jar src/apkparser/APKParser.jar src/testinput/testAPKInput/Twitter.apk");
-//		Process proc = Runtime.getRuntime().exec("java -jar src/apkparser/APKParser.jar /Users/dan/Documents/workspace/ProjectKrutz/tools/CustomJava/src/testinput/testAPKInput/Twitter.apk");
 		Process proc = Runtime.getRuntime().exec("java -jar src/apkparser/APKParser.jar " + inputFile.getAbsolutePath());
 
 		proc.waitFor();
@@ -201,15 +102,112 @@ public class apkparserMain {
 
 		byte b[]=new byte[in.available()];
 		in.read(b,0,b.length);
-		//System.out.println(new String(b));
 
 		byte c[]=new byte[err.available()];
 		err.read(c,0,c.length);
-	//	System.out.println(new String(c));
-		//return(new String(c));
 		return(new String(b));
 	}
 	
+	
+	public static void readXMLInfo(Node node) {
+	    // do something with the current node instead of System.out
+	 //  System.out.println(node.getNodeName());
+	   
+		// Contains a list of all the required permissions
+		List<String> permissionsList=new ArrayList<String>();
+		
+		// Contains all used intents 
+		List<String> intentList=new ArrayList<String>();
+		
+		String versionCode ="";
+		String versionName ="";
+		
+		// Get version information
+	   if(node.getNodeName().toString().equals("manifest")){
+		//   System.out.println(node.getAttributes().item(1).getNodeName());
+		//   System.out.println(node.getAttributes().item(2));
+		   
+		   // Loop through all of the possible values 
+		   // This is done just in case the order of the items change at all
+		   for (int a = 0; a < node.getAttributes().getLength(); a++) {
+			   if(node.getAttributes().item(a).getNodeName().equals("android:versionCode")){
+				   versionCode=node.getAttributes().item(a).getNodeValue();
+			   }
+			   if(node.getAttributes().item(a).getNodeName().equals("android:versionName")){
+				   versionName=node.getAttributes().item(a).getNodeValue();
+			   }
+		   }
+		   
+	   }
+	   	   
+
+	    NodeList nodeList = node.getChildNodes();
+	    for (int i = 0; i < nodeList.getLength(); i++) {
+	        Node currentNode = nodeList.item(i);
+	        
+	        
+	        // Get the number of permissions used in the Application
+	        if(currentNode.getNodeName().toString().equals("uses-permission")){
+	        //	System.out.println(currentNode.getNodeName());
+	        //	System.out.println(currentNode.getChildNodes().getLength());
+	       // 	final String permission =currentNode.getAttributes().item(0).toString().replace("\"", "").replace("android:name=android.permission.", ""); 
+	    
+	        	final String permission =currentNode.getAttributes().item(0).getNodeValue().toString(); 
+	        	permissionsList.add(permission);
+	        //	System.out.println(permission);
+	        //	doSomething(currentNode);
+	        }
+	        
+	        // Get the min sdk version
+	        if(currentNode.getNodeName().toString().equals("uses-sdk")){
+	        	//System.out.println("hi"); 
+	     //   	final String sdk =currentNode.getAttributes().item(0).toString().replace("\"", "").replace("android:minSdkVersion=", ""); 
+	        	final String sdk =currentNode.getAttributes().item(0).getNodeValue().toString(); 
+	        	System.out.println(sdk);
+	        }
+	        
+	      //  System.out.println(currentNode.getNodeName());
+	        // Get Intent Filters
+	        // Not working
+	        if(currentNode.getNodeName().toString().equals("application")){
+	        //	System.out.println("hi"); 
+	        //	System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getNodeName());
+	       
+	        //	System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getChildNodes().item(1).getNodeValue());
+	        	
+
+	        }
+	        
+	        
+	        // Get Version Info
+	        //if(currentNode.getNodeName().toString().equals("manifest")){
+		       //	System.out.println("hi"); 
+		        //	System.out.println(currentNode.getChildNodes().item(3).getAttributes());
+		        	//final String intent =currentNode.getAttributes().item(0).toString().replace("\"", "").replace("android:minSdkVersion=", ""); 
+		        	//System.out.println(intent);
+		        	//doSomething(currentNode);
+		      //  }
+	        
+	        
+	    //    if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
+	            //calls this method for all the children which is Element
+	        
+	       // if(currentNode.getLocalName().toString().equals("Manifest")){
+	            //doSomething(currentNode);
+	        	
+	       // }
+	           //System.out.println(currentNode.getLocalName()); // Manifest
+	      //      System.out.println(currentNode.getAttributes().getNamedItem("android:versionName"));
+	     //   }
+	    }
+
+	    
+	    
+	    	 System.out.println("Version Code:" + versionCode);
+		   System.out.println("Version Name:" + versionName);
+	   // System.out.println(permissionsList.get(1));
+	}
+
 	
 	
 }

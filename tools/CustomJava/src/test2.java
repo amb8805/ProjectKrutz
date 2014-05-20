@@ -33,10 +33,10 @@ public class test2 {
 	DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 	DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
 	Document document = docBuilder.parse(new File("src/testinput/0.txt"));
-	doSomething(document.getDocumentElement());
+	readXMLInfo(document.getDocumentElement());
 }
 	
-	public static void doSomething(Node node) {
+	public static void readXMLInfo(Node node) {
 	    // do something with the current node instead of System.out
 	 //  System.out.println(node.getNodeName());
 	   
