@@ -98,9 +98,42 @@ public class test2 {
 	        // Get Intent Filters
 	        // Not working
 	        if(currentNode.getNodeName().toString().equals("application")){
-	        //	System.out.println("hi"); 
-	        //	System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getNodeName());
+	        	
+	        	//works on the first item
+	        	//System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getChildNodes().item(1).getAttributes().item(0));
 	       
+	      //  System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getChildNodes().item(1).getAttributes().item(0));
+	 	    
+
+	        	//System.out.println(currentNode.getChildNodes().item(5).getNodeName());
+	        	
+	        	for (int b = 0; b < currentNode.getChildNodes().getLength(); b++) {
+	        		if(currentNode.getChildNodes().item(b).getNodeName().equals("activity")){
+	        		//	System.out.println(currentNode.getChildNodes().item(z).getChildNodes().item(1).getChildNodes().item(1).getAttributes().item(0));
+	        		//	System.out.println(currentNode.getChildNodes().item(z).getChildNodes();
+	        			for (int c = 0; c < currentNode.getChildNodes().item(b).getChildNodes().getLength(); c++) {
+	        				if(currentNode.getChildNodes().item(b).getChildNodes().item(c).getNodeName().equals("intent-filter")){
+	        				//	System.out.println(currentNode.getChildNodes().item(b).getChildNodes().item(c).getNodeName());
+	        					for (int d = 0; d < currentNode.getChildNodes().item(b).getChildNodes().item(c).getChildNodes().getLength(); d++) {
+	        						//System.out.println(currentNode.getChildNodes().item(b).getChildNodes().item(c).getChildNodes().item(d).getNodeName());
+	        						String Name = currentNode.getChildNodes().item(b).getChildNodes().item(c).getChildNodes().item(d).getNodeName();
+	        						if(!Name.trim().equals("#text")){
+	        							//System.out.println(currentNode.getChildNodes().item(b).getChildNodes().item(c).getChildNodes().item(d).getNodeName());
+	        							System.out.println(currentNode.getChildNodes().item(b).getChildNodes().item(c).getChildNodes().item(d).getAttributes().item(0).getNodeValue());
+	        						       
+	        						}
+	        					
+	        					}
+	        				}
+	        			
+	        			}
+	        		}
+	        	}
+	        	
+	        	
+	        	
+	        	
+	        	
 	        //	System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getChildNodes().item(1).getNodeValue());
 	        	
 

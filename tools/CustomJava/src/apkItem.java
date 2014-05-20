@@ -5,23 +5,11 @@ import java.util.ArrayList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
-
-import java.io.StringReader;
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
 import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
 // This class will hold all of the apk information
 // A class is created since there may be timing issues between the reading from an apk file and writing to the DB.
@@ -72,27 +60,46 @@ public class apkItem {
 	public ArrayList<String> getPermissionList() {
 		return permissionList;
 	}
+	
+	// Make sure that only unique items are added to the intent list
+	private void AddUniqueItemToIntentList(String value){	
+		boolean isExist=false;
+		for (int z = 0; z <intentList.size(); z++){
+			if(intentList.get(z).toLowerCase().trim().equals(value.toLowerCase().trim())){
+				isExist=true;
+			}
+		}
+		if(isExist==false){
+			intentList.add(value);
+		}
+	}
+
+	// Make sure that only unique items are added to the permission list
+	private void AddUniqueItemToPermissionList(String value){	
+		boolean isExist=false;
+		for (int z = 0; z <permissionList.size(); z++){
+			if(permissionList.get(z).toLowerCase().trim().equals(value.toLowerCase().trim())){
+				isExist=true;
+			}
+		}
+		if(isExist==false){
+			permissionList.add(value);
+		}
+	}
 
 	public ArrayList<String> getIntentList() {
 		return intentList;
 	}
-	
+
 	public void parseXMLInfo() throws ParserConfigurationException, SAXException, IOException, InterruptedException{	
 		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
 		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-
-		
-	//	System.out.println(findAPKInformation().toString());
-		
 		Document doc = docBuilder.parse(new InputSource(new StringReader(apkContents)));
 		readXMLInfo(doc.getDocumentElement());
-		
-		//System.out.println(findAPKInformation());
 	}
 
 	
 	public void readXMLInfo(Node node) {
-
 		
 		// Get version information
 	   if(node.getNodeName().toString().equals("manifest")){
@@ -116,8 +123,9 @@ public class apkItem {
 	        if(currentNode.getNodeName().toString().equals("uses-permission")){
 	     
 	        	final String permission =currentNode.getAttributes().item(0).getNodeValue().toString(); 
-	        	permissionList.add(permission);
+	        	//permissionList.add(permission);
 	        //	doSomething(currentNode);
+	        	AddUniqueItemToPermissionList(permission);
 	        }
 	        
 	        // Get the min sdk version
@@ -127,15 +135,29 @@ public class apkItem {
 	        	minsdk = sdk;
 	        }
 	        
-	      //  System.out.println(currentNode.getNodeName());
-	        // Get Intent Filters
-	        // Not working
+	        
+	        // Get the intent information
 	        if(currentNode.getNodeName().toString().equals("application")){
-	        //	System.out.println("hi"); 
-	        //	System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getNodeName());
-	       
-	        //	System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getChildNodes().item(1).getNodeValue());
+	        	
+	        	for (int b = 0; b < currentNode.getChildNodes().getLength(); b++) {
+	        		if(currentNode.getChildNodes().item(b).getNodeName().equals("activity")){
+	        			for (int c = 0; c < currentNode.getChildNodes().item(b).getChildNodes().getLength(); c++) {
+	        				if(currentNode.getChildNodes().item(b).getChildNodes().item(c).getNodeName().equals("intent-filter")){
+	        					for (int d = 0; d < currentNode.getChildNodes().item(b).getChildNodes().item(c).getChildNodes().getLength(); d++) {
+	        						String Name = currentNode.getChildNodes().item(b).getChildNodes().item(c).getChildNodes().item(d).getNodeName();
+	        						if(!Name.trim().equals("#text")){						
+	        							String value= currentNode.getChildNodes().item(b).getChildNodes().item(c).getChildNodes().item(d).getAttributes().item(0).getNodeValue();				    
+	        							if(value.contains("android.intent")){
+	        								AddUniqueItemToIntentList(value);
+	        							}
+	        						}
+	        					
+	        					}
+	        				}
 
+	        			}
+	        		}
+	        	}
 	        }
  
 	    }

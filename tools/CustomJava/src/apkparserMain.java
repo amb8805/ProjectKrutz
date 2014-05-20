@@ -1,16 +1,9 @@
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 
@@ -29,7 +22,10 @@ public class apkparserMain {
 //	private static String appName="/Users/dan/Documents/workspace/ProjectKrutz/tools/CustomJava/src/testinput/0.txt";
 
 	private List<apkItem>MasterapkList=new ArrayList<apkItem>();
+	final String sqliteDBLocation = "";	// location of the SQLDB that the information will be written to
 	
+	// shut this off in "real" version, it will be read in as an input variable.
+	final String inputLocation = "src/testinput/testAPKInput"; 
 	
 	public static void main(String[] args) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
 		
@@ -42,21 +38,12 @@ public class apkparserMain {
 		//}
 	}
 	
-	public void Run() throws IOException, InterruptedException, ParserConfigurationException, SAXException{
-	//	System.out.println("test");
-		
-		
-		// Loop through all the apk files and build the apk objects
-		final String intputLocation = "src/testinput/testAPKInput";
-	//	System.out.println(buildAPKItems(intputLocation).get(0).getApkFileName());
-	//	System.out.println(buildAPKItems(intputLocation).get(0).getApkContents());
-		
-		
-		
+	public void Run() throws IOException, InterruptedException, ParserConfigurationException, SAXException{	
+	
 		// These actions are done in seperate steps to eliminate the possibility of locking or other timing issues
 	
 		// Create the raw version of the list
-		MasterapkList = buildAPKItems(intputLocation);
+		MasterapkList = buildAPKItems(inputLocation);
 		
 		
 		// Gather the necessary apk information from apk object
@@ -81,15 +68,23 @@ public class apkparserMain {
 		
 		// Loop through all of the items just to test
 		for (int i = 0; i < MasterapkList.size(); i++){
+			
 			System.out.println(MasterapkList.get(i).getApkFileName());
 			System.out.println(MasterapkList.get(i).getVersionName());
 			System.out.println(MasterapkList.get(i).getVersionCode());
 			System.out.println(MasterapkList.get(i).getMinsdk());
 			System.out.println(MasterapkList.get(i).getPermissionList().size());
+			System.out.println(MasterapkList.get(i).getIntentList().size());
+			
+			for (int z = 0; z <MasterapkList.get(i).getPermissionList().size(); z++){
+				System.out.println(MasterapkList.get(i).getPermissionList().get(z));
+			}
+			
+			for (int z = 0; z <MasterapkList.get(i).getIntentList().size(); z++){
+				System.out.println(MasterapkList.get(i).getIntentList().get(z));
+			}
+
 		}
-		
-		
-		
 		
 	}
 	
@@ -105,15 +100,13 @@ public class apkparserMain {
 
 	}
 	
-	
-	
 	// Add a check to ensure that some input files exist
 	// errors could occur later on if this is not done
 	private List<apkItem> buildAPKItems(String inputLocation) throws IOException, InterruptedException{
 		List<apkItem>apkList=new ArrayList<apkItem>();
 		
 		// loop through all of the apk files in the input directory
-		File path = new File("src/testinput/testAPKInput");
+		File path = new File(inputLocation);
 		
 		File [] files = path.listFiles();
 		    for (int i = 0; i < files.length; i++){
@@ -155,8 +148,5 @@ public class apkparserMain {
 		err.read(c,0,c.length);
 		return(new String(b));
 	}
-	
-	
 
-	
 }
