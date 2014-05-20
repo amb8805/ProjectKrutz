@@ -67,39 +67,68 @@ public class apkparserMain {
 		//read this - http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
 		doc.getDocumentElement().normalize();
 	 
+		
+		// *********
+		
+		
+		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
+	            .newInstance();
+	    DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
+	    Document document = docBuilder.parse(fXmlFile);
+
+	    NodeList nodeList = document.getElementsByTagName("*");
+	    for (int i = 0; i < nodeList.getLength(); i++) {
+	        Node node = nodeList.item(i);
+	        if (node.getNodeType() == Node.ELEMENT_NODE) {
+	            // do something with the current element
+	            System.out.println(node.getNodeName());
+	            System.out.println(node.getNextSibling().getTextContent());
+	        }
+	    }
+		
+		
+		
+		
+		// ********
+		
+		
+		
+		/*
 		System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+		System.out.println("Root element :" + doc.getDocumentElement().getChildNodes());
 	 
-		NodeList nList = doc.getElementsByTagName("staff");
-	
-		
-		
-		System.out.println("Version:" + doc.getElementsByTagName("uses-permission android:name"));
+		NodeList nList = doc.getElementsByTagName("intent-filter");
+		System.out.println("Version:" + doc.getElementsByTagName("action android:name"));
 		System.out.println("----------------------------");
 	 
+		
+		
+		
 		for (int temp = 0; temp < nList.getLength(); temp++) {
 	 
 			Node nNode = nList.item(temp);
 	 
-			System.out.println("\nCurrent Element :" + nNode.getNodeName());
-	 
+		//	System.out.println("\nCurrent Element :" + nNode.getNodeName());
+		//	System.out.println("\nCurrent Element :" + nNode.getNodeName());
 			
 //			android:versionCode
-			/*
+			
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 	 
 				Element eElement = (Element) nNode;
-	 
+		//		System.out.println("Staff id : " + eElement.getAttribute("action android:name"));
+				
 				System.out.println("Staff id : " + eElement.getAttribute("id"));
 				System.out.println("First Name : " + eElement.getElementsByTagName("firstname").item(0).getTextContent());
 				System.out.println("Last Name : " + eElement.getElementsByTagName("lastname").item(0).getTextContent());
 				System.out.println("Nick Name : " + eElement.getElementsByTagName("nickname").item(0).getTextContent());
 				System.out.println("Salary : " + eElement.getElementsByTagName("salary").item(0).getTextContent());
-	 
+	
 			}
-			*/
+			
 		}
 	   
-		
+		*/
 		
 		
 	}

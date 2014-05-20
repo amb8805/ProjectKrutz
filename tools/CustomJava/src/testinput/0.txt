@@ -14,12 +14,15 @@
 				</action>
 				<category android:name="android.intent.category.LAUNCHER">
 				</category>
+				
 			</intent-filter>
 		</activity>
 	</application>
 	<uses-sdk android:minSdkVersion="8" android:targetSdkVersion="8">
 	</uses-sdk>
 	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE">
+	</uses-permission>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE2">
 	</uses-permission>
 	<uses-feature android:glEsVersion="0x00020000">
 	</uses-feature>
