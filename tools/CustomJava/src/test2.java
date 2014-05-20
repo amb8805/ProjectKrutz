@@ -93,6 +93,7 @@ public class test2 {
 	       // 	System.out.println(sdk);
 	        }
 	        
+	        
 	      //  System.out.println(currentNode.getNodeName());
 	        // Get Intent Filters
 	        // Not working

@@ -26,8 +26,11 @@ public class apkparserMain {
 	util u = new util();
 	
 	//Name of the application being examined 
-	private static String appName="/Users/dan/Documents/workspace/ProjectKrutz/tools/CustomJava/src/testinput/0.txt";
+//	private static String appName="/Users/dan/Documents/workspace/ProjectKrutz/tools/CustomJava/src/testinput/0.txt";
 
+	private List<apkItem>MasterapkList=new ArrayList<apkItem>();
+	
+	
 	public static void main(String[] args) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
 		
 		//if(args.length!=1){
@@ -39,35 +42,79 @@ public class apkparserMain {
 		//}
 	}
 	
-	
 	public void Run() throws IOException, InterruptedException, ParserConfigurationException, SAXException{
-		//System.out.println(u.readDoc(appName));
-	//	System.out.println(RunAPKParser("dan"));
-		//findAPKInformation();
+	//	System.out.println("test");
 		
-		parseXMLInfo();
+		
+		// Loop through all the apk files and build the apk objects
+		final String intputLocation = "src/testinput/testAPKInput";
+	//	System.out.println(buildAPKItems(intputLocation).get(0).getApkFileName());
+	//	System.out.println(buildAPKItems(intputLocation).get(0).getApkContents());
+		
+		
+		
+		// These actions are done in seperate steps to eliminate the possibility of locking or other timing issues
+	
+		// Create the raw version of the list
+		MasterapkList = buildAPKItems(intputLocation);
+		
+		
+		// Gather the necessary apk information from apk object
+		gatherAPKInfo(MasterapkList);
+		
+		
+		// Add the contents of the list to the database
+		// Permissions/intents will need to be added as needed
+		//for (int i = 0; i < MasterapkList.size(); i++){
+			
+			// First add the permissions and intents to the database
+		
+		
+			// Next actually add the necessary values
+		
+		
+		
+		//}
+		
+		
+		
+		
+		// Loop through all of the items just to test
+		for (int i = 0; i < MasterapkList.size(); i++){
+			System.out.println(MasterapkList.get(i).getApkFileName());
+			System.out.println(MasterapkList.get(i).getVersionName());
+			System.out.println(MasterapkList.get(i).getVersionCode());
+			System.out.println(MasterapkList.get(i).getMinsdk());
+			System.out.println(MasterapkList.get(i).getPermissionList().size());
+		}
+		
+		
+		
+		
+	}
+	
+	
+	// Modify the contents of the object to create the necessary information for output
+	// ? Might be a good idea to refactor this to take place directly in the apkItem object
+	private void gatherAPKInfo(List<apkItem>apkList) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
+
+		// Loop through objects in the list
+		for (int i = 0; i < apkList.size(); i++){
+			apkList.get(i).parseXMLInfo();
+		}
+
 	}
 	
 	
 	
-	
-	private void parseXMLInfo() throws ParserConfigurationException, SAXException, IOException, InterruptedException{	
-		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-
-		Document doc = docBuilder.parse(new InputSource(new StringReader(findAPKInformation())));
-		readXMLInfo(doc.getDocumentElement());
+	// Add a check to ensure that some input files exist
+	// errors could occur later on if this is not done
+	private List<apkItem> buildAPKItems(String inputLocation) throws IOException, InterruptedException{
+		List<apkItem>apkList=new ArrayList<apkItem>();
 		
-		//System.out.println(findAPKInformation());
-	}
-	
-
-	// This will find all of the target apk files, run apkanalyzer on them, and store the information in the SQLiteDB
-	private String findAPKInformation() throws IOException, InterruptedException{
-		
-		StringBuilder retVal = new StringBuilder();
-		// Loop through all of the apk files in the target directory
+		// loop through all of the apk files in the input directory
 		File path = new File("src/testinput/testAPKInput");
+		
 		File [] files = path.listFiles();
 		    for (int i = 0; i < files.length; i++){
 		        if (files[i].isFile()){ //this line weeds out other directories/folders
@@ -81,15 +128,16 @@ public class apkparserMain {
 					//}
 				
 						if(extension.toLowerCase().equals("apk")){
-							retVal.append(RunAPKParser(files[i]));
+						//	System.out.println(files[i].getName());
+							apkList.add(new apkItem(files[i].getName(),RunAPKParser(files[i])));
 						}
 		        	}
 		        }
-		    		
-		    return retVal.toString();
+		
+
+		return apkList;
 	}
 	
-
 	// Analyze the target .apk file and return its generated XML information
 	private String RunAPKParser(File inputFile) throws IOException, InterruptedException{
 	
@@ -109,105 +157,6 @@ public class apkparserMain {
 	}
 	
 	
-	public static void readXMLInfo(Node node) {
-	    // do something with the current node instead of System.out
-	 //  System.out.println(node.getNodeName());
-	   
-		// Contains a list of all the required permissions
-		List<String> permissionsList=new ArrayList<String>();
-		
-		// Contains all used intents 
-		List<String> intentList=new ArrayList<String>();
-		
-		String versionCode ="";
-		String versionName ="";
-		
-		// Get version information
-	   if(node.getNodeName().toString().equals("manifest")){
-		//   System.out.println(node.getAttributes().item(1).getNodeName());
-		//   System.out.println(node.getAttributes().item(2));
-		   
-		   // Loop through all of the possible values 
-		   // This is done just in case the order of the items change at all
-		   for (int a = 0; a < node.getAttributes().getLength(); a++) {
-			   if(node.getAttributes().item(a).getNodeName().equals("android:versionCode")){
-				   versionCode=node.getAttributes().item(a).getNodeValue();
-			   }
-			   if(node.getAttributes().item(a).getNodeName().equals("android:versionName")){
-				   versionName=node.getAttributes().item(a).getNodeValue();
-			   }
-		   }
-		   
-	   }
-	   	   
 
-	    NodeList nodeList = node.getChildNodes();
-	    for (int i = 0; i < nodeList.getLength(); i++) {
-	        Node currentNode = nodeList.item(i);
-	        
-	        
-	        // Get the number of permissions used in the Application
-	        if(currentNode.getNodeName().toString().equals("uses-permission")){
-	        //	System.out.println(currentNode.getNodeName());
-	        //	System.out.println(currentNode.getChildNodes().getLength());
-	       // 	final String permission =currentNode.getAttributes().item(0).toString().replace("\"", "").replace("android:name=android.permission.", ""); 
-	    
-	        	final String permission =currentNode.getAttributes().item(0).getNodeValue().toString(); 
-	        	permissionsList.add(permission);
-	        //	System.out.println(permission);
-	        //	doSomething(currentNode);
-	        }
-	        
-	        // Get the min sdk version
-	        if(currentNode.getNodeName().toString().equals("uses-sdk")){
-	        	//System.out.println("hi"); 
-	     //   	final String sdk =currentNode.getAttributes().item(0).toString().replace("\"", "").replace("android:minSdkVersion=", ""); 
-	        	final String sdk =currentNode.getAttributes().item(0).getNodeValue().toString(); 
-	        	System.out.println(sdk);
-	        }
-	        
-	      //  System.out.println(currentNode.getNodeName());
-	        // Get Intent Filters
-	        // Not working
-	        if(currentNode.getNodeName().toString().equals("application")){
-	        //	System.out.println("hi"); 
-	        //	System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getNodeName());
-	       
-	        //	System.out.println(currentNode.getChildNodes().item(5).getChildNodes().item(1).getChildNodes().item(1).getNodeValue());
-	        	
-
-	        }
-	        
-	        
-	        // Get Version Info
-	        //if(currentNode.getNodeName().toString().equals("manifest")){
-		       //	System.out.println("hi"); 
-		        //	System.out.println(currentNode.getChildNodes().item(3).getAttributes());
-		        	//final String intent =currentNode.getAttributes().item(0).toString().replace("\"", "").replace("android:minSdkVersion=", ""); 
-		        	//System.out.println(intent);
-		        	//doSomething(currentNode);
-		      //  }
-	        
-	        
-	    //    if (currentNode.getNodeType() == Node.ELEMENT_NODE) {
-	            //calls this method for all the children which is Element
-	        
-	       // if(currentNode.getLocalName().toString().equals("Manifest")){
-	            //doSomething(currentNode);
-	        	
-	       // }
-	           //System.out.println(currentNode.getLocalName()); // Manifest
-	      //      System.out.println(currentNode.getAttributes().getNamedItem("android:versionName"));
-	     //   }
-	    }
-
-	    
-	    
-	    	 System.out.println("Version Code:" + versionCode);
-		   System.out.println("Version Name:" + versionName);
-	   // System.out.println(permissionsList.get(1));
-	}
-
-	
 	
 }
