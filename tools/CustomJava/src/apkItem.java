@@ -30,7 +30,7 @@ public class apkItem {
 	}	
 	
 	public String getApkFileName() {
-		return apkFileName;
+		return apkFileName.replace(".apk", "");
 	}
 	
 	public void setApkFileName(String apkFileName) {
