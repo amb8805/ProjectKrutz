@@ -45,7 +45,7 @@ fi
 
 #./runstowaway.sh $APK_Input_Path
 
-#./androguard.sh $APK_Input_Path
+./androguard.sh $APK_Input_Path
 
 
 
@@ -55,7 +55,16 @@ echo "Start java Analysis:" `date` >> $logLocation
 ./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
 ## Run the script to modify the apkInformation 
-./modifyAPKInformationDB.sh
+#./modifyAPKInformationDB.sh
+
+
+
+### Gather apk information
+echo "Start Java APK Parser:" `date` >> $logLocation
+cd tools/CustomJava/src/
+javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain /home/notroot/shared/ProjectKrutz/scraper/downloads/full/
+cd ../../../
+echo "End Java APK Parser:" `date` >> $logLocation
 
 echo "Start Checking into GitHub:" `date` >> $logLocation
 #./checkAllIntoGitHub.sh
