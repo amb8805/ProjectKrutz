@@ -1,0 +1,35 @@
+package com.fasterxml.jackson.databind.deser.impl;
+
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JavaType;
+import java.io.Serializable;
+
+public final class NullProvider
+  implements Serializable
+{
+  private static final long serialVersionUID = 1L;
+  private final boolean _isPrimitive;
+  private final Object _nullValue;
+  private final Class<?> _rawType;
+
+  public NullProvider(JavaType paramJavaType, Object paramObject)
+  {
+    this._nullValue = paramObject;
+    this._isPrimitive = paramJavaType.isPrimitive();
+    this._rawType = paramJavaType.getRawClass();
+  }
+
+  public final Object nullValue(DeserializationContext paramDeserializationContext)
+  {
+    if ((this._isPrimitive) && (paramDeserializationContext.isEnabled(DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES)))
+      throw paramDeserializationContext.mappingException("Can not map JSON null into type " + this._rawType.getName() + " (set DeserializationConfig.DeserializationFeature.FAIL_ON_NULL_FOR_PRIMITIVES to 'false' to allow)");
+    return this._nullValue;
+  }
+}
+
+/* Location:
+ * Qualified Name:     com.fasterxml.jackson.databind.deser.impl.NullProvider
+ * Java Class Version: 6 (50.0)
+ * JD-Core Version:    0.6.1-SNAPSHOT
+ */
