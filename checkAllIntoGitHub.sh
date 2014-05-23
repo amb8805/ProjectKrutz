@@ -17,7 +17,7 @@
 	done
 
 	### Now we do all the commiting ##
-	echo "FIX              Commit Logs and Database to Github"
+	echo "Commit Logs and Database to Github"
 	##if this is the VM then run this
 	##put the password into it
 	
@@ -25,3 +25,11 @@
 #	git commit logs/* -m "Committing the logs for the night"
 #	git commit EvolutionOfAndroidApplications.sqlite -m "Committing the database for the night"
 #	git push origin master
+
+
+	git add $logsDir/*
+	git add EvolutionOfAndroidApplications.sqlite
+	git commit -m "Automatic checkin"
+	git push https://EvolutionOfAndroid:ProjectKrutz1@github.com/cklimkowsky/ProjectKrutz.git master
+
+	echo "Done Commiting Logs"

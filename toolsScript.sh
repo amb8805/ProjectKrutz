@@ -68,7 +68,7 @@ cd ../../../
 echo "End Java APK Parser:" `date` >> $logLocation
 
 echo "Start Checking into GitHub:" `date` >> $logLocation
-#./checkAllIntoGitHub.sh
+./checkAllIntoGitHub.sh
 
 #### Log the conclusion time
 date2=$(date +"%s")
