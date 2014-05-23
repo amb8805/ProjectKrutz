@@ -43,13 +43,12 @@ then
 	APK_Input_Path=$1
 fi
 
+### Leave this disabled for now
 #./runstowaway.sh $APK_Input_Path
+
 
 ./androguard.sh $APK_Input_Path
 
-
-
-#cd ../../
 
 echo "Start java Analysis:" `date` >> $logLocation
 ./tools/java_Analysis/RunAll.sh $APK_Input_Path
@@ -62,9 +61,9 @@ echo "Start java Analysis:" `date` >> $logLocation
 ### Gather apk information
 echo "Start Java APK Parser:" `date` >> $logLocation
 cd tools/CustomJava/src/
-#javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain /home/darwin/ProjectKrutz/scraper/downloads/full/
+		#javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain /home/darwin/ProjectKrutz/scraper/downloads/full/
 
-javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../scraper/downloads/full/
+	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../scraper/downloads/full/
 cd ../../../
 echo "End Java APK Parser:" `date` >> $logLocation
 
