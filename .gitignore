@@ -31,3 +31,7 @@ Thumbs.db
 # Scraper downloads #
 #####################
 scraper/downloads/
+
+# Javaoutput #
+#####################
+tools/java_Analysis/javaOutput/
