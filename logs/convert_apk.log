@@ -1,0 +1,15 @@
+Start Date: Fri May 23 04:34:32 UTC 2014
+Begin Analyzing: Fri May 23 04:34:32 UTC 2014   ffdab900-8d01-4c2e-b9d9-1304cf10a5f4.apk
+Classes to convert: 8 Fri May 23 04:34:38 UTC 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/ffdab900-8d01-4c2e-b9d9-1304cf10a5f4%apk Classfiles  8
+	*****Output Dir:  tools/java_Analysis/javaOutput/ffdab900-8d01-4c2e-b9d9-1304cf10a5f4%apk Javafiles  3
+Begin Analyzing: Fri May 23 04:34:41 UTC 2014   ffe47659-76b3-4fb3-9501-82f4aa1a3252.apk
+Classes to convert: 71 Fri May 23 04:34:51 UTC 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/ffe47659-76b3-4fb3-9501-82f4aa1a3252%apk Classfiles  71
+	*****Output Dir:  tools/java_Analysis/javaOutput/ffe47659-76b3-4fb3-9501-82f4aa1a3252%apk Javafiles  37
+Begin Analyzing: Fri May 23 04:35:13 UTC 2014   ffe7458e-69a5-4746-818e-16317b4433f3.apk
+Classes to convert: 2751 Fri May 23 04:36:24 UTC 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/ffe7458e-69a5-4746-818e-16317b4433f3%apk Classfiles  2751
+	*****Output Dir:  tools/java_Analysis/javaOutput/ffe7458e-69a5-4746-818e-16317b4433f3%apk Javafiles  1439
+convert_APK End: Fri May 23 04:51:04 UTC 2014
+Total Time 16 minutes and 32 seconds.
