@@ -22,10 +22,6 @@
 	##put the password into it
 	
 	echo "Committing to GitHub:" `date` >> $logLocation
-#	git commit logs/* -m "Committing the logs for the night"
-#	git commit EvolutionOfAndroidApplications.sqlite -m "Committing the database for the night"
-#	git push origin master
-
 
 	git add $logsDir/*
 	git add EvolutionOfAndroidApplications.sqlite
