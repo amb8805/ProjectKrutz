@@ -4,7 +4,7 @@
 *.dll
 *.exe
 *.pyc
-*.class
+#:*.class
 
 # Packages #
 ############
