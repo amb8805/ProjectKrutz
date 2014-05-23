@@ -82,8 +82,8 @@ else
 
 
 	### Remove the created javaoutput.
-#	echo "Remove Java Output" `date` >> $logDir/$logFile
-#	rm -rf tools/java_Analysis/javaOutput
+	echo "Remove Java Output" `date` >> $logDir/$logFile
+	rm -rf tools/java_Analysis/javaOutput
 
 fi
 
