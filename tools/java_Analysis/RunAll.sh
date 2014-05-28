@@ -64,12 +64,12 @@ else
 
 	### Perform java conversion of APK files to java
 	echo "Java Conversion:" `date` >> $logDir/$logFile
-	./tools/java_Analysis/APK_to_JAVA/convert_APK_Java.sh $inputLocation
+#	./tools/java_Analysis/APK_to_JAVA/convert_APK_Java.sh $inputLocation
 
 
 	### Find the clones in the system
 	echo "Clones:" `date` >> $logDir/$logFile
-#	./tools/java_Analysis/CloneDetection/runclones.sh $inputLocation
+	./tools/java_Analysis/CloneDetection/runclones.sh $inputLocation
 
 
 	#### CheckStyle
@@ -83,7 +83,7 @@ else
 
 	### Remove the created javaoutput.
 	echo "Remove Java Output" `date` >> $logDir/$logFile
-	rm -rf tools/java_Analysis/javaOutput
+#	rm -rf tools/java_Analysis/javaOutput
 
 fi
 
