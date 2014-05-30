@@ -27,16 +27,30 @@ class SQLiteStorePipeline(object):
         dispatcher.connect(self.initialize, signals.engine_started)
         dispatcher.connect(self.finalize, signals.engine_stopped)
 
-    # Tries to insert the APK file's information into the database.
-    # If an error occurs or the APK file is a duplicate, the APK file 
-    # is not downloaded and the APK file's information is not inserted 
-    # into the database.
     def process_item(self, item, spider):
+
+        # Tries to insert the APK file's information into the database.
+        # If an error occurs or the APK file is a duplicate, the APK file 
+        # is not downloaded and the APK file's information is not inserted 
+        # into the database.
         try:
             self.conn.execute('INSERT INTO ApkInformation (Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, NumberOfDownloads, OperatingSystems, URL, SourceId, ApkId, CollectionDate, LowerDownloads, UpperDownloads) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'], item['developer'], item['genre'], item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['operating_systems'], item['url'], item['source_id'], item['id'], item['collection_date'], item['lower_downloads'], item['upper_downloads']))
             return item
         except Exception as e:
             raise DropItem('%s <%s>' % (e.message, item['url']))
+
+        # Checks if an earlier version of the APK file exists, and if that
+        # parent has "isJavaAnalyze" set to true. If yes, the file is downloaded 
+        # and subsequently analyzed. If not, the information for that file
+        # is added to the database, but the file is not downloaded.
+        # try:
+        #     cursor = self.conn.cursor()
+        #     cursor.execute('SELECT COUNT(Name) FROM ApkInformation WHERE Name="?" AND Developer="?" AND isJavaAnalyze=1', item['name'], item['developer'])
+        #     result = cur.fetchone()
+        #     if result is None:
+        #         raise DropItem('Item does not have a parent with isJavaAnalyze set to true <%s>' % item['url'])
+        # except Exception as e:
+        #   raise DropItem('%s <%s>' % (e.message, item['url']))
 
     def initialize(self):
         if path.exists(self.filename):
