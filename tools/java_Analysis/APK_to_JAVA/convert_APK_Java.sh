@@ -65,8 +65,6 @@ convertAPK (){
 	./$apk_Conv_dir/dex2jar-0.0.9.15/dex2jar.sh $JavaOutputDir/classes.dex 
 
 	## Switching locations was the only way to have everything output in the appropriate location.
-
-
 	cd $JavaOutputDir
 	jar xvf classes_dex2jar.jar 
 	cd ../../ 
@@ -82,31 +80,35 @@ convertAPK (){
 	count=0 ### Clear the counter
 
 	## Now convert all of the .class files to .java
-	FILES=$(find $JavaOutputDir -type f -name '*.class')
-	for f in $FILES
-	do
-		string=$f
+	java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $JavaOutputDir -od $JavaOutputDir
 
-		if [[ $string != *'$'*  ]]
-		then
-			temp=$(basename $f)
-			echo $count"/" $classCompareCount " Converted " $(basename $f) " to " ${temp//.class/".java"}
+
+	## Now convert all of the .class files to .java
+#	FILES=$(find $JavaOutputDir -type f -name '*.class')
+#	for f in $FILES
+#	do
+#		string=$f
+
+#		if [[ $string != *'$'*  ]]
+#		then
+#			temp=$(basename $f)
+#			echo $count"/" $classCompareCount " Converted " $(basename $f) " to " ${temp//.class/".java"}
 
 		
 			### A faster decompiler should be used
-			java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $f > ${f//.class/".java"}
+#			java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $f > ${f//.class/".java"}
 				#java -jar $apk_Conv_dir/cfr_0_78.jar $f > ${f//.class/".java"}
 
 			
 			### Remove the top line from each file which is just dummy output
 			### Check to make sure that the top line contains the decompliling message
-			if [[ `head -1 ${f//.class/".java"}`  == *Decompiling* ]]
-			then
-				sed -i 1d ${f//.class/".java"} ## messy
-			fi
-		fi
-		count=$((count+1))
-	done
+#			if [[ `head -1 ${f//.class/".java"}`  == *Decompiling* ]]
+#			then
+#				sed -i 1d ${f//.class/".java"} ## messy
+#			fi
+#		fi
+#		count=$((count+1))
+#	done
 		
  	## Log the results
  	classFileCount=`find $JavaOutputDir -type f -name '*.class' | wc -l`
