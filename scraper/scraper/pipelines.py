@@ -45,7 +45,7 @@ class SQLiteStorePipeline(object):
         # is added to the database, but the file is not downloaded.
         # try:
         #     cursor = self.conn.cursor()
-        #     cursor.execute('SELECT * FROM ApkInformation WHERE Name="?" AND Developer="?" AND isJavaAnalyze=1 ORDER BY Version', item['name'], item['developer'])
+        #     cursor.execute('SELECT COUNT(Name) FROM ApkInformation WHERE Name="?" AND Developer="?" AND isJavaAnalyze=1', item['name'], item['developer'])
         #     result = cur.fetchone()
         #     if result is None:
         #         raise DropItem('Item does not have a parent with isJavaAnalyze set to true <%s>' % item['url'])
