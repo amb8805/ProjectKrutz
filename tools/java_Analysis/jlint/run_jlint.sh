@@ -45,9 +45,9 @@ do
 
 	###Find all of the .class files and copy them all to tempOutput
 	echo Copy $i to tempOutput
-#	find $i -name "*.class" -exec cp "{}" tempOutput \;
+#	find $i -name "*.java" -exec cp "{}" tjava \;
 
-	tempoutput=`./tools/java_Analysis/jlint/jlint -data_flow -deadlock -race_condition -zero_result -source tempOutput/*`
+	tempoutput=`./tools/java_Analysis/jlint/jlint -data_flow -deadlock -race_condition -zero_result -source tjava/*`
 
 	echo $tempoutput
 exit
