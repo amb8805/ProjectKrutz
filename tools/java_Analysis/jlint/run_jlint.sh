@@ -26,6 +26,41 @@ date1=$(date +"%s")
 inputDirectory=tools/java_Analysis/javaOutput
 
 
+
+
+for i in $(find $inputDirectory -mindepth 1 -maxdepth 1 -type d ) 
+									### mindepth ignore the top layer
+									### Only examine the top layer
+do
+
+
+echo "Begin Jlint Analyzing:" `echo $i` `date` >> $logLocation
+
+	loopCount=0
+	jlintCount=0 # Reset the count after each iteration
+	FILES=$(find $i -type f -name '*.class')
+	for f in $FILES
+	do
+		loopCount=$((loopCount+1)) ### Right now this is used for debugging purposes
+		tempoutput=`./tools/java_Analysis/jlint/jlint $f 2>&1`
+		### Check to make sure that tempoutput contains "Verifcation Completed"
+		### if not, then skip it
+		if [[ $tempoutput =~ "Verification completed"* ]]
+		then
+			tempResults=`echo $tempoutput | sed -e "s/.*Verification completed: //;s/ reported messages.*//";` #echo $tempoutput
+			#echo $tempResults
+		fi
+		jlintCount=$((jlintCount+tempResults))
+
+	done
+
+echo JlintCount: $jlintCount
+
+done
+
+
+
+exit
 ### WORKS - ./jlint -data_flow -source ../../../tempOutput/*
 
 
