@@ -82,33 +82,6 @@ convertAPK (){
 	## Now convert all of the .class files to .java
 	java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $JavaOutputDir -od $JavaOutputDir
 
-
-	## Now convert all of the .class files to .java
-#	FILES=$(find $JavaOutputDir -type f -name '*.class')
-#	for f in $FILES
-#	do
-#		string=$f
-
-#		if [[ $string != *'$'*  ]]
-#		then
-#			temp=$(basename $f)
-#			echo $count"/" $classCompareCount " Converted " $(basename $f) " to " ${temp//.class/".java"}
-
-		
-			### A faster decompiler should be used
-#			java -jar $apk_Conv_dir/jd-cmd/jd-cli/target/jd-cli.jar $f > ${f//.class/".java"}
-				#java -jar $apk_Conv_dir/cfr_0_78.jar $f > ${f//.class/".java"}
-
-			
-			### Remove the top line from each file which is just dummy output
-			### Check to make sure that the top line contains the decompliling message
-#			if [[ `head -1 ${f//.class/".java"}`  == *Decompiling* ]]
-#			then
-#				sed -i 1d ${f//.class/".java"} ## messy
-#			fi
-#		fi
-#		count=$((count+1))
-#	done
 		
  	## Log the results
  	classFileCount=`find $JavaOutputDir -type f -name '*.class' | wc -l`
@@ -146,6 +119,17 @@ convertAPK (){
 	#####  File name: $JavaOutputDir
 	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET JavaFiles=$javaFileCount WHERE ApkId=$rowid;"	
 	#cd tools/java_Analysis #going back to where you were before
+
+
+
+	### Get the LOC (Lines of Code) in the application and add that to the DB
+	loc=0 ### 
+	loc=`(find $JavaOutputDir/* -name '*.java' -print0 | xargs -0 cat ) | wc -l`
+	echo "Total LOC: $loc" `date` >> $logLocation
+	echo LOC: $loc
+
+	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET loc=$loc WHERE ApkId=$rowid;"
+
 
 	## Output the results to the user
 	#	echo "	*****Output Dir: " `echo $JavaOutputDir` >> $logLocation
