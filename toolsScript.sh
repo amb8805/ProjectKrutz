@@ -4,10 +4,7 @@
 # This is the same for runstowaway, 
 
 
-#	clear
-
-	echo "The script starts now"
-	echo
+	clear
 
 	rm -f logs/*.log
 	rm -rf logs/AndroRiskOutput
@@ -43,31 +40,27 @@
 		APK_Input_Path=$1
 	fi
 
-	### Leave this disabled for now
-	#./runstowaway.sh $APK_Input_Path
 
-#	./tools/stowaway/run_stowaway.sh $APK_Input_Path
+	./tools/stowaway/run_stowaway.sh $APK_Input_Path
 
-
-
-#	./androguard.sh $APK_Input_Path
+	./androguard.sh $APK_Input_Path
 
 	echo "Start java Analysis:" `date` >> $logLocation
 	./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
 	## Run the script to modify the apkInformation 
-#	./modifyAPKInformationDB.sh
+	./modifyAPKInformationDB.sh
 
 
 	### Gather apk information
 	echo "Start Java APK Parser:" `date` >> $logLocation
 	cd tools/CustomJava/src/
-#	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../../scraper/downloads/full/
+	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../../scraper/downloads/full/
 	cd ../../../
 	echo "End Java APK Parser:" `date` >> $logLocation
 
 	echo "Start Checking into GitHub:" `date` >> $logLocation
-#	./checkAllIntoGitHub.sh
+	./checkAllIntoGitHub.sh
 
 	#### Log the conclusion time
 	date2=$(date +"%s")
@@ -75,5 +68,5 @@
 	echo "toolsScript Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
 	echo "toolsScript End:" `date` >> $logLocation
 
-	echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+	echo "!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!!!!"
 
