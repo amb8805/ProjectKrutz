@@ -3,8 +3,8 @@
 ### Will return a listing of defects & suggestions in the application.
 ###		sudo apt-get install lib32z1-dev   --> This likely needs to be installed
 
-
-echo "Run Jlint............"
+#
+installedecho "Run Jlint............"
 
 logLocation=logs/jlint.log
 
