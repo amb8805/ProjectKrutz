@@ -35,3 +35,7 @@ scraper/downloads/
 # Javaoutput #
 #####################
 tools/java_Analysis/javaOutput/
+
+# Stowaway Test output #
+tools/stowaway/output/
+
