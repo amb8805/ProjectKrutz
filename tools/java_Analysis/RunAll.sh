@@ -76,7 +76,7 @@ else
 
 	### Run JLint
 	echo "Start Running JLint:" `date` >> $logDir/$logFile
-#	./tools/java_Analysis/jlint/run_jlint.sh
+	./tools/java_Analysis/jlint/run_jlint.sh
 
 
 	### Remove the created javaoutput.

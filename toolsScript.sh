@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Unless otherwise noted by pushd or cd, you should always be in the overall Project Krutz directory
-# This is the same for runstowaway, 
-
 
 	clear
 
@@ -12,25 +9,6 @@
 	date1=$(date +"%s") ## Start date of the script
 	logLocation=logs/toolsScript.log
 	touch $logLocation
-	echo "toolsScript Start:" `date` >> $logLocation
-
-
-	if [ $(date +%u) -eq 1 ]
-	then
-	        echo "today is Monday"
-	elif [ $(date +%u) -eq 2 ]
-	then
-	        echo "today is Tuesday"
-	elif [ $(date +%u) -eq 3 ]
-	then
-	        echo "today is Wednesday"
-	elif [ $(date +%u) -eq 4 ]
-	then
-	        echo "today is Thursday"
-	elif [ $(date +%u) -eq 5 ]
-	then
-	        echo "today is Friday"
-	fi
 
 	# Check to make sure that an argument is actually passed in
 	APK_Input_Path="scraper/downloads/full/"
@@ -49,7 +27,7 @@
 	./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
 	## Run the script to modify the apkInformation 
-	./modifyAPKInformationDB.sh
+#	./modifyAPKInformationDB.sh
 
 
 	### Gather apk information
