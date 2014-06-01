@@ -30,8 +30,6 @@ else
 	exit
 fi
 
-
-
 #### Input location for all apk files
 ## This will need to be changed based on the final configuration
 #inputLocation=../testAndroidApps
@@ -74,7 +72,7 @@ else
 
 	#### CheckStyle
 	echo "CheckStyle:" `date` >> $logDir/$logFile
-#	./tools/java_Analysis/checkstyle/checkStyle.sh
+	./tools/java_Analysis/checkstyle/checkStyle.sh
 
 	### Run JLint
 	echo "Start Running JLint:" `date` >> $logDir/$logFile
@@ -83,7 +81,7 @@ else
 
 	### Remove the created javaoutput.
 	echo "Remove Java Output" `date` >> $logDir/$logFile
-#	rm -rf tools/java_Analysis/javaOutput
+	rm -rf tools/java_Analysis/javaOutput
 
 
 	### Run findbugs
