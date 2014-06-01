@@ -14,6 +14,8 @@
 	    printf "%4d%02d%02d\n" $3 $(( i+1 )) $day
 	}
 
+	echo "Start Modifying DB information"
+
 	#### Directory of APK files to be analyzed
 	apkInputDir=scraper/downloads/full
 

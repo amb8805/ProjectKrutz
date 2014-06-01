@@ -3,8 +3,8 @@
 ### Will return a listing of defects & suggestions in the application.
 ###		sudo apt-get install lib32z1-dev   --> This likely needs to be installed
 
-#
-installedecho "Run Jlint............"
+
+echo "Run Jlint............"
 
 logLocation=logs/jlint.log
 
@@ -26,23 +26,27 @@ date1=$(date +"%s")
 inputDirectory=tools/java_Analysis/javaOutput
 
 
-
-
+### Loop through all of the javaOutput folders
+### Loop through all of the folders in the input directory
 for i in $(find $inputDirectory -mindepth 1 -maxdepth 1 -type d ) 
 									### mindepth ignore the top layer
 									### Only examine the top layer
 do
 
-
-echo "Begin Jlint Analyzing:" `echo $i` `date` >> $logLocation
+	echo "Begin Jlint Analyzing:" `echo $i` `date` >> $logLocation
 
 	loopCount=0
 	jlintCount=0 # Reset the count after each iteration
+	### Loop through each of these folders and analyze each .class file
+	### This is messy, but I am not sure how else to analyze only class files - dk
+	
 	FILES=$(find $i -type f -name '*.class')
 	for f in $FILES
 	do
 		loopCount=$((loopCount+1)) ### Right now this is used for debugging purposes
-		tempoutput=`./tools/java_Analysis/jlint/jlint $f 2>&1`
+		#tempoutput=`./tools/java_Analysis/jlint/jlint $f`
+		tempoutput=`jlint $f`
+
 		### Check to make sure that tempoutput contains "Verifcation Completed"
 		### if not, then skip it
 		if [[ $tempoutput =~ "Verification completed"* ]]
@@ -53,142 +57,40 @@ echo "Begin Jlint Analyzing:" `echo $i` `date` >> $logLocation
 		jlintCount=$((jlintCount+tempResults))
 
 	done
-
-echo JlintCount: $jlintCount
-
-done
-
-
-
-exit
-### WORKS - ./jlint -data_flow -source ../../../tempOutput/*
-
-
-
-### Loop through all of the javaOutput folders
-### Loop through all of the folders in the input directory
-for i in $(find $inputDirectory -mindepth 1 -maxdepth 1 -type d ) 
-									### mindepth ignore the top layer
-									### Only examine the top layer
-do
-
-	echo "Begin Jlint Analyzing:" `echo $i` `date` >> $logLocation
-	loopCount=0
-	jlintCount=0 # Reset the count after each iteration
-
-	mkdir -p tempOutput
-
-	###Find all of the .class files and copy them all to tempOutput
-	echo Copy $i to tempOutput
-#	find $i -name "*.java" -exec cp "{}" tjava \;
-
-	tempoutput=`./tools/java_Analysis/jlint/jlint -data_flow -deadlock -race_condition -zero_result -source tjava/*`
-
-	echo $tempoutput
-exit
-	### Run Jlint on the created directory
-	if [[ $tempoutput =~ "Verification completed"* ]]
-		then
-			jLintCount=`echo $tempoutput | sed -e "s/.*Verification completed: //;s/ reported messages.*//";` #echo $tempoutput
-			#echo $jLintCount
-		fi
 	
-	echo JLintCount: $jLintCount
-
-
-#	rm -rf tempOutput
-
 	### Add output to log file
-#	echo "JLint Count:" $jlintCount in $i `echo $i` `date` >> $logLocation	
+	echo "JLint Count:" $jlintCount in $i `echo $i` `date` >> $logLocation	
 	
 	#### ADD THIS INFORMATION TO THE DATABASE
 	#### JLint Value: $jlintCount 
 	#### APK File: $i - still needs the .apk removed
 	
-#	echo JLint Value: $jlintCount APK File: $i
+	echo JLint Value: $jlintCount APK File: $i
 
 	### Convert the file being analyzed to something usable
-#	APKFile=$(basename $i)
-#	APKFile=${APKFile//%apk/""} ### Remove the apk exension from the apkID
+	APKFile=$(basename $i)
+	APKFile=${APKFile//%apk/""} ### Remove the apk exension from the apkID
 
 	
 	#select from apk information the row id where apkid = filename
-#	rowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
+	rowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
 
 	### Check to see if the APKID exists in tool results  		
-#	APKToolResultsCount=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT count(*) FROM ToolResults WHERE rowid='$rowid';"`
+	APKToolResultsCount=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT count(*) FROM ToolResults WHERE rowid='$rowid';"`
 
-#  	if [[ $APKToolResultsCount -eq 0 ]]; then
-#		sqlite3 EvolutionOfAndroidApplications.sqlite  "INSERT INTO ToolResults (ApkId,JlintResult) VALUES ($rowid,$jlintCount);"
-#  	else
-#      	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET JlintResult=$jlintCount WHERE ApkId=$rowid;"
-#    fi
-
-
-
-
-
-
-
-
-
-
-	### Loop through each of these folders and analyze each .class file
-	### This is messy, but I am not sure how else to analyze only class files - dk
-	
-#	FILES=$(find $i -type f -name '*.class')
-#	for f in $FILES
-#	do
-#		loopCount=$((loopCount+1)) ### Right now this is used for debugging purposes
-#		tempoutput=`./tools/java_Analysis/jlint/jlint $f`
-		### Check to make sure that tempoutput contains "Verifcation Completed"
-		### if not, then skip it
-#		if [[ $tempoutput =~ "Verification completed"* ]]
-#		then
-#			tempResults=`echo $tempoutput | sed -e "s/.*Verification completed: //;s/ reported messages.*//";` #echo $tempoutput
-			#echo $tempResults
-#		fi
-#		jlintCount=$((jlintCount+tempResults))
-
-#	done
-	
-	### Add output to log file
-#	echo "JLint Count:" $jlintCount in $i `echo $i` `date` >> $logLocation	
-	
-	#### ADD THIS INFORMATION TO THE DATABASE
-	#### JLint Value: $jlintCount 
-	#### APK File: $i - still needs the .apk removed
-	
-#	echo JLint Value: $jlintCount APK File: $i
-
-	### Convert the file being analyzed to something usable
-#	APKFile=$(basename $i)
-#	APKFile=${APKFile//%apk/""} ### Remove the apk exension from the apkID
-
-	
-	#select from apk information the row id where apkid = filename
-#	rowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
-
-	### Check to see if the APKID exists in tool results  		
-#	APKToolResultsCount=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT count(*) FROM ToolResults WHERE rowid='$rowid';"`
-
-#  	if [[ $APKToolResultsCount -eq 0 ]]; then
-#		sqlite3 EvolutionOfAndroidApplications.sqlite  "INSERT INTO ToolResults (ApkId,JlintResult) VALUES ($rowid,$jlintCount);"
-#  	else
-#      	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET JlintResult=$jlintCount WHERE ApkId=$rowid;"
-#    fi
+  	if [[ $APKToolResultsCount -eq 0 ]]; then
+		sqlite3 EvolutionOfAndroidApplications.sqlite  "INSERT INTO ToolResults (ApkId,JlintResult) VALUES ($rowid,$jlintCount);"
+  	else
+      	sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET JlintResult=$jlintCount WHERE ApkId=$rowid;"
+    fi
 
 done
-
-
-
-
 
 	echo "End Jlint Analyzing:" `echo $i` `date` >> $logLocation
 
-	date2=$(date +"%s")
-	diff=$(($date2-$date1))
+date2=$(date +"%s")
+diff=$(($date2-$date1))
 
 
-	echo "JLint Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
-	echo "Jlint End:" `date` >> $logLocation
+echo "JLint Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
+echo "Jlint End:" `date` >> $logLocation
