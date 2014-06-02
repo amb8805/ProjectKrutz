@@ -33,7 +33,7 @@
 	### Gather apk information
 	echo "Start Java APK Parser:" `date` >> $logLocation
 	cd tools/CustomJava/src/
-	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../../scraper/downloads/full/
+	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../scraper/downloads/full/
 	cd ../../../
 	echo "End Java APK Parser:" `date` >> $logLocation
 
