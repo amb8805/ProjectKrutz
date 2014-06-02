@@ -3,9 +3,6 @@
 
 	clear
 
-	rm -f logs/*.log
-	rm -rf logs/AndroRiskOutput
-
 	date1=$(date +"%s") ## Start date of the script
 	logLocation=logs/toolsScript.log
 	touch $logLocation
@@ -36,9 +33,6 @@
 	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../scraper/downloads/full/
 	cd ../../../
 	echo "End Java APK Parser:" `date` >> $logLocation
-
-	echo "Start Checking into GitHub:" `date` >> $logLocation
-#	./checkAllIntoGitHub.sh
 
 	#### Log the conclusion time
 	date2=$(date +"%s")
