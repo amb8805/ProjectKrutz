@@ -6,10 +6,8 @@
 	logDir=logs
 	logFile=StartAll.log
 
-
 	## Make sure that the logs directory exists
 	mkdir -p $logDir 
-
 
 	### Delete the log file if it exists
 	rm -f $logDir/*.log  
@@ -20,12 +18,10 @@
 	#### Add Starting message into Logs
 	echo "StartAll:" `date` >> $logDir/$logFile
 
-
-
 	## Start scraper here
 	echo "Start Scraper:" `date` >> $logDir/$logFile
 
-	#### COMMAND TO RUN SCRAPER
+	#### INSERT COMMAND TO RUN SCRAPER
 	echo "Scraper Completed:" `date` >> $logDir/$logFile
 
 
