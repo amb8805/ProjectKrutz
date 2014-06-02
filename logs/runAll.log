@@ -1,9 +1,9 @@
-RunAll Start: Mon Jun 2 00:46:42 EDT 2014
-Java Conversion: Mon Jun 2 00:46:42 EDT 2014
-Clones: Mon Jun 2 00:50:03 EDT 2014
-CheckStyle: Mon Jun 2 00:50:03 EDT 2014
-Start Running JLint: Mon Jun 2 00:50:08 EDT 2014
-Remove Java Output Mon Jun 2 00:52:37 EDT 2014
-Start FindBugs Mon Jun 2 00:52:37 EDT 2014
-RunAll End: Mon Jun 2 00:52:37 EDT 2014
-Total Time 5 minutes and 55 seconds.
+RunAll Start: Mon Jun 2 03:26:48 EDT 2014
+Java Conversion: Mon Jun 2 03:26:48 EDT 2014
+Clones: Mon Jun 2 04:25:42 EDT 2014
+CheckStyle: Mon Jun 2 04:25:42 EDT 2014
+Start Running JLint: Mon Jun 2 04:31:10 EDT 2014
+Remove Java Output Mon Jun 2 04:51:05 EDT 2014
+Start FindBugs Mon Jun 2 04:51:22 EDT 2014
+RunAll End: Mon Jun 2 04:51:22 EDT 2014
+Total Time 84 minutes and 34 seconds.

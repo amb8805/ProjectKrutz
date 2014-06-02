@@ -1,13 +1,518 @@
-Start Date: Mon Jun 2 00:46:42 EDT 2014
-Begin Analyzing: Mon Jun 2 00:46:42 EDT 2014   9bb13797-696e-4f1a-b393-227e40679ff1.apk
-Classes to convert: 9032 Mon Jun 2 00:48:29 EDT 2014
+Start Date: Mon Jun 2 03:26:48 EDT 2014
+Begin Analyzing: Mon Jun 2 03:26:48 EDT 2014   0dfef90c-22f1-4e31-b4fa-6e7e6e8a87e0.apk
+Classes to convert: 1401 Mon Jun 2 03:27:33 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/0dfef90c-22f1-4e31-b4fa-6e7e6e8a87e0%apk Classfiles  1401
+	*****Output Dir:  tools/java_Analysis/javaOutput/0dfef90c-22f1-4e31-b4fa-6e7e6e8a87e0%apk Javafiles  1393
+Total LOC: 162791 Mon Jun 2 03:27:43 EDT 2014
+Begin Analyzing: Mon Jun 2 03:27:43 EDT 2014   f5713779-2143-46f6-ab60-a4f352b501f1.apk
+Classes to convert: 2942 Mon Jun 2 03:28:43 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/f5713779-2143-46f6-ab60-a4f352b501f1%apk Classfiles  2942
+	*****Output Dir:  tools/java_Analysis/javaOutput/f5713779-2143-46f6-ab60-a4f352b501f1%apk Javafiles  2929
+Total LOC: 279094 Mon Jun 2 03:29:03 EDT 2014
+Begin Analyzing: Mon Jun 2 03:29:03 EDT 2014   00677afa-f11f-423b-a1e1-3710b75e5f14.apk
+Classes to convert: 2263 Mon Jun 2 03:29:39 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/00677afa-f11f-423b-a1e1-3710b75e5f14%apk Classfiles  2263
+	*****Output Dir:  tools/java_Analysis/javaOutput/00677afa-f11f-423b-a1e1-3710b75e5f14%apk Javafiles  2255
+Total LOC: 276424 Mon Jun 2 03:29:50 EDT 2014
+Begin Analyzing: Mon Jun 2 03:29:51 EDT 2014   d4bcdf3a-2ce0-44e7-be82-362eb022ac78.apk
+Classes to convert: 2375 Mon Jun 2 03:30:48 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/d4bcdf3a-2ce0-44e7-be82-362eb022ac78%apk Classfiles  2375
+	*****Output Dir:  tools/java_Analysis/javaOutput/d4bcdf3a-2ce0-44e7-be82-362eb022ac78%apk Javafiles  2353
+Total LOC: 231687 Mon Jun 2 03:30:59 EDT 2014
+Begin Analyzing: Mon Jun 2 03:31:00 EDT 2014   62ac0b29-93f8-412b-b672-ffe50ae1d8bd.apk
+Classes to convert: 3250 Mon Jun 2 03:31:52 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/62ac0b29-93f8-412b-b672-ffe50ae1d8bd%apk Classfiles  3250
+	*****Output Dir:  tools/java_Analysis/javaOutput/62ac0b29-93f8-412b-b672-ffe50ae1d8bd%apk Javafiles  3230
+Total LOC: 394894 Mon Jun 2 03:32:15 EDT 2014
+Begin Analyzing: Mon Jun 2 03:32:15 EDT 2014   23212522-9a51-4ae4-8eea-bedfbb23f732.apk
+Classes to convert: 1579 Mon Jun 2 03:32:57 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/23212522-9a51-4ae4-8eea-bedfbb23f732%apk Classfiles  1579
+	*****Output Dir:  tools/java_Analysis/javaOutput/23212522-9a51-4ae4-8eea-bedfbb23f732%apk Javafiles  1574
+Total LOC: 187035 Mon Jun 2 03:33:08 EDT 2014
+Begin Analyzing: Mon Jun 2 03:33:08 EDT 2014   fcc8cdc7-f90a-44b1-9c52-bc0395415ddf.apk
+Classes to convert: 56 Mon Jun 2 03:33:21 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/fcc8cdc7-f90a-44b1-9c52-bc0395415ddf%apk Classfiles  56
+	*****Output Dir:  tools/java_Analysis/javaOutput/fcc8cdc7-f90a-44b1-9c52-bc0395415ddf%apk Javafiles  56
+Total LOC: 3908 Mon Jun 2 03:33:23 EDT 2014
+Begin Analyzing: Mon Jun 2 03:33:23 EDT 2014   29c08e1f-e886-4896-b352-f1852bfac2e0.apk
+Classes to convert: 848 Mon Jun 2 03:33:55 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/29c08e1f-e886-4896-b352-f1852bfac2e0%apk Classfiles  848
+	*****Output Dir:  tools/java_Analysis/javaOutput/29c08e1f-e886-4896-b352-f1852bfac2e0%apk Javafiles  841
+Total LOC: 111083 Mon Jun 2 03:34:01 EDT 2014
+Begin Analyzing: Mon Jun 2 03:34:01 EDT 2014   9b793b82-6909-4818-963e-57e65e395e7a.apk
+Classes to convert: 432 Mon Jun 2 03:34:29 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/9b793b82-6909-4818-963e-57e65e395e7a%apk Classfiles  432
+	*****Output Dir:  tools/java_Analysis/javaOutput/9b793b82-6909-4818-963e-57e65e395e7a%apk Javafiles  431
+Total LOC: 61269 Mon Jun 2 03:34:34 EDT 2014
+Begin Analyzing: Mon Jun 2 03:34:34 EDT 2014   eecdaf71-7c37-4390-9163-3a78d7969216.apk
+Classes to convert: 902 Mon Jun 2 03:35:10 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/eecdaf71-7c37-4390-9163-3a78d7969216%apk Classfiles  902
+	*****Output Dir:  tools/java_Analysis/javaOutput/eecdaf71-7c37-4390-9163-3a78d7969216%apk Javafiles  893
+Total LOC: 95222 Mon Jun 2 03:35:15 EDT 2014
+Begin Analyzing: Mon Jun 2 03:35:15 EDT 2014   8669ed81-28e9-43fe-aa8a-a45903a3ebc8.apk
+Classes to convert: 586 Mon Jun 2 03:35:40 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/8669ed81-28e9-43fe-aa8a-a45903a3ebc8%apk Classfiles  586
+	*****Output Dir:  tools/java_Analysis/javaOutput/8669ed81-28e9-43fe-aa8a-a45903a3ebc8%apk Javafiles  583
+Total LOC: 78430 Mon Jun 2 03:35:45 EDT 2014
+Begin Analyzing: Mon Jun 2 03:35:45 EDT 2014   11909f2f-64d7-4f9d-aa5e-ca0ec5b79491.apk
+Classes to convert: 230 Mon Jun 2 03:35:57 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/11909f2f-64d7-4f9d-aa5e-ca0ec5b79491%apk Classfiles  230
+	*****Output Dir:  tools/java_Analysis/javaOutput/11909f2f-64d7-4f9d-aa5e-ca0ec5b79491%apk Javafiles  224
+Total LOC: 15785 Mon Jun 2 03:35:59 EDT 2014
+Begin Analyzing: Mon Jun 2 03:35:59 EDT 2014   bd9fcd63-9e70-4f69-a455-2a8748b386fd.apk
+Classes to convert: 428 Mon Jun 2 03:36:24 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/bd9fcd63-9e70-4f69-a455-2a8748b386fd%apk Classfiles  428
+	*****Output Dir:  tools/java_Analysis/javaOutput/bd9fcd63-9e70-4f69-a455-2a8748b386fd%apk Javafiles  425
+Total LOC: 63998 Mon Jun 2 03:36:28 EDT 2014
+Begin Analyzing: Mon Jun 2 03:36:28 EDT 2014   3786c1c8-fda8-46fa-870a-95574c6d0cd8.apk
+Classes to convert: 2265 Mon Jun 2 03:37:43 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/3786c1c8-fda8-46fa-870a-95574c6d0cd8%apk Classfiles  2265
+	*****Output Dir:  tools/java_Analysis/javaOutput/3786c1c8-fda8-46fa-870a-95574c6d0cd8%apk Javafiles  2248
+Total LOC: 239956 Mon Jun 2 03:37:54 EDT 2014
+Begin Analyzing: Mon Jun 2 03:37:54 EDT 2014   f4c913c7-b077-4d45-ae0b-b5bfee36c4a8.apk
+Classes to convert: 481 Mon Jun 2 03:38:16 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/f4c913c7-b077-4d45-ae0b-b5bfee36c4a8%apk Classfiles  481
+	*****Output Dir:  tools/java_Analysis/javaOutput/f4c913c7-b077-4d45-ae0b-b5bfee36c4a8%apk Javafiles  478
+Total LOC: 55119 Mon Jun 2 03:38:21 EDT 2014
+Begin Analyzing: Mon Jun 2 03:38:21 EDT 2014   3f27a5f7-fb52-4356-89d3-315d842f3af7.apk
+Classes to convert: 22 Mon Jun 2 03:38:26 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/3f27a5f7-fb52-4356-89d3-315d842f3af7%apk Classfiles  22
+	*****Output Dir:  tools/java_Analysis/javaOutput/3f27a5f7-fb52-4356-89d3-315d842f3af7%apk Javafiles  22
+Total LOC: 1436 Mon Jun 2 03:38:27 EDT 2014
+Begin Analyzing: Mon Jun 2 03:38:27 EDT 2014   c511d542-fd59-4d47-98e0-16897417471e.apk
+Classes to convert: 4588 Mon Jun 2 03:39:33 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/c511d542-fd59-4d47-98e0-16897417471e%apk Classfiles  4588
+	*****Output Dir:  tools/java_Analysis/javaOutput/c511d542-fd59-4d47-98e0-16897417471e%apk Javafiles  4564
+Total LOC: 522002 Mon Jun 2 03:39:57 EDT 2014
+Begin Analyzing: Mon Jun 2 03:39:58 EDT 2014   fd0e5818-e3b6-4da9-9568-7b9b948690aa.apk
+Classes to convert: 754 Mon Jun 2 03:40:15 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/fd0e5818-e3b6-4da9-9568-7b9b948690aa%apk Classfiles  754
+	*****Output Dir:  tools/java_Analysis/javaOutput/fd0e5818-e3b6-4da9-9568-7b9b948690aa%apk Javafiles  751
+Total LOC: 68428 Mon Jun 2 03:40:25 EDT 2014
+Begin Analyzing: Mon Jun 2 03:40:25 EDT 2014   173843e5-e087-42cb-a8ef-cabaa67653b0.apk
+Classes to convert: 385 Mon Jun 2 03:40:50 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/173843e5-e087-42cb-a8ef-cabaa67653b0%apk Classfiles  385
+	*****Output Dir:  tools/java_Analysis/javaOutput/173843e5-e087-42cb-a8ef-cabaa67653b0%apk Javafiles  383
+Total LOC: 70612 Mon Jun 2 03:40:54 EDT 2014
+Begin Analyzing: Mon Jun 2 03:40:54 EDT 2014   7c5b7171-d3e8-44a5-8e30-0322454971b5.apk
+Classes to convert: 58 Mon Jun 2 03:41:00 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/7c5b7171-d3e8-44a5-8e30-0322454971b5%apk Classfiles  58
+	*****Output Dir:  tools/java_Analysis/javaOutput/7c5b7171-d3e8-44a5-8e30-0322454971b5%apk Javafiles  58
+Total LOC: 5685 Mon Jun 2 03:41:02 EDT 2014
+Begin Analyzing: Mon Jun 2 03:41:02 EDT 2014   536de712-6b0d-4a18-b6e4-7570c48c52b6.apk
+Classes to convert: 364 Mon Jun 2 03:41:20 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/536de712-6b0d-4a18-b6e4-7570c48c52b6%apk Classfiles  364
+	*****Output Dir:  tools/java_Analysis/javaOutput/536de712-6b0d-4a18-b6e4-7570c48c52b6%apk Javafiles  361
+Total LOC: 37439 Mon Jun 2 03:41:24 EDT 2014
+Begin Analyzing: Mon Jun 2 03:41:24 EDT 2014   f575350d-0402-4575-9792-12ae52204977.apk
+Classes to convert: 2812 Mon Jun 2 03:42:18 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/f575350d-0402-4575-9792-12ae52204977%apk Classfiles  2812
+	*****Output Dir:  tools/java_Analysis/javaOutput/f575350d-0402-4575-9792-12ae52204977%apk Javafiles  2785
+Total LOC: 313799 Mon Jun 2 03:42:34 EDT 2014
+Begin Analyzing: Mon Jun 2 03:42:34 EDT 2014   eab6282d-4ac5-43f7-9467-e2e74c4a8684.apk
+Classes to convert: 423 Mon Jun 2 03:42:50 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/eab6282d-4ac5-43f7-9467-e2e74c4a8684%apk Classfiles  423
+	*****Output Dir:  tools/java_Analysis/javaOutput/eab6282d-4ac5-43f7-9467-e2e74c4a8684%apk Javafiles  423
+Total LOC: 31273 Mon Jun 2 03:42:55 EDT 2014
+Begin Analyzing: Mon Jun 2 03:42:55 EDT 2014   0a7c4268-3382-425a-b13a-6cbff264950e.apk
+Classes to convert: 226 Mon Jun 2 03:43:12 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/0a7c4268-3382-425a-b13a-6cbff264950e%apk Classfiles  226
+	*****Output Dir:  tools/java_Analysis/javaOutput/0a7c4268-3382-425a-b13a-6cbff264950e%apk Javafiles  225
+Total LOC: 41803 Mon Jun 2 03:43:15 EDT 2014
+Begin Analyzing: Mon Jun 2 03:43:15 EDT 2014   1ffab975-ac0c-4749-ba72-b7b8aa04522b.apk
+Classes to convert: 253 Mon Jun 2 03:43:33 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/1ffab975-ac0c-4749-ba72-b7b8aa04522b%apk Classfiles  253
+	*****Output Dir:  tools/java_Analysis/javaOutput/1ffab975-ac0c-4749-ba72-b7b8aa04522b%apk Javafiles  252
+Total LOC: 32680 Mon Jun 2 03:43:35 EDT 2014
+Begin Analyzing: Mon Jun 2 03:43:35 EDT 2014   57bc9361-4b07-45e2-9d96-f96915dffa49.apk
+Classes to convert: 2321 Mon Jun 2 03:44:18 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/57bc9361-4b07-45e2-9d96-f96915dffa49%apk Classfiles  2321
+	*****Output Dir:  tools/java_Analysis/javaOutput/57bc9361-4b07-45e2-9d96-f96915dffa49%apk Javafiles  2303
+Total LOC: 268157 Mon Jun 2 03:44:30 EDT 2014
+Begin Analyzing: Mon Jun 2 03:44:30 EDT 2014   d2d31b48-7ad4-43ea-a61d-37283c31d168.apk
+Classes to convert: 2407 Mon Jun 2 03:45:10 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/d2d31b48-7ad4-43ea-a61d-37283c31d168%apk Classfiles  2407
+	*****Output Dir:  tools/java_Analysis/javaOutput/d2d31b48-7ad4-43ea-a61d-37283c31d168%apk Javafiles  2398
+Total LOC: 288056 Mon Jun 2 03:45:22 EDT 2014
+Begin Analyzing: Mon Jun 2 03:45:22 EDT 2014   69eebcea-c9fc-4e4a-ac4e-27874ec94eba.apk
+Classes to convert: 438 Mon Jun 2 03:45:48 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/69eebcea-c9fc-4e4a-ac4e-27874ec94eba%apk Classfiles  438
+	*****Output Dir:  tools/java_Analysis/javaOutput/69eebcea-c9fc-4e4a-ac4e-27874ec94eba%apk Javafiles  435
+Total LOC: 69252 Mon Jun 2 03:45:53 EDT 2014
+Begin Analyzing: Mon Jun 2 03:45:53 EDT 2014   547e353f-ed52-4c60-9e8c-14b91a0e514f.apk
+Classes to convert: 82 Mon Jun 2 03:46:05 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/547e353f-ed52-4c60-9e8c-14b91a0e514f%apk Classfiles  82
+	*****Output Dir:  tools/java_Analysis/javaOutput/547e353f-ed52-4c60-9e8c-14b91a0e514f%apk Javafiles  82
+Total LOC: 8304 Mon Jun 2 03:46:07 EDT 2014
+Begin Analyzing: Mon Jun 2 03:46:08 EDT 2014   bc76e169-274f-4412-b324-8c4b56309fdd.apk
+Classes to convert: 595 Mon Jun 2 03:46:39 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/bc76e169-274f-4412-b324-8c4b56309fdd%apk Classfiles  595
+	*****Output Dir:  tools/java_Analysis/javaOutput/bc76e169-274f-4412-b324-8c4b56309fdd%apk Javafiles  588
+Total LOC: 69246 Mon Jun 2 03:46:44 EDT 2014
+Begin Analyzing: Mon Jun 2 03:46:44 EDT 2014   a22bae97-df44-4018-8aaf-13b64a5a8c9a.apk
+Classes to convert: 120 Mon Jun 2 03:46:56 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/a22bae97-df44-4018-8aaf-13b64a5a8c9a%apk Classfiles  120
+	*****Output Dir:  tools/java_Analysis/javaOutput/a22bae97-df44-4018-8aaf-13b64a5a8c9a%apk Javafiles  118
+Total LOC: 13053 Mon Jun 2 03:46:58 EDT 2014
+Begin Analyzing: Mon Jun 2 03:46:58 EDT 2014   3ecfd426-b151-4a34-939d-a4feec222aec.apk
+Classes to convert: 21 Mon Jun 2 03:47:03 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/3ecfd426-b151-4a34-939d-a4feec222aec%apk Classfiles  21
+	*****Output Dir:  tools/java_Analysis/javaOutput/3ecfd426-b151-4a34-939d-a4feec222aec%apk Javafiles  21
+Total LOC: 1757 Mon Jun 2 03:47:04 EDT 2014
+Begin Analyzing: Mon Jun 2 03:47:04 EDT 2014   a28face4-bb31-4194-a4c4-9295847f57b9.apk
+Classes to convert: 391 Mon Jun 2 03:47:19 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/a28face4-bb31-4194-a4c4-9295847f57b9%apk Classfiles  391
+	*****Output Dir:  tools/java_Analysis/javaOutput/a28face4-bb31-4194-a4c4-9295847f57b9%apk Javafiles  389
+Total LOC: 34803 Mon Jun 2 03:47:21 EDT 2014
+Begin Analyzing: Mon Jun 2 03:47:21 EDT 2014   8772ebab-85ca-4a58-ac79-438dcfa135d7.apk
+Classes to convert: 510 Mon Jun 2 03:47:39 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/8772ebab-85ca-4a58-ac79-438dcfa135d7%apk Classfiles  510
+	*****Output Dir:  tools/java_Analysis/javaOutput/8772ebab-85ca-4a58-ac79-438dcfa135d7%apk Javafiles  506
+Total LOC: 45545 Mon Jun 2 03:47:42 EDT 2014
+Begin Analyzing: Mon Jun 2 03:47:43 EDT 2014   22fcc4f7-6087-4674-b5ef-8902c9e08440.apk
+Classes to convert: 263 Mon Jun 2 03:47:56 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/22fcc4f7-6087-4674-b5ef-8902c9e08440%apk Classfiles  263
+	*****Output Dir:  tools/java_Analysis/javaOutput/22fcc4f7-6087-4674-b5ef-8902c9e08440%apk Javafiles  263
+Total LOC: 25515 Mon Jun 2 03:47:58 EDT 2014
+Begin Analyzing: Mon Jun 2 03:47:58 EDT 2014   71e5b8d9-63ce-4ff6-9278-8a533c5a88a5.apk
+Classes to convert: 2865 Mon Jun 2 03:48:39 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/71e5b8d9-63ce-4ff6-9278-8a533c5a88a5%apk Classfiles  2865
+	*****Output Dir:  tools/java_Analysis/javaOutput/71e5b8d9-63ce-4ff6-9278-8a533c5a88a5%apk Javafiles  2853
+Total LOC: 245336 Mon Jun 2 03:48:50 EDT 2014
+Begin Analyzing: Mon Jun 2 03:48:50 EDT 2014   cbaa7e0a-3e09-4cd2-9146-0053f1ec9b72.apk
+Classes to convert: 1600 Mon Jun 2 03:50:08 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/cbaa7e0a-3e09-4cd2-9146-0053f1ec9b72%apk Classfiles  1600
+	*****Output Dir:  tools/java_Analysis/javaOutput/cbaa7e0a-3e09-4cd2-9146-0053f1ec9b72%apk Javafiles  1585
+Total LOC: 249212 Mon Jun 2 03:50:26 EDT 2014
+Begin Analyzing: Mon Jun 2 03:50:26 EDT 2014   65c26496-3d74-45ca-a288-f5e8e67ae413.apk
+Classes to convert: 186 Mon Jun 2 03:50:35 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/65c26496-3d74-45ca-a288-f5e8e67ae413%apk Classfiles  186
+	*****Output Dir:  tools/java_Analysis/javaOutput/65c26496-3d74-45ca-a288-f5e8e67ae413%apk Javafiles  186
+Total LOC: 10882 Mon Jun 2 03:50:37 EDT 2014
+Begin Analyzing: Mon Jun 2 03:50:37 EDT 2014   6a34e5c0-030b-4c0a-935e-b474682d6179.apk
+Classes to convert: 3920 Mon Jun 2 03:51:40 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/6a34e5c0-030b-4c0a-935e-b474682d6179%apk Classfiles  3920
+	*****Output Dir:  tools/java_Analysis/javaOutput/6a34e5c0-030b-4c0a-935e-b474682d6179%apk Javafiles  3887
+Total LOC: 510260 Mon Jun 2 03:52:02 EDT 2014
+Begin Analyzing: Mon Jun 2 03:52:02 EDT 2014   7f0170cf-11b9-4fd5-96a6-7aba11e17494.apk
+Classes to convert: 252 Mon Jun 2 03:52:25 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/7f0170cf-11b9-4fd5-96a6-7aba11e17494%apk Classfiles  252
+	*****Output Dir:  tools/java_Analysis/javaOutput/7f0170cf-11b9-4fd5-96a6-7aba11e17494%apk Javafiles  251
+Total LOC: 43735 Mon Jun 2 03:52:28 EDT 2014
+Begin Analyzing: Mon Jun 2 03:52:28 EDT 2014   fab4133a-85f8-4c85-bd53-ee9331f068d2.apk
+Classes to convert: 542 Mon Jun 2 03:52:48 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/fab4133a-85f8-4c85-bd53-ee9331f068d2%apk Classfiles  542
+	*****Output Dir:  tools/java_Analysis/javaOutput/fab4133a-85f8-4c85-bd53-ee9331f068d2%apk Javafiles  539
+Total LOC: 49967 Mon Jun 2 03:52:51 EDT 2014
+Begin Analyzing: Mon Jun 2 03:52:51 EDT 2014   91245636-c991-44c7-89ab-b9271719c617.apk
+Classes to convert: 279 Mon Jun 2 03:53:05 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/91245636-c991-44c7-89ab-b9271719c617%apk Classfiles  279
+	*****Output Dir:  tools/java_Analysis/javaOutput/91245636-c991-44c7-89ab-b9271719c617%apk Javafiles  271
+Total LOC: 21218 Mon Jun 2 03:53:08 EDT 2014
+Begin Analyzing: Mon Jun 2 03:53:08 EDT 2014   b736f669-ea16-48d8-9e3d-bdac7cc887a8.apk
+Classes to convert: 425 Mon Jun 2 03:53:33 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/b736f669-ea16-48d8-9e3d-bdac7cc887a8%apk Classfiles  425
+	*****Output Dir:  tools/java_Analysis/javaOutput/b736f669-ea16-48d8-9e3d-bdac7cc887a8%apk Javafiles  422
+Total LOC: 63381 Mon Jun 2 03:53:38 EDT 2014
+Begin Analyzing: Mon Jun 2 03:53:38 EDT 2014   9e5277ef-c9ba-40b2-a6e7-3856939ae563.apk
+Classes to convert: 1895 Mon Jun 2 03:54:26 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/9e5277ef-c9ba-40b2-a6e7-3856939ae563%apk Classfiles  1895
+	*****Output Dir:  tools/java_Analysis/javaOutput/9e5277ef-c9ba-40b2-a6e7-3856939ae563%apk Javafiles  1882
+Total LOC: 272116 Mon Jun 2 03:54:41 EDT 2014
+Begin Analyzing: Mon Jun 2 03:54:41 EDT 2014   5fb2c7d1-83f2-4638-9956-44c64388ced3.apk
+Classes to convert: 2224 Mon Jun 2 03:55:24 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/5fb2c7d1-83f2-4638-9956-44c64388ced3%apk Classfiles  2224
+	*****Output Dir:  tools/java_Analysis/javaOutput/5fb2c7d1-83f2-4638-9956-44c64388ced3%apk Javafiles  2214
+Total LOC: 162707 Mon Jun 2 03:55:35 EDT 2014
+Begin Analyzing: Mon Jun 2 03:55:35 EDT 2014   6bd245d3-b067-43b7-85d8-81214fccd797.apk
+Classes to convert: 26 Mon Jun 2 03:55:45 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/6bd245d3-b067-43b7-85d8-81214fccd797%apk Classfiles  26
+	*****Output Dir:  tools/java_Analysis/javaOutput/6bd245d3-b067-43b7-85d8-81214fccd797%apk Javafiles  26
+Total LOC: 1382 Mon Jun 2 03:55:46 EDT 2014
+Begin Analyzing: Mon Jun 2 03:55:46 EDT 2014   a2a0eaff-c187-4163-8eb5-4b72ca290a87.apk
+Classes to convert: 715 Mon Jun 2 03:56:27 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/a2a0eaff-c187-4163-8eb5-4b72ca290a87%apk Classfiles  715
+	*****Output Dir:  tools/java_Analysis/javaOutput/a2a0eaff-c187-4163-8eb5-4b72ca290a87%apk Javafiles  708
+Total LOC: 46410 Mon Jun 2 03:56:33 EDT 2014
+Begin Analyzing: Mon Jun 2 03:56:34 EDT 2014   3de9173d-d056-4636-b9be-017425663da3.apk
+Classes to convert: 353 Mon Jun 2 03:57:09 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/3de9173d-d056-4636-b9be-017425663da3%apk Classfiles  353
+	*****Output Dir:  tools/java_Analysis/javaOutput/3de9173d-d056-4636-b9be-017425663da3%apk Javafiles  350
+Total LOC: 41592 Mon Jun 2 03:57:15 EDT 2014
+Begin Analyzing: Mon Jun 2 03:57:15 EDT 2014   f5a8ce1e-fd5e-428e-814a-fb19e62387bc.apk
+Classes to convert: 1351 Mon Jun 2 03:58:06 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/f5a8ce1e-fd5e-428e-814a-fb19e62387bc%apk Classfiles  1351
+	*****Output Dir:  tools/java_Analysis/javaOutput/f5a8ce1e-fd5e-428e-814a-fb19e62387bc%apk Javafiles  1342
+Total LOC: 157120 Mon Jun 2 03:58:14 EDT 2014
+Begin Analyzing: Mon Jun 2 03:58:15 EDT 2014   42a7bbe9-a2a1-4838-8d3a-b8a33045d95d.apk
+Classes to convert: 189 Mon Jun 2 03:58:26 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/42a7bbe9-a2a1-4838-8d3a-b8a33045d95d%apk Classfiles  189
+	*****Output Dir:  tools/java_Analysis/javaOutput/42a7bbe9-a2a1-4838-8d3a-b8a33045d95d%apk Javafiles  188
+Total LOC: 16763 Mon Jun 2 03:58:28 EDT 2014
+Begin Analyzing: Mon Jun 2 03:58:28 EDT 2014   105be154-e672-4bbd-a2fb-53a421014b4e.apk
+Classes to convert: 195 Mon Jun 2 03:58:41 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/105be154-e672-4bbd-a2fb-53a421014b4e%apk Classfiles  195
+	*****Output Dir:  tools/java_Analysis/javaOutput/105be154-e672-4bbd-a2fb-53a421014b4e%apk Javafiles  192
+Total LOC: 19143 Mon Jun 2 03:58:45 EDT 2014
+Begin Analyzing: Mon Jun 2 03:58:45 EDT 2014   9e386ca4-2017-4715-b2a9-c06df9610740.apk
+Classes to convert: 1596 Mon Jun 2 03:59:24 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/9e386ca4-2017-4715-b2a9-c06df9610740%apk Classfiles  1596
+	*****Output Dir:  tools/java_Analysis/javaOutput/9e386ca4-2017-4715-b2a9-c06df9610740%apk Javafiles  1588
+Total LOC: 138600 Mon Jun 2 03:59:31 EDT 2014
+Begin Analyzing: Mon Jun 2 03:59:31 EDT 2014   a33560db-1c9a-4101-918d-3699240f6278.apk
+Classes to convert: 1870 Mon Jun 2 04:00:14 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/a33560db-1c9a-4101-918d-3699240f6278%apk Classfiles  1870
+	*****Output Dir:  tools/java_Analysis/javaOutput/a33560db-1c9a-4101-918d-3699240f6278%apk Javafiles  1861
+Total LOC: 209952 Mon Jun 2 04:00:25 EDT 2014
+Begin Analyzing: Mon Jun 2 04:00:26 EDT 2014   f26e4b82-40b4-428e-a8d1-61cf55150607.apk
+Classes to convert: 1109 Mon Jun 2 04:00:56 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/f26e4b82-40b4-428e-a8d1-61cf55150607%apk Classfiles  1109
+	*****Output Dir:  tools/java_Analysis/javaOutput/f26e4b82-40b4-428e-a8d1-61cf55150607%apk Javafiles  1102
+Total LOC: 117424 Mon Jun 2 04:01:02 EDT 2014
+Begin Analyzing: Mon Jun 2 04:01:02 EDT 2014   dc1cc5e4-011e-4cc4-9d2f-744531d0e306.apk
+Classes to convert: 256 Mon Jun 2 04:01:16 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/dc1cc5e4-011e-4cc4-9d2f-744531d0e306%apk Classfiles  256
+	*****Output Dir:  tools/java_Analysis/javaOutput/dc1cc5e4-011e-4cc4-9d2f-744531d0e306%apk Javafiles  255
+Total LOC: 23554 Mon Jun 2 04:01:18 EDT 2014
+Begin Analyzing: Mon Jun 2 04:01:18 EDT 2014   c49151c1-4a01-48bb-b13c-f51a55d8d787.apk
+Classes to convert: 44 Mon Jun 2 04:01:24 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/c49151c1-4a01-48bb-b13c-f51a55d8d787%apk Classfiles  44
+	*****Output Dir:  tools/java_Analysis/javaOutput/c49151c1-4a01-48bb-b13c-f51a55d8d787%apk Javafiles  43
+Total LOC: 3670 Mon Jun 2 04:01:25 EDT 2014
+Begin Analyzing: Mon Jun 2 04:01:25 EDT 2014   38bdff26-111a-4e79-bec2-f90d999ffb14.apk
+Classes to convert: 161 Mon Jun 2 04:01:46 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/38bdff26-111a-4e79-bec2-f90d999ffb14%apk Classfiles  161
+	*****Output Dir:  tools/java_Analysis/javaOutput/38bdff26-111a-4e79-bec2-f90d999ffb14%apk Javafiles  156
+Total LOC: 18119 Mon Jun 2 04:01:48 EDT 2014
+Begin Analyzing: Mon Jun 2 04:01:48 EDT 2014   b6b1f972-2e3e-4884-8ec3-0326c0f99e3a.apk
+Classes to convert: 1606 Mon Jun 2 04:02:26 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/b6b1f972-2e3e-4884-8ec3-0326c0f99e3a%apk Classfiles  1606
+	*****Output Dir:  tools/java_Analysis/javaOutput/b6b1f972-2e3e-4884-8ec3-0326c0f99e3a%apk Javafiles  1593
+Total LOC: 201447 Mon Jun 2 04:02:35 EDT 2014
+Begin Analyzing: Mon Jun 2 04:02:36 EDT 2014   3e01f7eb-dcf6-4b2f-88d8-28a12169f5cc.apk
+Classes to convert: 30 Mon Jun 2 04:02:41 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/3e01f7eb-dcf6-4b2f-88d8-28a12169f5cc%apk Classfiles  30
+	*****Output Dir:  tools/java_Analysis/javaOutput/3e01f7eb-dcf6-4b2f-88d8-28a12169f5cc%apk Javafiles  29
+Total LOC: 1962 Mon Jun 2 04:02:42 EDT 2014
+Begin Analyzing: Mon Jun 2 04:02:42 EDT 2014   3182b09d-d7db-4e12-ada4-17a72ef39a1d.apk
+Classes to convert: 553 Mon Jun 2 04:03:04 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/3182b09d-d7db-4e12-ada4-17a72ef39a1d%apk Classfiles  553
+	*****Output Dir:  tools/java_Analysis/javaOutput/3182b09d-d7db-4e12-ada4-17a72ef39a1d%apk Javafiles  550
+Total LOC: 70872 Mon Jun 2 04:03:09 EDT 2014
+Begin Analyzing: Mon Jun 2 04:03:09 EDT 2014   025092d1-a240-4b72-b9a5-f84ef83f8259.apk
+Classes to convert: 2209 Mon Jun 2 04:03:47 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/025092d1-a240-4b72-b9a5-f84ef83f8259%apk Classfiles  2209
+	*****Output Dir:  tools/java_Analysis/javaOutput/025092d1-a240-4b72-b9a5-f84ef83f8259%apk Javafiles  2188
+Total LOC: 223923 Mon Jun 2 04:03:57 EDT 2014
+Begin Analyzing: Mon Jun 2 04:03:57 EDT 2014   fd0e9af6-9861-496e-ba68-bd1f18462b6b.apk
+Classes to convert: 465 Mon Jun 2 04:04:13 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/fd0e9af6-9861-496e-ba68-bd1f18462b6b%apk Classfiles  465
+	*****Output Dir:  tools/java_Analysis/javaOutput/fd0e9af6-9861-496e-ba68-bd1f18462b6b%apk Javafiles  462
+Total LOC: 43252 Mon Jun 2 04:04:16 EDT 2014
+Begin Analyzing: Mon Jun 2 04:04:16 EDT 2014   1ca8bbc2-1b91-42aa-84ea-22d26e171838.apk
+Classes to convert: 194 Mon Jun 2 04:04:29 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/1ca8bbc2-1b91-42aa-84ea-22d26e171838%apk Classfiles  194
+	*****Output Dir:  tools/java_Analysis/javaOutput/1ca8bbc2-1b91-42aa-84ea-22d26e171838%apk Javafiles  193
+Total LOC: 22837 Mon Jun 2 04:04:32 EDT 2014
+Begin Analyzing: Mon Jun 2 04:04:32 EDT 2014   c29cf076-9ff5-4ca1-934d-0528a3383411.apk
+Classes to convert: 726 Mon Jun 2 04:04:59 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/c29cf076-9ff5-4ca1-934d-0528a3383411%apk Classfiles  726
+	*****Output Dir:  tools/java_Analysis/javaOutput/c29cf076-9ff5-4ca1-934d-0528a3383411%apk Javafiles  721
+Total LOC: 66953 Mon Jun 2 04:05:03 EDT 2014
+Begin Analyzing: Mon Jun 2 04:05:03 EDT 2014   7f18ee1e-0648-41e8-9e0d-cb399cef0213.apk
+Classes to convert: 561 Mon Jun 2 04:05:23 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/7f18ee1e-0648-41e8-9e0d-cb399cef0213%apk Classfiles  561
+	*****Output Dir:  tools/java_Analysis/javaOutput/7f18ee1e-0648-41e8-9e0d-cb399cef0213%apk Javafiles  558
+Total LOC: 52488 Mon Jun 2 04:05:26 EDT 2014
+Begin Analyzing: Mon Jun 2 04:05:26 EDT 2014   9cbe42a7-b9d0-4196-a74b-559412662e72.apk
+Classes to convert: 452 Mon Jun 2 04:05:41 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/9cbe42a7-b9d0-4196-a74b-559412662e72%apk Classfiles  452
+	*****Output Dir:  tools/java_Analysis/javaOutput/9cbe42a7-b9d0-4196-a74b-559412662e72%apk Javafiles  449
+Total LOC: 42315 Mon Jun 2 04:05:44 EDT 2014
+Begin Analyzing: Mon Jun 2 04:05:44 EDT 2014   fc8a329a-9fc1-45e5-a5aa-27a1628db9de.apk
+Classes to convert: 384 Mon Jun 2 04:05:59 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/fc8a329a-9fc1-45e5-a5aa-27a1628db9de%apk Classfiles  384
+	*****Output Dir:  tools/java_Analysis/javaOutput/fc8a329a-9fc1-45e5-a5aa-27a1628db9de%apk Javafiles  383
+Total LOC: 31358 Mon Jun 2 04:06:01 EDT 2014
+Begin Analyzing: Mon Jun 2 04:06:01 EDT 2014   9ef35b32-4658-47b4-b0b5-1ddbb0df41df.apk
+Classes to convert: 194 Mon Jun 2 04:06:13 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/9ef35b32-4658-47b4-b0b5-1ddbb0df41df%apk Classfiles  194
+	*****Output Dir:  tools/java_Analysis/javaOutput/9ef35b32-4658-47b4-b0b5-1ddbb0df41df%apk Javafiles  193
+Total LOC: 17548 Mon Jun 2 04:06:15 EDT 2014
+Begin Analyzing: Mon Jun 2 04:06:15 EDT 2014   ffd92999-0c18-4080-b8a2-0d711a71c582.apk
+Classes to convert: 156 Mon Jun 2 04:06:27 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/ffd92999-0c18-4080-b8a2-0d711a71c582%apk Classfiles  156
+	*****Output Dir:  tools/java_Analysis/javaOutput/ffd92999-0c18-4080-b8a2-0d711a71c582%apk Javafiles  151
+Total LOC: 20116 Mon Jun 2 04:06:29 EDT 2014
+Begin Analyzing: Mon Jun 2 04:06:29 EDT 2014   84f7bbc4-70c8-4373-82f1-980ef36aedfc.apk
+Classes to convert: 1554 Mon Jun 2 04:07:08 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/84f7bbc4-70c8-4373-82f1-980ef36aedfc%apk Classfiles  1554
+	*****Output Dir:  tools/java_Analysis/javaOutput/84f7bbc4-70c8-4373-82f1-980ef36aedfc%apk Javafiles  1537
+Total LOC: 165843 Mon Jun 2 04:07:17 EDT 2014
+Begin Analyzing: Mon Jun 2 04:07:17 EDT 2014   80fc9b80-a580-4ad1-839f-7a838b8e8263.apk
+Classes to convert: 353 Mon Jun 2 04:07:35 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/80fc9b80-a580-4ad1-839f-7a838b8e8263%apk Classfiles  353
+	*****Output Dir:  tools/java_Analysis/javaOutput/80fc9b80-a580-4ad1-839f-7a838b8e8263%apk Javafiles  350
+Total LOC: 41592 Mon Jun 2 04:07:38 EDT 2014
+Begin Analyzing: Mon Jun 2 04:07:38 EDT 2014   e00e7f08-5dbe-4330-bc9a-e7b65eaabcdc.apk
+Classes to convert: 353 Mon Jun 2 04:07:56 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/e00e7f08-5dbe-4330-bc9a-e7b65eaabcdc%apk Classfiles  353
+	*****Output Dir:  tools/java_Analysis/javaOutput/e00e7f08-5dbe-4330-bc9a-e7b65eaabcdc%apk Javafiles  350
+Total LOC: 34744 Mon Jun 2 04:07:58 EDT 2014
+Begin Analyzing: Mon Jun 2 04:07:58 EDT 2014   47ed55a2-5002-44a8-81fa-411b4aa6b81b.apk
+Classes to convert: 650 Mon Jun 2 04:08:20 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/47ed55a2-5002-44a8-81fa-411b4aa6b81b%apk Classfiles  650
+	*****Output Dir:  tools/java_Analysis/javaOutput/47ed55a2-5002-44a8-81fa-411b4aa6b81b%apk Javafiles  647
+Total LOC: 52707 Mon Jun 2 04:08:24 EDT 2014
+Begin Analyzing: Mon Jun 2 04:08:24 EDT 2014   b443f86f-9360-4c8b-b753-b4f42a9b2b35.apk
+Classes to convert: 71 Mon Jun 2 04:08:31 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/b443f86f-9360-4c8b-b753-b4f42a9b2b35%apk Classfiles  71
+	*****Output Dir:  tools/java_Analysis/javaOutput/b443f86f-9360-4c8b-b753-b4f42a9b2b35%apk Javafiles  71
+Total LOC: 6239 Mon Jun 2 04:08:33 EDT 2014
+Begin Analyzing: Mon Jun 2 04:08:33 EDT 2014   153ee13a-9912-430c-9e1e-010d3eedfd58.apk
+Classes to convert: 125 Mon Jun 2 04:08:45 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/153ee13a-9912-430c-9e1e-010d3eedfd58%apk Classfiles  125
+	*****Output Dir:  tools/java_Analysis/javaOutput/153ee13a-9912-430c-9e1e-010d3eedfd58%apk Javafiles  125
+Total LOC: 18551 Mon Jun 2 04:08:47 EDT 2014
+Begin Analyzing: Mon Jun 2 04:08:47 EDT 2014   403b883e-53e1-44cc-bd0f-c45a98921ea1.apk
+Classes to convert: 2376 Mon Jun 2 04:09:30 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/403b883e-53e1-44cc-bd0f-c45a98921ea1%apk Classfiles  2376
+	*****Output Dir:  tools/java_Analysis/javaOutput/403b883e-53e1-44cc-bd0f-c45a98921ea1%apk Javafiles  2366
+Total LOC: 279665 Mon Jun 2 04:09:42 EDT 2014
+Begin Analyzing: Mon Jun 2 04:09:42 EDT 2014   f268bec8-43d3-4d9b-8d53-bc5bfa0e00b3.apk
+Classes to convert: 968 Mon Jun 2 04:10:07 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/f268bec8-43d3-4d9b-8d53-bc5bfa0e00b3%apk Classfiles  968
+	*****Output Dir:  tools/java_Analysis/javaOutput/f268bec8-43d3-4d9b-8d53-bc5bfa0e00b3%apk Javafiles  963
+Total LOC: 89788 Mon Jun 2 04:10:14 EDT 2014
+Begin Analyzing: Mon Jun 2 04:10:14 EDT 2014   226a463a-d698-41b9-8484-69b9f009370b.apk
+Classes to convert: 61 Mon Jun 2 04:10:20 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/226a463a-d698-41b9-8484-69b9f009370b%apk Classfiles  61
+	*****Output Dir:  tools/java_Analysis/javaOutput/226a463a-d698-41b9-8484-69b9f009370b%apk Javafiles  61
+Total LOC: 6021 Mon Jun 2 04:10:21 EDT 2014
+Begin Analyzing: Mon Jun 2 04:10:21 EDT 2014   0f453b47-c488-48b3-a065-c53877b2902e.apk
+Classes to convert: 2851 Mon Jun 2 04:11:06 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/0f453b47-c488-48b3-a065-c53877b2902e%apk Classfiles  2851
+	*****Output Dir:  tools/java_Analysis/javaOutput/0f453b47-c488-48b3-a065-c53877b2902e%apk Javafiles  2838
+Total LOC: 302860 Mon Jun 2 04:11:18 EDT 2014
+Begin Analyzing: Mon Jun 2 04:11:18 EDT 2014   50915f6a-21a8-4a0b-aefc-bc978c7bd5e2.apk
+Classes to convert: 616 Mon Jun 2 04:11:46 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/50915f6a-21a8-4a0b-aefc-bc978c7bd5e2%apk Classfiles  616
+	*****Output Dir:  tools/java_Analysis/javaOutput/50915f6a-21a8-4a0b-aefc-bc978c7bd5e2%apk Javafiles  613
+Total LOC: 76639 Mon Jun 2 04:11:53 EDT 2014
+Begin Analyzing: Mon Jun 2 04:11:53 EDT 2014   f428cc92-4b61-4314-863e-53f8a4c3c8fb.apk
+Classes to convert: 63 Mon Jun 2 04:12:04 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/f428cc92-4b61-4314-863e-53f8a4c3c8fb%apk Classfiles  63
+	*****Output Dir:  tools/java_Analysis/javaOutput/f428cc92-4b61-4314-863e-53f8a4c3c8fb%apk Javafiles  63
+Total LOC: 6573 Mon Jun 2 04:12:07 EDT 2014
+Begin Analyzing: Mon Jun 2 04:12:07 EDT 2014   29f6ad3f-4fd6-4599-a0c3-d9e84842bb85.apk
+Classes to convert: 729 Mon Jun 2 04:12:31 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/29f6ad3f-4fd6-4599-a0c3-d9e84842bb85%apk Classfiles  729
+	*****Output Dir:  tools/java_Analysis/javaOutput/29f6ad3f-4fd6-4599-a0c3-d9e84842bb85%apk Javafiles  724
+Total LOC: 65058 Mon Jun 2 04:12:35 EDT 2014
+Begin Analyzing: Mon Jun 2 04:12:35 EDT 2014   c6bd6a39-2f6a-45b9-a048-92288ed01cec.apk
+Classes to convert: 1274 Mon Jun 2 04:13:06 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/c6bd6a39-2f6a-45b9-a048-92288ed01cec%apk Classfiles  1274
+	*****Output Dir:  tools/java_Analysis/javaOutput/c6bd6a39-2f6a-45b9-a048-92288ed01cec%apk Javafiles  1265
+Total LOC: 116295 Mon Jun 2 04:13:15 EDT 2014
+Begin Analyzing: Mon Jun 2 04:13:15 EDT 2014   462094b2-4b4b-4f0b-8cff-7a98b198c3a5.apk
+Classes to convert: 23 Mon Jun 2 04:13:20 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/462094b2-4b4b-4f0b-8cff-7a98b198c3a5%apk Classfiles  23
+	*****Output Dir:  tools/java_Analysis/javaOutput/462094b2-4b4b-4f0b-8cff-7a98b198c3a5%apk Javafiles  23
+Total LOC: 1134 Mon Jun 2 04:13:21 EDT 2014
+Begin Analyzing: Mon Jun 2 04:13:21 EDT 2014   40b4a723-71d4-4d97-9452-3fa73049f705.apk
+Classes to convert: 1330 Mon Jun 2 04:13:59 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/40b4a723-71d4-4d97-9452-3fa73049f705%apk Classfiles  1330
+	*****Output Dir:  tools/java_Analysis/javaOutput/40b4a723-71d4-4d97-9452-3fa73049f705%apk Javafiles  1303
+Total LOC: 284404 Mon Jun 2 04:14:11 EDT 2014
+Begin Analyzing: Mon Jun 2 04:14:11 EDT 2014   1caf55e0-552c-49bf-94ac-73ee7332bc08.apk
+Classes to convert: 1249 Mon Jun 2 04:14:43 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/1caf55e0-552c-49bf-94ac-73ee7332bc08%apk Classfiles  1249
+	*****Output Dir:  tools/java_Analysis/javaOutput/1caf55e0-552c-49bf-94ac-73ee7332bc08%apk Javafiles  1244
+Total LOC: 136815 Mon Jun 2 04:14:49 EDT 2014
+Begin Analyzing: Mon Jun 2 04:14:49 EDT 2014   ba0a4d24-ef0b-4e54-b18f-dfd518e99fb1.apk
+Classes to convert: 120 Mon Jun 2 04:15:02 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/ba0a4d24-ef0b-4e54-b18f-dfd518e99fb1%apk Classfiles  120
+	*****Output Dir:  tools/java_Analysis/javaOutput/ba0a4d24-ef0b-4e54-b18f-dfd518e99fb1%apk Javafiles  118
+Total LOC: 13053 Mon Jun 2 04:15:04 EDT 2014
+Begin Analyzing: Mon Jun 2 04:15:04 EDT 2014   7f3f50af-1276-4239-9655-7af55de6e83b.apk
+Classes to convert: 102 Mon Jun 2 04:15:13 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/7f3f50af-1276-4239-9655-7af55de6e83b%apk Classfiles  102
+	*****Output Dir:  tools/java_Analysis/javaOutput/7f3f50af-1276-4239-9655-7af55de6e83b%apk Javafiles  101
+Total LOC: 9474 Mon Jun 2 04:15:14 EDT 2014
+Begin Analyzing: Mon Jun 2 04:15:14 EDT 2014   0292be20-63ab-4e2f-8cd4-99f5077b0dc5.apk
+Classes to convert: 177 Mon Jun 2 04:15:31 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/0292be20-63ab-4e2f-8cd4-99f5077b0dc5%apk Classfiles  177
+	*****Output Dir:  tools/java_Analysis/javaOutput/0292be20-63ab-4e2f-8cd4-99f5077b0dc5%apk Javafiles  175
+Total LOC: 19782 Mon Jun 2 04:15:33 EDT 2014
+Begin Analyzing: Mon Jun 2 04:15:33 EDT 2014   334397e3-84b7-4962-9992-57489c7457ee.apk
+Classes to convert: 61 Mon Jun 2 04:15:40 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/334397e3-84b7-4962-9992-57489c7457ee%apk Classfiles  61
+	*****Output Dir:  tools/java_Analysis/javaOutput/334397e3-84b7-4962-9992-57489c7457ee%apk Javafiles  61
+Total LOC: 7084 Mon Jun 2 04:15:42 EDT 2014
+Begin Analyzing: Mon Jun 2 04:15:42 EDT 2014   4393af05-fa02-448a-8e66-a008c2315d27.apk
+Classes to convert: 880 Mon Jun 2 04:16:14 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/4393af05-fa02-448a-8e66-a008c2315d27%apk Classfiles  880
+	*****Output Dir:  tools/java_Analysis/javaOutput/4393af05-fa02-448a-8e66-a008c2315d27%apk Javafiles  879
+Total LOC: 88310 Mon Jun 2 04:16:19 EDT 2014
+Begin Analyzing: Mon Jun 2 04:16:19 EDT 2014   cb4d569c-09c8-4b8e-89af-d63a8f5011d1.apk
+Classes to convert: 769 Mon Jun 2 04:16:43 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/cb4d569c-09c8-4b8e-89af-d63a8f5011d1%apk Classfiles  769
+	*****Output Dir:  tools/java_Analysis/javaOutput/cb4d569c-09c8-4b8e-89af-d63a8f5011d1%apk Javafiles  766
+Total LOC: 77553 Mon Jun 2 04:16:47 EDT 2014
+Begin Analyzing: Mon Jun 2 04:16:48 EDT 2014   665d16ab-1671-4a82-933d-056ee3a65501.apk
+Classes to convert: 44 Mon Jun 2 04:16:54 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/665d16ab-1671-4a82-933d-056ee3a65501%apk Classfiles  44
+	*****Output Dir:  tools/java_Analysis/javaOutput/665d16ab-1671-4a82-933d-056ee3a65501%apk Javafiles  44
+Total LOC: 3337 Mon Jun 2 04:16:56 EDT 2014
+Begin Analyzing: Mon Jun 2 04:16:56 EDT 2014   f3647518-8931-4805-b063-30e75478b581.apk
+Classes to convert: 817 Mon Jun 2 04:17:24 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/f3647518-8931-4805-b063-30e75478b581%apk Classfiles  817
+	*****Output Dir:  tools/java_Analysis/javaOutput/f3647518-8931-4805-b063-30e75478b581%apk Javafiles  813
+Total LOC: 69787 Mon Jun 2 04:17:29 EDT 2014
+Begin Analyzing: Mon Jun 2 04:17:29 EDT 2014   c44bba94-c723-493b-9a1a-f3d11fb01227.apk
+Classes to convert: 539 Mon Jun 2 04:17:57 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/c44bba94-c723-493b-9a1a-f3d11fb01227%apk Classfiles  539
+	*****Output Dir:  tools/java_Analysis/javaOutput/c44bba94-c723-493b-9a1a-f3d11fb01227%apk Javafiles  534
+Total LOC: 81972 Mon Jun 2 04:18:02 EDT 2014
+Begin Analyzing: Mon Jun 2 04:18:03 EDT 2014   93403a12-00cc-4160-8503-77f51ecd1b20.apk
+Classes to convert: 1919 Mon Jun 2 04:18:38 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/93403a12-00cc-4160-8503-77f51ecd1b20%apk Classfiles  1919
+	*****Output Dir:  tools/java_Analysis/javaOutput/93403a12-00cc-4160-8503-77f51ecd1b20%apk Javafiles  1910
+Total LOC: 223044 Mon Jun 2 04:18:50 EDT 2014
+Begin Analyzing: Mon Jun 2 04:18:50 EDT 2014   3d7d8b47-c079-4326-ba71-d7d0326dd9f3.apk
+Classes to convert: 118 Mon Jun 2 04:18:59 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/3d7d8b47-c079-4326-ba71-d7d0326dd9f3%apk Classfiles  118
+	*****Output Dir:  tools/java_Analysis/javaOutput/3d7d8b47-c079-4326-ba71-d7d0326dd9f3%apk Javafiles  118
+Total LOC: 6994 Mon Jun 2 04:19:00 EDT 2014
+Begin Analyzing: Mon Jun 2 04:19:00 EDT 2014   a5129eee-52d5-4bda-b1a9-b35a41292ff1.apk
+Classes to convert: 526 Mon Jun 2 04:19:46 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/a5129eee-52d5-4bda-b1a9-b35a41292ff1%apk Classfiles  526
+	*****Output Dir:  tools/java_Analysis/javaOutput/a5129eee-52d5-4bda-b1a9-b35a41292ff1%apk Javafiles  523
+Total LOC: 69763 Mon Jun 2 04:19:52 EDT 2014
+Begin Analyzing: Mon Jun 2 04:19:53 EDT 2014   5c37125b-5759-4278-9db6-f96b2fc884bf.apk
+Classes to convert: 984 Mon Jun 2 04:20:23 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/5c37125b-5759-4278-9db6-f96b2fc884bf%apk Classfiles  984
+	*****Output Dir:  tools/java_Analysis/javaOutput/5c37125b-5759-4278-9db6-f96b2fc884bf%apk Javafiles  979
+Total LOC: 105993 Mon Jun 2 04:20:32 EDT 2014
+Begin Analyzing: Mon Jun 2 04:20:32 EDT 2014   d46b5b7a-6b37-42c2-84e7-af7956847a3f.apk
+Classes to convert: 1431 Mon Jun 2 04:21:14 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/d46b5b7a-6b37-42c2-84e7-af7956847a3f%apk Classfiles  1431
+	*****Output Dir:  tools/java_Analysis/javaOutput/d46b5b7a-6b37-42c2-84e7-af7956847a3f%apk Javafiles  1421
+Total LOC: 130867 Mon Jun 2 04:21:21 EDT 2014
+Begin Analyzing: Mon Jun 2 04:21:21 EDT 2014   48e0c00f-24b7-42e2-b54c-85128c49a665.apk
+Classes to convert: 3013 Mon Jun 2 04:22:13 EDT 2014
+	*****Output Dir:  tools/java_Analysis/javaOutput/48e0c00f-24b7-42e2-b54c-85128c49a665%apk Classfiles  3013
+	*****Output Dir:  tools/java_Analysis/javaOutput/48e0c00f-24b7-42e2-b54c-85128c49a665%apk Javafiles  2992
+Total LOC: 301777 Mon Jun 2 04:22:28 EDT 2014
+Begin Analyzing: Mon Jun 2 04:22:28 EDT 2014   9bb13797-696e-4f1a-b393-227e40679ff1.apk
+Classes to convert: 9032 Mon Jun 2 04:24:25 EDT 2014
 	*****Output Dir:  tools/java_Analysis/javaOutput/9bb13797-696e-4f1a-b393-227e40679ff1%apk Classfiles  9032
 	*****Output Dir:  tools/java_Analysis/javaOutput/9bb13797-696e-4f1a-b393-227e40679ff1%apk Javafiles  9023
-Total LOC: 614308 Mon Jun 2 00:49:14 EDT 2014
-Begin Analyzing: Mon Jun 2 00:49:16 EDT 2014   81691fee-af18-47d6-a160-44821c17f513.apk
-Classes to convert: 605 Mon Jun 2 00:49:54 EDT 2014
+Total LOC: 614308 Mon Jun 2 04:24:54 EDT 2014
+Begin Analyzing: Mon Jun 2 04:25:02 EDT 2014   81691fee-af18-47d6-a160-44821c17f513.apk
+Classes to convert: 605 Mon Jun 2 04:25:37 EDT 2014
 	*****Output Dir:  tools/java_Analysis/javaOutput/81691fee-af18-47d6-a160-44821c17f513%apk Classfiles  605
 	*****Output Dir:  tools/java_Analysis/javaOutput/81691fee-af18-47d6-a160-44821c17f513%apk Javafiles  596
-Total LOC: 73772 Mon Jun 2 00:50:03 EDT 2014
-convert_APK End: Mon Jun 2 00:50:03 EDT 2014
-Total Time 3 minutes and 21 seconds.
+Total LOC: 73772 Mon Jun 2 04:25:42 EDT 2014
+convert_APK End: Mon Jun 2 04:25:42 EDT 2014
+Total Time 58 minutes and 54 seconds.
