@@ -25,6 +25,9 @@
 	inputDir=$1
 	outputDir=output/
 
+	### clear just in case, this will prevent errors
+	rm -rf $outputDir
+
 	### Check to see if the contents of the file exist in the permission table. If not, then add them
 	### 1) Overprivilege or underprivilege (which input is being examined)
 	### 2) apkFileName
