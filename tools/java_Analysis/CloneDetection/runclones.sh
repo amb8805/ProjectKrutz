@@ -34,17 +34,11 @@ for i in $(find $inputLocation -mindepth 1 -maxdepth 1 -type d )
 									### mindepth ignore the top layer
 									### Only examine the top layer
 do
-  #pwd
+  pwd
 	### Run the clone detection tool on each
 	
 	### Get the total result set from nicad. It is dirty
-	#cloneResults=`./nicad3 blocks java $i blindrename 2>&1`
-
-	echo "Look for clones in " $i
-	#cloneResults=`./nicad3 functions java $i 2>&1`
-
-	./nicad3 functions java $i
-
+	cloneResults=`./nicad3 blocks java $i blindrename 2>&1`
 
 	### Clean the resultset from Nicad to only get the clone count
 	### This information can also be used to put into the database
@@ -78,4 +72,3 @@ date2=$(date +"%s")
 diff=$(($date2-$date1))
 echo "Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> ../../../$logLocation
 echo "Clone Detection End:" `date` >> ../../../$logLocation
-
