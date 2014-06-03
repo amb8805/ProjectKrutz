@@ -118,11 +118,12 @@
 		CheckFor=Overprivilege
    		CheckAndAddOverAndUnderPrivs $CheckFor $outputDir$APKFile $rowid
 
-		cd ../../
-
 		### Clean up the output files
 		#rm -rf $outputDir/$APKFile
 		rm -rf $outputDir/*
+	
+		cd ../../
+
 	done
 
 
