@@ -121,8 +121,8 @@
 		cd ../../
 
 		### Clean up the output files
-		rm -rf $outputDir/$APKFile
-
+		#rm -rf $outputDir/$APKFile
+		rm -rf $outputDir/*
 	done
 
 
