@@ -15,16 +15,18 @@
 		APK_Input_Path=$1
 	fi
 
-
+	echo "Start Stowaway Analysis:" `date` >> $logLocation
 	./tools/stowaway/run_stowaway.sh $APK_Input_Path
 
+	echo "Start Androguard:" `date` >> $logLocation
 	./androguard.sh $APK_Input_Path
 
 	echo "Start java Analysis:" `date` >> $logLocation
 	./tools/java_Analysis/RunAll.sh $APK_Input_Path
 
 	## Run the script to modify the apkInformation 
-#	./modifyAPKInformationDB.sh
+	echo "Start ModifyAPKInformation:" `date` >> $logLocation
+	./modifyAPKInformationDB.sh
 
 
 	### Gather apk information
