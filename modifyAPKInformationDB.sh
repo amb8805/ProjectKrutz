@@ -56,7 +56,7 @@
 	### Now loop through all of the records in the database to make sure those values are up to date
 	###			Not the most efficient way to do things, but the best way I can think of 
 	### Only loop through the information which needs to be updated
-	LIST=`sqlite3 $dbname "SELECT rowID FROM apkinformation where ModifiedOS is null"`;
+	LIST=`sqlite3 $dbname "SELECT rowID FROM apkinformation where ModifiedOSText is null"`;
 	 
 	# For each row
 	for ROW in $LIST; do
@@ -66,7 +66,7 @@
 		# If the minimum OS is 1.3 and up, the column "ModifiedOS" should read 1.3
 		minos=`sqlite3 $dbname "SELECT OperatingSystems FROM ApkInformation WHERE rowid='$rowid';"`
 		minos=${minos//and up/""} ### Remove the and up	
-		sqlite3 $dbname  "UPDATE ApkInformation SET ModifiedOS=\"$minos\" WHERE rowid=$rowid;"	
+		sqlite3 $dbname  "UPDATE ApkInformation SET ModifiedOSText=\"$minos\" WHERE rowid=$rowid;"	
 
 		#### Generate the modified PublicationDate
 		DatePublished=`sqlite3 $dbname "SELECT DatePublished FROM ApkInformation WHERE rowid='$rowid';"`
