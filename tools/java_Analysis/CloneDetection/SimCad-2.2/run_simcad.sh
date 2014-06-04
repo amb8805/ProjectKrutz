@@ -36,7 +36,7 @@
 	cloneGroupCount=-1
 
 
-	cd tools/java_Analysis/CloneDetection/Simcad-2.2/ ### Messy, but I think it works
+	cd tools/java_Analysis/CloneDetection/SimCad-2.2/ ### Messy, but I think it works
 
 
 	for i in $(find $inputLocation -mindepth 1 -maxdepth 1 -type d ) 
@@ -49,7 +49,7 @@
 		### Examine each by simcad
 		temp=`./simcad2 -s $i -l java -o $tempOutputLocation/$APKFile`
 	
-
+echo $temp
 		### If an exception is thrown, then skip the rest
 		if [[ $temp == *"Exception in thread"* ]]
 		then
