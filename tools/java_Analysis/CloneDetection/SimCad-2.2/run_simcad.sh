@@ -45,11 +45,14 @@
 		APKFile=$(basename $i)
 		APKFile=${APKFile//%apk/""} ### Remove the apk exension from the apkID
 		mkdir -p $tempOutputLocation/$APKFile # Create the temp output location
-		
+
+
+		### When there is an exception thrown, it is often because there are no contents to the java file being analyzed.
+		###	Check the LOC which is generated
+
 		### Examine each by simcad
 		temp=`./simcad2 -s $i -l java -o $tempOutputLocation/$APKFile`
 	
-echo $temp
 		### If an exception is thrown, then skip the rest
 		if [[ $temp == *"Exception in thread"* ]]
 		then
