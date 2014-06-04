@@ -81,7 +81,7 @@
 
 		### Remove the created javaoutput.
 		echo "Remove Java Output" `date` >> $logDir/$logFile
-		rm -rf tools/java_Analysis/javaOutput
+		rm -rf tools/java_Analysis/javaOutput/*
 
 
 		### Run findbugs
