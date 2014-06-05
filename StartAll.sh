@@ -20,8 +20,10 @@
 
 	## Start scraper here
 	echo "Start Scraper:" `date` >> $logDir/$logFile
-
-	#### INSERT COMMAND TO RUN SCRAPER
+	# cd scraper/
+	# scrapy crawl googleplay
+	# cd ..
+	# ./cleanDatabase.sh
 	echo "Scraper Completed:" `date` >> $logDir/$logFile
 
 
