@@ -42,12 +42,11 @@ public class apkparserMain {
 	//final String inputLocation = "src/testinput/testAPKInput"; 
 	
 	
-	final String inputLocation = "/Users/dan/Desktop/full/"; 
+//	final String inputLocation = "/Users/dan/Desktop/full/"; 
 	
 	//static String inputLocation = ""; 
 	
 	public static void main(String[] args) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
-/*		
 		if(args.length!=1){
 			System.out.println("A single argument with the application name was expected");
 		}else{
@@ -55,8 +54,6 @@ public class apkparserMain {
 			apkparserMain ap = new apkparserMain();
 			ap.Run();		
 		}
-		*/
-		
 		
 		apkparserMain ap = new apkparserMain();
 		ap.Run();	
