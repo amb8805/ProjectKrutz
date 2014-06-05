@@ -18,7 +18,7 @@ date1=$(date +"%s")
 
 ### Location of the clones to be analyzed
 ### This is back up a level since when it is called, it is from the checkstyle directory
-inputDirectory=../javaOutput
+inputDirectory=../javaOutput/
 
 ### I do not like doing this, but I do not really know a way around it.
 cd tools/java_Analysis/checkstyle/
