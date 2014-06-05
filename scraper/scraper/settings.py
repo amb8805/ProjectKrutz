@@ -11,7 +11,7 @@ ITEM_PIPELINES = {
 
 DOWNLOADER_MIDDLEWARES = {
 	'scraper.middlewares.RandomUserAgentMiddleware' : 200,
-	'scraper.middlewares.ProxyMiddleware' : 400,
+	'scraper.middlewares.ProxyMiddleware' : None,
 	'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
 }
 
@@ -23,9 +23,7 @@ COOKIES_ENABLED = False
 
 # Need to be proxies from the USA to gather data in English
 PROXY_LIST = [
-	'http://72.167.205.120:80',
-	'https://54.85.145.16:3128',
-	'https://184.82.79.11:3128'
+	'http://76.72.217.131:8080'
 ]
 
 USER_AGENT_LIST = [

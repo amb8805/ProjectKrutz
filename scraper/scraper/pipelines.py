@@ -28,7 +28,6 @@ class SQLiteStorePipeline(object):
         dispatcher.connect(self.finalize, signals.engine_stopped)
 
     def process_item(self, item, spider):
-
         # Tries to insert the APK file's information into the database.
         # If an error occurs or the APK file is a duplicate, the APK file 
         # is not downloaded and the APK file's information is not inserted 
@@ -45,7 +44,7 @@ class SQLiteStorePipeline(object):
         # is added to the database, but the file is not downloaded.
         # try:
         #     cursor = self.conn.cursor()
-        #     cursor.execute('SELECT COUNT(Name) FROM ApkInformation WHERE Name="?" AND Developer="?" AND isJavaAnalyze=1', item['name'], item['developer'])
+        #     cursor.execute('SELECT COUNT(Name) FROM ApkInformation WHERE Name="?" AND Developer="?" AND IsJavaAnalyze=1', item['name'], item['developer'])
         #     result = cur.fetchone()
         #     if result is None:
         #         raise DropItem('Item does not have a parent with isJavaAnalyze set to true <%s>' % item['url'])
