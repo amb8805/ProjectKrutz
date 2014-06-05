@@ -37,14 +37,6 @@
 
 
 	cd tools/java_Analysis/CloneDetection/SimCad-2.2/ ### Messy, but I think it works
-#echo hi dan
-#echo $inputLocation
-#pwd
-#ls $inputLocation/81691fee-af18-47d6-a160-44821c17f513%apk
-#echo 43
-
-
-
 
 	for i in $(find $inputLocation -mindepth 1 -maxdepth 1 -type d ) 
 	do
