@@ -1,7 +1,10 @@
 package dk;
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -39,12 +42,12 @@ public class apkparserMain {
 	//final String inputLocation = "src/testinput/testAPKInput"; 
 	
 	
-	//final String inputLocation = "/Users/dan/Desktop/testAPKInput"; 
+	final String inputLocation = "/Users/dan/Desktop/full/"; 
 	
-	static String inputLocation = ""; 
+	//static String inputLocation = ""; 
 	
 	public static void main(String[] args) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
-		
+/*		
 		if(args.length!=1){
 			System.out.println("A single argument with the application name was expected");
 		}else{
@@ -52,6 +55,12 @@ public class apkparserMain {
 			apkparserMain ap = new apkparserMain();
 			ap.Run();		
 		}
+		*/
+		
+		
+		apkparserMain ap = new apkparserMain();
+		ap.Run();	
+		
 	}
 	
 	public void Run() throws IOException, InterruptedException, ParserConfigurationException, SAXException{	
@@ -98,10 +107,7 @@ public class apkparserMain {
 	
 	
 	private void enterDataIntoDB(){
-		//System.out.println("enter DB Data");
-		
 		// Loop through all of the apkItems
-	
 			Connection c = null;
 		    Statement stmt = null;
 		    try {
@@ -233,16 +239,13 @@ public class apkparserMain {
 						     c.commit();
 						     stmt.close();
 						  //   c.close();
-					     }
-					          
+					     }			          
 				     }
 				    
 			 	}
 			 	
 			 	// end of intents linking
-				  
-					     
-				   
+
 				     // Permissions
 					    // For all of the intents in the array, get their intentID value to add it to the  join table
 					 	for (int x = 0; x < MasterapkList.get(i).getPermissionList().size(); x++) {
@@ -292,11 +295,9 @@ public class apkparserMain {
 							     stmt.close();
 							     rs.close();
 						     }
-						     // end of priv linking
-			 		
+						     // end of priv linking	
 			 	}
-			    
-				
+			    	
 				// Next insert the information into the apk tools table
 				 stmt = c.createStatement();
 				String sql="SELECT count(rowID) as countrowID FROM toolResults where rowid = '" + RowID  + "' ;";
@@ -307,8 +308,7 @@ public class apkparserMain {
 			     int countrowID=0;
 			     if (rs.next()) {
 			    	 countrowID=rs.getInt("countrowID");
-			     }
-			     
+			     }	     
 			     
 			     if(countrowID < 1){
 			    	// System.out.println("Insert251:" + RowID);
@@ -320,8 +320,7 @@ public class apkparserMain {
 			     }
 			     stmt.close();
 			     rs.close();	
-			    
-			   
+	   
 			     // Now insert the basic toolresult values
 			     stmt = c.createStatement();
 			    // String sql = "INSERT INTO ToolResults (apkID, apkParser_versionCode, apkParser_VersionName, 
@@ -337,9 +336,7 @@ public class apkparserMain {
 			//     rs.close();
 			    
 				 }
-				     
-			 
-			
+
 //		      stmt.close();
 //		      c.close();	
 		     
@@ -348,12 +345,7 @@ public class apkparserMain {
 		      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 		      System.exit(0);
 		    }
-			
-			
-			
-	
-		
-		
+
 	}
 	
 	
@@ -371,12 +363,13 @@ public class apkparserMain {
 	// Add a check to ensure that some input files exist
 	// errors could occur later on if this is not done
 	private List<apkItem> buildAPKItems(String inputLocation) throws IOException, InterruptedException{
+		
 		List<apkItem>apkList=new ArrayList<apkItem>();
 		
 		// loop through all of the apk files in the input directory
 		File path = new File(inputLocation);
-		
 		File [] files = path.listFiles();
+		
 		    for (int i = 0; i < files.length; i++){
 		        if (files[i].isFile()){ //this line weeds out other directories/folders
 		        	// Make sure the file is an apk file
@@ -402,14 +395,6 @@ public class apkparserMain {
 	// Analyze the target .apk file and return its generated XML information
 	private String RunAPKParser(File inputFile) throws IOException, InterruptedException{
 	
-		/*
-		System.out.println("Working Directory = " + System.getProperty("user.dir"));
-		
-		
-		System.out.println(this.getClass().getClassLoader().getResource("").getPath());
-		System.out.println("exit");
-		System.exit(0);
-		*/
 		String prefix = "";
 		
 		// Determine if the parser should "move up" one
@@ -419,23 +404,42 @@ public class apkparserMain {
 		}
 		
 		final String apkParserCommand = "java -jar "+prefix+"src/apkparser/APKParser.jar ";
-		//System.out.println(apkParserCommand);
-		//System.exit(0);
-		// Process proc = Runtime.getRuntime().exec("java -jar src/apkparser/APKParser.jar " + inputFile.getAbsolutePath());
-		Process proc = Runtime.getRuntime().exec(apkParserCommand + inputFile.getAbsolutePath());
-		
-		
-		proc.waitFor();
-		// Then retrieve the process output
-		InputStream in = proc.getInputStream();
-		InputStream err = proc.getErrorStream();
+		String s = null;
+		StringBuilder sb = new StringBuilder();
 
-		byte b[]=new byte[in.available()];
-		in.read(b,0,b.length);
+	        try {
+	            
+		    // run the Unix "ps -ef" command
+	            // using the Runtime exec method:
+	            Process p = Runtime.getRuntime().exec(apkParserCommand + inputFile.getAbsolutePath());
+	            
+	            BufferedReader stdInput = new BufferedReader(new 
+	                 InputStreamReader(p.getInputStream()));
 
-		byte c[]=new byte[err.available()];
-		err.read(c,0,c.length);
-		return(new String(b));
+	            BufferedReader stdError = new BufferedReader(new 
+	                 InputStreamReader(p.getErrorStream()));
+
+	            // read the output from the command
+	          //  System.out.println("Here is the standard output of the command:\n");
+	            while ((s = stdInput.readLine()) != null) {
+	              //  System.out.println(s);
+	            	sb.append(s);
+	            }
+	            
+	            // read any errors from the attempted command
+	          //  System.out.println("Here is the standard error of the command (if any):\n");
+	            while ((s = stdError.readLine()) != null) {
+	                System.out.println(s);
+	            }
+	        }
+	        catch (IOException e) {
+	            //System.out.println("exception happened - here's what I know: ");
+	            e.printStackTrace();
+	            System.exit(-1);
+	        }
+			//	System.out.println("The final output: " + sb.toString());
+	        return sb.toString();    
 	}
 
 }
+
