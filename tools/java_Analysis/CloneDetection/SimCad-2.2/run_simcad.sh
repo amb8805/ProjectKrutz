@@ -4,7 +4,7 @@
 
 	echo Run Simcad
 	#inputLocation=$1
-	inputLocation=../../javaOutput
+	inputLocation=../../javaOutput/  ### Must have trailing space, or things will not work with a symlink
 
 
 	logLocation=logs/Simcad.log
@@ -37,18 +37,23 @@
 
 
 	cd tools/java_Analysis/CloneDetection/SimCad-2.2/ ### Messy, but I think it works
+#echo hi dan
+#echo $inputLocation
+#pwd
+#ls $inputLocation/81691fee-af18-47d6-a160-44821c17f513%apk
+#echo 43
+
+
 
 
 	for i in $(find $inputLocation -mindepth 1 -maxdepth 1 -type d ) 
 	do
+		
+
 	  	echo "Simcad Analyzing:" `echo $i` `date` >> ../../../../$logLocation
 		APKFile=$(basename $i)
 		APKFile=${APKFile//%apk/""} ### Remove the apk exension from the apkID
 		mkdir -p $tempOutputLocation/$APKFile # Create the temp output location
-
-
-		### When there is an exception thrown, it is often because there are no contents to the java file being analyzed.
-		###	Check the LOC which is generated
 
 		### Examine each by simcad
 		temp=`./simcad2 -s $i -l java -o $tempOutputLocation/$APKFile`
@@ -57,6 +62,9 @@
 		if [[ $temp == *"Exception in thread"* ]]
 		then
 			echo Exception Thrown
+
+		### When there is an exception thrown, it is often because there are no contents to the java file being analyzed.
+		###	Check the LOC which is generated
 		else
 			echo blah
 			### Parse the expected output
@@ -65,10 +73,10 @@
 			cloneGroupCount=`sed 's/^.*Total clone group\\/pair ://; s/Pre-Processing time :.*$//' <<< $temp`
 		fi
 	
-		#echo "APKInformation: " $APKFile
-		#echo Source Fragment: $sourceFragmentCount
-		#echo Clone Fragment: $cloneFragmentCount
-		#echo Clone Group: $cloneGroupCount
+		echo "APKInformation: " $APKFile
+		echo Source Fragment: $sourceFragmentCount
+		echo Clone Fragment: $cloneFragmentCount
+		echo Clone Group: $cloneGroupCount
 
 
 		echo ".......Source Fragment:" `echo $sourceFragmentCount` `date` >> ../../../../$logLocation

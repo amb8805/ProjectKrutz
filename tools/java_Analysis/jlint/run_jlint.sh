@@ -23,7 +23,7 @@ date1=$(date +"%s")
 
 
 ### Location of the clones to be analyzed
-inputDirectory=tools/java_Analysis/javaOutput
+inputDirectory=tools/java_Analysis/javaOutput/  ### Must have trailing space, or things will not work with a symlink
 
 
 ### Loop through all of the javaOutput folders

@@ -35,10 +35,8 @@
 	logDir=logs
 	logFile=runAll.log
 
-
 	## Make sure that the logs directory exists
 	mkdir -p $logDir 
-
 
 	### Delete the log file if it exists
 	rm -f $logDir/*.log  ##This is now in the toolsScript.sh instead - Shannon
@@ -66,27 +64,21 @@
 		### Find the clones in the system
 		echo "Clones:" `date` >> $logDir/$logFile
 			#	./tools/java_Analysis/CloneDetection/runclones.sh $inputLocation
-		./tools/java_Analysis/CloneDetection/SimCad-2.2/run_simcad.sh tools/java_Analysis/javaOutput
+#		./tools/java_Analysis/CloneDetection/SimCad-2.2/run_simcad.sh tools/java_Analysis/javaOutput
 
 
 		#### CheckStyle
 		echo "CheckStyle:" `date` >> $logDir/$logFile
-#		./tools/java_Analysis/checkstyle/checkStyle.sh
+		./tools/java_Analysis/checkstyle/checkStyle.sh
 
 		### Run JLint
 		echo "Start Running JLint:" `date` >> $logDir/$logFile
-#		./tools/java_Analysis/jlint/run_jlint.sh
+		./tools/java_Analysis/jlint/run_jlint.sh
 
 
 		### Remove the created javaoutput.
 		echo "Remove Java Output" `date` >> $logDir/$logFile
 #		rm -rf tools/java_Analysis/javaOutput/*
-
-
-		### Run findbugs
-		#	echo "Start FindBugs" `date` >> $logDir/$logFile
-		#	./tools/java_Analysis/findbugs/findbugs.sh
-
 
 	fi
 
