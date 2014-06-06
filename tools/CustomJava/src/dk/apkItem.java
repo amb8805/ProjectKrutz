@@ -22,6 +22,7 @@ public class apkItem {
 	private String versionCode;
 	private String versionName;
 	private String minsdk;
+	private String targetsdk;
 	private ArrayList<String>permissionList=new ArrayList<String>(); 
 	private ArrayList<String>intentList=new ArrayList<String>(); 
 	
@@ -56,6 +57,10 @@ public class apkItem {
 
 	public String getMinsdk() {
 		return minsdk;
+	}
+	
+	public String getTargetsdk() {
+		return targetsdk;
 	}
 
 	public ArrayList<String> getPermissionList() {
@@ -129,14 +134,16 @@ public class apkItem {
 	        	AddUniqueItemToPermissionList(permission);
 	        }
 	        
-	        // Get the min sdk version
+	        // Get the min and target sdk version
 	        if(currentNode.getNodeName().toString().equals("uses-sdk")){
 	        	final String sdk =currentNode.getAttributes().item(0).getNodeValue().toString(); 
 	        	//System.out.println("MinSDK: " + sdk);
 	        	minsdk = sdk;
+	        	final String targetSdk =currentNode.getAttributes().item(1).getNodeValue().toString(); 
+	        	//System.out.println("MinSDK: " + sdk);
+	        	targetsdk = targetSdk;	
 	        }
-	        
-	        
+	       	         
 	        // Get the intent information
 	        if(currentNode.getNodeName().toString().equals("application")){
 	        	

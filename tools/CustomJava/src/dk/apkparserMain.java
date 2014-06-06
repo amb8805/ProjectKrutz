@@ -48,6 +48,7 @@ public class apkparserMain {
 	
 	public static void main(String[] args) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
 		
+	
 		if(args.length!=1){
 			System.out.println("A single argument with the application name was expected");
 		}else{
@@ -57,10 +58,10 @@ public class apkparserMain {
 		}
 		
 		
-		
-		//apkparserMain ap = new apkparserMain();
-		//ap.Run();	
-		
+	/*	
+		apkparserMain ap = new apkparserMain();
+		ap.Run();	
+		*/
 	}
 	
 	public void Run() throws IOException, InterruptedException, ParserConfigurationException, SAXException{	
@@ -80,8 +81,8 @@ public class apkparserMain {
 	
 		// Insert the values into the database
 		enterDataIntoDB();
-		/*
 		
+		/*
 		// Loop through all of the items just to test
 		for (int i = 0; i < MasterapkList.size(); i++){
 			
@@ -89,6 +90,7 @@ public class apkparserMain {
 			System.out.println(MasterapkList.get(i).getVersionName());
 			System.out.println(MasterapkList.get(i).getVersionCode());
 			System.out.println(MasterapkList.get(i).getMinsdk());
+			System.out.println(MasterapkList.get(i).getTargetsdk());
 			System.out.println(MasterapkList.get(i).getPermissionList().size());
 			System.out.println(MasterapkList.get(i).getIntentList().size());
 			
@@ -326,8 +328,10 @@ public class apkparserMain {
 			    // String sql = "INSERT INTO ToolResults (apkID, apkParser_versionCode, apkParser_VersionName, 
 			     //apkParser_minsdk) VALUES (" + RowID + ", '"+versionCode+"','"+versionName+"','"+minsdk+"' );"; 
 			    
-			     sql = "Update toolResults set apkParser_versionCode='"+MasterapkList.get(i).getVersionCode()+"', apkParser_VersionName='"+MasterapkList.get(i).getVersionName()+"', apkParser_minsdk='"+ MasterapkList.get(i).getMinsdk()+"' where rowID=" + RowID;
+			     sql = "Update toolResults set apkParser_versionCode='"+MasterapkList.get(i).getVersionCode()+"', apkParser_VersionName='"+MasterapkList.get(i).getVersionName()+"', apkParser_minsdk='"+ MasterapkList.get(i).getMinsdk()+"'  , apkParser_targetsdk='"+ MasterapkList.get(i).getTargetsdk()+"'       where rowID=" + RowID;
 			    
+			    System.out.println(sql);
+			     
 			     stmt.executeUpdate(sql);  
 			     c.commit(); 
 	
@@ -422,7 +426,7 @@ public class apkparserMain {
 	            // read the output from the command
 	          //  System.out.println("Here is the standard output of the command:\n");
 	            while ((s = stdInput.readLine()) != null) {
-	              //  System.out.println(s);
+	               // System.out.println(s);
 	            	sb.append(s);
 	            }
 	            
@@ -442,4 +446,3 @@ public class apkparserMain {
 	}
 
 }
-
