@@ -33,8 +33,6 @@
 	git add EvolutionOfAndroidApplications.sqlite
 	git commit -m "Automatic checkin: `date`"
 	git push https://EvolutionOfAndroid:ProjectKrutz1@github.com/DroidDarwin/DarwinData.git master
-
-
 	cd ../ProjectKrutz
 
 
