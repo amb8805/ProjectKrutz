@@ -42,7 +42,7 @@ public class apkparserMain {
 	//final String inputLocation = "src/testinput/testAPKInput"; 
 	
 	
-//	final String inputLocation = "/Users/dan/Desktop/full/"; 
+//	final String inputLocation = "/Users/dan/Desktop/temp/"; 
 	
 	static String inputLocation = ""; 
 	
@@ -58,10 +58,10 @@ public class apkparserMain {
 		}
 		
 		
-	/*	
-		apkparserMain ap = new apkparserMain();
-		ap.Run();	
-		*/
+	
+	//	apkparserMain ap = new apkparserMain();
+	//	ap.Run();	
+		
 	}
 	
 	public void Run() throws IOException, InterruptedException, ParserConfigurationException, SAXException{	
@@ -355,12 +355,33 @@ public class apkparserMain {
 	
 	// Modify the contents of the object to create the necessary information for output
 	// ? Might be a good idea to refactor this to take place directly in the apkItem object
-	private void gatherAPKInfo(List<apkItem>apkList) throws ParserConfigurationException, SAXException, IOException, InterruptedException{
+	private void gatherAPKInfo(List<apkItem>apkList) {
 
-		// Loop through objects in the list
-		for (int i = 0; i < apkList.size(); i++){
-			apkList.get(i).parseXMLInfo();
-		}
+		
+	
+			// Loop through objects in the list
+			for (int i = 0; i < apkList.size(); i++){
+				System.out.println(apkList.get(i).getApkFileName());
+				try {
+					apkList.get(i).parseXMLInfo();
+				} catch (ParserConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SAXException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	
+		
+		
+		
 
 	}
 	
