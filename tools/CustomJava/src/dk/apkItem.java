@@ -134,15 +134,28 @@ public class apkItem {
 	        	AddUniqueItemToPermissionList(permission);
 	        }
 	        
-	        // Get the min and target sdk version
+
+			String targetSdk ="";
+			String sdk = "";
+
+	     // Get the min and target sdk version
 	        if(currentNode.getNodeName().toString().equals("uses-sdk")){
-	        	final String sdk =currentNode.getAttributes().item(0).getNodeValue().toString(); 
-	        	//System.out.println("MinSDK: " + sdk);
-	        	minsdk = sdk;
-	        	final String targetSdk =currentNode.getAttributes().item(1).getNodeValue().toString(); 
-	        	//System.out.println("MinSDK: " + sdk);
-	        	targetsdk = targetSdk;	
+	        	
+	        	// Make sure there is an item to pull in
+	        	if(currentNode.getAttributes().getLength()>0){
+		        	sdk =currentNode.getAttributes().item(0).getNodeValue().toString(); 
+		        	//System.out.println("MinSDK: " + sdk);
+		        	minsdk = sdk;
+	        	}
+	        	
+	        	// Make sure there is an item to pull in
+	        	if(currentNode.getAttributes().getLength()>1){
+		        	targetSdk =currentNode.getAttributes().item(1).getNodeValue().toString(); 
+		        	//System.out.println("MinSDK: " + sdk);
+		        	targetsdk = targetSdk;	
+	        	}
 	        }
+	       	       
 	       	         
 	        // Get the intent information
 	        if(currentNode.getNodeName().toString().equals("application")){
