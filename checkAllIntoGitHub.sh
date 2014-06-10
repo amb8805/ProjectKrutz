@@ -16,6 +16,26 @@
 		echo "Checking in database:" $f `date` >> $logLocation
 	done
 
+
+	echo "Start Pushing to Public Repo:" `date` >> $logLocation
+
+	### Copy the SQLite DB to the publicly available GH Repo
+	
+		### Get the SQLIte DB to copy from
+	echo "Copy DB:" `date` >> $logLocation
+
+	### Make sure to overwite the existing copy of the DB
+	cp EvolutionOfAndroidApplications.sqlite ../DarwinData/
+	echo "Check into Public GH repo"
+	echo "Check the repo into GH:" `date` >> $logLocation
+	cd ../DarwinData
+
+	git add EvolutionOfAndroidApplications.sqlite
+	git commit -m "Automatic checkin: `date`"
+	git push https://EvolutionOfAndroid:ProjectKrutz1@github.com/DroidDarwin/DarwinData.git master
+	cd ../ProjectKrutz
+
+
 	### Now we do all the commiting ##
 	echo "Commit Logs and Database to Github"
 	##if this is the VM then run this
@@ -27,5 +47,6 @@
 	git add EvolutionOfAndroidApplications.sqlite
 	git commit -m "Automatic checkin"
 	git push https://EvolutionOfAndroid:ProjectKrutz1@github.com/cklimkowsky/ProjectKrutz.git master
+
 
 	echo "Done Commiting Logs"
