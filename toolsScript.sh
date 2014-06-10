@@ -7,7 +7,7 @@
 	touch $logLocation
 
 	# Check to make sure that an argument is actually passed in
-	APK_Input_Path="scraper/downloads/full/"
+	APK_Input_Path="scraper/downloads/temp/"
 	EXPECTED_ARGS=1
 	if [ $# -eq $EXPECTED_ARGS ]
 	then
@@ -31,7 +31,7 @@
 	### Gather apk information
 	echo "Start Java APK Parser:" `date` >> $logLocation
 	cd tools/CustomJava/src/
-#	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../scraper/downloads/full/
+	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../$APK_Input_Path
 	cd ../../../
 	echo "End Java APK Parser:" `date` >> $logLocation
 
