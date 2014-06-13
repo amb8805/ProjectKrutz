@@ -24,7 +24,7 @@
 
 	### Make the temp output location
 	#tempOutputLocation=tools/java_Analysis/CloneDetection/Simcad-2.2/output/
-	tempOutputLocation=output/
+	tempOutputLocation=/dev/shm/output/
 	rm -rf $tempOutputLocation
 	mkdir -p $tempOutputLocation
 
@@ -58,7 +58,7 @@
 		### When there is an exception thrown, it is often because there are no contents to the java file being analyzed.
 		###	Check the LOC which is generated
 		else
-			echo blah
+			
 			### Parse the expected output
 			sourceFragmentCount=`sed 's/^.*Total source fragment ://; s/Total clone fragment.*$//' <<< $temp`
 			cloneFragmentCount=`sed 's/^.*Total clone fragment ://; s/Total clone group.*$//' <<< $temp`
