@@ -43,11 +43,17 @@
 	FILES=$(find $apkInputDir  -type f -name '*.apk')
 	for f in $FILES
 	do
-		echo Adding $f
-		APKFile=$(basename $f)
-		APKFile=${APKFile//%apk/""} ### Remove the apk exension from the apkID
-		sqlite3 $dbname  "Insert into apkinformation (Name, SourceID, apkID, Developer, DatePublished) values (\"$counter\",1, \"$APKFile\", \"$counter\", \"$counter\");"	
+		#echo Adding $f
+
+		
+		appName=${f//.apk/""}
+	appName=${appName//%/""}
+	appName=$(basename $appName)
+	echo $appName
+		sqlite3 $dbname  "Insert into apkinformation (Name, SourceID, apkID, Developer, DatePublished) values (\"$appName\",1, \"$appName\", \"$counter\", \"$counter\");"	
 		counter=$((counter+1))
+
+		
 	done
 
 
