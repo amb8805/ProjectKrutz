@@ -36,13 +36,18 @@
 
 	clearDatabase ### Clear the database if necessary 
 
+	## Temp Counter for the file Info to make it unique
+	counter=1
+
 	### Loop through the temp output directory and copy all files to input
 	FILES=$(find $apkInputDir  -type f -name '*.apk')
 	for f in $FILES
 	do
 		echo Adding $f
-		#sqlite3 $dbname  "Insert into apkinformation (Name, SourceID, apkID, Developer, DatePublished) values (\"$counter\",1, \"$f\", \"$counter\", \"$counter\");"	
-
+		APKFile=$(basename $f)
+		APKFile=${APKFile//%apk/""} ### Remove the apk exension from the apkID
+		sqlite3 $dbname  "Insert into apkinformation (Name, SourceID, apkID, Developer, DatePublished) values (\"$counter\",1, \"$APKFile\", \"$counter\", \"$counter\");"	
+		counter=$((counter+1))
 	done
 
 
