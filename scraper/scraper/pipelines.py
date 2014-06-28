@@ -32,24 +32,27 @@ class SQLiteStorePipeline(object):
         # If an error occurs or the APK file is a duplicate, the APK file 
         # is not downloaded and the APK file's information is not inserted 
         # into the database.
+        # try:
+        #     self.insert_item(self, item)
+        # except Exception as e:
+        #     raise DropItem('%s <%s>' % (e.message, item['url']))
+
+        # Checks if an earlier version of the APK file exists. If yes,
+        # then the APK file's information is inserted into the database,
+        # and the file is downloaded. Otherwise, the APK is ignored.
         try:
-            self.conn.execute('INSERT INTO ApkInformation (Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, NumberOfDownloads, OperatingSystems, URL, SourceId, ApkId, CollectionDate, LowerDownloads, UpperDownloads) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'], item['developer'], item['genre'], item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['operating_systems'], item['url'], item['source_id'], item['id'], item['collection_date'], item['lower_downloads'], item['upper_downloads']))
-            return item
+            cursor = self.conn.cursor()
+            cursor.execute('SELECT DatePublished FROM ApkInformation WHERE Name=? AND Developer=? ORDER BY CollectionDate', (item['name'], item['developer']))
+            result = cursor.fetchone()
+            if result is None:
+                raise DropItem('An earlier version of the APK is not in the database')
+            else:
+                if result[0] == item['date_published']:
+                    raise DropItem('An earlier version of the APK is in the database, but a new version has not been released')
+                else:
+                    self.insert_item(item)      
         except Exception as e:
             raise DropItem('%s <%s>' % (e.message, item['url']))
-
-        # Checks if an earlier version of the APK file exists, and if that
-        # parent has "isJavaAnalyze" set to true. If yes, the file is downloaded 
-        # and subsequently analyzed. If not, the information for that file
-        # is added to the database, but the file is not downloaded.
-        # try:
-        #     cursor = self.conn.cursor()
-        #     cursor.execute('SELECT COUNT(Name) FROM ApkInformation WHERE Name="?" AND Developer="?" AND IsJavaAnalyze=1', item['name'], item['developer'])
-        #     result = cur.fetchone()
-        #     if result is None:
-        #         raise DropItem('Item does not have a parent with isJavaAnalyze set to true <%s>' % item['url'])
-        # except Exception as e:
-        #   raise DropItem('%s <%s>' % (e.message, item['url']))
 
     def initialize(self):
         if path.exists(self.filename):
@@ -62,6 +65,10 @@ class SQLiteStorePipeline(object):
             self.conn.commit()
             self.conn.close()
             self.conn = None
+
+    def insert_item(self, item):
+        self.conn.execute('INSERT INTO ApkInformation (Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, NumberOfDownloads, OperatingSystems, URL, SourceId, ApkId, CollectionDate, LowerDownloads, UpperDownloads) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'], item['developer'], item['genre'], item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['operating_systems'], item['url'], item['source_id'], item['id'], item['collection_date'], item['lower_downloads'], item['upper_downloads']))
+        return item
 
 # Uses https://github.com/egirault/googleplay-api to download APK files from Google Play
 class GooglePlayDownloadPipeline(object):
