@@ -17,7 +17,10 @@
 	echo "Start Modifying DB information"
 
 	#### Directory of APK files to be analyzed
-	apkInputDir=scraper/downloads/full
+	#	apkInputDir=scraper/downloads/full
+	apkInputDir=$1
+
+
 
 	### Name of the sqlite file being analyzed
 	dbname=EvolutionOfAndroidApplications.sqlite

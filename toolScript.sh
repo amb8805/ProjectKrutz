@@ -7,12 +7,18 @@
 	touch $logLocation
 
 	# Check to make sure that an argument is actually passed in
-	APK_Input_Path="scraper/downloads/temp/"
+	APK_Input_Path="scraper/downloads/full/"
 	EXPECTED_ARGS=1
 	if [ $# -eq $EXPECTED_ARGS ]
 	then
 		APK_Input_Path=$1
 	fi
+
+	### Make sure the Androrisk files are gone
+	### These can cause problems
+	rm -rf logs/AndroRiskOutput/
+
+
 
 	echo "Start Stowaway Analysis:" `date` >> $logLocation
 	./tools/stowaway/run_stowaway.sh $APK_Input_Path
@@ -25,7 +31,7 @@
 
 	## Run the script to modify the apkInformation 
 	echo "Start ModifyAPKInformation:" `date` >> $logLocation
-	./modifyAPKInformationDB.sh
+	./modifyAPKInformationDB.sh $APK_Input_Path
 
 
 	### Gather apk information
@@ -42,3 +48,4 @@
 	echo "toolsScript End:" `date` >> $logLocation
 
 	echo "!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!!!!"
+
