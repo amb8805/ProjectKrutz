@@ -34,6 +34,7 @@ class SQLiteStorePipeline(object):
         # into the database.
         try:
             self.insert_item(item)
+            return item
         except Exception as e:
             raise DropItem('%s <%s>' % (e.message, item['url']))
 
@@ -50,7 +51,8 @@ class SQLiteStorePipeline(object):
         #         if result[0] == item['date_published']:
         #             raise DropItem('An earlier version of the APK is in the database, but a new version has not been released')
         #         else:
-        #             self.insert_item(item)      
+        #             self.insert_item(item)
+        #             return item      
         # except Exception as e:
         #     raise DropItem('%s <%s>' % (e.message, item['url']))
 
@@ -68,7 +70,6 @@ class SQLiteStorePipeline(object):
 
     def insert_item(self, item):
         self.conn.execute('INSERT INTO ApkInformation (Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, NumberOfDownloads, OperatingSystems, URL, SourceId, ApkId, CollectionDate, LowerDownloads, UpperDownloads) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', (item['name'], item['software_version'], item['developer'], item['genre'], item['score'], item['date_published'], item['file_size'], item['num_downloads'], item['operating_systems'], item['url'], item['source_id'], item['id'], item['collection_date'], item['lower_downloads'], item['upper_downloads']))
-        return item
 
 # Uses https://github.com/egirault/googleplay-api to download APK files from Google Play
 class GooglePlayDownloadPipeline(object):

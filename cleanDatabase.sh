@@ -5,7 +5,7 @@ while IFS='|' read id generatedFileSize; do
 	if [ ! -f "scraper/downloads/full/$file" ]; then
 		echo "File $file does not exist"
 
-		if [ "$generatedFileSize" -gt "0" ]; then
+		if [[ "$generatedFileSize" > "0" ]]; then
 			echo "GeneratedFileSize is $generatedFileSize"
 		else
 			echo "GeneratedFileSize is null"
