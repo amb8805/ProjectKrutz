@@ -1,12 +1,18 @@
 array=()
 echo "Begin cleaning up the database"
-while read id; do
+while IFS='|' read id generatedFileSize; do
 	file="$id.apk"
 	if [ ! -f "scraper/downloads/full/$file" ]; then
 		echo "File $file does not exist"
-		array[${#array[*]}]=$id
+
+		if [ "$generatedFileSize" -gt "0" ]; then
+			echo "GeneratedFileSize is $generatedFileSize"
+		else
+			echo "GeneratedFileSize is null"
+			array[${#array[*]}]=$id
+		fi
 	fi
-done < <(sqlite3 EvolutionOfAndroidApplications.sqlite "SELECT ApkId FROM ApkInformation")
+done < <(sqlite3 EvolutionOfAndroidApplications.sqlite "SELECT ApkId, GeneratedFileSize FROM ApkInformation")
 
 for apk in ${array[@]}; do
 	echo "Removing record $apk from database"
