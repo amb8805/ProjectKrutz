@@ -32,27 +32,27 @@ class SQLiteStorePipeline(object):
         # If an error occurs or the APK file is a duplicate, the APK file 
         # is not downloaded and the APK file's information is not inserted 
         # into the database.
-        # try:
-        #     self.insert_item(self, item)
-        # except Exception as e:
-        #     raise DropItem('%s <%s>' % (e.message, item['url']))
+        try:
+            self.insert_item(item)
+        except Exception as e:
+            raise DropItem('%s <%s>' % (e.message, item['url']))
 
         # Checks if an earlier version of the APK file exists. If yes,
         # then the APK file's information is inserted into the database,
         # and the file is downloaded. Otherwise, the APK is ignored.
-        try:
-            cursor = self.conn.cursor()
-            cursor.execute('SELECT DatePublished FROM ApkInformation WHERE Name=? AND Developer=? ORDER BY CollectionDate', (item['name'], item['developer']))
-            result = cursor.fetchone()
-            if result is None:
-                raise DropItem('An earlier version of the APK is not in the database')
-            else:
-                if result[0] == item['date_published']:
-                    raise DropItem('An earlier version of the APK is in the database, but a new version has not been released')
-                else:
-                    self.insert_item(item)      
-        except Exception as e:
-            raise DropItem('%s <%s>' % (e.message, item['url']))
+        # try:
+        #     cursor = self.conn.cursor()
+        #     cursor.execute('SELECT DatePublished FROM ApkInformation WHERE Name=? AND Developer=? ORDER BY CollectionDate', (item['name'], item['developer']))
+        #     result = cursor.fetchone()
+        #     if result is None:
+        #         raise DropItem('An earlier version of the APK is not in the database')
+        #     else:
+        #         if result[0] == item['date_published']:
+        #             raise DropItem('An earlier version of the APK is in the database, but a new version has not been released')
+        #         else:
+        #             self.insert_item(item)      
+        # except Exception as e:
+        #     raise DropItem('%s <%s>' % (e.message, item['url']))
 
     def initialize(self):
         if path.exists(self.filename):
