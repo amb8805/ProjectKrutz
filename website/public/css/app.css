@@ -110,22 +110,18 @@ blockquote {
 ::-webkit-input-placeholder {
   /* WebKit browsers */
   color: #999;
-  text-transform: uppercase;
 }
 :-moz-placeholder {
   /* Mozilla Firefox 4 to 18 */
   color: #999;
-  text-transform: uppercase;
 }
 ::-moz-placeholder {
   /* Mozilla Firefox 19+ */
   color: #999;
-  text-transform: uppercase;
 }
 :-ms-input-placeholder {
   /* Internet Explorer 10+ */
   color: #999;
-  text-transform: uppercase;
 }
 .offset-header {
   padding-top: 90px;
