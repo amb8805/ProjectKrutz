@@ -198,10 +198,6 @@ angular.module('androidApp.controllers', []).
       });
     };
 
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
     $scope.setUnit = function (bound, unit) {
       if (bound == 'from') {
         $scope.filter.fileSizeFromUnit = unit;

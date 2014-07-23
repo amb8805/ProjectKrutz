@@ -1,22 +1,43 @@
 div#about.about.section
 	div.container
 		div.row
-			div.col-lg-12
-				h1 Project Information
-				h2 Background
-				p When a user installs an Android application, they are presented with a list of permissions that are required by the application. This provides the user with only one level of granularity; they can choose to install the application or to not install it. When a user installs an iOS application, that user accepts certain basic permissions, and then has to approve special permissions from within the application.
-				p The Android permissions system has led many applications to neglect the principle of least privilege, which results in a “permissions gap”. This is the difference between an application’s necessary permissions and any permissions in which the application is overprivileged. As a result, It is believed that overprivileged applications may be susceptible to malware attacks or other security issues.
-				h2 Motivation
-				p The goal of this project is to gather application information from as many Android application package (APK) files as possible in order to analyze the evolution of these files over time. In addition to the “permissions gap”, we will be looking for any security vulnerabilities that may exist in these applications. Furthermore, we will be performing several types of testing, such as stress and compatibility testing, in hopes of discovering any other underlying issues.
-				p Currently, there is no existing data set such as the one we hope to produce as a result of this project. We believe that such a data set would be valuable towards future research.
+			div.col-md-3
+				h2.title Project Information
+			div.col-md-9				
+				h3.subtitle Background
+				div.content
+					p Moblle applications are typically updated more frequently than traditional desktop applications, with many applications being updated several times a month. These updates occur for a variety of reasons, including bug fixes, required updates for new phone hardware, or feature additions. While the intention is for each release to make the software better, they unfortunately often cause more harm than good.
+				h3.subtitle Motivation
+				div.content
+					p The goal of this project is to gather application information from as many Android application package (APK) files as possible in order to examine correlations between various quality metrics and security characteristics of the applications. In particular, some of the metrics we looked at are adherence to coding standards, file size, over- and underpermissions, and any defects or security vulnerabilities that may exist.
+					p Currently, there is no existing data set such as the one we have produced as a result of this project. We hope that such a data set will be valuable towards future research.
 		div.row
-			div.col-lg-12
-				h1 Collaborators
-				h2 Adam Blaine
-				p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit. Cras eu libero suscipit odio laoreet luctus ac vitae tellus. Quisque sit amet semper orci. 
-				h2 Casey Klimkowsky
-				p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit. Cras eu libero suscipit odio laoreet luctus ac vitae tellus. Quisque sit amet semper orci. 
-				h2 Shannon Trudeau
-				p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit. Cras eu libero suscipit odio laoreet luctus ac vitae tellus. Quisque sit amet semper orci. 
-				h2 Dr. Daniel E. Krutz
-				p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit. Cras eu libero suscipit odio laoreet luctus ac vitae tellus. Quisque sit amet semper orci. 
+			div.col-md-3
+				h2.title Collaborators
+			div.col-md-9
+				h3.subtitle Adam Blaine
+				h4.contact amb8805@rit.edu
+				div.content
+					p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit. Cras eu libero suscipit odio laoreet luctus ac vitae tellus. Quisque sit amet semper orci. 
+				h3.subtitle Casey Klimkowsky
+				h4.contact cek3403@rit.edu
+				div.content
+					p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit. Cras eu libero suscipit odio laoreet luctus ac vitae tellus. Quisque sit amet semper orci. 
+				h3.subtitle Shannon Trudeau
+				h4.contact smt9020@rit.edu
+				div.content
+					p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit. Cras eu libero suscipit odio laoreet luctus ac vitae tellus. Quisque sit amet semper orci. 
+				h3.subtitle Dr. Daniel E. Krutz
+				h4.contact dxkvse@rit.edu
+				div.content
+					p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit. Cras eu libero suscipit odio laoreet luctus ac vitae tellus. Quisque sit amet semper orci. 
+		div.row
+			div.col-md-3
+				h2.title Acknowledgment
+			div.col-md-9
+				h3.subtitle anderson916 on GitHub
+				div.content
+					p google-play-crawler repository
+				h3.subtitle egirault on GitHub
+				div.content
+					p googleplay-api repository
