@@ -28,7 +28,7 @@ div.modal-body
 							div(ng-bind-html='genre | highlight: $select.search')
 					span.input-group-btn
 						button.btn.btn-default(type='button', ng-click='clear()')
-							span.glyphicon.glyphicon-remove
+							i.fa.fa-trash-o
 		div.form-group
 			div.col-sm-3
 				label.control-label.pull-right User Rating
@@ -50,7 +50,7 @@ div.modal-body
 							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close', ng-model='filter.releaseDateFrom')
 							span.input-group-btn
 								button.btn.btn-default(ng-click='open($event)')
-									i.glyphicon.glyphicon-calendar
+									i.fa.fa-calendar
 					div.col-sm-2.text-center
 						label.control-label to
 					div.col-sm-5
@@ -58,7 +58,7 @@ div.modal-body
 							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close', ng-model='filter.releaseDateTo')
 							span.input-group-btn
 								button.btn.btn-default(ng-click='open($event)')
-									i.glyphicon.glyphicon-calendar
+									i.fa.fa-calendar
 		div.form-group
 			div.col-sm-3
 				label.control-label.pull-right File Size

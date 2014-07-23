@@ -341,61 +341,22 @@ blockquote {
   background-size: cover;
 }
 
-.promo .overview {
-  margin-top: 100px;
-  margin-bottom: 100px;
+.promo .content {
+  margin-top: 175px;
+  margin-bottom: 175px;
   padding-left: 30px;
   padding-right: 30px;
 }
 
-.promo .overview h2 {
+.promo .content h2 {
   font-size: 30px;
   margin-bottom: 35px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.promo .overview p {
+.promo .content p {
   font-size: 18px;
 }
-
-/*
-.promo {
-  position: relative;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  color: #fff;
-  height: 100%;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background: rgba(82, 54, 69, .7)
-}
-
-.promo .background {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  min-width: 100%;
-  min-height: 100%;
-  width: auto;
-  height: auto;
-  z-index: -100;
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  overflow: hidden;
-  background-image: url('../img/android_permissions.jpg');
-  background-position: center center;
-}
-*/
 
 
 /**
@@ -405,6 +366,7 @@ blockquote {
  */
 
 .overview {
+  background-color: #fff;
   padding: 80px 0;
 }
 
@@ -465,7 +427,7 @@ blockquote {
  */
 
 .data {
-  padding: 100px 0 60px;
+  padding: 100px 0 35px;
 }
 
 .data .control-label {
@@ -519,7 +481,7 @@ blockquote {
  */
 
 .about {
-  padding: 100px 0 60px;
+  padding: 100px 0 50px;
 }
 
 .about .subtitle {
