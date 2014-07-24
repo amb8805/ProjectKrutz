@@ -9,16 +9,27 @@
 
 body {
   font-family: 'Roboto', arial, sans-serif;
-  color: #444444;
+  color: #444;
 }
 
 a {
   color: #99cc00;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
 }
 
 a:hover {
   text-decoration: none;
   color: #83b600;
+}
+
+.btn {
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
 }
 
 .btn-theme {
@@ -39,6 +50,24 @@ a:hover {
   color: #fff;
 }
 
+.btn-transparent {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+
+.btn-transparent:hover {
+  background: #fff;
+  border: 1px solid #fff;
+  color: #444;
+}
+
+.btn-transparent.active {
+  background: #fff;
+  border: 1px solid #fff;
+  color: #444;
+}
+
 .form-control {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -52,12 +81,44 @@ a:hover {
   box-shadow: none;
 }
 
-blockquote {
-  font-size: 14px;
+.control-label {
+  font-weight: normal;
 }
 
-.text-highlight {
-  color: #225742;
+.data .ui-select-bootstrap,
+.data .form-control {
+  font-weight: 300;
+}
+
+.table > tbody > tr > td {
+  font-weight: 300;
+}
+
+.table > thead > tr > th {
+  font-weight: normal;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  color: #99cc00;
+}
+
+.pagination > li > a:hover, 
+.pagination > li > span:hover, 
+.pagination > li > a:focus, 
+.pagination > li > span:focus {
+  color: #83b600;
+}
+
+.pagination > .active > a, 
+.pagination > .active > span, 
+.pagination > .active > a:hover, 
+.pagination > .active > span:hover, 
+.pagination > .active > a:focus, 
+.pagination > .active > span:focus {
+  color: #fff;
+  background-color: #99cc00;
+  border-color: #99cc00;
 }
 
 ::-webkit-input-placeholder {
@@ -81,7 +142,7 @@ blockquote {
 }
 
 .offset-header {
-  padding-top: 90px;
+  padding-top: 100px;
 }
 
 .delayp1 {
@@ -244,7 +305,7 @@ blockquote {
 }
 
 .header .main-nav button {
-  background: #225742;
+  background: #99cc00;
   color: #fff !important;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -328,34 +389,46 @@ blockquote {
 
 /**
  * --------------------------------------------------
+ * Home Page
+ * --------------------------------------------------
+ */
+
+.home {
+  background: url('../img/android_permissions.jpg') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+
+/**
+ * --------------------------------------------------
  * Promo Section
  * --------------------------------------------------
  */
 
 .promo {
-  background-color: #99cc00;
+  height: 100vh;
   color: #fff;
-  background-image: url('../img/android_permissions.jpg');
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+  background: rgba(68, 68, 68, .7);
 }
 
 .promo .content {
-  margin-top: 175px;
-  margin-bottom: 175px;
-  padding-left: 30px;
-  padding-right: 30px;
+  position: absolute;
+  top: 40%;
+  left: 0;
+  right: 0;
+  text-align: center;
 }
 
-.promo .content h2 {
-  font-size: 30px;
+.promo .content h1 {
   margin-bottom: 35px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.promo .content p {
-  font-size: 18px;
+.promo .content h4 {
+  margin-bottom: 50px;
 }
 
 
@@ -427,50 +500,16 @@ blockquote {
  */
 
 .data {
-  padding: 100px 0 35px;
+  background-color: #fff;
+  padding-bottom: 35px;
 }
 
-.data .control-label {
-  font-weight: normal;
-}
-
-.data .pagination > li > a,
-.data .pagination > li > span {
-  color: #99cc00;
-}
-
-.data .pagination > li > a:hover, 
-.data .pagination > li > span:hover, 
-.data .pagination > li > a:focus, 
-.data .pagination > li > span:focus {
-  color: #83b600;
-}
-
-.data .pagination > .active > a, 
-.data .pagination > .active > span, 
-.data .pagination > .active > a:hover, 
-.data .pagination > .active > span:hover, 
-.data .pagination > .active > a:focus, 
-.data .pagination > .active > span:focus {
-  color: #fff;
-  background-color: #99cc00;
-  border-color: #99cc00;
-}
-
-.data .table > tbody > tr > td {
-  font-weight: 300;
-}
-
-.data .table > thead > tr > th {
-  font-weight: normal;
+.data .content {
+  min-height: 530px;
 }
 
 .modal-dialog {
   padding-top: 100px;
-}
-
-.modal-dialog .control-label {
-  font-weight: normal;
 }
 
 
@@ -481,7 +520,8 @@ blockquote {
  */
 
 .about {
-  padding: 100px 0 50px;
+  background-color: #fff;
+  padding-bottom: 50px;
 }
 
 .about .subtitle {

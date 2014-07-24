@@ -1,55 +1,57 @@
-section#promo.promo.section.offset-header
-	div.container
-		div.row
-			div.content.col-md-12.animated.fadeInUp.delayp1
-				h2.title.text-center This is a project about Android applications
-				p.text-center Our goal is to better understand mobile applications and how various software metrics may impact one another
+section#home.home
+	section#promo.promo.offset-header
+		div.container
+			div.row
+				div.content.col-md-12.animated.fadeInUp.delayp1
+					h1.title This is a project about Android applications
+					h4 Our goal is to better understand mobile applications and how various software metrics may impact one another
+					a.btn.btn-lg.btn-transparent(ng-click='scrollTo("overview")') Learn More
 
-section#overview.overview.section
-	div.container
-		div.row
-			h2.title.text-center.animated.fadeInUp.delayp1 Project Overview
-			div.col-md-6.col-sm-6.col-xs-12.text-center
-				span.fa-stack.fa-5x.animated.fadeInUp.delayp1
-					i.fa.fa-circle.fa-stack-2x
-					i.fa.fa-download.fa-stack-1x.fa-inverse
-				div.content 
-					h3.subtitle Data Collection
-					p Created a web scraper using Scrapy, a web scraping framework for Python, to collect over 20,000 APK files, as well as information on these files.
-			div.col-md-6.col-sm-6.col-xs-12.text-center
-				span.fa-stack.fa-5x.animated.fadeInUp.delayp1
-					i.fa.fa-circle.fa-stack-2x
-					i.fa.fa-cogs.fa-stack-1x.fa-inverse
-				div.content 
-					h3.subtitle Data Analysis
-					p Used a variety of existing tools to analyze the over- and underpermissions, risk level for potential malware, and more of the collected files.
-		div.row
-			div.col-md-12.text-center
-				div.content
-					p Additional information is available on the About page.
+	section#overview.overview
+		div.container
+			div.row
+				h2.title.text-center.animated.fadeInUp.delayp1 Project Overview
+				div.col-md-6.col-sm-6.col-xs-12.text-center
+					span.fa-stack.fa-5x.animated.fadeInUp.delayp1
+						i.fa.fa-circle.fa-stack-2x
+						i.fa.fa-download.fa-stack-1x.fa-inverse
+					div.content 
+						h3.subtitle Data Collection
+						p Created a web scraper using Scrapy, a web scraping framework for Python, to collect over 20,000 APK files, as well as information on these files.
+				div.col-md-6.col-sm-6.col-xs-12.text-center
+					span.fa-stack.fa-5x.animated.fadeInUp.delayp1
+						i.fa.fa-circle.fa-stack-2x
+						i.fa.fa-cogs.fa-stack-1x.fa-inverse
+					div.content 
+						h3.subtitle Data Analysis
+						p Used a variety of existing tools to analyze the over- and underpermissions, risk level for potential malware, and other metrics of the collected files.
+			div.row
+				div.col-md-12.text-center
+					div.content
+						p Additional information is available on the About page.
 
-section#results.results.section
-	div.container
-		div.row
-			h2.title.text-center.animated.fadeInUp.delayp1 Highlighted Findings
-		div.row
-			div.col-md-5.col-md-push-7.text-center
-				canvas(donutchart='', options='options', data='chart', width='300', height='300')
-			div.col-md-7.col-md-pull-5
-				div.content.left
-					h3.subtitle Lorem Ipsum
-					p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
-		div.row
-			div.col-md-5.text-center
-				img(src='http://placehold.it/300')
-			div.col-md-7
-				div.content.right
-					h3.subtitle Lorem Ipsum
-					p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
-		div.row
-			div.col-md-5.col-md-push-7.text-center
-				img(src='http://placehold.it/300')
-			div.col-md-7.col-md-pull-5
-				div.content.left
-					h3.subtitle Lorem Ipsum
-					p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
+	section#results.results
+		div.container
+			div.row
+				h2.title.text-center.animated.fadeInUp.delayp1 Highlighted Findings
+			div.row
+				div.col-md-5.col-md-push-7.text-center
+					canvas(donutchart='', options='options', data='chart', width='300', height='300')
+				div.col-md-7.col-md-pull-5
+					div.content.left
+						h3.subtitle Lorem Ipsum
+						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
+			div.row
+				div.col-md-5.text-center
+					img(src='http://placehold.it/300')
+				div.col-md-7
+					div.content.right
+						h3.subtitle Lorem Ipsum
+						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
+			div.row
+				div.col-md-5.col-md-push-7.text-center
+					img(src='http://placehold.it/300')
+				div.col-md-7.col-md-pull-5
+					div.content.left
+						h3.subtitle Lorem Ipsum
+						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.

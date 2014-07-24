@@ -3,28 +3,31 @@
 /* Controllers */
 
 angular.module('androidApp.controllers', []).
-  controller('AppController', function ($scope, $location, ApkService) {
+  controller('AppController', function ($scope, $location, $window, $anchorScroll, ApkService) {
+
+    // Is the data from the database currently loading?
+    $scope.viewLoading = true;
 
     // Get APK data from the database
-
     ApkService.apks.query(function (response) {
       $scope.apks = response;
+      $scope.viewLoading = false;
     });
 
-    // Logic for navbar
-
-    $scope.isCollapsed = true;
-
-    $scope.$on('$routeChangeSuccess', function () {
-      $scope.isCollapsed = true;
-    });
-
+    // When the APK list is filtered, update the list
     $scope.$on('filterApks', function (event, data) {
       $scope.apks = data;
     });
 
-    // Logic for routing
+    // Logic for navbar
+    $scope.isCollapsed = true;
 
+    $scope.$on('$routeChangeSuccess', function () {
+      $scope.isCollapsed = true;
+      $window.scrollTo(0,0);
+    });
+
+    // Logic for routing
     $scope.getClass = function (path) {
       if (path === '/') {
         if ($location.path() === '/') {
@@ -40,6 +43,14 @@ angular.module('androidApp.controllers', []).
         return '';
       }
     }
+
+    // Scroll to an element
+    $scope.scrollTo = function (id) {
+      var old = $location.hash();
+      $location.hash(id);
+      $anchorScroll();
+      $location.hash(old);
+    };
     
   }).
   controller('HomeController', function ($scope) {
@@ -103,11 +114,9 @@ angular.module('androidApp.controllers', []).
   controller('DataController', function ($scope) {
 
     // Toggle view button
-
     $scope.toggleViewModel = 'Table';
 
     // Pagination
-
     $scope.totalItems = 1;
     $scope.currentPage = 1;
     $scope.itemsPerPage = 25;
@@ -120,7 +129,6 @@ angular.module('androidApp.controllers', []).
     });
 
     // Selected download format and all available formats
-
     $scope.format = {};
     $scope.formats = [
       'XML',
@@ -145,7 +153,6 @@ angular.module('androidApp.controllers', []).
   controller('ModalController', function ($scope, $modal, $log, ApkService) {
 
     // Opens the modal window
-
     $scope.open = function () {
 
       var modalInstance = $modal.open({
@@ -155,7 +162,6 @@ angular.module('androidApp.controllers', []).
       });
 
       // Filter the APK table with the advanced serach results
-
       modalInstance.result.then(function (params) {
         ApkService.search.query(params, function (response) {
           $scope.$emit('filterApks', response);
@@ -215,7 +221,6 @@ angular.module('androidApp.controllers', []).
     };
 
     // Get list of genres from APK info in the database
-
     ApkService.genres.query(function (response) {
       $scope.genres = [];
       for (var i = 0; i < response.length; i++) {
