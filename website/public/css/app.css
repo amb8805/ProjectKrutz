@@ -40,12 +40,11 @@ a:hover {
 
 .btn-theme:hover {
   background: #83b600;
-  border: 1px solid #83b600;
-  color: #fff;
 }
 
-.btn-theme.active {
-  background: #83b600;
+.btn-theme:hover,
+.btn-theme:active,
+.btn-theme:focus {
   border: 1px solid #83b600;
   color: #fff;
 }
@@ -58,14 +57,18 @@ a:hover {
 
 .btn-transparent:hover {
   background: #fff;
+}
+
+.btn-transparent:hover,
+.btn-transparent:active,
+.btn-transparent:focus {
   border: 1px solid #fff;
   color: #444;
 }
 
-.btn-transparent.active {
-  background: #fff;
-  border: 1px solid #fff;
-  color: #444;
+.btn-info {
+  background-color: #99cc00;
+  border-color: #99cc00;
 }
 
 .form-control {
@@ -81,12 +84,18 @@ a:hover {
   box-shadow: none;
 }
 
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-color: #99cc00;
+}
+
 .control-label {
   font-weight: normal;
 }
 
-.data .ui-select-bootstrap,
-.data .form-control {
+.ui-select-bootstrap,
+.form-control {
   font-weight: 300;
 }
 
@@ -141,7 +150,8 @@ a:hover {
   color: #999;
 }
 
-.offset-header {
+.offset-header,
+.modal-dialog {
   padding-top: 100px;
 }
 
@@ -505,11 +515,7 @@ a:hover {
 }
 
 .data .content {
-  min-height: 530px;
-}
-
-.modal-dialog {
-  padding-top: 100px;
+  min-height: 600px;
 }
 
 
