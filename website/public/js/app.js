@@ -10,9 +10,10 @@ var androidApp = angular.module('androidApp', [
   'ui.bootstrap',
   'ui.select',
   'angles',
+  'duScroll',
   'ngSanitize',
   'ngRoute'
-]);
+]).value('duScrollDuration', 1150);
 
 androidApp.config(function ($routeProvider, $locationProvider) {
   $routeProvider

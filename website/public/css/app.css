@@ -295,10 +295,6 @@ a:hover {
 .header h1.logo {
   margin-top: 0;
   margin-bottom: 0;
-  text-transform: uppercase;
-  font-weight: normal;
-  font-size: 14px;
-  max-height: 50px;
 }
 
 .header h1.logo a {
@@ -312,6 +308,10 @@ a:hover {
 
 .header h1.logo .logo-title {
   vertical-align: middle;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 14px;
+  max-height: 50px;
 }
 
 .header .main-nav button {
