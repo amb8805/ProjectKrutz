@@ -17,10 +17,6 @@ angular.module('androidApp.controllers', []).
       $scope.viewLoading = false;
     });
 
-    // ApkService.permissions.query(function (response) {
-    //   $scope.permissions = response;
-    // });
-
     // Logic for navbar and routing
     $scope.getNavItemClass = function (path) {
       if (path === '/') {

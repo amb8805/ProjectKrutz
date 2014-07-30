@@ -4,16 +4,18 @@ var sqlite3 = require('sqlite3').verbose();
 var file = '../EvolutionOfAndroidApplications.sqlite';
 var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
+var apkProperties = 'rowid, Name, Version, Developer, Genre, UserRating, DatePublished, FileSize';
+
 exports.getApkList = function (req, res) {
 
-	db.all('SELECT * FROM ApkInformation', function (err, apks) {
+	db.all('SELECT ' + apkProperties + ' FROM ApkInformation', function (err, apks) {
 		res.send(apks);
 	});
 };
 
 exports.getTopApkList = function (req, res) {
 
-	db.all('SELECT * FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 5', function (err, apks) {
+	db.all('SELECT Name FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 5', function (err, apks) {
 		res.send(apks);
 	});
 
@@ -29,7 +31,7 @@ exports.getGenreList = function (req, res) {
 
 exports.getFilteredApkList = function (req, res) {
 	
-	var statement = 'SELECT * FROM ApkInformation';
+	var statement = 'SELECT ' + apkProperties + ' FROM ApkInformation';
 
 	if (req.query.name) {
 		statement += ' WHERE Name LIKE "%' + req.query.name + '%"';
@@ -60,10 +62,26 @@ exports.getFilteredApkList = function (req, res) {
 	
 };
 
-exports.getPermissionsList = function (req, res) {
+exports.getPermissionList = function (req, res) {
 
 	db.all('SELECT * FROM Permissions', function (err, permissions) {
 		res.send(permissions);
+	})
+
+};
+
+exports.getOverprivilegeList = function (req, res) {
+
+	db.all('SELECT * FROM Permissions', function (err, overpermissions) {
+		res.send(overpermissions);
+	})
+
+};
+
+exports.getUnderprivilegeList = function (req, res) {
+
+	db.all('SELECT * FROM Permissions', function (err, underpermissions) {
+		res.send(underpermissions);
 	})
 
 };
