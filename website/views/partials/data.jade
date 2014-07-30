@@ -39,22 +39,11 @@ section#data.data.offset-header
 						table.table.table-hover
 							thead
 								tr
-									th Name
-									th Version
-									th Developer
-									th Genre
-									th User Rating
-									th Release Date
-									th File Size
+									th(ng-repeat='column in tableColumns', ng-click='sortTable(column.id)') {{ column.label }}
+										i.fa.th-sort-arrow.pull-right(ng-show='sort.column == column.id', ng-class='getSortIconClass(column.id)')
 							tbody
 								tr(ng-repeat='apk in apks | startFrom:(currentPage - 1) * itemsPerPage | limitTo:itemsPerPage')
-									td {{ apk.Name }}
-									td {{ apk.Version }}
-									td {{ apk.Developer }}
-									td {{ apk.Genre }}
-									td {{ apk.UserRating }}
-									td {{ apk.DatePublished }}
-									td {{ apk.FileSize }}
+									td(ng-repeat='column in tableColumns') {{ apk[column.id] }}
 
 		div.row
 			div.col-md-12.text-center

@@ -1,7 +1,5 @@
 'use strict';
 
-// Declare app level module which depends on filters, and services
-
 var androidApp = angular.module('androidApp', [
   'androidApp.controllers',
   'androidApp.filters',

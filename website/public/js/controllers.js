@@ -8,27 +8,19 @@ angular.module('androidApp.controllers', []).
     // Is the data from the database currently loading?
     $scope.viewLoading = true;
 
+    // Logic for navbar
+    $scope.isCollapsed = true;
+
     // Get APK data from the database
     ApkService.apks.query(function (response) {
+      var apk = response[0];
+      console.log(apk);
       $scope.apks = response;
       $scope.viewLoading = false;
     });
 
-    // When the APK list is filtered, update the list
-    $scope.$on('filterApks', function (event, data) {
-      $scope.apks = data;
-    });
-
-    // Logic for navbar
-    $scope.isCollapsed = true;
-
-    $scope.$on('$routeChangeSuccess', function () {
-      $scope.isCollapsed = true;
-      $window.scrollTo(0,0);
-    });
-
-    // Logic for routing
-    $scope.getClass = function (path) {
+    // Logic for navbar and routing
+    $scope.getNavItemClass = function (path) {
       if (path === '/') {
         if ($location.path() === '/') {
           return 'active';
@@ -44,13 +36,16 @@ angular.module('androidApp.controllers', []).
       }
     }
 
-    // Scroll to an element
-    $scope.scrollTo = function (id) {
-      var old = $location.hash();
-      $location.hash(id);
-      $anchorScroll();
-      $location.hash(old);
-    };
+    // When the APK list is filtered, update the list
+    $scope.$on('filterApks', function (event, data) {
+      $scope.apks = data;
+    });
+
+    // When a navbar link is clicked, return to the top of the page
+    $scope.$on('$routeChangeSuccess', function () {
+      $scope.isCollapsed = true;
+      $window.scrollTo(0,0);
+    });
     
   }).
   controller('HomeController', function ($scope) {
@@ -122,12 +117,6 @@ angular.module('androidApp.controllers', []).
     $scope.itemsPerPage = 25;
     $scope.maxSize = 5;
 
-    $scope.$watch('apks', function () {
-      if ($scope.apks) {
-        $scope.totalItems = $scope.apks.length;
-      }
-    });
-
     // Selected download format and all available formats
     $scope.format = {};
     $scope.formats = [
@@ -135,6 +124,71 @@ angular.module('androidApp.controllers', []).
       'JSON',
       'CSV'
     ];
+
+    // The current table sort
+    $scope.sort = {
+      column: '',
+      sortOrder: 1
+    };
+
+    // Table columns, with a display label and object property for each
+    $scope.tableColumns = [
+      {
+        id: 'Name',
+        label: 'Name'
+      },
+      {
+        id: 'Version',
+        label: 'Version'
+      },
+      {
+        id: 'Developer',
+        label: 'Developer'
+      },
+      {
+        id: 'Genre',
+        label: 'Genre'
+      },
+      {
+        id: 'UserRating',
+        label: 'User Rating'
+      },
+      {
+        id: 'DatePublished',
+        label: 'Release Date'
+      },
+      {
+        id: 'FileSize',
+        label: 'File Size'
+      }
+    ];
+
+    // Update pagination when the APK list has loaded
+    $scope.$watch('apks', function () {
+      if ($scope.apks) {
+        $scope.totalItems = $scope.apks.length;
+      }
+    });
+
+    // Sort the table according to the given column and current sort
+    $scope.sortTable = function (column) {
+      var sort = $scope.sort;
+      if (sort.column == column) {
+          sort.sortOrder = sort.sortOrder * -1;
+        } else {
+          sort.column = column;
+          sort.sortOrder = 1;
+        }
+      $scope.apks.sort(function (a, b) {
+        var result = (a[column] < b[column]) ? -1 : (a[column] > b[column]) ? 1 : 0;
+        return result * sort.sortOrder;
+      });
+    };
+
+    // Determine which icon to display based on sort order
+    $scope.getSortIconClass = function (column) {
+      return $scope.sort.sortOrder == 1 ? 'fa-caret-down' : 'fa-caret-up';
+    };
 
   }).
   controller('SearchController', function ($scope) {
@@ -216,10 +270,6 @@ angular.module('androidApp.controllers', []).
   }).
   controller('GenreInputController', function ($scope, ApkService) {
 
-    $scope.clear = function () {
-      $scope.filter.genre.selected = undefined;
-    };
-
     // Get list of genres from APK info in the database
     ApkService.genres.query(function (response) {
       $scope.genres = [];
@@ -227,6 +277,10 @@ angular.module('androidApp.controllers', []).
         $scope.genres.push(response[i].Genre);
       }
     });
+
+    $scope.clear = function () {
+      $scope.filter.genre.selected = undefined;
+    };
 
   }).
   controller('DateInputController', function ($scope) {
