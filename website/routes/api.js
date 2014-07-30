@@ -1,6 +1,3 @@
-/*
- * Serve JSON to our AngularJS client
- */
 
 var sqlite3 = require('sqlite3').verbose();
 
@@ -9,10 +6,17 @@ var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
 exports.getApkList = function (req, res) {
 
-	// TODO: Have this select information from all tables
 	db.all('SELECT * FROM ApkInformation', function (err, apks) {
 		res.send(apks);
 	});
+};
+
+exports.getTopApkList = function (req, res) {
+
+	db.all('SELECT * FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 5', function (err, apks) {
+		res.send(apks);
+	});
+
 };
 
 exports.getGenreList = function (req, res) {
@@ -42,6 +46,7 @@ exports.getFilteredApkList = function (req, res) {
 	if (req.query.userRatingFrom && req.query.userRatingTo) {
 		statement += ' WHERE Rating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
 	}
+	// TODO: DatePublished and FileSize queries are not functional
 	if (req.query.releaseDateFrom && req.query.releaseDateTo) {
 		statement += ' WHERE DatePublished BETWEEN ' + req.query.releaseDateFrom + ' AND ' + req.query.releaseDateTo;
 	}
