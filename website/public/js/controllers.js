@@ -13,11 +13,13 @@ angular.module('androidApp.controllers', []).
 
     // Get APK data from the database
     ApkService.apks.query(function (response) {
-      var apk = response[0];
-      console.log(apk);
       $scope.apks = response;
       $scope.viewLoading = false;
     });
+
+    // ApkService.permissions.query(function (response) {
+    //   $scope.permissions = response;
+    // });
 
     // Logic for navbar and routing
     $scope.getNavItemClass = function (path) {
@@ -50,59 +52,52 @@ angular.module('androidApp.controllers', []).
   }).
   controller('HomeController', function ($scope) {
 
-    $scope.chart = [
-        {
-            value: 30,
-            color:"#F7464A"
-        },
-        {
-            value : 50,
-            color : "#E2EAE9"
-        },
-        {
-            value : 100,
-            color : "#D4CCC5"
-        },
-        {
-            value : 40,
-            color : "#949FB1"
-        },
-        {
-            value : 120,
-            color : "#4D5360"
-        }
+    $scope.segments = [
+      {
+        label: 'Gmail',
+        value: 3,
+        color: '#33b5e5'
+      },
+      {
+        label: 'Maps',
+        value: 4,
+        color: '#aa66cc'
+      },
+      {
+        label: 'Facebook',
+        value: 10,
+        color: '#99cc00'
+      },
+      {
+        label: 'Google Play Books',
+        value: 0,
+        color: '#ffbb33'
+      },
+      {
+        label: 'Google Search',
+        value: 2,
+        color: '#ff4444'
+      }
     ];
 
     $scope.options =  {
-        // Boolean - Whether we should show a stroke on each segment
-        segmentShowStroke : true,
-
-        // String - The colour of each segment stroke
-        segmentStrokeColor : "#fff",
-
-        // Number - The width of each segment stroke
-        segmentStrokeWidth : 5,
-
-        // The percentage of the chart that we cut out of the middle.
-        percentageInnerCutout : 50,
-
-        // Boolean - Whether we should animate the chart
-        animation : true,
-
-        // Number - Amount of animation steps
-        animationSteps : 100,
-
-        // String - Animation easing effect
-        animationEasing : "easeOutBounce",
-
-        // Boolean - Whether we animate the rotation of the Doughnut
-        animateRotate : true,
-
-        // Boolean - Whether we animate scaling the Doughnut from the centre
-        animateScale : false,
-
-        // Function - Will fire on animation completion.
-        onAnimationComplete : null
+        segmentShowStroke: true,
+        segmentStrokeColor: '#fff',
+        segmentStrokeWidth: 5,
+        percentageInnerCutout: 50,
+        animation: true,
+        animationSteps: 100,
+        animationEasing: 'easeOutBounce',
+        animateRotate: true,
+        animateScale: false,
+        responsive: false,
+        showTooltips: true,
+        tooltipEvents: ['mousemove', 'touchstart', 'touchmove'],
+        tooltipFillColor: 'rgba(0, 0,0 , 0.75)',
+        tooltipFontFamily: '"Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif',
+        tooltipTemplate: '<%if (label){%><%=label%>: <%}%><%= value %>',
+        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
+        onAnimationComplete: null
     };
 
   }).

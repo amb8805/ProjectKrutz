@@ -49,6 +49,7 @@ app.get('/partials/:name', routes.partials);
 app.get('/apks', api.getApkList);
 app.get('/genres', api.getGenreList);
 app.get('/search', api.getFilteredApkList);
+app.get('/permissions', api.getPermissionsList);
 
 // Redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

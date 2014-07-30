@@ -59,3 +59,11 @@ exports.getFilteredApkList = function (req, res) {
 	});
 	
 };
+
+exports.getPermissionsList = function (req, res) {
+
+	db.all('SELECT * FROM Permissions', function (err, permissions) {
+		res.send(permissions);
+	})
+
+};

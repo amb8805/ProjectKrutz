@@ -36,7 +36,9 @@ section#home.home
 				h2.title.text-center.animated.fadeInUp.delayp1 Highlighted Findings
 			div.row
 				div.col-md-5.col-md-push-7.text-center
-					canvas(donutchart='', options='options', data='chart', width='300', height='300')
+					div.chart-container
+						div.canvas-holder
+							canvas(donutchart='', options='options', data='segments', width='300', height='300', legend='true')
 				div.col-md-7.col-md-pull-5
 					div.content.left
 						h3.subtitle Lorem Ipsum
