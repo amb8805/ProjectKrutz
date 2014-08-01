@@ -7,7 +7,6 @@ var androidApp = angular.module('androidApp', [
   'androidApp.directives',
   'ui.bootstrap',
   'ui.select',
-  'angles',
   'duScroll',
   'ngSanitize',
   'ngRoute'

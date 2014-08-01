@@ -12,6 +12,10 @@ angular.module('androidApp.controllers', []).
     $scope.isCollapsed = true;
 
     // Get APK data from the database
+    ApkService.permissions.query(function (response) {
+      $scope.permissions = response;
+    });
+
     ApkService.apks.query(function (response) {
       $scope.apks = response;
       $scope.viewLoading = false;
@@ -52,49 +56,76 @@ angular.module('androidApp.controllers', []).
       {
         label: 'Gmail',
         value: 3,
-        color: '#33b5e5'
+        color: '#33b5e5',
+        highlight: '#50C0e9'
       },
       {
         label: 'Maps',
         value: 4,
-        color: '#aa66cc'
+        color: '#aa66cc',
+        highlight: '#ba75dc'
       },
       {
         label: 'Facebook',
         value: 10,
-        color: '#99cc00'
+        color: '#99cc00',
+        highlight: '#a8d324'
       },
       {
         label: 'Google Play Books',
-        value: 0,
-        color: '#ffbb33'
+        value: 1,
+        color: '#ffbb33',
+        highlight: '#ffc641'
       },
       {
         label: 'Google Search',
         value: 2,
-        color: '#ff4444'
+        color: '#ff4444',
+        highlight: '#ff5f5f'
       }
     ];
 
     $scope.options =  {
-        segmentShowStroke: true,
-        segmentStrokeColor: '#fff',
-        segmentStrokeWidth: 5,
-        percentageInnerCutout: 50,
-        animation: true,
-        animationSteps: 100,
-        animationEasing: 'easeOutBounce',
-        animateRotate: true,
-        animateScale: false,
-        responsive: false,
-        showTooltips: true,
-        tooltipEvents: ['mousemove', 'touchstart', 'touchmove'],
-        tooltipFillColor: 'rgba(0, 0,0 , 0.75)',
-        tooltipFontFamily: '"Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif',
-        tooltipTemplate: '<%if (label){%><%=label%>: <%}%><%= value %>',
-        legendTemplate: "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>",
-        onAnimationComplete: null
+      animation: true,
+      animationSteps: 100,
+      animationEasing: 'easeOutBounce',
+      animateRotate: true,
+      animateScale: false,
+      responsive: false,
+      segmentShowStroke: true,
+      segmentStrokeColor: '#fff',
+      segmentStrokeWidth: 5,
+      percentageInnerCutout: 50,
+      showTooltips: true,
+      tooltipEvents: ['mousemove', 'touchstart', 'touchmove'],
+      tooltipFillColor: 'rgba(0, 0,0 , 0.75)',
+      tooltipFontFamily: '"Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif',
+      tooltipTemplate: '<%if (label){%><%=label%>: <%}%><%= value %>',
+      multiTooltipTemplate: "<%= value %>",
     };
+
+    var helpers = Chart.helpers;
+    var canvas = document.getElementById('myChart');
+    var myDoughnutChart = new Chart(canvas.getContext('2d')).Doughnut($scope.segments, $scope.options);
+    var legendHolder = document.createElement('div');
+
+    legendHolder.innerHTML = myDoughnutChart.generateLegend();
+
+    helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+      helpers.addEvent(legendNode, 'mouseover', function () {
+        var activeSegment = myDoughnutChart.segments[index];
+        activeSegment.save();
+        activeSegment.fillColor = activeSegment.highlightColor;
+        myDoughnutChart.showTooltip([activeSegment]);
+        activeSegment.restore();
+      });
+    });
+
+    helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+      myDoughnutChart.draw();
+    });
+
+    canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
 
   }).
   controller('DataController', function ($scope) {
