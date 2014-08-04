@@ -10,9 +10,12 @@ angular.module('androidApp.filters', []).
 			}
 		}
 	}).
-
-	filter('interpolate', function (version) {
-		return function (text) {
-			return String(text).replace(/\%VERSION\%/mg, version);
+	filter('topApks', function () {
+		return function (apks, end) {
+			if (apks) {
+				return apks.slice().sort(function (a, b) {
+					return b.UpperDownloads - a.UpperDownloads;
+				}).slice(0, end);
+			}
 		};
 	});

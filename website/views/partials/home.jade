@@ -5,7 +5,7 @@ section#home.home
 				div.content.col-md-12.animated.fadeInUp.delayp1
 					h1.title This is a project about Android applications
 					h4 Our goal is to better understand mobile applications and how various software metrics may impact one another
-					a.btn.btn-lg.btn-transparent(href='#overview', offset='83', du-smooth-scroll='') Learn More
+					a.btn.btn-lg.btn-transparent(href='#overview', offset='{{ offset }}', du-smooth-scroll='') Learn More
 
 	section#overview.overview
 		div.container
@@ -41,8 +41,8 @@ section#home.home
 							canvas(id='myChart', width='300', height='300')
 				div.col-md-6.col-md-pull-6
 					div.content.left
-						h3.subtitle Lorem Ipsum
-						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
+						h3.subtitle Overpermissions
+						p Using Stowaway, a tool that determines the permissions an app is over- and underprivileged in, we determined that even some of the most-downloaded apps on Google Play violate the principle of least privilege.
 			div.row
 				div.col-md-5.text-center
 					img(src='http://placehold.it/300')

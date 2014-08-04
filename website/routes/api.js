@@ -4,11 +4,12 @@ var sqlite3 = require('sqlite3').verbose();
 var file = '../EvolutionOfAndroidApplications.sqlite';
 var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
-var apkProperties = 'rowid, Name, Version, Developer, Genre, UserRating, DatePublished, FileSize';
+var apkProperties = 'rowid, Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, LowerDownloads, UpperDownloads';
 
 exports.getApkList = function (req, res) {
 
-	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, apk.UserRating, apk.DatePublished, apk.FileSize, ' +
+	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' + 
+	'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
 	'o.PermissionId as Overpermissions, u.PermissionId as Underpermissions ' +
 	'FROM ApkInformation apk ' +
 	'LEFT JOIN Overprivilege o ' +
@@ -49,14 +50,6 @@ exports.getApkList = function (req, res) {
 
 		res.send(apks);
 	});
-};
-
-exports.getTopApkList = function (req, res) {
-
-	db.all('SELECT Name FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 5', function (err, apks) {
-		res.send(apks);
-	});
-
 };
 
 exports.getGenreList = function (req, res) {

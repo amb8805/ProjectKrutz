@@ -3,7 +3,10 @@
 /* Controllers */
 
 angular.module('androidApp.controllers', []).
-  controller('AppController', function ($scope, $location, $window, $anchorScroll, ApkService) {
+  controller('AppController', function ($scope, $location, $window, $filter, ApkService) {
+
+    // Determine navbar offset
+    $scope.offset = $('#top').outerHeight();
 
     // Is the data from the database currently loading?
     $scope.viewLoading = true;
@@ -18,6 +21,7 @@ angular.module('androidApp.controllers', []).
 
     ApkService.apks.query(function (response) {
       $scope.apks = response;
+      $scope.topApks = $filter('topApks')($scope.apks, 5);
       $scope.viewLoading = false;
     });
 
@@ -46,86 +50,94 @@ angular.module('androidApp.controllers', []).
     // When a navbar link is clicked, return to the top of the page
     $scope.$on('$routeChangeSuccess', function () {
       $scope.isCollapsed = true;
-      $window.scrollTo(0,0);
+      $window.scrollTo(0, 0);
     });
     
   }).
   controller('HomeController', function ($scope) {
 
-    $scope.segments = [
+    var colors = [
       {
-        label: 'Gmail',
-        value: 3,
         color: '#33b5e5',
         highlight: '#50C0e9'
       },
       {
-        label: 'Maps',
-        value: 4,
         color: '#aa66cc',
         highlight: '#ba75dc'
       },
       {
-        label: 'Facebook',
-        value: 10,
         color: '#99cc00',
         highlight: '#a8d324'
       },
       {
-        label: 'Google Play Books',
-        value: 1,
         color: '#ffbb33',
         highlight: '#ffc641'
       },
       {
-        label: 'Google Search',
-        value: 2,
         color: '#ff4444',
         highlight: '#ff5f5f'
       }
     ];
 
-    $scope.options =  {
-      animation: true,
-      animationSteps: 100,
-      animationEasing: 'easeOutBounce',
-      animateRotate: true,
-      animateScale: false,
-      responsive: false,
-      segmentShowStroke: true,
-      segmentStrokeColor: '#fff',
-      segmentStrokeWidth: 5,
-      percentageInnerCutout: 50,
-      showTooltips: true,
-      tooltipEvents: ['mousemove', 'touchstart', 'touchmove'],
-      tooltipFillColor: 'rgba(0, 0,0 , 0.75)',
-      tooltipFontFamily: '"Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif',
-      tooltipTemplate: '<%if (label){%><%=label%>: <%}%><%= value %>',
-      multiTooltipTemplate: "<%= value %>",
-    };
-
-    var helpers = Chart.helpers;
-    var canvas = document.getElementById('myChart');
-    var myDoughnutChart = new Chart(canvas.getContext('2d')).Doughnut($scope.segments, $scope.options);
-    var legendHolder = document.createElement('div');
-
-    legendHolder.innerHTML = myDoughnutChart.generateLegend();
-
-    helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
-      helpers.addEvent(legendNode, 'mouseover', function () {
-        var activeSegment = myDoughnutChart.segments[index];
-        activeSegment.save();
-        activeSegment.fillColor = activeSegment.highlightColor;
-        myDoughnutChart.showTooltip([activeSegment]);
-        activeSegment.restore();
-      });
+    $scope.segments = [];
+    $scope.$watch('topApks', function () {
+      if ($scope.topApks) {
+        for (var i = 0; i < $scope.topApks.length; i++) {
+          var segment = {
+            label: $scope.topApks[i].Name,
+            value: $scope.topApks[i].Overpermissions.length,
+            color: colors[i].color,
+            highlight: colors[i].highlight
+          };
+          $scope.segments.push(segment);
+        }
+      }
     });
 
-    helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
-      myDoughnutChart.draw();
-    });
+    $scope.$watch('segments', function () {
+      if ($scope.segments.length > 0) {
+        $scope.options =  {
+          animation: true,
+          animationSteps: 100,
+          animationEasing: 'easeOutBounce',
+          animateRotate: true,
+          animateScale: false,
+          responsive: false,
+          segmentShowStroke: true,
+          segmentStrokeColor: '#fff',
+          segmentStrokeWidth: 5,
+          percentageInnerCutout: 50,
+          showTooltips: true,
+          tooltipEvents: ['mousemove', 'touchstart', 'touchmove'],
+          tooltipFillColor: 'rgba(0, 0,0 , 0.75)',
+          tooltipFontFamily: '"Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif',
+          tooltipTemplate: '<%=label%>: <%= value %>'
+        };
 
-    canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+        var helpers = Chart.helpers;
+        var canvas = document.getElementById('myChart');
+        var myDoughnutChart = new Chart(canvas.getContext('2d')).Doughnut($scope.segments, $scope.options);
+        var legendHolder = document.createElement('div');
+
+        legendHolder.innerHTML = myDoughnutChart.generateLegend();
+
+        helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+          helpers.addEvent(legendNode, 'mouseover', function () {
+            var activeSegment = myDoughnutChart.segments[index];
+            activeSegment.save();
+            activeSegment.fillColor = activeSegment.highlightColor;
+            myDoughnutChart.showTooltip([activeSegment]);
+            activeSegment.restore();
+          });
+        });
+
+        helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+          myDoughnutChart.draw();
+        });
+
+        canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+      }
+    });
 
   }).
   controller('DataController', function ($scope) {
