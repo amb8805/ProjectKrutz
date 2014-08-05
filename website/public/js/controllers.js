@@ -15,10 +15,6 @@ angular.module('androidApp.controllers', []).
     $scope.isCollapsed = true;
 
     // Get APK data from the database
-    ApkService.permissions.query(function (response) {
-      $scope.permissions = response;
-    });
-
     ApkService.apks.query(function (response) {
       $scope.apks = response;
       $scope.topApks = $filter('topApks')($scope.apks, 5);
@@ -79,9 +75,9 @@ angular.module('androidApp.controllers', []).
       }
     ];
 
-    $scope.segments = [];
     $scope.$watch('topApks', function () {
       if ($scope.topApks) {
+        $scope.segments = [];
         for (var i = 0; i < $scope.topApks.length; i++) {
           var segment = {
             label: $scope.topApks[i].Name,
@@ -95,7 +91,7 @@ angular.module('androidApp.controllers', []).
     });
 
     $scope.$watch('segments', function () {
-      if ($scope.segments.length > 0) {
+      if ($scope.segments) {
         $scope.options =  {
           animation: true,
           animationSteps: 100,
@@ -141,9 +137,6 @@ angular.module('androidApp.controllers', []).
 
   }).
   controller('DataController', function ($scope) {
-
-    // Toggle view button
-    $scope.toggleViewModel = 'Table';
 
     // Pagination
     $scope.totalItems = 1;

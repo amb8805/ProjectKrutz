@@ -546,6 +546,11 @@ a:hover {
   padding-top: 3px;
 }
 
+.data .table > thead > tr > th {
+  cursor: pointer;
+  cursor: hand;
+}
+
 
 /**
  * --------------------------------------------------
