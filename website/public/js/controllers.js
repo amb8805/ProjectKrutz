@@ -90,7 +90,7 @@ angular.module('androidApp.controllers', []).
       }
     });
 
-    $scope.$watch('segments', function () {
+    $scope.$watch('viewLoading', function () {
       if ($scope.segments) {
         $scope.options =  {
           animation: true,
@@ -111,24 +111,24 @@ angular.module('androidApp.controllers', []).
         };
 
         var helpers = Chart.helpers;
-        var canvas = document.getElementById('myChart');
-        var myDoughnutChart = new Chart(canvas.getContext('2d')).Doughnut($scope.segments, $scope.options);
+        var canvas = document.getElementById('chart1');
+        var chart1 = new Chart(canvas.getContext('2d')).Doughnut($scope.segments, $scope.options);
         var legendHolder = document.createElement('div');
 
-        legendHolder.innerHTML = myDoughnutChart.generateLegend();
+        legendHolder.innerHTML = chart1.generateLegend();
 
         helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
           helpers.addEvent(legendNode, 'mouseover', function () {
-            var activeSegment = myDoughnutChart.segments[index];
+            var activeSegment = chart1.segments[index];
             activeSegment.save();
             activeSegment.fillColor = activeSegment.highlightColor;
-            myDoughnutChart.showTooltip([activeSegment]);
+            chart1.showTooltip([activeSegment]);
             activeSegment.restore();
           });
         });
 
         helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
-          myDoughnutChart.draw();
+          chart1.draw();
         });
 
         canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);

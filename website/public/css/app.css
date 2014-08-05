@@ -490,11 +490,16 @@ a:hover {
   margin-top: 0;
 }
 
+.results .chart-container {
+  height: 360px;
+  padding: 30px;
+}
+
 .doughnut-legend {
   list-style: none;
   position: absolute;
   right: 10px;
-  top: 0;
+  top: 30px;
 }
 
 .doughnut-legend li {
