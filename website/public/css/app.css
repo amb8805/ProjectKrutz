@@ -10,6 +10,7 @@
 body {
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   color: #444;
+  font-weight: 300;
 }
 
 a {
@@ -96,10 +97,6 @@ a:hover {
 
 .ui-select-bootstrap,
 .form-control {
-  font-weight: 300;
-}
-
-.table > tbody > tr > td {
   font-weight: 300;
 }
 
@@ -393,7 +390,6 @@ a:hover {
 .footer .copyright {
   color: #b3b3b3;
   font-size: 12px;
-  font-weight: 300;
 }
 
 
@@ -467,10 +463,6 @@ a:hover {
   margin-top: 0;
 }
 
-.overview .content p {
-  font-weight: 300;
-}
-
 
 /**
  * --------------------------------------------------
@@ -496,10 +488,6 @@ a:hover {
   color: #99cc00;
   font-size: 18px;
   margin-top: 0;
-}
-
-.results .content p {
-  font-weight: 300;
 }
 
 .doughnut-legend {
@@ -580,10 +568,6 @@ a:hover {
   font-weight: 300;
   margin-top: 0;
   color: #b3b3b3;
-}
-
-.about .content p {
-  font-weight: 300;
 }
 
 
