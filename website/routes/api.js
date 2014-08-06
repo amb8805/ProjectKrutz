@@ -6,9 +6,54 @@ var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
 var apkProperties = 'rowid, Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, LowerDownloads, UpperDownloads';
 
+var mergeApkList = function (apks) {
+
+	for (var i = 1; i < apks.length; i++) {
+
+		if (apks[i - 1].Overpermissions == null) {
+			apks[i - 1].Overpermissions = [];
+		} else if (typeof apks[i - 1].Overpermissions == 'number') {
+			apks[i - 1].Overpermissions = [apks[i - 1].Overpermissions];
+		}
+
+		if (apks[i - 1].Underpermissions == null) {
+			apks[i - 1].Underpermissions = [];
+		} else if (typeof apks[i - 1].Underpermissions == 'number') {
+			apks[i - 1].Underpermissions = [apks[i - 1].Underpermissions];
+		}
+
+		if (apks[i - 1].rowid === apks[i].rowid) {
+			if (apks[i].Overpermissions != null && apks[i - 1].Overpermissions.indexOf(apks[i].Overpermissions) == -1) {
+				apks[i - 1].Overpermissions.push(apks[i].Overpermissions);
+			}
+
+			if (apks[i].Underpermissions != null && apks[i - 1].Underpermissions.indexOf(apks[i].Underpermissions) == -1) {
+				apks[i - 1].Underpermissions.push(apks[i].Underpermissions);
+			}
+
+			apks.splice(i, 1);
+			i--;
+		}
+	}
+
+	return apks;
+
+};
+
 exports.getApk = function (req, res) {
 
-	db.get('SELECT ' + apkProperties + ' FROM ApkInformation WHERE rowid IS ' + req.query.rowid, function (err, apk) {
+	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' + 
+	'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
+	'o.PermissionId as Overpermissions, u.PermissionId as Underpermissions ' +
+	'FROM ApkInformation apk ' +
+	'LEFT JOIN Overprivilege o ' +
+		'ON apk.rowid = o.ApkId ' +
+	'LEFT JOIN Underprivilege u ' +
+		'ON apk.rowid = u.ApkId ' +
+	'WHERE apk.rowid IS ' + req.query.rowid;
+
+	db.all(query, function (err, apks) {
+		var apk = mergeApkList(apks)[0];
 		res.send(apk);
 	});
 
@@ -26,37 +71,7 @@ exports.getApkList = function (req, res) {
 		'ON apk.rowid = u.ApkId';
 
 	db.all(query, function (err, apks) {
-
-		// TODO: This code is atrocious... clean up if possible
-		for (var i = 1; i < apks.length; i++) {
-
-			if (apks[i - 1].Overpermissions == null) {
-				apks[i - 1].Overpermissions = [];
-			} else if (typeof apks[i - 1].Overpermissions == 'number') {
-				apks[i - 1].Overpermissions = [apks[i - 1].Overpermissions];
-			}
-
-			if (apks[i - 1].Underpermissions == null) {
-				apks[i - 1].Underpermissions = [];
-			} else if (typeof apks[i - 1].Underpermissions == 'number') {
-				apks[i - 1].Underpermissions = [apks[i - 1].Underpermissions];
-			}
-
-			if (apks[i - 1].rowid === apks[i].rowid) {
-				if (apks[i].Overpermissions != null && apks[i - 1].Overpermissions.indexOf(apks[i].Overpermissions) == -1) {
-					apks[i - 1].Overpermissions.push(apks[i].Overpermissions);
-				}
-
-				if (apks[i].Underpermissions != null && apks[i - 1].Underpermissions.indexOf(apks[i].Underpermissions) == -1) {
-					apks[i - 1].Underpermissions.push(apks[i].Underpermissions);
-				}
-
-				apks.splice(i, 1);
-				i--;
-			}
-		}
-
-		res.send(apks);
+		res.send(mergeApkList(apks));
 	});
 };
 

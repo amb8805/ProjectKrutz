@@ -18,3 +18,19 @@ section#apk-detail.apk-detail.offset-header
 			div.col-sm-4
 				h4.subtitle File Size
 				p {{ apk.FileSize }}
+		div.row
+			div.col-md-3
+				h3 Analysis Results
+		div.row.content
+			div.col-md-2.col-sm-3
+				h4.subtitle Overpermissions
+			div.col-md-4.col-sm-3
+				ul(style='margin-top: 10px;')
+					li(ng-repeat='o in apk.Overpermissions') {{ o }}
+				div(ng-hide='apk.Overpermissions.length > 0') No Overpermissions
+			div.col-md-2.col-sm-3
+				h4.subtitle Underpermissions
+			div.col-md-4.col-sm-3
+				ul(style='margin-top: 10px;')
+					li(ng-repeat='u in apk.Underpermissions') {{ u }}
+				div(ng-hide='apk.Underpermissions.length > 0') No Underpermissions
