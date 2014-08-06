@@ -136,6 +136,13 @@ angular.module('androidApp.controllers', []).
     });
 
   }).
+  controller('ApkDetailController', function ($scope, $routeParams, ApkService) {
+
+    ApkService.apk.query({rowid: $routeParams.apkId}, function (response) {
+      $scope.apk = response;
+    });
+
+  }).
   controller('DataController', function ($scope) {
 
     // Pagination
@@ -218,7 +225,7 @@ angular.module('androidApp.controllers', []).
     };
 
   }).
-  controller('SearchController', function ($scope) {
+  controller('SearchController', function ($scope, $location) {
 
     $scope.selected = undefined;
 
@@ -227,7 +234,7 @@ angular.module('androidApp.controllers', []).
     }
 
     $scope.search = function (apk) {
-      // TODO: Display page for individual APK
+      $location.path('data/' + apk.rowid);
     };
 
   }).

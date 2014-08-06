@@ -6,6 +6,14 @@ var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
 var apkProperties = 'rowid, Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, LowerDownloads, UpperDownloads';
 
+exports.getApk = function (req, res) {
+
+	db.get('SELECT ' + apkProperties + ' FROM ApkInformation WHERE rowid IS ' + req.query.rowid, function (err, apk) {
+		res.send(apk);
+	});
+
+};
+
 exports.getApkList = function (req, res) {
 
 	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' + 
@@ -91,14 +99,6 @@ exports.getFilteredApkList = function (req, res) {
 		res.send(apks);
 	});
 	
-};
-
-exports.getPermissionList = function (req, res) {
-
-	db.all('SELECT * FROM Permissions', function (err, permissions) {
-		res.send(permissions);
-	})
-
 };
 
 exports.getOverprivilegeList = function (req, res) {

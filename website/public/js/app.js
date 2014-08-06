@@ -15,18 +15,20 @@ var androidApp = angular.module('androidApp', [
 androidApp.config(function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
-      templateUrl : 'partials/home',
-      controller  : 'HomeController'
+      templateUrl: 'partials/home',
+      controller: 'HomeController'
     })
-
     .when('/data', {
-      templateUrl : 'partials/data',
-      controller  : 'DataController'
+      templateUrl: 'partials/data',
+      controller: 'DataController'
     })
-
+    .when('/data/:apkId', {
+      templateUrl: 'partials/apk-detail',
+      controller: 'ApkDetailController'
+    })
     .when('/about', {
-      templateUrl : 'partials/about',
-      controller  : 'AppController'
+      templateUrl: 'partials/about',
+      controller: 'AppController'
     });
 
   $locationProvider.html5Mode(true);

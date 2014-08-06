@@ -541,10 +541,7 @@ a:hover {
 .data {
   background-color: #fff;
   padding-bottom: 35px;
-}
-
-.data .content {
-  min-height: 600px;
+  min-height: 850px
 }
 
 .data .th-sort-arrow {
@@ -554,6 +551,22 @@ a:hover {
 .data .table > thead > tr > th {
   cursor: pointer;
   cursor: hand;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Data Page
+ * --------------------------------------------------
+ */
+
+.apk-detail {
+  min-height: 850px
+}
+
+.apk-detail .content .subtitle {
+  color: #99cc00;
+  font-size: 18px;
 }
 
 
@@ -576,7 +589,7 @@ a:hover {
 .about .contact {
   font-size: 14px;
   font-weight: 300;
-  margin-top: 0;
+  margin-top: -5px;
   color: #b3b3b3;
 }
 

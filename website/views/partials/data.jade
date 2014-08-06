@@ -1,31 +1,30 @@
 section#data.data.offset-header
-	div.container
-		div.row
-			div.col-md-6.col-md-offset-6
-				form.form-horizontal(role='form')
-					div.form-group
-						div.col-xs-2
-							label.control-label Search
-						div.col-xs-8
-							input.form-control(type='text', ng-model='selected', placeholder='Search for an app by name...', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8', typeahead-on-select='search($item)')
-						div.col-xs-2
-							button.btn.btn-theme(ng-controller='ModalController', type='button', ng-click='open()') Advanced
-		div.row
-			div.col-md-6.col-md-offset-6
-				form.form-horizontal(role='form')
-					div.form-group
-						div.col-xs-2
-							label.control-label Download
-						div.col-xs-8
-							ui-select(ng-model='format.selected', theme='bootstrap')
-								match(placeholder='Select download format...') {{ $select.selected }}
-								choices(repeat='format in formats | filter: $select.search')
-									div(ng-bind-html='format | highlight: $select.search')
-						div.col-xs-2
-							button.btn.btn-theme(type='button', ng-model='format.selected') Download
-		div.row
-			div.col-md-12
-				div.content(loading-spinner='viewLoading')
+	div.container(loading-spinner='viewLoading')
+			div.row
+				div.col-md-6.col-md-offset-6
+					form.form-horizontal(role='form')
+						div.form-group
+							div.col-xs-2
+								label.control-label Search
+							div.col-xs-8(ng-controller='SearchController')
+								input.form-control(type='text', ng-model='selected', placeholder='Search for an app by name...', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8', typeahead-on-select='search($item)')
+							div.col-xs-2
+								button.btn.btn-theme(ng-controller='ModalController', type='button', ng-click='open()') Advanced
+			div.row
+				div.col-md-6.col-md-offset-6
+					form.form-horizontal(role='form')
+						div.form-group
+							div.col-xs-2
+								label.control-label Download
+							div.col-xs-8
+								ui-select(ng-model='format.selected', theme='bootstrap')
+									match(placeholder='Select download format...') {{ $select.selected }}
+									choices(repeat='format in formats | filter: $select.search')
+										div(ng-bind-html='format | highlight: $select.search')
+							div.col-xs-2
+								button.btn.btn-theme(type='button', ng-model='format.selected') Download
+			div.row
+				div.col-md-12
 					div.table-responsive
 						table.table.table-hover
 							thead
@@ -36,6 +35,6 @@ section#data.data.offset-header
 								tr(ng-repeat='apk in apks | startFrom:(currentPage - 1) * itemsPerPage | limitTo:itemsPerPage')
 									td(ng-repeat='column in tableColumns') {{ apk[column.id] }}
 
-		div.row
-			div.col-md-12.text-center
-				pagination.pagination(boundary-links='true', page='currentPage', total-items='totalItems', items-per-page='itemsPerPage', max-size='maxSize', previous-text!='&lsaquo;', next-text!='&rsaquo;', first-text!='&laquo;', last-text!='&raquo;', rotate='false')
+			div.row
+				div.col-md-12.text-center
+					pagination.pagination(boundary-links='true', page='currentPage', total-items='totalItems', items-per-page='itemsPerPage', max-size='maxSize', previous-text!='&lsaquo;', next-text!='&rsaquo;', first-text!='&laquo;', last-text!='&raquo;', rotate='false')

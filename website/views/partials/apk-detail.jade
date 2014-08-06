@@ -1,0 +1,20 @@
+section#apk-detail.apk-detail.offset-header
+	div.container(loading-spinner='viewLoading')
+		div.row
+			div.col-md-2.col-sm-3
+				img(src='http://placehold.it/150', style='margin-top: 20px;')
+			div.col-md-10.col-sm-9
+				h2 {{ apk.Name }} 
+					small {{ apk.Version }}
+				h4 {{ apk.Developer }}
+				h4 {{ apk.Genre }}
+		div.row.content
+			div.col-sm-4
+				h4.subtitle User Rating
+				p {{ apk.UserRating }}
+			div.col-sm-4
+				h4.subtitle Release Date
+				p {{ apk.DatePublished }}
+			div.col-sm-4
+				h4.subtitle File Size
+				p {{ apk.FileSize }}

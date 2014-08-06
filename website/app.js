@@ -46,10 +46,10 @@ app.get('/', routes.index);
 app.get('/partials/:name', routes.partials);
 
 // API to query the database
+app.get('/apk', api.getApk);
 app.get('/apks', api.getApkList);
 app.get('/genres', api.getGenreList);
 app.get('/search', api.getFilteredApkList);
-app.get('/permissions', api.getPermissionList);
 app.get('/overpermissions', api.getOverprivilegeList);
 app.get('/underpermissions', api.getUnderprivilegeList);
 
