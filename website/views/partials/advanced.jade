@@ -22,9 +22,9 @@ div.modal-body
 				label.control-label.pull-right Genre
 			div.col-xs-9
 				div.input-group
-					ui-select(ng-model='filter.genre.selected', theme='bootstrap')
-						match {{ $select.selected }}
-						choices(repeat='genre in genres | filter: $select.search')
+					ui-select(ng-model='filter.genre.selected')
+						ui-select-match {{ $select.selected }}
+						ui-select-choices(repeat='genre in genres | filter: $select.search')
 							div(ng-bind-html='genre | highlight: $select.search')
 					span.input-group-btn
 						button.btn.btn-default(type='button', ng-click='clear()')
@@ -47,7 +47,7 @@ div.modal-body
 				div.form-group
 					div.col-xs-5
 						p.input-group(ng-controller='DateInputController')
-							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close', ng-model='filter.releaseDateFrom')
+							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-button-bar='false', ng-model='filter.releaseDateFrom')
 							span.input-group-btn
 								button.btn.btn-default(ng-click='open($event)')
 									i.fa.fa-calendar
@@ -55,7 +55,7 @@ div.modal-body
 						label.control-label to
 					div.col-xs-5
 						p.input-group(ng-controller='DateInputController')
-							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-weeks='false', show-button-bar='false', close-text='Close', ng-model='filter.releaseDateTo')
+							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-button-bar='false', ng-model='filter.releaseDateTo')
 							span.input-group-btn
 								button.btn.btn-default(ng-click='open($event)')
 									i.fa.fa-calendar

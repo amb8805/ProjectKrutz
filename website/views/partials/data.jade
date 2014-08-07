@@ -17,10 +17,10 @@ section#data.data.offset-header
 							div.col-xs-2
 								label.control-label Download
 							div.col-xs-8
-								ui-select(ng-model='format.selected', theme='bootstrap')
-									match(placeholder='Select download format...') {{ $select.selected }}
-									choices(repeat='format in formats | filter: $select.search')
-										div(ng-bind-html='format | highlight: $select.search')
+								ui-select(ng-model='format.selected')
+									ui-select-match(placeholder='Select download format...') {{ $select.selected }}
+									ui-select-choices(repeat='format in formats | filter: $select.search')
+										div(ng-bind-html='trustAsHtml((format.toString() | highlight: $select.search))')
 							div.col-xs-2
 								button.btn.btn-theme(type='button', ng-model='format.selected') Download
 			div.row
@@ -37,4 +37,4 @@ section#data.data.offset-header
 
 			div.row
 				div.col-md-12.text-center
-					pagination.pagination(boundary-links='true', page='currentPage', total-items='totalItems', items-per-page='itemsPerPage', max-size='maxSize', previous-text!='&lsaquo;', next-text!='&rsaquo;', first-text!='&laquo;', last-text!='&raquo;', rotate='false')
+					pagination.pagination(boundary-links='true', ng-model='currentPage', total-items='totalItems', items-per-page='itemsPerPage', max-size='maxSize', previous-text!='&lsaquo;', next-text!='&rsaquo;', first-text!='&laquo;', last-text!='&raquo;', rotate='false')

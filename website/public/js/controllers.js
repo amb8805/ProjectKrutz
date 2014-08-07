@@ -143,7 +143,11 @@ angular.module('androidApp.controllers', []).
     });
 
   }).
-  controller('DataController', function ($scope) {
+  controller('DataController', function ($scope, $sce) {
+
+    $scope.trustAsHtml = function (value) {
+      return $sce.trustAsHtml(value);
+    };
 
     // Pagination
     $scope.totalItems = 1;

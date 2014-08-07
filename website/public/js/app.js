@@ -33,3 +33,11 @@ androidApp.config(function ($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 });
+
+androidApp.config(function (uiSelectConfig) {
+  uiSelectConfig.theme = 'bootstrap';
+});
+
+androidApp.config(function (datepickerConfig) {
+  datepickerConfig.showWeeks = false;
+});
