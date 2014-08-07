@@ -32,7 +32,7 @@ section#data.data.offset-header
 									th(ng-repeat='column in tableColumns', ng-click='sortTable(column.id)') {{ column.label }}
 										i.fa.th-sort-arrow.pull-right(ng-show='sort.column == column.id', ng-class='getSortIconClass(column.id)')
 							tbody
-								tr(ng-repeat='apk in apks | startFrom:(currentPage - 1) * itemsPerPage | limitTo:itemsPerPage')
+								tr(ng-repeat='apk in apks | startFrom:(currentPage - 1) * itemsPerPage | limitTo:itemsPerPage', ng-click='selectTableRow()')
 									td(ng-repeat='column in tableColumns') {{ apk[column.id] }}
 
 			div.row

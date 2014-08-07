@@ -143,7 +143,7 @@ angular.module('androidApp.controllers', []).
     });
 
   }).
-  controller('DataController', function ($scope, $sce) {
+  controller('DataController', function ($scope, $sce, $location) {
 
     $scope.trustAsHtml = function (value) {
       return $sce.trustAsHtml(value);
@@ -226,6 +226,10 @@ angular.module('androidApp.controllers', []).
     // Determine which icon to display based on sort order
     $scope.getSortIconClass = function (column) {
       return $scope.sort.sortOrder == 1 ? 'fa-caret-down' : 'fa-caret-up';
+    };
+
+    $scope.selectTableRow = function () {
+      $location.path('data/' + this.apk.rowid);
     };
 
   }).

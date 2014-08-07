@@ -541,14 +541,15 @@ a:hover {
 .data {
   background-color: #fff;
   padding-bottom: 35px;
-  min-height: 850px
+  min-height: 850px;
 }
 
 .data .th-sort-arrow {
   padding-top: 3px;
 }
 
-.data .table > thead > tr > th {
+.data .table > thead > tr > th,
+.data .table > tbody > tr {
   cursor: pointer;
   cursor: hand;
 }
