@@ -5,8 +5,8 @@ section#data.data.offset-header
 					form.form-horizontal(role='form')
 						div.form-group
 							div.col-xs-2
-								label.control-label Search
-							div.col-xs-8(ng-controller='SearchController')
+								label.control-label Filter
+							div.col-xs-8(ng-controller='FilterController')
 								input.form-control(type='text', ng-model='selected', placeholder='Search for an app by name...', typeahead='apk as apk.Name for apk in apks | filter:$viewValue | limitTo:8', typeahead-on-select='search($item)')
 							div.col-xs-2
 								button.btn.btn-theme(ng-controller='ModalController', type='button', ng-click='open()') Advanced

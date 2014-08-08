@@ -33,7 +33,7 @@ div.modal-body
 			div.col-xs-3
 				label.control-label.pull-right User Rating
 			div.col-xs-9
-				div.form-group
+				div.form-group.combo
 					div.col-xs-5
 						input.form-control(type='number', min='1', max='5', ng-model='filter.userRatingFrom')
 					div.col-xs-2.text-center
@@ -44,9 +44,9 @@ div.modal-body
 			div.col-xs-3
 				label.control-label.pull-right Release Date
 			div.col-xs-9
-				div.form-group
+				div.form-group.combo
 					div.col-xs-5
-						p.input-group(ng-controller='DateInputController')
+						div.input-group(ng-controller='DateInputController')
 							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-button-bar='false', ng-model='filter.releaseDateFrom')
 							span.input-group-btn
 								button.btn.btn-default(ng-click='open($event)')
@@ -54,7 +54,7 @@ div.modal-body
 					div.col-xs-2.text-center
 						label.control-label to
 					div.col-xs-5
-						p.input-group(ng-controller='DateInputController')
+						div.input-group(ng-controller='DateInputController')
 							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-button-bar='false', ng-model='filter.releaseDateTo')
 							span.input-group-btn
 								button.btn.btn-default(ng-click='open($event)')

@@ -9,16 +9,16 @@ var apkProperties = 'rowid, Name, Version, Developer, Genre, UserRating, DatePub
 var mergeApkList = function (apks) {
 
 	for (var i = 1; i < apks.length; i++) {
-
+		
 		if (apks[i - 1].Overpermissions == null) {
 			apks[i - 1].Overpermissions = [];
-		} else if (typeof apks[i - 1].Overpermissions == 'number') {
+		} else if (!(apks[i - 1].Overpermissions instanceof Array)) {
 			apks[i - 1].Overpermissions = [apks[i - 1].Overpermissions];
 		}
 
 		if (apks[i - 1].Underpermissions == null) {
 			apks[i - 1].Underpermissions = [];
-		} else if (typeof apks[i - 1].Underpermissions == 'number') {
+		} else if (!(apks[i - 1].Underpermissions instanceof Array)) {
 			apks[i - 1].Underpermissions = [apks[i - 1].Underpermissions];
 		}
 
@@ -42,15 +42,15 @@ var mergeApkList = function (apks) {
 
 exports.getApk = function (req, res) {
 
-	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' + 
-	'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
-	'o.PermissionId as Overpermissions, u.PermissionId as Underpermissions ' +
-	'FROM ApkInformation apk ' +
-	'LEFT JOIN Overprivilege o ' +
-		'ON apk.rowid = o.ApkId ' +
-	'LEFT JOIN Underprivilege u ' +
-		'ON apk.rowid = u.ApkId ' +
-	'WHERE apk.rowid IS ' + req.query.rowid;
+	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
+		'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
+		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
+		'FROM ApkInformation apk ' +
+		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
+		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
+		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
+		'LEFT JOIN Permissions p2 on p2.pid = u.PermissionId ' +
+		'WHERE apk.rowid IS ' + req.query.rowid;
 
 	db.all(query, function (err, apks) {
 		var apk = mergeApkList(apks)[0];
@@ -61,18 +61,37 @@ exports.getApk = function (req, res) {
 
 exports.getApkList = function (req, res) {
 
-	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' + 
-	'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
-	'o.PermissionId as Overpermissions, u.PermissionId as Underpermissions ' +
-	'FROM ApkInformation apk ' +
-	'LEFT JOIN Overprivilege o ' +
-		'ON apk.rowid = o.ApkId ' +
-	'LEFT JOIN Underprivilege u ' +
-		'ON apk.rowid = u.ApkId';
+	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
+		'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
+		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
+		'FROM ApkInformation apk ' +
+		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
+		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
+		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
+		'LEFT JOIN Permissions p2 on p2.pid = u.PermissionId';
 
 	db.all(query, function (err, apks) {
 		res.send(mergeApkList(apks));
 	});
+};
+
+// TODO: Maybe use this instead of topApk filter?
+exports.getTopApkList = function (req, res) {
+
+	// SELECT Name, Version, Developer, MAX(CollectionDate), UpperDownloads FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 10
+	var query = 'SELECT apk.rowid, apk.Name, MAX(apk.CollectionDate), ' +
+		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
+		'FROM ApkInformation apk ' +
+		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
+		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
+		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
+		'LEFT JOIN Permissions p2 on p2.pid = u.PermissionId ' +
+		'GROUP BY apk.Name ORDER BY apk.UpperDownloads DESC LIMIT 5';
+
+	db.all(query, function (err, apks) {
+		res.send(mergeApkList(apks));
+	});
+
 };
 
 exports.getGenreList = function (req, res) {

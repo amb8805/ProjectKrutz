@@ -233,7 +233,7 @@ angular.module('androidApp.controllers', []).
     };
 
   }).
-  controller('SearchController', function ($scope, $location) {
+  controller('FilterController', function ($scope, $location) {
 
     $scope.selected = undefined;
 
