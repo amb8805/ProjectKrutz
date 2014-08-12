@@ -17,6 +17,7 @@ angular.module('androidApp.controllers', []).
     // Get APK data from the database
     ApkService.apks.query(function (response) {
       $scope.apks = response;
+      $scope.displayedApks = $scope.apks;
       $scope.topApks = $filter('topApks')($scope.apks, 5);
       $scope.viewLoading = false;
     });
@@ -40,7 +41,7 @@ angular.module('androidApp.controllers', []).
 
     // When the APK list is filtered, update the list
     $scope.$on('filterApks', function (event, data) {
-      $scope.apks = data;
+      $scope.displayedApks = data;
     });
 
     // When a navbar link is clicked, return to the top of the page
@@ -202,9 +203,9 @@ angular.module('androidApp.controllers', []).
     ];
 
     // Update pagination when the APK list has loaded
-    $scope.$watch('apks', function () {
-      if ($scope.apks) {
-        $scope.totalItems = $scope.apks.length;
+    $scope.$watch('displayedApks', function () {
+      if ($scope.displayedApks) {
+        $scope.totalItems = $scope.displayedApks.length;
       }
     });
 
@@ -217,7 +218,7 @@ angular.module('androidApp.controllers', []).
           sort.column = column;
           sort.sortOrder = 1;
         }
-      $scope.apks.sort(function (a, b) {
+      $scope.displayedApks.sort(function (a, b) {
         var result = (a[column] < b[column]) ? -1 : (a[column] > b[column]) ? 1 : 0;
         return result * sort.sortOrder;
       });
@@ -233,17 +234,12 @@ angular.module('androidApp.controllers', []).
     };
 
   }).
-  controller('FilterController', function ($scope, $location) {
+  controller('FilterController', function ($scope, $filter) {
 
-    $scope.selected = undefined;
-
-    $scope.clear = function () {
-      $scope.selected = undefined;
-    }
-
-    $scope.search = function (apk) {
-      $location.path('data/' + apk.rowid);
-    };
+    $scope.$watch('search', function (newVal, oldVal) {
+      var filteredApks = $filter('filter')($scope.apks, newVal);
+      $scope.$emit('filterApks', filteredApks);
+    });
 
   }).
   controller('ModalController', function ($scope, $modal, $log, ApkService) {

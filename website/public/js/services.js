@@ -12,6 +12,4 @@ angular.module('androidApp.services', ['ngResource']).
 			overpermissions:	$resource('/overpermissions', {}),
 			underpermissions:	$resource('/underpermissions', {})
 		};
-	}).
-	value('version', '0.1');
-
+	});
