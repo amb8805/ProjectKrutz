@@ -8,7 +8,7 @@ angular.module('androidApp.services', ['ngResource']).
 			apk:				$resource('/apk', {}, {'query': {isArray: false}}),
 			apks:				$resource('/apks', {}),
 			genres:				$resource('/genres', {}),
-			search:				$resource('/search', {}),
+			filter:				$resource('/filter', {}),
 			overpermissions:	$resource('/overpermissions', {}),
 			underpermissions:	$resource('/underpermissions', {})
 		};

@@ -40,8 +40,8 @@ angular.module('androidApp.controllers', []).
     }
 
     // When the APK list is filtered, update the list
-    $scope.$on('filterApks', function (event, data) {
-      $scope.displayedApks = data;
+    $scope.$on('filterApks', function (event, filteredApks) {
+      $scope.displayedApks = filteredApks;
     });
 
     // When a navbar link is clicked, return to the top of the page
@@ -139,16 +139,13 @@ angular.module('androidApp.controllers', []).
   }).
   controller('ApkDetailController', function ($scope, $routeParams, ApkService) {
 
+    // Get the singluar APK object to display
     ApkService.apk.query({rowid: $routeParams.apkId}, function (response) {
       $scope.apk = response;
     });
 
   }).
-  controller('DataController', function ($scope, $sce, $location) {
-
-    $scope.trustAsHtml = function (value) {
-      return $sce.trustAsHtml(value);
-    };
+  controller('DataController', function ($scope, $sce, $location, $window) {
 
     // Pagination
     $scope.totalItems = 1;
@@ -157,11 +154,9 @@ angular.module('androidApp.controllers', []).
     $scope.maxSize = 5;
 
     // Selected download format and all available formats
-    $scope.format = {};
-    $scope.formats = [
-      'XML',
-      'JSON',
-      'CSV'
+    $scope.fileFormat = {};
+    $scope.fileFormats = [
+      'SQLite'
     ];
 
     // The current table sort
@@ -209,6 +204,13 @@ angular.module('androidApp.controllers', []).
       }
     });
 
+    // Download the data as the selected file format
+    $scope.download = function (fileFormat) {
+      if (fileFormat === 'SQLite') {
+        // TODO: Download the .sqlite file here...
+      }
+    };
+
     // Sort the table according to the given column and current sort
     $scope.sortTable = function (column) {
       var sort = $scope.sort;
@@ -229,15 +231,22 @@ angular.module('androidApp.controllers', []).
       return $scope.sort.sortOrder == 1 ? 'fa-caret-down' : 'fa-caret-up';
     };
 
+    // When a table row is selected, display the page for that individual APK
     $scope.selectTableRow = function () {
       $location.path('data/' + this.apk.rowid);
+    };
+
+    // Used to avoid an error with the ui-select component
+    $scope.trustAsHtml = function (value) {
+      return $sce.trustAsHtml(value);
     };
 
   }).
   controller('FilterController', function ($scope, $filter) {
 
+    // Filter the displayed table of APKs
     $scope.$watch('search', function (newVal, oldVal) {
-      var filteredApks = $filter('filter')($scope.apks, newVal);
+      var filteredApks = $filter('filter')($scope.apks, {Name: newVal});
       $scope.$emit('filterApks', filteredApks);
     });
 
@@ -255,7 +264,7 @@ angular.module('androidApp.controllers', []).
 
       // Filter the APK table with the advanced serach results
       modalInstance.result.then(function (params) {
-        ApkService.search.query(params, function (response) {
+        ApkService.filter.query(params, function (response) {
           $scope.$emit('filterApks', response);
         });
       });
@@ -299,8 +308,7 @@ angular.module('androidApp.controllers', []).
     $scope.setUnit = function (bound, unit) {
       if (bound == 'from') {
         $scope.filter.fileSizeFromUnit = unit;
-      }
-      else if (bound == 'to') {
+      } else if (bound == 'to') {
         $scope.filter.fileSizeToUnit = unit;
       }
     };
@@ -316,6 +324,7 @@ angular.module('androidApp.controllers', []).
       }
     });
 
+    // Clears the current selection
     $scope.clear = function () {
       $scope.filter.genre.selected = undefined;
     };

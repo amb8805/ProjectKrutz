@@ -17,12 +17,12 @@ section#data.data.offset-header
 						div.col-xs-2
 							label.control-label Download
 						div.col-xs-8
-							ui-select(ng-model='format.selected')
+							ui-select(ng-model='fileFormat.selected')
 								ui-select-match(placeholder='Select download format...') {{ $select.selected }}
-								ui-select-choices(repeat='format in formats | filter: $select.search')
-									div(ng-bind-html='trustAsHtml((format.toString() | highlight: $select.search))')
+								ui-select-choices(repeat='fileFormat in fileFormats | filter: $select.search')
+									div(ng-bind-html='trustAsHtml((fileFormat.toString() | highlight: $select.search))')
 						div.col-xs-2
-							button.btn.btn-theme(type='button', ng-model='format.selected') Download
+							button.btn.btn-theme(type='button', ng-click='download(fileFormat.selected)', ng-disabled='!fileFormat.selected') Download
 		div.row
 			div.col-md-12
 				div.table-responsive

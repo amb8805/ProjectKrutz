@@ -49,7 +49,7 @@ app.get('/partials/:name', routes.partials);
 app.get('/apk', api.getApk);
 app.get('/apks', api.getApkList);
 app.get('/genres', api.getGenreList);
-app.get('/search', api.getFilteredApkList);
+app.get('/filter', api.getFilteredApkList);
 app.get('/overpermissions', api.getOverprivilegeList);
 app.get('/underpermissions', api.getUnderprivilegeList);
 
