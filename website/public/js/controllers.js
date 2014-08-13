@@ -139,9 +139,12 @@ angular.module('androidApp.controllers', []).
   }).
   controller('ApkDetailController', function ($scope, $routeParams, ApkService) {
 
+    $scope.viewLoading = true;
+
     // Get the singluar APK object to display
     ApkService.apk.query({rowid: $routeParams.apkId}, function (response) {
       $scope.apk = response;
+      $scope.viewLoading = false;
     });
 
   }).
@@ -207,7 +210,7 @@ angular.module('androidApp.controllers', []).
     // Download the data as the selected file format
     $scope.download = function (fileFormat) {
       if (fileFormat === 'SQLite') {
-        // TODO: Download the .sqlite file here...
+        $window.location.href = '/files/EvolutionOfAndroidApplications.sqlite';
       }
     };
 

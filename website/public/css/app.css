@@ -426,6 +426,8 @@ a:hover {
   left: 0;
   right: 0;
   text-align: center;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .promo .content h1 {

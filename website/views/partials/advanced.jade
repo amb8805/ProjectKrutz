@@ -40,7 +40,7 @@ div.modal-body
 						label.control-label to
 					div.col-xs-5
 						input.form-control(type='number', min='1', max='5', ng-model='filter.userRatingTo')
-		div.form-group
+		div.form-group(ng-show='false')
 			div.col-xs-3
 				label.control-label.pull-right Release Date
 			div.col-xs-9
@@ -59,7 +59,7 @@ div.modal-body
 							span.input-group-btn
 								button.btn.btn-default(ng-click='open($event)')
 									i.fa.fa-calendar
-		div.form-group
+		div.form-group(ng-show='false')
 			div.col-xs-3
 				label.control-label.pull-right File Size
 			div.col-xs-9

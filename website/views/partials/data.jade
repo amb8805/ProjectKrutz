@@ -9,7 +9,7 @@ section#data.data.offset-header
 						div.col-xs-8(ng-controller='FilterController')
 							input.form-control(type='text', ng-model='search', placeholder='Search for an app by name...')
 						div.col-xs-2
-							button.btn.btn-theme(ng-controller='ModalController', type='button', ng-click='open()') Advanced
+							button.btn.btn-theme(type='button', ng-controller='ModalController', ng-click='open()') Advanced
 		div.row
 			div.col-md-6.col-md-offset-6
 				form.form-horizontal(role='form')
@@ -22,7 +22,7 @@ section#data.data.offset-header
 								ui-select-choices(repeat='fileFormat in fileFormats | filter: $select.search')
 									div(ng-bind-html='trustAsHtml((fileFormat.toString() | highlight: $select.search))')
 						div.col-xs-2
-							button.btn.btn-theme(type='button', ng-click='download(fileFormat.selected)', ng-disabled='!fileFormat.selected') Download
+							button.btn.btn-theme(type='button', ng-disabled='!fileFormat.selected', ng-click='download(fileFormat.selected)') Download
 		div.row
 			div.col-md-12
 				div.table-responsive

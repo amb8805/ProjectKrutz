@@ -8,32 +8,35 @@ var apkProperties = 'rowid, Name, Version, Developer, Genre, UserRating, DatePub
 
 var mergeApkList = function (apks) {
 
-	for (var i = 1; i < apks.length; i++) {
+	for (var i = 0; i < apks.length - 1; i++) {
+
+		if (apks[i].Overpermissions == null) {
+			apks[i].Overpermissions = [];
+		} else if (!(apks[i].Overpermissions instanceof Array)) {
+			apks[i].Overpermissions = [apks[i].Overpermissions];
+		}
+
+		if (apks[i].Underpermissions == null) {
+			apks[i].Underpermissions = [];
+		} else if (!(apks[i].Underpermissions instanceof Array)) {
+			apks[i].Underpermissions = [apks[i].Underpermissions];
+		}
+
+		if (apks.length > 1) {
+			if (apks[i].rowid === apks[i + 1].rowid) {
+				if (apks[i + 1].Overpermissions != null && apks[i].Overpermissions.indexOf(apks[i + 1].Overpermissions) == -1) {
+					apks[i].Overpermissions.push(apks[i + 1].Overpermissions);
+				}
+
+				if (apks[i + 1].Underpermissions != null && apks[i].Underpermissions.indexOf(apks[i + 1].Underpermissions) == -1) {
+					apks[i].Underpermissions.push(apks[i + 1].Underpermissions);
+				}
+
+				apks.splice(i + 1, 1);
+				i--;
+			}
+		}
 		
-		if (apks[i - 1].Overpermissions == null) {
-			apks[i - 1].Overpermissions = [];
-		} else if (!(apks[i - 1].Overpermissions instanceof Array)) {
-			apks[i - 1].Overpermissions = [apks[i - 1].Overpermissions];
-		}
-
-		if (apks[i - 1].Underpermissions == null) {
-			apks[i - 1].Underpermissions = [];
-		} else if (!(apks[i - 1].Underpermissions instanceof Array)) {
-			apks[i - 1].Underpermissions = [apks[i - 1].Underpermissions];
-		}
-
-		if (apks[i - 1].rowid === apks[i].rowid) {
-			if (apks[i].Overpermissions != null && apks[i - 1].Overpermissions.indexOf(apks[i].Overpermissions) == -1) {
-				apks[i - 1].Overpermissions.push(apks[i].Overpermissions);
-			}
-
-			if (apks[i].Underpermissions != null && apks[i - 1].Underpermissions.indexOf(apks[i].Underpermissions) == -1) {
-				apks[i - 1].Underpermissions.push(apks[i].Underpermissions);
-			}
-
-			apks.splice(i, 1);
-			i--;
-		}
 	}
 
 	return apks;
@@ -119,9 +122,8 @@ exports.getFilteredApkList = function (req, res) {
 		statement += ' WHERE Genre LIKE"%' + req.query.genre + '%"';
 	}
 	if (req.query.userRatingFrom && req.query.userRatingTo) {
-		statement += ' WHERE Rating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
+		statement += ' WHERE UserRating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
 	}
-	// TODO: DatePublished and FileSize queries are not functional
 	if (req.query.releaseDateFrom && req.query.releaseDateTo) {
 		statement += ' WHERE DatePublished BETWEEN ' + req.query.releaseDateFrom + ' AND ' + req.query.releaseDateTo;
 	}
