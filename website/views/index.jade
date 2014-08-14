@@ -2,12 +2,8 @@ extends layout
 
 block body
   div(ng-controller='AppController')
-    header#top.header.navbar-fixed-top
+    header#top.header
       div.container
-        h1.logo.pull-left
-          a.logo-title(href='#/')
-            img#logo-image.logo-image(src='http://placehold.it/50')
-            span.logo-title Reverse Engineering of Android Applications
         nav#main-nav.main-nav.navbar-right(role='navigation')
           div.navbar-header
             button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-collapse', ng-click='isCollapsed = !isCollapsed')
@@ -27,8 +23,9 @@ block body
     div(ng-view)
 
     footer.footer
-      div.container.text-center
-        small.copyright Copyright &copy; 2014 Adam Blaine, Casey Klimkowsky, Shannon Trudeau, Dr. Daniel Krutz
+      div.container
+        span Copyright &copy; 2014 Adam Blaine, Casey Klimkowsky, Shannon Trudeau, Dr. Daniel Krutz
+        a.pull-right(href='') GitHub Repository
 
   script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
   script(src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js')

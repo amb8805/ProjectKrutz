@@ -5,9 +5,6 @@
 angular.module('androidApp.controllers', []).
   controller('AppController', function ($scope, $location, $window, $filter, ApkService) {
 
-    // Determine navbar offset
-    $scope.offset = $('#top').outerHeight();
-
     // Is the data from the database currently loading?
     $scope.viewLoading = true;
 

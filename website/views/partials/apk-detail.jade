@@ -1,37 +1,37 @@
-section#apk-detail.apk-detail.offset-header
+section#apk-detail.apk-detail
 	div.container(loading-spinner='viewLoading')
 		div.row
 			div.col-md-2.col-sm-3
 				img(src='http://placehold.it/150', style='margin-top: 20px;')
 			div.col-md-10.col-sm-9
-				h2 {{ apk.Name }} 
+				h1 {{ apk.Name }} 
 					small {{ apk.Version }}
 				h4 {{ apk.Developer }}
-				h4 {{ apk.Genre }}
+				h5 {{ apk.Genre }}
 		div.row.content
 			div.col-md-3.col-sm-6
-				h4.subtitle User Rating
+				h2.subtitle User Rating
 				p {{ apk.UserRating }}
 			div.col-md-3.col-sm-6
-				h4.subtitle Release Date
+				h2.subtitle Release Date
 				p {{ apk.DatePublished }}
 			div.col-md-3.col-sm-6
-				h4.subtitle File Size
+				h2.subtitle File Size
 				p {{ apk.FileSize }}
 			div.col-md-3.col-sm-6
-				h4.subtitle Number of Downloads
+				h2.subtitle Number of Downloads
 				p {{ apk.LowerDownloads | number }} - {{ apk.UpperDownloads | number }}
-		div.row
+		div.row.analysis-results
 			div.col-md-3
 				h3 Analysis Results
 		div.row.content
 			div.col-md-6
-				h4.subtitle Overpermissions
+				h2.subtitle Overpermissions
 				ul.permissions-list
 					li(ng-repeat='o in apk.Overpermissions') {{ o }}
 				div(ng-hide='apk.Overpermissions.length > 0') No Overpermissions
 			div.col-md-6
-				h4.subtitle Underpermissions
+				h2.subtitle Underpermissions
 				ul.permissions-list
 					li(ng-repeat='u in apk.Underpermissions') {{ u }}
 				div(ng-hide='apk.Underpermissions.length > 0') No Underpermissions
