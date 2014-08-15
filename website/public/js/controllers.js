@@ -207,7 +207,7 @@ angular.module('androidApp.controllers', []).
     // Download the data as the selected file format
     $scope.download = function (fileFormat) {
       if (fileFormat === 'SQLite') {
-        $window.location.href = '/files/EvolutionOfAndroidApplications.sqlite';
+        $window.location.href = 'https://github.com/DroidDarwin/DarwinData/raw/master/EvolutionOfAndroidApplications.sqlite';
       }
     };
 
