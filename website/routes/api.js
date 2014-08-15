@@ -4,11 +4,14 @@ var sqlite3 = require('sqlite3').verbose();
 var file = '../EvolutionOfAndroidApplications.sqlite';
 var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
-var apkProperties = 'rowid, Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, LowerDownloads, UpperDownloads';
+var apkProperties = 'apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
+	'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads';
 
 var mergeApkList = function (apks) {
 
-	for (var i = 0; i < apks.length - 1; i++) {
+	var i = 0;
+
+	do {
 
 		if (apks[i].Overpermissions == null) {
 			apks[i].Overpermissions = [];
@@ -36,8 +39,11 @@ var mergeApkList = function (apks) {
 				i--;
 			}
 		}
+
+		i++;
 		
 	}
+	while (i < apks.length - 1);
 
 	return apks;
 
@@ -45,8 +51,7 @@ var mergeApkList = function (apks) {
 
 exports.getApk = function (req, res) {
 
-	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
-		'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
+	var query = 'SELECT ' + apkProperties + ', ' +
 		'p.Name as Overpermissions, p2.Name as Underpermissions, ' +
 		'tr.FuzzyRiskValue, tr.DefectCount ' +
 		'FROM ApkInformation apk ' +
@@ -66,8 +71,7 @@ exports.getApk = function (req, res) {
 
 exports.getApkList = function (req, res) {
 
-	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
-		'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
+	var query = 'SELECT ' + apkProperties + ', ' +
 		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
 		'FROM ApkInformation apk ' +
 		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
@@ -83,7 +87,7 @@ exports.getApkList = function (req, res) {
 // TODO: Maybe use this instead of topApk filter?
 exports.getTopApkList = function (req, res) {
 
-	// SELECT Name, Version, Developer, MAX(CollectionDate), UpperDownloads FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 10
+	// SELECT Name, Version, Developer, MAX(CollectionDate), UpperDownloads FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 5
 	var query = 'SELECT apk.rowid, apk.Name, MAX(apk.CollectionDate), ' +
 		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
 		'FROM ApkInformation apk ' +
@@ -109,7 +113,7 @@ exports.getGenreList = function (req, res) {
 
 exports.getFilteredApkList = function (req, res) {
 	
-	var statement = 'SELECT ' + apkProperties + ' FROM ApkInformation';
+	var statement = 'SELECT ' + apkProperties + ' FROM ApkInformation apk';
 	var multipleConditions = false;
 
 	if (req.query.name) {

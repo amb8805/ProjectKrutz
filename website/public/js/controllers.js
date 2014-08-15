@@ -19,8 +19,20 @@ angular.module('androidApp.controllers', []).
       $scope.viewLoading = false;
     });
 
+    // When a navbar link is clicked, return to the top of the page
+    $scope.$on('$routeChangeSuccess', function () {
+      $scope.isCollapsed = true;
+      $window.scrollTo(0, 0);
+    });
+
+    // When the APK list is filtered, update the list
+    $scope.$on('filterApks', function (event, filteredApks) {
+      $scope.displayedApks = filteredApks;
+    });
+
     // Logic for navbar and routing
     $scope.getNavItemClass = function (path) {
+
       if (path === '/') {
         if ($location.path() === '/') {
           return 'active';
@@ -34,45 +46,52 @@ angular.module('androidApp.controllers', []).
       } else {
         return '';
       }
+      
     }
-
-    // When the APK list is filtered, update the list
-    $scope.$on('filterApks', function (event, filteredApks) {
-      $scope.displayedApks = filteredApks;
-    });
-
-    // When a navbar link is clicked, return to the top of the page
-    $scope.$on('$routeChangeSuccess', function () {
-      $scope.isCollapsed = true;
-      $window.scrollTo(0, 0);
-    });
     
   }).
   controller('HomeController', function ($scope) {
 
+    // Chart colors
     var colors = [
-      {
-        color: '#33b5e5',
-        highlight: '#50C0e9'
-      },
-      {
-        color: '#aa66cc',
-        highlight: '#ba75dc'
-      },
-      {
-        color: '#99cc00',
-        highlight: '#a8d324'
-      },
-      {
-        color: '#ffbb33',
-        highlight: '#ffc641'
-      },
-      {
-        color: '#ff4444',
-        highlight: '#ff5f5f'
-      }
+      '#33b5e5',
+      '#aa66cc',
+      '#99cc00',
+      '#ffbb33',
+      '#ff4444',
     ];
 
+    // Helper function that returns a tint for the given color
+    var getHighlight = function (color, amount) {
+
+      var usePound = false;
+
+      if (color[0] == '#') {
+        color = color.slice(1);
+        usePound = true;
+      }
+
+      var num = parseInt(color, 16);
+      var r = (num >> 16) + amount;
+
+      if (r > 255) r = 255;
+      else if  (r < 0) r = 0;
+
+      var b = ((num >> 8) & 0x00ff) + amount;
+
+      if (b > 255) b = 255;
+      else if  (b < 0) b = 0;
+
+      var g = (num & 0x0000ff) + amount;
+
+      if (g > 255) g = 255;
+      else if (g < 0) g = 0;
+
+      return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
+
+    }
+
+    // When the list of top APKs loads, create the chart
     $scope.$watch('topApks', function () {
       if ($scope.topApks) {
         $scope.segments = [];
@@ -80,14 +99,15 @@ angular.module('androidApp.controllers', []).
           var segment = {
             label: $scope.topApks[i].Name,
             value: $scope.topApks[i].Overpermissions.length,
-            color: colors[i].color,
-            highlight: colors[i].highlight
+            color: colors[i],
+            highlight: getHighlight(colors[i], 10)
           };
           $scope.segments.push(segment);
         }
       }
     });
 
+    // When all data has been fetched from the database, render the chart
     $scope.$watch('viewLoading', function () {
       if ($scope.segments) {
         $scope.options =  {
@@ -136,6 +156,7 @@ angular.module('androidApp.controllers', []).
   }).
   controller('ApkDetailController', function ($scope, $routeParams, ApkService) {
 
+    // Is the data from the database currently loading?
     $scope.viewLoading = true;
 
     // Get the singluar APK object to display
@@ -211,24 +232,9 @@ angular.module('androidApp.controllers', []).
       }
     };
 
-    // Sort the table according to the given column and current sort
-    $scope.sortTable = function (column) {
-      var sort = $scope.sort;
-      if (sort.column == column) {
-          sort.sortOrder = sort.sortOrder * -1;
-        } else {
-          sort.column = column;
-          sort.sortOrder = 1;
-        }
-      $scope.displayedApks.sort(function (a, b) {
-        var result = (a[column] < b[column]) ? -1 : (a[column] > b[column]) ? 1 : 0;
-        return result * sort.sortOrder;
-      });
-    };
-
-    // Determine which icon to display based on sort order
-    $scope.getSortIconClass = function (column) {
-      return $scope.sort.sortOrder == 1 ? 'fa-caret-down' : 'fa-caret-up';
+    // Used to avoid an error with the ui-select component
+    $scope.trustAsHtml = function (value) {
+      return $sce.trustAsHtml(value);
     };
 
     // When a table row is selected, display the page for that individual APK
@@ -236,9 +242,28 @@ angular.module('androidApp.controllers', []).
       $location.path('data/' + this.apk.rowid);
     };
 
-    // Used to avoid an error with the ui-select component
-    $scope.trustAsHtml = function (value) {
-      return $sce.trustAsHtml(value);
+    // Determine which icon to display based on sort order
+    $scope.getSortIconClass = function (column) {
+      return $scope.sort.sortOrder == 1 ? 'fa-caret-down' : 'fa-caret-up';
+    };
+
+    // Sort the table according to the given column and current sort
+    $scope.sortTable = function (column) {
+
+      var sort = $scope.sort;
+      
+      if (sort.column == column) {
+          sort.sortOrder = sort.sortOrder * -1;
+        } else {
+          sort.column = column;
+          sort.sortOrder = 1;
+        }
+
+      $scope.displayedApks.sort(function (a, b) {
+        var result = (a[column] < b[column]) ? -1 : (a[column] > b[column]) ? 1 : 0;
+        return result * sort.sortOrder;
+      });
+
     };
 
   }).
@@ -268,11 +293,13 @@ angular.module('androidApp.controllers', []).
           $scope.$emit('filterApks', response);
         });
       });
+
     };
 
   }).
   controller('ModalInstanceController', function ($scope, $modalInstance) {
 
+    // Define the filter parameters
     $scope.filter = {
       name: undefined,
       version: undefined,
@@ -282,7 +309,9 @@ angular.module('androidApp.controllers', []).
       userRatingTo: undefined
     };
 
+    // Serve filter parameters to the modal instance
     $scope.search = function () {
+
       $modalInstance.close({
         name: $scope.filter.name, 
         version: $scope.filter.version, 
@@ -291,6 +320,7 @@ angular.module('androidApp.controllers', []).
         userRatingFrom: $scope.filter.userRatingFrom,
         userRatingTo: $scope.filter.userRatingTo
       });
+
     };
 
   }).

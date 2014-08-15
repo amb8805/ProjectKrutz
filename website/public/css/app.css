@@ -7,6 +7,10 @@
  * --------------------------------------------------
  */
 
+ html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   color: #444;
@@ -20,7 +24,7 @@ h1 {
   letter-spacing: 1px;
 }
 
-h2.subtitle {
+h2 {
   font-family: 'Roboto Condensed', sans-serif;
   font-weight: normal;
   font-size: 21px;
@@ -32,6 +36,7 @@ p {
   font-weight: 300;
   font-family: 'Roboto', sans-serif;
   font-size: 15px;
+  line-height: 1.55;
 }
 
 a {
@@ -59,18 +64,18 @@ a:hover {
   background: #99cc00;
   border: 1px solid #99cc00;
   color: #fff;
+  outline: 0;
 }
 
 .btn-theme:hover {
   background: #83b600;
+  color: #fff;
+  border: 1px solid #83b600;
 }
 
-.btn-theme:hover,
-.btn-theme:active,
-.btn-theme:focus {
-  border: 1px solid #83b600;
+.btn-theme:focus,
+.btn-theme:active {
   color: #fff;
-  outline: 0;
 }
 
 .btn-transparent {
@@ -80,16 +85,14 @@ a:hover {
 }
 
 .btn-transparent:hover {
+  color: #444;
   background: #fff;
 }
 
 .btn-transparent:focus,
 .btn-transparent:active {
   color: #fff;
-}
-
-.btn-transparent:hover {
-  color: #444;
+  outline: 0;
 }
 
 .control-label {
@@ -99,7 +102,6 @@ a:hover {
 .form-control {
   outline: 0;
   font-weight: 300;
-  border-radius: 0;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -112,17 +114,19 @@ a:hover {
   box-shadow: none;
 }
 
-.ui-select-bootstrap .ui-select-choices-row.active > a {
-  background-color: #99cc00;
-}
-
-.dropdown-menu {
+.form-control,
+.dropdown-menu,
+.modal-content {
   border-radius: 0;
 }
 
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
+  background-color: #99cc00;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active > a {
   background-color: #99cc00;
 }
 
@@ -151,26 +155,6 @@ a:hover {
   color: #fff;
   background-color: #99cc00;
   border-color: #99cc00;
-}
-
-::-webkit-input-placeholder {
-  /* WebKit browsers */
-  color: #999;
-}
-
-:-moz-placeholder {
-  /* Mozilla Firefox 4 to 18 */
-  color: #999;
-}
-
-::-moz-placeholder {
-  /* Mozilla Firefox 19+ */
-  color: #999;
-}
-
-:-ms-input-placeholder {
-  /* Internet Explorer 10+ */
-  color: #999;
 }
 
 .delayp1 {
@@ -540,10 +524,6 @@ a:hover {
 .data .table > tbody > tr {
   cursor: pointer;
   cursor: hand;
-}
-
-.modal-content {
-  border-radius: 0;
 }
 
 
