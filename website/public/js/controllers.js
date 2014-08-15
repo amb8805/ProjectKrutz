@@ -3,29 +3,24 @@
 /* Controllers */
 
 angular.module('androidApp.controllers', []).
-  controller('AppController', function ($scope, $location, ApkService) {
+  controller('AppController', function ($scope, $location, $window, $filter, ApkService) {
 
-    // Get APK data from the database
-
-    ApkService.apks.query(function (response) {
-      $scope.apks = response;
-    });
+    // Is the data from the database currently loading?
+    $scope.viewLoading = true;
 
     // Logic for navbar
-
     $scope.isCollapsed = true;
 
-    $scope.$on('$routeChangeSuccess', function () {
-      $scope.isCollapsed = true;
+    // Get APK data from the database
+    ApkService.apks.query(function (response) {
+      $scope.apks = response;
+      $scope.displayedApks = $scope.apks;
+      $scope.topApks = $filter('topApks')($scope.apks, 5);
+      $scope.viewLoading = false;
     });
 
-    $scope.$on('filterApks', function (event, data) {
-      $scope.apks = data;
-    });
-
-    // Logic for routing
-
-    $scope.getClass = function (path) {
+    // Logic for navbar and routing
+    $scope.getNavItemClass = function (path) {
       if (path === '/') {
         if ($location.path() === '/') {
           return 'active';
@@ -40,112 +35,225 @@ angular.module('androidApp.controllers', []).
         return '';
       }
     }
+
+    // When the APK list is filtered, update the list
+    $scope.$on('filterApks', function (event, filteredApks) {
+      $scope.displayedApks = filteredApks;
+    });
+
+    // When a navbar link is clicked, return to the top of the page
+    $scope.$on('$routeChangeSuccess', function () {
+      $scope.isCollapsed = true;
+      $window.scrollTo(0, 0);
+    });
     
   }).
   controller('HomeController', function ($scope) {
 
-    $scope.chart = [
-        {
-            value: 30,
-            color:"#F7464A"
-        },
-        {
-            value : 50,
-            color : "#E2EAE9"
-        },
-        {
-            value : 100,
-            color : "#D4CCC5"
-        },
-        {
-            value : 40,
-            color : "#949FB1"
-        },
-        {
-            value : 120,
-            color : "#4D5360"
-        }
+    var colors = [
+      {
+        color: '#33b5e5',
+        highlight: '#50C0e9'
+      },
+      {
+        color: '#aa66cc',
+        highlight: '#ba75dc'
+      },
+      {
+        color: '#99cc00',
+        highlight: '#a8d324'
+      },
+      {
+        color: '#ffbb33',
+        highlight: '#ffc641'
+      },
+      {
+        color: '#ff4444',
+        highlight: '#ff5f5f'
+      }
     ];
 
-    $scope.options =  {
-        // Boolean - Whether we should show a stroke on each segment
-        segmentShowStroke : true,
+    $scope.$watch('topApks', function () {
+      if ($scope.topApks) {
+        $scope.segments = [];
+        for (var i = 0; i < $scope.topApks.length; i++) {
+          var segment = {
+            label: $scope.topApks[i].Name,
+            value: $scope.topApks[i].Overpermissions.length,
+            color: colors[i].color,
+            highlight: colors[i].highlight
+          };
+          $scope.segments.push(segment);
+        }
+      }
+    });
 
-        // String - The colour of each segment stroke
-        segmentStrokeColor : "#fff",
+    $scope.$watch('viewLoading', function () {
+      if ($scope.segments) {
+        $scope.options =  {
+          animation: true,
+          animationSteps: 100,
+          animationEasing: 'easeOutBounce',
+          animateRotate: true,
+          animateScale: false,
+          responsive: false,
+          segmentShowStroke: true,
+          segmentStrokeColor: '#fff',
+          segmentStrokeWidth: 5,
+          percentageInnerCutout: 50,
+          showTooltips: true,
+          tooltipEvents: ['mousemove', 'touchstart', 'touchmove'],
+          tooltipFillColor: 'rgba(0, 0,0 , 0.75)',
+          tooltipFontFamily: '"Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif',
+          tooltipTemplate: '<%=label%>: <%= value %>'
+        };
 
-        // Number - The width of each segment stroke
-        segmentStrokeWidth : 5,
+        var helpers = Chart.helpers;
+        var canvas = document.getElementById('chart1');
+        var chart1 = new Chart(canvas.getContext('2d')).Doughnut($scope.segments, $scope.options);
+        var legendHolder = document.createElement('div');
 
-        // The percentage of the chart that we cut out of the middle.
-        percentageInnerCutout : 50,
+        legendHolder.innerHTML = chart1.generateLegend();
 
-        // Boolean - Whether we should animate the chart
-        animation : true,
+        helpers.each(legendHolder.firstChild.childNodes, function (legendNode, index) {
+          helpers.addEvent(legendNode, 'mouseover', function () {
+            var activeSegment = chart1.segments[index];
+            activeSegment.save();
+            activeSegment.fillColor = activeSegment.highlightColor;
+            chart1.showTooltip([activeSegment]);
+            activeSegment.restore();
+          });
+        });
 
-        // Number - Amount of animation steps
-        animationSteps : 100,
+        helpers.addEvent(legendHolder.firstChild, 'mouseout', function () {
+          chart1.draw();
+        });
 
-        // String - Animation easing effect
-        animationEasing : "easeOutBounce",
-
-        // Boolean - Whether we animate the rotation of the Doughnut
-        animateRotate : true,
-
-        // Boolean - Whether we animate scaling the Doughnut from the centre
-        animateScale : false,
-
-        // Function - Will fire on animation completion.
-        onAnimationComplete : null
-    };
+        canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+      }
+    });
 
   }).
-  controller('DataController', function ($scope) {
+  controller('ApkDetailController', function ($scope, $routeParams, ApkService) {
 
-    // Toggle view button
+    $scope.viewLoading = true;
 
-    $scope.toggleViewModel = 'Table';
+    // Get the singluar APK object to display
+    ApkService.apk.query({rowid: $routeParams.apkId}, function (response) {
+      $scope.apk = response;
+      $scope.viewLoading = false;
+    });
+
+  }).
+  controller('DataController', function ($scope, $sce, $location, $window) {
 
     // Pagination
-
     $scope.totalItems = 1;
     $scope.currentPage = 1;
     $scope.itemsPerPage = 25;
     $scope.maxSize = 5;
 
-    $scope.$watch('apks', function () {
-      if ($scope.apks) {
-        $scope.totalItems = $scope.apks.length;
+    // Selected download format and all available formats
+    $scope.fileFormat = {};
+    $scope.fileFormats = [
+      'SQLite'
+    ];
+
+    // The current table sort
+    $scope.sort = {
+      column: '',
+      sortOrder: 1
+    };
+
+    // Table columns, with a display label and object property for each
+    $scope.tableColumns = [
+      {
+        id: 'Name',
+        label: 'Name'
+      },
+      {
+        id: 'Version',
+        label: 'Version'
+      },
+      {
+        id: 'Developer',
+        label: 'Developer'
+      },
+      {
+        id: 'Genre',
+        label: 'Genre'
+      },
+      {
+        id: 'UserRating',
+        label: 'User Rating'
+      },
+      {
+        id: 'DatePublished',
+        label: 'Release Date'
+      },
+      {
+        id: 'FileSize',
+        label: 'File Size'
+      }
+    ];
+
+    // Update pagination when the APK list has loaded
+    $scope.$watch('displayedApks', function () {
+      if ($scope.displayedApks) {
+        $scope.totalItems = $scope.displayedApks.length;
       }
     });
 
-    // Selected download format and all available formats
+    // Download the data as the selected file format
+    $scope.download = function (fileFormat) {
+      if (fileFormat === 'SQLite') {
+        $window.location.href = '/files/EvolutionOfAndroidApplications.sqlite';
+      }
+    };
 
-    $scope.format = {};
-    $scope.formats = [
-      'XML',
-      'JSON',
-      'CSV'
-    ];
+    // Sort the table according to the given column and current sort
+    $scope.sortTable = function (column) {
+      var sort = $scope.sort;
+      if (sort.column == column) {
+          sort.sortOrder = sort.sortOrder * -1;
+        } else {
+          sort.column = column;
+          sort.sortOrder = 1;
+        }
+      $scope.displayedApks.sort(function (a, b) {
+        var result = (a[column] < b[column]) ? -1 : (a[column] > b[column]) ? 1 : 0;
+        return result * sort.sortOrder;
+      });
+    };
+
+    // Determine which icon to display based on sort order
+    $scope.getSortIconClass = function (column) {
+      return $scope.sort.sortOrder == 1 ? 'fa-caret-down' : 'fa-caret-up';
+    };
+
+    // When a table row is selected, display the page for that individual APK
+    $scope.selectTableRow = function () {
+      $location.path('data/' + this.apk.rowid);
+    };
+
+    // Used to avoid an error with the ui-select component
+    $scope.trustAsHtml = function (value) {
+      return $sce.trustAsHtml(value);
+    };
 
   }).
-  controller('SearchController', function ($scope) {
+  controller('FilterController', function ($scope, $filter) {
 
-    $scope.selected = undefined;
-
-    $scope.clear = function () {
-      $scope.selected = undefined;
-    }
-
-    $scope.search = function (apk) {
-      // TODO: Display page for individual APK
-    };
+    // Filter the displayed table of APKs
+    $scope.$watch('search', function (newVal, oldVal) {
+      var filteredApks = $filter('filter')($scope.apks, {Name: newVal});
+      $scope.$emit('filterApks', filteredApks);
+    });
 
   }).
   controller('ModalController', function ($scope, $modal, $log, ApkService) {
 
     // Opens the modal window
-
     $scope.open = function () {
 
       var modalInstance = $modal.open({
@@ -155,9 +263,8 @@ angular.module('androidApp.controllers', []).
       });
 
       // Filter the APK table with the advanced serach results
-
       modalInstance.result.then(function (params) {
-        ApkService.search.query(params, function (response) {
+        ApkService.filter.query(params, function (response) {
           $scope.$emit('filterApks', response);
         });
       });
@@ -198,15 +305,10 @@ angular.module('androidApp.controllers', []).
       });
     };
 
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-
     $scope.setUnit = function (bound, unit) {
       if (bound == 'from') {
         $scope.filter.fileSizeFromUnit = unit;
-      }
-      else if (bound == 'to') {
+      } else if (bound == 'to') {
         $scope.filter.fileSizeToUnit = unit;
       }
     };
@@ -214,18 +316,18 @@ angular.module('androidApp.controllers', []).
   }).
   controller('GenreInputController', function ($scope, ApkService) {
 
-    $scope.clear = function () {
-      $scope.filter.genre.selected = undefined;
-    };
-
     // Get list of genres from APK info in the database
-
     ApkService.genres.query(function (response) {
       $scope.genres = [];
       for (var i = 0; i < response.length; i++) {
         $scope.genres.push(response[i].Genre);
       }
     });
+
+    // Clears the current selection
+    $scope.clear = function () {
+      $scope.filter.genre.selected = undefined;
+    };
 
   }).
   controller('DateInputController', function ($scope) {

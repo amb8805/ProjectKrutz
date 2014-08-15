@@ -1,7 +1,5 @@
 'use strict';
 
-// Declare app level module which depends on filters, and services
-
 var androidApp = angular.module('androidApp', [
   'androidApp.controllers',
   'androidApp.filters',
@@ -9,27 +7,37 @@ var androidApp = angular.module('androidApp', [
   'androidApp.directives',
   'ui.bootstrap',
   'ui.select',
-  'angles',
+  'duScroll',
   'ngSanitize',
   'ngRoute'
-]);
+]).value('duScrollDuration', 1150);
 
 androidApp.config(function ($routeProvider, $locationProvider) {
   $routeProvider
     .when('/', {
-      templateUrl : 'partials/home',
-      controller  : 'HomeController'
+      templateUrl: 'partials/home',
+      controller: 'HomeController'
     })
-
     .when('/data', {
-      templateUrl : 'partials/data',
-      controller  : 'DataController'
+      templateUrl: 'partials/data',
+      controller: 'DataController'
     })
-
+    .when('/data/:apkId', {
+      templateUrl: 'partials/apk-detail',
+      controller: 'ApkDetailController'
+    })
     .when('/about', {
-      templateUrl : 'partials/about',
-      controller  : 'AppController'
+      templateUrl: 'partials/about',
+      controller: 'AppController'
     });
 
   $locationProvider.html5Mode(true);
+});
+
+androidApp.config(function (uiSelectConfig) {
+  uiSelectConfig.theme = 'bootstrap';
+});
+
+androidApp.config(function (datepickerConfig) {
+  datepickerConfig.showWeeks = false;
 });
