@@ -108,27 +108,53 @@ exports.getGenreList = function (req, res) {
 exports.getFilteredApkList = function (req, res) {
 	
 	var statement = 'SELECT ' + apkProperties + ' FROM ApkInformation';
+	var multipleConditions = false;
 
 	if (req.query.name) {
 		statement += ' WHERE Name LIKE "%' + req.query.name + '%"';
+		multipleConditions = true;
 	}
 	if (req.query.version) {
-		statement += ' WHERE Version LIKE "%' + req.query.version + '%"';
+		if (multipleConditions) {
+			statement += ' AND';
+
+		} else {
+			statement += ' WHERE';
+			multipleConditions = true;
+		}
+		statement += ' Version LIKE "%' + req.query.version + '%"';
 	}
 	if (req.query.developer) {
-		statement += ' WHERE Developer LIKE "%' + req.query.developer + '%"';
+		if (multipleConditions) {
+			statement += ' AND';
+
+		} else {
+			statement += ' WHERE';
+			multipleConditions = true;
+		}
+		statement += ' Developer LIKE "%' + req.query.developer + '%"';
+		multipleConditions = true;
 	}
 	if (req.query.genre) {
-		statement += ' WHERE Genre LIKE"%' + req.query.genre + '%"';
+		if (multipleConditions) {
+			statement += ' AND';
+
+		} else {
+			statement += ' WHERE';
+			multipleConditions = true;
+		}
+		statement += ' Genre LIKE"%' + req.query.genre + '%"';
+		multipleConditions = true;
 	}
 	if (req.query.userRatingFrom && req.query.userRatingTo) {
-		statement += ' WHERE UserRating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
-	}
-	if (req.query.releaseDateFrom && req.query.releaseDateTo) {
-		statement += ' WHERE DatePublished BETWEEN ' + req.query.releaseDateFrom + ' AND ' + req.query.releaseDateTo;
-	}
-	if (req.query.fileSizeFrom && req.query.fileSizeTo) {
-		statement += ' WHERE FileSize BETWEEN "' + req.query.fileSizeFrom + req.query.fileSizeFromUnit + '" AND "' + req.query.fileSizeTo + req.query.fileSizeToUnit + '"';
+		if (multipleConditions) {
+			statement += ' AND';
+
+		} else {
+			statement += ' WHERE';
+			multipleConditions = true;
+		}
+		statement += ' UserRating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
 	}
 
 	db.all(statement, function (err, apks) {

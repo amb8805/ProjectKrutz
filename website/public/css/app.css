@@ -74,7 +74,6 @@ a:hover {
 }
 
 .btn-transparent {
-  text-transform: uppercase;
   background: transparent;
   border: 2px solid #fff;
   color: #fff;
@@ -305,7 +304,7 @@ a:hover {
 .header {
   padding: 15px 0;
   background: #fff;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
 }
 
 .header .main-nav button {
@@ -400,7 +399,7 @@ a:hover {
  */
 
 .promo {
-  height: 100vh;
+  height: 91vh;
   color: #fff;
   background: rgba(68, 68, 68, .7);
 }
@@ -417,12 +416,12 @@ a:hover {
 .promo .content .title {
   font-size: 42px;
   margin-bottom: 35px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 .promo .content .subtitle {
   font-size: 21px;
   margin-bottom: 70px;
+  padding: 0 25%;
 }
 
 
@@ -529,7 +528,7 @@ a:hover {
 .data {
   background-color: #fff;
   padding: 40px 0 65px;
-  min-height: 100vh;
+  min-height: 91vh;
 }
 
 .data .th-sort-arrow {
@@ -546,10 +545,6 @@ a:hover {
   border-radius: 0;
 }
 
-.modal-content .form-group .combo {
-  margin-bottom: 0;
-}
-
 
 /**
  * --------------------------------------------------
@@ -559,7 +554,7 @@ a:hover {
 
 .apk-detail {
   padding: 40px 0 80px;
-  min-height: 100vh;
+  min-height: 91vh;
 }
 
 .apk-detail .analysis-results {

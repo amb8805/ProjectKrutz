@@ -279,13 +279,7 @@ angular.module('androidApp.controllers', []).
       developer: undefined,
       genre: {},
       userRatingFrom: undefined,
-      userRatingTo: undefined,
-      releaseDateFrom: undefined,
-      releaseDateTo: undefined,
-      fileSizeFrom: undefined,
-      fileSizeTo: undefined,
-      fileSizeFromUnit: 'M',
-      fileSizeToUnit: 'M'
+      userRatingTo: undefined
     };
 
     $scope.search = function () {
@@ -295,22 +289,8 @@ angular.module('androidApp.controllers', []).
         developer: $scope.filter.developer, 
         genre: $scope.filter.genre.selected,
         userRatingFrom: $scope.filter.userRatingFrom,
-        userRatingTo: $scope.filter.userRatingTo,
-        releaseDateFrom: $scope.filter.releaseDateFrom,
-        releaseDateTo: $scope.filter.releaseDateTo,
-        fileSizeFrom: $scope.filter.fileSizeFrom,
-        fileSizeTo: $scope.filter.fileSizeTo,
-        fileSizeFromUnit: $scope.filter.fileSizeFromUnit,
-        fileSizeToUnit: $scope.filter.fileSizeToUnit
+        userRatingTo: $scope.filter.userRatingTo
       });
-    };
-
-    $scope.setUnit = function (bound, unit) {
-      if (bound == 'from') {
-        $scope.filter.fileSizeFromUnit = unit;
-      } else if (bound == 'to') {
-        $scope.filter.fileSizeToUnit = unit;
-      }
     };
 
   }).
@@ -327,22 +307,6 @@ angular.module('androidApp.controllers', []).
     // Clears the current selection
     $scope.clear = function () {
       $scope.filter.genre.selected = undefined;
-    };
-
-  }).
-  controller('DateInputController', function ($scope) {
-
-    $scope.dt = new Date();
-
-    $scope.clear = function () {
-      $scope.dt = null;
-    };
-
-    $scope.open = function ($event) {
-      $event.preventDefault();
-      $event.stopPropagation();
-
-      $scope.opened = true;
     };
 
   });
