@@ -7,10 +7,6 @@
  * --------------------------------------------------
  */
 
- html, body {
-  height: 100%;
-}
-
 body {
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   color: #444;
@@ -289,6 +285,7 @@ a:hover {
   padding: 15px 0;
   background: #fff;
   border-bottom: 1px solid #ddd;
+  height: 80px;
 }
 
 .header .main-nav button {
@@ -354,6 +351,7 @@ a:hover {
   color: #b3b3b3;
   background: #fff;
   padding: 30px 0;
+  height: 80px;
 }
 
 .footer .repo-link {
@@ -383,9 +381,9 @@ a:hover {
  */
 
 .promo {
-  height: 91vh;
   color: #fff;
   background: rgba(68, 68, 68, .7);
+  min-height: calc(100vh - 80px);
 }
 
 .promo .content {
@@ -513,7 +511,7 @@ a:hover {
 .data {
   background-color: #fff;
   padding: 40px 0 65px;
-  min-height: 91vh;
+  min-height: calc(100vh - 160px);
 }
 
 .data .th-sort-arrow {
@@ -535,7 +533,7 @@ a:hover {
 
 .apk-detail {
   padding: 40px 0 80px;
-  min-height: 91vh;
+  min-height: calc(100vh - 160px);
 }
 
 .apk-detail .content .subtitle {
