@@ -47,8 +47,10 @@ exports.getApk = function (req, res) {
 
 	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
 		'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
-		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
+		'p.Name as Overpermissions, p2.Name as Underpermissions, ' +
+		'tr.FuzzyRiskValue, tr.DefectCount ' +
 		'FROM ApkInformation apk ' +
+		'LEFT JOIN ToolResults tr ON apk.rowid = tr.ApkId ' +
 		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
 		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
 		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
