@@ -11,7 +11,7 @@ div.modal-body
 			div.col-xs-3
 				label.control-label.pull-right Version
 			div.col-xs-9
-				input.form-control(type='number', step='any', min='0', ng-model='filter.version')
+				input.form-control(type='text', ng-model='filter.version')
 		div.form-group
 			div.col-xs-3
 				label.control-label.pull-right Developer
@@ -40,53 +40,5 @@ div.modal-body
 						label.control-label to
 					div.col-xs-5
 						input.form-control(type='number', min='1', max='5', ng-model='filter.userRatingTo')
-		div.form-group(ng-show='false')
-			div.col-xs-3
-				label.control-label.pull-right Release Date
-			div.col-xs-9
-				div.form-group.combo
-					div.col-xs-5
-						div.input-group(ng-controller='DateInputController')
-							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-button-bar='false', ng-model='filter.releaseDateFrom')
-							span.input-group-btn
-								button.btn.btn-default(ng-click='open($event)')
-									i.fa.fa-calendar
-					div.col-xs-2.text-center
-						label.control-label to
-					div.col-xs-5
-						div.input-group(ng-controller='DateInputController')
-							input.form-control(type='text', datepicker-popup='MM/dd/yyyy', ng-model='dt', is-open='opened', show-button-bar='false', ng-model='filter.releaseDateTo')
-							span.input-group-btn
-								button.btn.btn-default(ng-click='open($event)')
-									i.fa.fa-calendar
-		div.form-group(ng-show='false')
-			div.col-xs-3
-				label.control-label.pull-right File Size
-			div.col-xs-9
-				div.form-group
-					div.col-xs-5
-						div.input-group
-							input.form-control(type='number', step='any', min='0', ng-model='filter.fileSizeFrom')
-							div.input-group-btn
-								button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown') {{ filter.fileSizeFromUnit }}
-									span.caret
-								ul.dropdown-menu
-									li 
-										a(ng-click='setUnit("from", "M")') Megabytes (M)
-									li 
-										a(ng-click='setUnit("from", "k")') Kilobytes (k)
-					div.col-xs-2.text-center
-						label.control-label to
-					div.col-xs-5
-						div.input-group
-							input.form-control(type='number', step='any', min='0', ng-model='filter.fileSizeTo')
-							div.input-group-btn
-								button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown') {{ filter.fileSizeToUnit }}
-									span.caret
-								ul.dropdown-menu
-									li 
-										a(ng-click='setUnit("to", "M")') Megabytes (M)
-									li 
-										a(ng-click='setUnit("to", "k")') Kilobytes (k)
 div.modal-footer
 	button.btn.btn-theme(type='button', ng-click='search()') Filter

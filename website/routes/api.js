@@ -4,11 +4,14 @@ var sqlite3 = require('sqlite3').verbose();
 var file = '../EvolutionOfAndroidApplications.sqlite';
 var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
-var apkProperties = 'rowid, Name, Version, Developer, Genre, UserRating, DatePublished, FileSize, LowerDownloads, UpperDownloads';
+var apkProperties = 'apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
+	'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads';
 
 var mergeApkList = function (apks) {
 
-	for (var i = 0; i < apks.length - 1; i++) {
+	var i = 0;
+
+	do {
 
 		if (apks[i].Overpermissions == null) {
 			apks[i].Overpermissions = [];
@@ -36,8 +39,11 @@ var mergeApkList = function (apks) {
 				i--;
 			}
 		}
+
+		i++;
 		
 	}
+	while (i < apks.length - 1);
 
 	return apks;
 
@@ -45,10 +51,11 @@ var mergeApkList = function (apks) {
 
 exports.getApk = function (req, res) {
 
-	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
-		'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
-		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
+	var query = 'SELECT ' + apkProperties + ', ' +
+		'p.Name as Overpermissions, p2.Name as Underpermissions, ' +
+		'tr.FuzzyRiskValue, tr.DefectCount ' +
 		'FROM ApkInformation apk ' +
+		'LEFT JOIN ToolResults tr ON apk.rowid = tr.ApkId ' +
 		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
 		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
 		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
@@ -64,8 +71,7 @@ exports.getApk = function (req, res) {
 
 exports.getApkList = function (req, res) {
 
-	var query = 'SELECT apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
-		'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads, ' +
+	var query = 'SELECT ' + apkProperties + ', ' +
 		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
 		'FROM ApkInformation apk ' +
 		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
@@ -81,7 +87,7 @@ exports.getApkList = function (req, res) {
 // TODO: Maybe use this instead of topApk filter?
 exports.getTopApkList = function (req, res) {
 
-	// SELECT Name, Version, Developer, MAX(CollectionDate), UpperDownloads FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 10
+	// SELECT Name, Version, Developer, MAX(CollectionDate), UpperDownloads FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 5
 	var query = 'SELECT apk.rowid, apk.Name, MAX(apk.CollectionDate), ' +
 		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
 		'FROM ApkInformation apk ' +
@@ -107,28 +113,54 @@ exports.getGenreList = function (req, res) {
 
 exports.getFilteredApkList = function (req, res) {
 	
-	var statement = 'SELECT ' + apkProperties + ' FROM ApkInformation';
+	var statement = 'SELECT ' + apkProperties + ' FROM ApkInformation apk';
+	var multipleConditions = false;
 
 	if (req.query.name) {
 		statement += ' WHERE Name LIKE "%' + req.query.name + '%"';
+		multipleConditions = true;
 	}
 	if (req.query.version) {
-		statement += ' WHERE Version LIKE "%' + req.query.version + '%"';
+		if (multipleConditions) {
+			statement += ' AND';
+
+		} else {
+			statement += ' WHERE';
+			multipleConditions = true;
+		}
+		statement += ' Version LIKE "%' + req.query.version + '%"';
 	}
 	if (req.query.developer) {
-		statement += ' WHERE Developer LIKE "%' + req.query.developer + '%"';
+		if (multipleConditions) {
+			statement += ' AND';
+
+		} else {
+			statement += ' WHERE';
+			multipleConditions = true;
+		}
+		statement += ' Developer LIKE "%' + req.query.developer + '%"';
+		multipleConditions = true;
 	}
 	if (req.query.genre) {
-		statement += ' WHERE Genre LIKE"%' + req.query.genre + '%"';
+		if (multipleConditions) {
+			statement += ' AND';
+
+		} else {
+			statement += ' WHERE';
+			multipleConditions = true;
+		}
+		statement += ' Genre LIKE"%' + req.query.genre + '%"';
+		multipleConditions = true;
 	}
 	if (req.query.userRatingFrom && req.query.userRatingTo) {
-		statement += ' WHERE UserRating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
-	}
-	if (req.query.releaseDateFrom && req.query.releaseDateTo) {
-		statement += ' WHERE DatePublished BETWEEN ' + req.query.releaseDateFrom + ' AND ' + req.query.releaseDateTo;
-	}
-	if (req.query.fileSizeFrom && req.query.fileSizeTo) {
-		statement += ' WHERE FileSize BETWEEN "' + req.query.fileSizeFrom + req.query.fileSizeFromUnit + '" AND "' + req.query.fileSizeTo + req.query.fileSizeToUnit + '"';
+		if (multipleConditions) {
+			statement += ' AND';
+
+		} else {
+			statement += ' WHERE';
+			multipleConditions = true;
+		}
+		statement += ' UserRating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
 	}
 
 	db.all(statement, function (err, apks) {
