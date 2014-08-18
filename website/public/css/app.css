@@ -96,6 +96,7 @@ a:hover {
 .form-control {
   outline: 0;
   font-weight: 300;
+  -webkit-appearance: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -103,6 +104,7 @@ a:hover {
 
 .form-control:focus {
   border-color: #99cc00;
+  -webkit-appearance: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -149,6 +151,15 @@ a:hover {
   color: #fff;
   background-color: #99cc00;
   border-color: #99cc00;
+}
+
+.hyphenated {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }
 
 .delayp1 {
@@ -283,7 +294,6 @@ a:hover {
   padding: 15px 0;
   background: #fff;
   border-bottom: 1px solid #ddd;
-  height: 80px;
 }
 
 .header .main-nav button {
@@ -349,12 +359,12 @@ a:hover {
   color: #b3b3b3;
   background: #fff;
   padding: 30px 0;
-  height: 80px;
+  text-align: center;
 }
 
-.footer .repo-link {
-  text-align: right;
-}
+  .footer .repo-link {
+    padding-top: 5px;
+  }
 
 
 /**
@@ -381,8 +391,9 @@ a:hover {
 .promo {
   color: #fff;
   background: rgba(68, 68, 68, .7);
-  min-height: calc(100vh - 80px);
-  /* http://stackoverflow.com/questions/20443343/css-calc-not-working-in-safari-and-fallback */
+  height: -webkit-calc(100vh - 80px);
+  height: -moz-calc(100vh - 80px);
+  height: calc(100vh - 80px);
 }
 
 .promo .content {
@@ -391,7 +402,6 @@ a:hover {
   left: 0;
   right: 0;
   text-align: center;
-  padding: 0 75px;
 }
 
 .promo .content .title {
@@ -402,7 +412,7 @@ a:hover {
 .promo .content .subtitle {
   font-size: 21px;
   margin-bottom: 70px;
-  padding: 0 25%;
+  padding: 0 15%;
   line-height: 1.35;
 }
 
@@ -420,6 +430,7 @@ a:hover {
 
 .overview .title {
   margin-bottom: 60px;
+  padding: 0 15px;
 }
 
 .overview .content {
@@ -510,7 +521,19 @@ a:hover {
 .data {
   background-color: #fff;
   padding: 40px 0 65px;
+  min-height: -webkit-calc(100vh - 160px);
+  min-height: -moz-calc(100vh - 160px);
   min-height: calc(100vh - 160px);
+}
+
+.data .filter-form .form-control,
+.data .download-form .form-control {
+  margin-bottom: 5px;
+}
+
+.data .filter-form .btn-theme,
+.data .download-form .btn-theme {
+  float: right;
 }
 
 .data .th-sort-arrow {
@@ -532,6 +555,8 @@ a:hover {
 
 .apk-detail {
   padding: 40px 0 80px;
+  min-height: -webkit-calc(100vh - 160px);
+  min-height: -moz-calc(100vh - 160px);
   min-height: calc(100vh - 160px);
 }
 
@@ -599,7 +624,7 @@ a:hover {
 
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
-  
+
 }
 
 /* Small devices (tablets, 768px and up) */
@@ -608,6 +633,17 @@ a:hover {
 }
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+
+  .footer .copyright {
+    text-align: left;
+    float: left;
+  }
+
+  .footer .repo-link {
+    text-align: right;
+    float: right;
+    padding: 0;
+  }
 
 }
 /* Large devices (large desktops, 1200px and up) */
