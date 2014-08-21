@@ -5,6 +5,10 @@
  * --------------------------------------------------
  */
 
+html, body {
+  height: 100%;
+}
+
 body {
   font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
   color: #444;
@@ -119,11 +123,11 @@ a:hover {
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
 .dropdown-menu > .active > a:focus {
-  background-color: #99cc00;
+  background: #99cc00;
 }
 
 .ui-select-bootstrap .ui-select-choices-row.active > a {
-  background-color: #99cc00;
+  background: #99cc00;
 }
 
 .table > thead > tr > th {
@@ -149,7 +153,7 @@ a:hover {
 .pagination > .active > a:focus, 
 .pagination > .active > span:focus {
   color: #fff;
-  background-color: #99cc00;
+  background: #99cc00;
   border-color: #99cc00;
 }
 
@@ -294,6 +298,11 @@ a:hover {
   padding: 15px 0;
   background: #fff;
   border-bottom: 1px solid #ddd;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
 }
 
 .header .main-nav button {
@@ -310,7 +319,7 @@ a:hover {
 }
 
 .header .main-nav button .icon-bar {
-  background-color: #fff;
+  background: #fff;
 }
 
 .header .main-nav .nav .nav-item {
@@ -362,9 +371,22 @@ a:hover {
   text-align: center;
 }
 
-  .footer .repo-link {
-    padding-top: 5px;
-  }
+.footer .repo-link {
+  padding-top: 5px;
+}
+
+
+/**
+ * --------------------------------------------------
+ * ngView
+ * --------------------------------------------------
+ */
+
+.main {
+  height: auto;
+  width: 100%;
+  min-height: 100% !important;
+}
 
 
 /**
@@ -374,11 +396,7 @@ a:hover {
  */
 
 .home {
-  background: url('../img/android_permissions.jpg') no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background: #fff;
 }
 
 
@@ -390,15 +408,29 @@ a:hover {
 
 .promo {
   color: #fff;
+  background: url('../img/android_permissions.jpg') no-repeat center center scroll; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.promo .fill {
   background: rgba(68, 68, 68, .7);
-  height: -webkit-calc(100vh - 80px);
-  height: -moz-calc(100vh - 80px);
-  height: calc(100vh - 80px);
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.promo,
+.promo .fill {
+  height: 100vh;
+  max-height: 1000px;
 }
 
 .promo .content {
-  position: absolute;
   top: 40%;
+  position: absolute;
   left: 0;
   right: 0;
   text-align: center;
@@ -424,8 +456,8 @@ a:hover {
  */
 
 .overview {
-  background-color: #fff;
-  padding: 80px 0;
+  background: #fff;
+  padding: 60px 0 110px;
 }
 
 .overview .title {
@@ -434,7 +466,7 @@ a:hover {
 }
 
 .overview .content {
-  padding: 30px;
+  padding: 30px 30px 0;
 }
 
 .overview .content .subtitle {
@@ -451,8 +483,8 @@ a:hover {
  */
 
 .results {
-  background-color: #f5f5f5;
-  padding: 60px 0 90px;
+  background: #f5f5f5;
+  padding: 60px 0 110px;
 }
 
 .results .title {
@@ -498,7 +530,7 @@ a:hover {
 }
 
 .doughnut-legend li:hover {
-  background-color: #fafafa;
+  background: #fafafa;
 }
 
 .doughnut-legend li span {
@@ -519,11 +551,8 @@ a:hover {
  */
 
 .data {
-  background-color: #fff;
-  padding: 40px 0 65px;
-  min-height: -webkit-calc(100vh - 160px);
-  min-height: -moz-calc(100vh - 160px);
-  min-height: calc(100vh - 160px);
+  background: #fff;
+  padding: 120px 0 65px;
 }
 
 .data .filter-form .form-control,
@@ -554,10 +583,8 @@ a:hover {
  */
 
 .apk-detail {
-  padding: 40px 0 80px;
-  min-height: -webkit-calc(100vh - 160px);
-  min-height: -moz-calc(100vh - 160px);
-  min-height: calc(100vh - 160px);
+  background: #fff;
+  padding: 120px 0 80px;
 }
 
 .apk-detail .content .subtitle {
@@ -594,8 +621,8 @@ a:hover {
  */
 
 .about {
-  background-color: #fff;
-  padding: 35px 0 80px;
+  background: #fff;
+  padding: 115px 0 80px;
 }
 
 .about .subtitle {
@@ -622,6 +649,35 @@ a:hover {
  * --------------------------------------------------
  */
 
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+  .promo .content {
+    top: 50%;
+  }
+
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) and (max-device-width : 480px) and (orientation : landscape) {
+
+  .promo, 
+  .promo .fill {
+    max-height: 625px;
+  }
+
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) and (orientation : portrait) {
+
+  .promo, 
+  .promo .fill {
+    max-height: 900px;
+  }
+
+}
+
 /* Extra small devices (phones, less than 768px) */
 @media (max-width: 767px) {
 
@@ -631,6 +687,36 @@ a:hover {
 @media (min-width: 768px) {
 
 }
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+
+  .promo .content {
+    top: 35%;
+  }
+
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+  .promo, 
+  .promo .fill {
+    max-height: 700px;
+  }
+
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+  .promo, 
+  .promo .fill {
+    max-height: 950px;
+  }
+
+}
+
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
 
@@ -646,7 +732,18 @@ a:hover {
   }
 
 }
+
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
 
 }

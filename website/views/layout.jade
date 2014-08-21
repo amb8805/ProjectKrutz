@@ -2,7 +2,7 @@
 html(ng-app="androidApp")
   head
     meta(charset='utf8')
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
     base(href='/')
     title Reverse Engineering of Android™ Applications
     link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Roboto:400,300|Roboto+Condensed|PT+Sans:600', type='text/css')
@@ -11,5 +11,5 @@ html(ng-app="androidApp")
     link(rel='stylesheet', href='//cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.0/animate.min.css')
     link(rel='stylesheet', href='css/lib/ui-select/select.min.css')
     link(rel='stylesheet', href='css/app.css')
-  body
+  body(ng-controller='AppController')
     block body

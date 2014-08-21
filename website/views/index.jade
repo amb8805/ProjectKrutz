@@ -1,34 +1,33 @@
 extends layout
 
 block body
-  div(ng-controller='AppController')
-    header#top.header
-      div.container
-        nav#main-nav.main-nav.navbar-right(role='navigation')
-          div.navbar-header
-            button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-collapse', ng-click='isCollapsed = !isCollapsed')
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-          div.navbar-collapse.collapse#navbar-collapse(ng-class='isCollapsed ? "collapse" : "in"')
-            ul.nav.navbar-nav
-              li.nav-item(ng-class='getNavItemClass("/")')
-                a(href='#/') Home
-              li.nav-item(ng-class='getNavItemClass("/data")')
-                a(href='#/data') Data
-              li.nav-item(ng-class='getNavItemClass("/about")')
-                a(href='#/about') About
+  header#top.header
+    div.container
+      nav#main-nav.main-nav.navbar-right(role='navigation')
+        div.navbar-header
+          button.navbar-toggle(type='button', data-toggle='collapse', data-target='#navbar-collapse', ng-click='isCollapsed = !isCollapsed')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        div.navbar-collapse.collapse#navbar-collapse(ng-class='isCollapsed ? "collapse" : "in"')
+          ul.nav.navbar-nav
+            li.nav-item(ng-class='getNavItemClass("/")')
+              a(href='#/') Home
+            li.nav-item(ng-class='getNavItemClass("/data")')
+              a(href='#/data') Data
+            li.nav-item(ng-class='getNavItemClass("/about")')
+              a(href='#/about') About
 
-    div(ng-view)
+  div.main(ng-view)
 
-    footer.footer
-      div.container
-        div.row
-          div.col-md-9.copyright
-            span Copyright &copy; 2014 Adam Blaine, Casey Klimkowsky, Shannon Trudeau, Dr. Daniel E. Krutz
-          div.col-md-3.repo-link
-            a(href='https://github.com/DroidDarwin') GitHub Repository
+  footer#footer.footer
+    div.container
+      div.row
+        div.col-md-9.copyright
+          span Copyright &copy; 2014 Adam Blaine, Casey Klimkowsky, Shannon Trudeau, Dr. Daniel E. Krutz
+        div.col-md-3.repo-link
+          a(href='https://github.com/DroidDarwin') GitHub Repository
 
   script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
   script(src='//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.15/angular.min.js')
@@ -53,3 +52,4 @@ block body
 
     ga('create', 'UA-53857745-1', 'auto');
     ga('send', 'pageview');
+    
