@@ -12,11 +12,15 @@ angular.module('androidApp.controllers', []).
     $scope.isCollapsed = true;
 
     // Get APK data from the database
-    ApkService.apks.query(function (response) {
-      $scope.apks = response;
+    ApkService.apks.query(function (apks) {
+      $scope.apks = apks;
       $scope.displayedApks = $scope.apks;
-      $scope.topApks = $filter('topApks')($scope.apks, 5);
-      $scope.viewLoading = false;
+
+      ApkService.topApks.query(function (topApks) {
+        $scope.topApks = topApks;
+        $scope.viewLoading = false;
+      });
+      
     });
 
     // When a navbar link is clicked, return to the top of the page
@@ -58,7 +62,7 @@ angular.module('androidApp.controllers', []).
       '#aa66cc',
       '#99cc00',
       '#ffbb33',
-      '#ff4444',
+      '#ff4444'
     ];
 
     // Helper function that returns a tint for the given color
@@ -149,7 +153,7 @@ angular.module('androidApp.controllers', []).
           chart1.draw();
         });
 
-        canvas.parentNode.parentNode.appendChild(legendHolder.firstChild);
+        canvas.parentNode.parentNode.lastChild.appendChild(legendHolder.firstChild);
       }
     });
 

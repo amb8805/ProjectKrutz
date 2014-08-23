@@ -48,6 +48,7 @@ app.get('/partials/:name', routes.partials);
 // API to query the database
 app.get('/apk', api.getApk);
 app.get('/apks', api.getApkList);
+app.get('/topApks', api.getTopApkList);
 app.get('/genres', api.getGenreList);
 app.get('/filter', api.getFilteredApkList);
 app.get('/overpermissions', api.getOverprivilegeList);
