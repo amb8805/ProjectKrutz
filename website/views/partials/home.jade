@@ -1,5 +1,6 @@
 section#home.home
 	section#promo.promo
+		div.fill
 		div.container
 			div.row
 				div.content.col-md-12.animated.fadeInUp.delayp1
@@ -10,16 +11,16 @@ section#home.home
 	section#overview.overview
 		div.container
 			div.row
-				h1.title.text-center.animated.fadeInUp.delayp1 Project Overview
+				h1.title.text-center Project Overview
 				div.col-md-6.col-sm-6.col-xs-12.text-center
-					span.fa-stack.fa-5x.animated.fadeInUp.delayp1
+					span.fa-stack.fa-5x
 						i.fa.fa-circle.fa-stack-2x
 						i.fa.fa-download.fa-stack-1x.fa-inverse
 					div.content 
 						h2.subtitle Data Collection
-						p We created a web scraper using Scrapy, a web scraping framework for Python, to collect over 20,000 APK files, as well as information on these files.
+						p We created a web scraper using Scrapy, a web scraping framework for Python, to collect over 30,000 APK files, as well as information on these files.
 				div.col-md-6.col-sm-6.col-xs-12.text-center
-					span.fa-stack.fa-5x.animated.fadeInUp.delayp1
+					span.fa-stack.fa-5x
 						i.fa.fa-circle.fa-stack-2x
 						i.fa.fa-cogs.fa-stack-1x.fa-inverse
 					div.content 
@@ -29,27 +30,32 @@ section#home.home
 	section#results.results
 		div.container
 			div.row
-				h1.title.text-center.animated.fadeInUp.delayp1 Highlighted Findings
+				h1.title.text-center Highlighted Findings
 			div.row
 				div.col-md-6.col-md-push-6
-					div.chart-container(loading-spinner='viewLoading')
-						div.canvas-holder
-							canvas(id='chart1', width='300', height='300')
+					div.container.chart-container
+						div.row
+							div.col-md-7.canvas-holder
+								canvas(id='chart1', height='225', width='225')
+							div.col-md-5
+						//- Hack with loadingSpinner so that chart renders without first resizing the browser window
+						div.chart-loading(loading-spinner='viewLoading')
 				div.col-md-6.col-md-pull-6
 					div.content.left
 						h2.subtitle Overpermissions
-						p Using Stowaway, a tool that determines the permissions in which an app is over- and underprivileged, we determined that even some of the most-downloaded apps on Google Play violate the principle of least privilege.
+						p Using Stowaway, a tool that determines the permissions in which an app is over- and underprivileged, we found that even some of the most-downloaded apps on Google Play violate the principle of least privilege.
 			div.row
 				div.col-md-5.text-center
-					img(src='http://placehold.it/300')
+					img(src='http://placehold.it/225')
 				div.col-md-7
 					div.content.right
 						h2.subtitle Lorem Ipsum
 						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
 			div.row
 				div.col-md-5.col-md-push-7.text-center
-					img(src='http://placehold.it/300')
+					img(src='http://placehold.it/225')
 				div.col-md-7.col-md-pull-5
 					div.content.left
 						h2.subtitle Lorem Ipsum
 						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
+

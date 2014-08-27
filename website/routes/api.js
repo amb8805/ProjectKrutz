@@ -11,8 +11,12 @@ var mergeApkList = function (apks) {
 
 	var i = 0;
 
+	// A real use case for a do-while loop!
 	do {
 
+		// If the APK has no over- and/or underpermissions, initialize an empty array.
+		// If the APK does have over- and/or underpermissions, convert the permission 
+		// name to an array containing the permission name.
 		if (apks[i].Overpermissions == null) {
 			apks[i].Overpermissions = [];
 		} else if (!(apks[i].Overpermissions instanceof Array)) {
@@ -25,6 +29,8 @@ var mergeApkList = function (apks) {
 			apks[i].Underpermissions = [apks[i].Underpermissions];
 		}
 
+		// Look at the next APK in the array. If it has over- and/or underpermissions, and these 
+		// permissions are not duplicates, then add the permissions to the current APK.
 		if (apks.length > 1) {
 			if (apks[i].rowid === apks[i + 1].rowid) {
 				if (apks[i + 1].Overpermissions != null && apks[i].Overpermissions.indexOf(apks[i + 1].Overpermissions) == -1) {
@@ -35,6 +41,7 @@ var mergeApkList = function (apks) {
 					apks[i].Underpermissions.push(apks[i + 1].Underpermissions);
 				}
 
+				// Remove the next APK in the array, so we don't look at it again.
 				apks.splice(i + 1, 1);
 				i--;
 			}
@@ -84,18 +91,18 @@ exports.getApkList = function (req, res) {
 	});
 };
 
-// TODO: Maybe use this instead of topApk filter?
+// TODO: Change MIN to MAX once latest analysis results are complete (8/22)
 exports.getTopApkList = function (req, res) {
 
-	// SELECT Name, Version, Developer, MAX(CollectionDate), UpperDownloads FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 5
-	var query = 'SELECT apk.rowid, apk.Name, MAX(apk.CollectionDate), ' +
+	var query = 'SELECT apk.rowid, apk.Name, ' + 
 		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
 		'FROM ApkInformation apk ' +
 		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
 		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
 		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
 		'LEFT JOIN Permissions p2 on p2.pid = u.PermissionId ' +
-		'GROUP BY apk.Name ORDER BY apk.UpperDownloads DESC LIMIT 5';
+		'INNER JOIN (SELECT rowid, MIN(CollectionDate) FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 6) apk2 ON apk2.rowid = apk.rowid ' +
+		'WHERE Overpermissions IS NOT NULL';
 
 	db.all(query, function (err, apks) {
 		res.send(mergeApkList(apks));

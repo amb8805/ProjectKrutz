@@ -1,27 +1,27 @@
 section#data.data
 	div.container(loading-spinner='viewLoading')
 		div.row
-			div.col-md-6.col-md-offset-6
+			div.col-lg-6.col-lg-offset-6.col-md-7.col-md-offset-5
 				form.form-horizontal(role='form')
-					div.form-group
-						div.col-xs-2
+					div.form-group.filter-form
+						div.col-md-2
 							label.control-label Filter
-						div.col-xs-8(ng-controller='FilterController')
+						div.col-md-7(ng-controller='FilterController')
 							input.form-control(type='text', ng-model='search', placeholder='Search for an app by name...')
-						div.col-xs-2
+						div.col-md-3
 							button.btn.btn-theme(type='button', ng-controller='ModalController', ng-click='open()') Advanced
 		div.row
-			div.col-md-6.col-md-offset-6
+			div.col-lg-6.col-lg-offset-6.col-md-7.col-md-offset-5
 				form.form-horizontal(role='form')
-					div.form-group
-						div.col-xs-2
+					div.form-group.download-form
+						div.col-md-2
 							label.control-label Download
-						div.col-xs-8
+						div.col-md-7
 							ui-select(ng-model='fileFormat.selected')
 								ui-select-match(placeholder='Select download format...') {{ $select.selected }}
 								ui-select-choices(repeat='fileFormat in fileFormats | filter: $select.search')
 									div(ng-bind-html='trustAsHtml((fileFormat.toString() | highlight: $select.search))')
-						div.col-xs-2
+						div.col-md-3
 							button.btn.btn-theme(type='button', ng-disabled='!fileFormat.selected', ng-click='download(fileFormat.selected)') Download
 		div.row
 			div.col-md-12
