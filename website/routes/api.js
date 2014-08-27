@@ -91,7 +91,6 @@ exports.getApkList = function (req, res) {
 	});
 };
 
-// TODO: Change MIN to MAX once latest analysis results are complete (8/22)
 exports.getTopApkList = function (req, res) {
 
 	var query = 'SELECT apk.rowid, apk.Name, ' + 
@@ -101,7 +100,7 @@ exports.getTopApkList = function (req, res) {
 		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
 		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
 		'LEFT JOIN Permissions p2 on p2.pid = u.PermissionId ' +
-		'INNER JOIN (SELECT rowid, MIN(CollectionDate) FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 6) apk2 ON apk2.rowid = apk.rowid ' +
+		'INNER JOIN (SELECT rowid, MAX(CollectionDate) FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 6) apk2 ON apk2.rowid = apk.rowid ' +
 		'WHERE Overpermissions IS NOT NULL';
 
 	db.all(query, function (err, apks) {
