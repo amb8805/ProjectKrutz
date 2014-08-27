@@ -120,7 +120,8 @@ angular.module('androidApp.controllers', []).
           animationEasing: 'easeOutBounce',
           animateRotate: true,
           animateScale: false,
-          responsive: false,
+          responsive: true,
+          maintainAspectRatio: true,
           segmentShowStroke: true,
           segmentStrokeColor: '#fff',
           segmentStrokeWidth: 5,
@@ -161,12 +162,12 @@ angular.module('androidApp.controllers', []).
   controller('ApkDetailController', function ($scope, $routeParams, ApkService) {
 
     // Is the data from the database currently loading?
-    $scope.viewLoading = true;
+    $scope.detailViewLoading = true;
 
     // Get the singluar APK object to display
     ApkService.apk.query({rowid: $routeParams.apkId}, function (response) {
       $scope.apk = response;
-      $scope.viewLoading = false;
+      $scope.detailViewLoading = false;
     });
 
   }).

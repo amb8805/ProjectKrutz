@@ -507,12 +507,19 @@ a:hover {
 .results .chart-container {
   min-height: 300px;
   width: 100%;
-  text-align: center;
+}
+
+.results .chart-container .canvas-holder {
+  min-height: 225px; 
+  max-width: 225px; 
+  margin-left: auto; 
+  margin-right: auto; 
+  padding-left: 1px;
 }
 
 .results .chart-container .doughnut-legend {
   list-style: none;
-  width: 300px;
+  width: 250px;
   margin-left: auto;
   margin-right: auto;
   padding-top: 30px;
@@ -545,6 +552,12 @@ a:hover {
   width: 20px;
   height: 100%;
   border-radius: 5px;
+}
+
+.results .chart-container .chart-loading {
+  height: 100;
+  width: 100;
+  padding: 0 15px;
 }
 
 
@@ -690,6 +703,20 @@ a:hover {
 /* Small devices (tablets, 768px and up) */
 @media (min-width: 768px) {
 
+  .results .chart-container .chart-loading {
+    height: 300;
+    width: 300;
+  }
+
+  .results .chart-container .canvas-holder {
+    min-height: 300px; 
+    max-width: 300px;
+  }
+
+  .results .chart-container .doughnut-legend {
+    width: 300px;
+  }
+
 }
 
 /* iPads (portrait and landscape) ----------- */
@@ -723,15 +750,6 @@ a:hover {
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
-
-  .results .content {
-    padding: 87px;
-    min-height: 300px;
-  }
-
-  .results .chart-container {
-    text-align: left;
-  }
 
   .results .chart-container .doughnut-legend {
     width: auto;

@@ -33,25 +33,27 @@ section#home.home
 				h1.title.text-center Highlighted Findings
 			div.row
 				div.col-md-6.col-md-push-6
-					div.container.chart-container(loading-spinner='viewLoading')
+					div.container.chart-container
 						div.row
-							div.col-md-7
-								canvas(id='chart1', width='300', height='300')
+							div.col-md-7.canvas-holder
+								canvas(id='chart1', height='225', width='225')
 							div.col-md-5
+						//- Hack with loadingSpinner so that chart renders without first resizing the browser window
+						div.chart-loading(loading-spinner='viewLoading')
 				div.col-md-6.col-md-pull-6
 					div.content.left
 						h2.subtitle Overpermissions
 						p Using Stowaway, a tool that determines the permissions in which an app is over- and underprivileged, we found that even some of the most-downloaded apps on Google Play violate the principle of least privilege.
 			div.row
 				div.col-md-5.text-center
-					img(src='http://placehold.it/300')
+					img(src='http://placehold.it/225')
 				div.col-md-7
 					div.content.right
 						h2.subtitle Lorem Ipsum
 						p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
 			div.row
 				div.col-md-5.col-md-push-7.text-center
-					img(src='http://placehold.it/300')
+					img(src='http://placehold.it/225')
 				div.col-md-7.col-md-pull-5
 					div.content.left
 						h2.subtitle Lorem Ipsum
