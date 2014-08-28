@@ -17,7 +17,7 @@ angular.module('androidApp.controllers', []).
       $scope.displayedApks = $scope.apks;
 
       ApkService.topApks.query(function (topApks) {
-        $scope.topApks = topApks;
+        $scope.topApks = topApks.slice(0, 5);
         $scope.viewLoading = false;
       });
       
@@ -179,12 +179,6 @@ angular.module('androidApp.controllers', []).
     $scope.itemsPerPage = 25;
     $scope.maxSize = 5;
 
-    // Selected download format and all available formats
-    $scope.fileFormat = {};
-    $scope.fileFormats = [
-      'SQLite'
-    ];
-
     // The current table sort
     $scope.sort = {
       column: '',
@@ -229,13 +223,6 @@ angular.module('androidApp.controllers', []).
         $scope.totalItems = $scope.displayedApks.length;
       }
     });
-
-    // Download the data as the selected file format
-    $scope.download = function (fileFormat) {
-      if (fileFormat === 'SQLite') {
-        $window.location.href = 'https://github.com/DroidDarwin/DarwinData/raw/master/EvolutionOfAndroidApplications.sqlite';
-      }
-    };
 
     // Used to avoid an error with the ui-select component
     $scope.trustAsHtml = function (value) {
