@@ -9,7 +9,7 @@ section#apk-detail.apk-detail
 		div.row.content
 			div.col-md-3.col-sm-6
 				h2.subtitle User Rating
-				p {{ apk.UserRating }}
+				p {{ apk.UserRating }} / 5
 			div.col-md-3.col-sm-6
 				h2.subtitle Release Date
 				p {{ apk.DatePublished }}
@@ -28,16 +28,23 @@ section#apk-detail.apk-detail
 					h2.subtitle Overpermissions
 					ul.permissions-list
 						li(ng-repeat='o in apk.Overpermissions') {{ o }}
-					div(ng-hide='apk.Overpermissions.length > 0') No Overpermissions
+					p(ng-hide='apk.Overpermissions.length > 0') No Overpermissions
 				div.col-md-6
 					h2.subtitle Underpermissions
 					ul.permissions-list
 						li(ng-repeat='u in apk.Underpermissions') {{ u }}
-					div(ng-hide='apk.Underpermissions.length > 0') No Underpermissions
+					p(ng-hide='apk.Underpermissions.length > 0') No Underpermissions
 			div.row.content
 				div.col-md-6
+					h2.subtitle Number of Java Files
+					p {{ apk.JavaFiles | number }}
+				div.col-md-6
 					h2.subtitle Fuzzy Risk Value
-					p {{ apk.FuzzyRiskValue }}
+					p {{ apk.FuzzyRiskValue | number }}
+			div.row.content
+				div.col-md-6
+					h2.subtitle Number of Coding Standard Violations
+					p {{ apk.DefectCount | number }}
 				div.col-md-6
 					h2.subtitle Number of Defects
-					p {{ apk.DefectCount | number }}
+					p {{ apk.JlintResult | number }}
