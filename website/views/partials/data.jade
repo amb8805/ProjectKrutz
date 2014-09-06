@@ -7,7 +7,7 @@ section#data.data
 						div.col-md-2
 							label.control-label Filter
 						div.col-md-7(ng-controller='FilterController')
-							input.form-control(type='text', ng-model='search', placeholder='Search for an app by name...')
+							input.form-control(type='text', ng-model='search', ng-change='change()', placeholder='Search for an app by name...')
 						div.col-md-3
 							button.btn.btn-theme(type='button', ng-controller='ModalController', ng-click='open()') Advanced
 		

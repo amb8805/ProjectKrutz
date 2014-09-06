@@ -13,4 +13,12 @@ angular.module('androidApp.services', ['ngResource']).
 			overpermissions:	$resource('/overpermissions', {}),
 			underpermissions:	$resource('/underpermissions', {}) 
 		};
+	}).
+	factory('SearchService', function () {
+		var searchService = {};
+		searchService.search = '';
+		searchService.changeSearchQuery = function (value) {
+			searchService.search = value;
+		};
+		return searchService;
 	});

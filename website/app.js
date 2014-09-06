@@ -33,7 +33,7 @@ if (app.get('env') === 'development') {
 
 // Production only
 if (app.get('env') === 'production') {
-  // TODO
+  app.use(express.errorHandler());
 }
 
 

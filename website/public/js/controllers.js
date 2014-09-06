@@ -259,13 +259,16 @@ angular.module('androidApp.controllers', []).
     };
 
   }).
-  controller('FilterController', function ($scope, $filter) {
+  controller('FilterController', function ($scope, $filter, SearchService) {
+
+    $scope.search = SearchService.search;
 
     // Filter the displayed table of APKs
-    $scope.$watch('search', function (newVal, oldVal) {
-      var filteredApks = $filter('filter')($scope.apks, {Name: newVal});
+    $scope.change = function () {
+      SearchService.changeSearchQuery($scope.search);
+      var filteredApks = $filter('filter')($scope.apks, {Name: $scope.search});
       $scope.$emit('filterApks', filteredApks);
-    });
+    };
 
   }).
   controller('ModalController', function ($scope, $modal, $log, ApkService) {

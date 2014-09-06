@@ -11,46 +11,53 @@ var mergeApkList = function (apks) {
 
 	var i = 0;
 
-	// A real use case for a do-while loop!
-	do {
+	// Encountered the following error at some point:
+	// TypeError: Cannot read property 'Overpermissions' of undefined
+	// Maybe combine the do-while loop into a while loop with an OR operator?
+	if (apks.length > 0) {
 
-		// If the APK has no over- and/or underpermissions, initialize an empty array.
-		// If the APK does have over- and/or underpermissions, convert the permission 
-		// name to an array containing the permission name.
-		if (apks[i].Overpermissions == null) {
-			apks[i].Overpermissions = [];
-		} else if (!(apks[i].Overpermissions instanceof Array)) {
-			apks[i].Overpermissions = [apks[i].Overpermissions];
-		}
+		// A real use case for a do-while loop!
+		do {
 
-		if (apks[i].Underpermissions == null) {
-			apks[i].Underpermissions = [];
-		} else if (!(apks[i].Underpermissions instanceof Array)) {
-			apks[i].Underpermissions = [apks[i].Underpermissions];
-		}
-
-		// Look at the next APK in the array. If it has over- and/or underpermissions, and these 
-		// permissions are not duplicates, then add the permissions to the current APK.
-		if (apks.length > 1) {
-			if (apks[i].rowid === apks[i + 1].rowid) {
-				if (apks[i + 1].Overpermissions != null && apks[i].Overpermissions.indexOf(apks[i + 1].Overpermissions) == -1) {
-					apks[i].Overpermissions.push(apks[i + 1].Overpermissions);
-				}
-
-				if (apks[i + 1].Underpermissions != null && apks[i].Underpermissions.indexOf(apks[i + 1].Underpermissions) == -1) {
-					apks[i].Underpermissions.push(apks[i + 1].Underpermissions);
-				}
-
-				// Remove the next APK in the array, so we don't look at it again.
-				apks.splice(i + 1, 1);
-				i--;
+			// If the APK has no over- and/or underpermissions, initialize an empty array.
+			// If the APK does have over- and/or underpermissions, convert the permission 
+			// name to an array containing the permission name.
+			if (apks[i].Overpermissions == null) {
+				apks[i].Overpermissions = [];
+			} else if (!(apks[i].Overpermissions instanceof Array)) {
+				apks[i].Overpermissions = [apks[i].Overpermissions];
 			}
-		}
 
-		i++;
-		
+			if (apks[i].Underpermissions == null) {
+				apks[i].Underpermissions = [];
+			} else if (!(apks[i].Underpermissions instanceof Array)) {
+				apks[i].Underpermissions = [apks[i].Underpermissions];
+			}
+
+			// Look at the next APK in the array. If it has over- and/or underpermissions, and these 
+			// permissions are not duplicates, then add the permissions to the current APK.
+			if (apks.length > 1) {
+				if (apks[i].rowid === apks[i + 1].rowid) {
+					if (apks[i + 1].Overpermissions != null && apks[i].Overpermissions.indexOf(apks[i + 1].Overpermissions) == -1) {
+						apks[i].Overpermissions.push(apks[i + 1].Overpermissions);
+					}
+
+					if (apks[i + 1].Underpermissions != null && apks[i].Underpermissions.indexOf(apks[i + 1].Underpermissions) == -1) {
+						apks[i].Underpermissions.push(apks[i + 1].Underpermissions);
+					}
+
+					// Remove the next APK in the array, so we don't look at it again.
+					apks.splice(i + 1, 1);
+					i--;
+				}
+			}
+
+			i++;
+			
+		}
+		while (i < apks.length - 1);
+
 	}
-	while (i < apks.length - 1);
 
 	return apks;
 
