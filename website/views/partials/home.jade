@@ -3,8 +3,8 @@ section#home.home
 		div.container
 			div.row
 				div.content.col-md-12
-					h1.title Reverse Engineering of Android™ Applications
-					p.lead Our goal is to better understand mobile applications and how various software metrics may impact one another
+					h1.title.animated.fadeInUp.delayp2 Reverse Engineering of Android™ Applications
+					p.lead.animated.fadeInUp.delayp2 Our goal is to better understand mobile applications and how various software metrics may impact one another
 					a.btn.btn-lg.btn-theme(href='https://github.com/DroidDarwin/DarwinData') Download on GitHub
 
 	section#overview.overview
@@ -31,15 +31,15 @@ section#home.home
 			div.row
 				h1.title.text-center Highlighted Findings
 			div.row
-				div.col-md-6.col-md-push-6
-					div.container.chart-container
+				div.col-md-7.col-md-push-5
+					div.container.chart-container.right
 						div.row
 							div.col-md-7.canvas-holder
 								canvas(id='chart1', height='225', width='225')
 							div.col-md-5
 						//- Hack with loadingSpinner so that chart renders without first resizing the browser window
 						div.chart-loading(loading-spinner='viewLoading')
-				div.col-md-6.col-md-pull-6
+				div.col-md-5.col-md-pull-7
 					div.content.left
 						h2.subtitle Overpermissions
 						p Using Stowaway, a tool that determines the permissions in which an app is over- and underprivileged, we found that even some of the most-downloaded apps on Google Play violate the principle of least privilege.

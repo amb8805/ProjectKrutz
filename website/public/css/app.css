@@ -50,6 +50,15 @@ a:hover {
   color: #83b600;
 }
 
+.hyphenated {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
 .btn {
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
@@ -123,6 +132,10 @@ a:hover {
   background: #99cc00;
 }
 
+.modal-dialog {
+  padding-top: 100px;
+}
+
 .table > thead > tr > th {
   font-weight: normal;
 }
@@ -150,17 +163,15 @@ a:hover {
   border-color: #99cc00;
 }
 
-.modal-dialog {
-  padding-top: 100px;
-}
-
-.hyphenated {
-  -ms-word-break: break-all;
-  word-break: break-all;
-  word-break: break-word;
-  -webkit-hyphens: auto;
-  -moz-hyphens: auto;
-  hyphens: auto;
+.delayp2 {
+  animation-delay: .2s;
+  -moz-animation-delay: .2s;
+  -webkit-animation-delay: .2s;
+  -o-animation-delay: .2s;
+  transition-delay: .2s;
+  -webkit-transition-delay: .2s;
+  -moz-transition-delay: .2s;
+  -o-transition-delay: .2s;
 }
 
 
@@ -279,7 +290,8 @@ a:hover {
  */
 
 .promo {
-  background: #f5f5f5;
+  background-image: url('/img/congruent_pentagon.png');
+  background-color: #f5f5f5;
   padding: 60px 0 70px;
 }
 
@@ -573,6 +585,14 @@ a:hover {
 
 /* Medium devices (desktops, 992px and up) */
 @media (min-width: 992px) {
+
+  .results .content {
+    margin-top: 40px;
+  }
+
+  .results .chart-container.right {
+    padding-left: 10%;
+  }
 
   .results .chart-container .doughnut-legend {
     width: auto;
