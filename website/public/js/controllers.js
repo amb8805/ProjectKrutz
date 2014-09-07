@@ -3,25 +3,10 @@
 /* Controllers */
 
 angular.module('androidApp.controllers', []).
-  controller('AppController', function ($scope, $location, $window, $filter, ApkService) {
-
-    // Is the data from the database currently loading?
-    $scope.viewLoading = true;
+  controller('AppController', function ($scope, $location, $window, $filter) {
 
     // Logic for navbar
     $scope.isCollapsed = true;
-
-    // Get APK data from the database
-    ApkService.apks.query(function (apks) {
-      $scope.apks = apks;
-      $scope.displayedApks = $scope.apks;
-
-      ApkService.topApks.query(function (topApks) {
-        $scope.topApks = topApks.slice(0, 5);
-        $scope.viewLoading = false;
-      });
-      
-    });
 
     // When a navbar link is clicked, return to the top of the page
     $scope.$on('$routeChangeSuccess', function () {
@@ -54,7 +39,19 @@ angular.module('androidApp.controllers', []).
     }
     
   }).
-  controller('HomeController', function ($scope) {
+  controller('HomeController', function ($scope, ApkService, ApkListService) {
+
+    if (ApkListService.topApks) {
+      $scope.topApks = ApkListService.topApks;
+    } else {
+      $scope.chartsLoading = true;
+
+      ApkService.topApks.query(function (topApks) {
+        ApkListService.topApks = topApks;
+        $scope.topApks = topApks.slice(0, 5);
+        $scope.chartsLoading = false;
+      });
+    }
 
     // Chart colors
     var colors = [
@@ -112,7 +109,7 @@ angular.module('androidApp.controllers', []).
     });
 
     // When all data has been fetched from the database, render the chart
-    $scope.$watch('viewLoading', function () {
+    $scope.$watch('chartsLoading', function () {
       if ($scope.segments) {
         $scope.options =  {
           animation: true,
@@ -171,7 +168,19 @@ angular.module('androidApp.controllers', []).
     });
 
   }).
-  controller('DataController', function ($scope, $sce, $location, $window) {
+  controller('DataController', function ($scope, $sce, $location, $window, ApkService, ApkListService) {
+
+    if (ApkListService.apks) {
+      $scope.displayedApks = ApkListService.apks;
+    } else {
+      $scope.dataViewLoading = true;
+
+      ApkService.apks.query(function (apks) {
+        ApkListService.apks = apks;
+        $scope.displayedApks = apks;
+        $scope.dataViewLoading = false;
+      });
+    }
 
     // Pagination
     $scope.totalItems = 1;
@@ -259,14 +268,14 @@ angular.module('androidApp.controllers', []).
     };
 
   }).
-  controller('FilterController', function ($scope, $filter, SearchService) {
+  controller('FilterController', function ($scope, $filter, ApkListService, SearchService) {
 
     $scope.search = SearchService.search;
 
     // Filter the displayed table of APKs
     $scope.change = function () {
       SearchService.changeSearchQuery($scope.search);
-      var filteredApks = $filter('filter')($scope.apks, {Name: $scope.search});
+      var filteredApks = $filter('filter')(ApkListService.apks, {Name: $scope.search});
       $scope.$emit('filterApks', filteredApks);
     };
 

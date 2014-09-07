@@ -81,7 +81,7 @@ exports.getApk = function (req, res, next) {
 
 };
 
-exports.getApkList = function (req, res, next) {
+exports.getApks = function (req, res, next) {
 
 	var query = 'SELECT ' + apkProperties + ', ' +
 		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
@@ -101,7 +101,7 @@ exports.getApkList = function (req, res, next) {
 	});
 };
 
-exports.getTopApkList = function (req, res, next) {
+exports.getTopApks = function (req, res, next) {
 
 	var query = 'SELECT apk.rowid, apk.Name, ' + 
 		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
@@ -124,7 +124,25 @@ exports.getTopApkList = function (req, res, next) {
 
 };
 
-exports.getGenreList = function (req, res) {
+exports.getTopOverprivilegedGenres = function (req, res) {
+
+	var query = 'SELECT apk.Genre, ROUND(CAST(COUNT(apk.Genre) AS FLOAT) / CAST(TotalGenre.TotalGenreCount AS FLOAT), 2) * 100 as AtLeastXOverPrivPercentage ' +
+		'FROM ApkInformation apk ' +
+		'LEFT OUTER JOIN (SELECT COUNT(PermissionId) AS OprivCount, ApkId FROM Overprivilege GROUP BY ApkId) OverprivCount ' +
+		'ON (OverprivCount.ApkId) = apk.rowid ' +
+		'INNER JOIN (SELECT Genre, COUNT(Genre) AS TotalGenreCount ' +
+		'FROM ApkInformation WHERE LowerDownloads >=10000 GROUP BY Genre) TotalGenre ' +
+		'ON TotalGenre.Genre = apk.Genre ' +
+		'WHERE Oprivcount > 0 AND apk.LowerDownloads >=10000 ' +
+		'GROUP BY apk.Genre ORDER BY AtleastXOverPrivPercentage DESC LIMIT 5';
+
+	db.all(query, function (err, genres) {
+		res.send(genres);
+	});
+
+};
+
+exports.getGenres = function (req, res) {
 
 	db.all('SELECT DISTINCT Genre FROM ApkInformation ORDER BY Genre', function (err, genres) {
 		res.send(genres);
@@ -132,7 +150,7 @@ exports.getGenreList = function (req, res) {
 
 };
 
-exports.getFilteredApkList = function (req, res) {
+exports.getFilteredApks = function (req, res) {
 	
 	var statement = 'SELECT ' + apkProperties + ' FROM ApkInformation apk';
 	var multipleConditions = false;
@@ -190,7 +208,7 @@ exports.getFilteredApkList = function (req, res) {
 	
 };
 
-exports.getOverprivilegeList = function (req, res) {
+exports.getOverprivileges = function (req, res) {
 
 	db.all('SELECT * FROM Overprivilege', function (err, overpermissions) {
 		res.send(overpermissions);
@@ -198,7 +216,7 @@ exports.getOverprivilegeList = function (req, res) {
 
 };
 
-exports.getUnderprivilegeList = function (req, res) {
+exports.getUnderprivileges = function (req, res) {
 
 	db.all('SELECT * FROM Underprivilege', function (err, underpermissions) {
 		res.send(underpermissions);
