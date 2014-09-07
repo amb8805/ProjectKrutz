@@ -11,59 +11,52 @@ var mergeApkList = function (apks) {
 
 	var i = 0;
 
-	// Encountered the following error at some point:
-	// TypeError: Cannot read property 'Overpermissions' of undefined
-	// Maybe combine the do-while loop into a while loop with an OR operator?
-	if (apks.length > 0) {
+	// A real use case for a do-while loop!
+	do {
 
-		// A real use case for a do-while loop!
-		do {
-
-			// If the APK has no over- and/or underpermissions, initialize an empty array.
-			// If the APK does have over- and/or underpermissions, convert the permission 
-			// name to an array containing the permission name.
-			if (apks[i].Overpermissions == null) {
-				apks[i].Overpermissions = [];
-			} else if (!(apks[i].Overpermissions instanceof Array)) {
-				apks[i].Overpermissions = [apks[i].Overpermissions];
-			}
-
-			if (apks[i].Underpermissions == null) {
-				apks[i].Underpermissions = [];
-			} else if (!(apks[i].Underpermissions instanceof Array)) {
-				apks[i].Underpermissions = [apks[i].Underpermissions];
-			}
-
-			// Look at the next APK in the array. If it has over- and/or underpermissions, and these 
-			// permissions are not duplicates, then add the permissions to the current APK.
-			if (apks.length > 1) {
-				if (apks[i].rowid === apks[i + 1].rowid) {
-					if (apks[i + 1].Overpermissions != null && apks[i].Overpermissions.indexOf(apks[i + 1].Overpermissions) == -1) {
-						apks[i].Overpermissions.push(apks[i + 1].Overpermissions);
-					}
-
-					if (apks[i + 1].Underpermissions != null && apks[i].Underpermissions.indexOf(apks[i + 1].Underpermissions) == -1) {
-						apks[i].Underpermissions.push(apks[i + 1].Underpermissions);
-					}
-
-					// Remove the next APK in the array, so we don't look at it again.
-					apks.splice(i + 1, 1);
-					i--;
-				}
-			}
-
-			i++;
-			
+		// If the APK has no over- and/or underpermissions, initialize an empty array.
+		// If the APK does have over- and/or underpermissions, convert the permission 
+		// name to an array containing the permission name.
+		if (apks[i].Overpermissions == null) {
+			apks[i].Overpermissions = [];
+		} else if (!(apks[i].Overpermissions instanceof Array)) {
+			apks[i].Overpermissions = [apks[i].Overpermissions];
 		}
-		while (i < apks.length - 1);
 
+		if (apks[i].Underpermissions == null) {
+			apks[i].Underpermissions = [];
+		} else if (!(apks[i].Underpermissions instanceof Array)) {
+			apks[i].Underpermissions = [apks[i].Underpermissions];
+		}
+
+		// Look at the next APK in the array. If it has over- and/or underpermissions, and these 
+		// permissions are not duplicates, then add the permissions to the current APK.
+		if (apks.length > 1) {
+			if (apks[i].rowid === apks[i + 1].rowid) {
+				if (apks[i + 1].Overpermissions != null && apks[i].Overpermissions.indexOf(apks[i + 1].Overpermissions) == -1) {
+					apks[i].Overpermissions.push(apks[i + 1].Overpermissions);
+				}
+
+				if (apks[i + 1].Underpermissions != null && apks[i].Underpermissions.indexOf(apks[i + 1].Underpermissions) == -1) {
+					apks[i].Underpermissions.push(apks[i + 1].Underpermissions);
+				}
+
+				// Remove the next APK in the array, so we don't look at it again.
+				apks.splice(i + 1, 1);
+				i--;
+			}
+		}
+
+		i++;
+		
 	}
+	while (i < apks.length - 1);
 
 	return apks;
 
 };
 
-exports.getApk = function (req, res) {
+exports.getApk = function (req, res, next) {
 
 	var query = 'SELECT ' + apkProperties + ', ' +
 		'p.Name as Overpermissions, p2.Name as Underpermissions, ' +
@@ -77,13 +70,18 @@ exports.getApk = function (req, res) {
 		'WHERE apk.rowid IS ' + req.query.rowid;
 
 	db.all(query, function (err, apks) {
+
+		if (err) return next(err);
+		if (!apks || apks.length == 0) return next(new Error());
+
 		var apk = mergeApkList(apks)[0];
 		res.send(apk);
+
 	});
 
 };
 
-exports.getApkList = function (req, res) {
+exports.getApkList = function (req, res, next) {
 
 	var query = 'SELECT ' + apkProperties + ', ' +
 		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
@@ -94,11 +92,16 @@ exports.getApkList = function (req, res) {
 		'LEFT JOIN Permissions p2 on p2.pid = u.PermissionId';
 
 	db.all(query, function (err, apks) {
+
+		if (err) return next(err);
+		if (!apks || apks.length == 0) return next(new Error());
+
 		res.send(mergeApkList(apks));
+
 	});
 };
 
-exports.getTopApkList = function (req, res) {
+exports.getTopApkList = function (req, res, next) {
 
 	var query = 'SELECT apk.rowid, apk.Name, ' + 
 		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
@@ -111,7 +114,12 @@ exports.getTopApkList = function (req, res) {
 		'WHERE Overpermissions IS NOT NULL';
 
 	db.all(query, function (err, apks) {
+
+		if (err) return next(err);
+		if (!apks || apks.length == 0) return next(new Error());
+
 		res.send(mergeApkList(apks));
+
 	});
 
 };

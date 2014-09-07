@@ -25,7 +25,11 @@ app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(app.router);
+app.use(function (err, req, res, next) {
+  res.render('error');
+});
 
+/*
 // Development only
 if (app.get('env') === 'development') {
   app.use(express.errorHandler());
@@ -35,6 +39,7 @@ if (app.get('env') === 'development') {
 if (app.get('env') === 'production') {
   app.use(express.errorHandler());
 }
+*/
 
 
 /**
