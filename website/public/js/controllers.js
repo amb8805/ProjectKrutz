@@ -14,11 +14,6 @@ angular.module('androidApp.controllers', []).
       $window.scrollTo(0, 0);
     });
 
-    // When the APK list is filtered, update the list
-    $scope.$on('filterApks', function (event, filteredApks) {
-      $scope.displayedApks = filteredApks;
-    });
-
     // Logic for navbar and routing
     $scope.getNavItemClass = function (path) {
 
@@ -169,6 +164,11 @@ angular.module('androidApp.controllers', []).
 
   }).
   controller('DataController', function ($scope, $sce, $location, $window, ApkService, ApkListService) {
+
+    // When the APK list is filtered, update the list
+    $scope.$on('filterApks', function (event, filteredApks) {
+      $scope.displayedApks = filteredApks;
+    });
 
     if (ApkListService.apks) {
       $scope.displayedApks = ApkListService.apks;
