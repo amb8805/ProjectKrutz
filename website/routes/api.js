@@ -83,20 +83,14 @@ exports.getApk = function (req, res, next) {
 
 exports.getApks = function (req, res, next) {
 
-	var query = 'SELECT ' + apkProperties + ', ' +
-		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
-		'FROM ApkInformation apk ' +
-		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
-		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
-		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
-		'LEFT JOIN Permissions p2 on p2.pid = u.PermissionId';
+	var query = 'SELECT ' + apkProperties + ' FROM ApkInformation apk';
 
 	db.all(query, function (err, apks) {
 
 		if (err) return next(err);
 		if (!apks || apks.length == 0) return next(new Error());
 
-		res.send(mergeApkList(apks));
+		res.send(apks);
 
 	});
 };
@@ -110,8 +104,7 @@ exports.getTopApks = function (req, res, next) {
 		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
 		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
 		'LEFT JOIN Permissions p2 on p2.pid = u.PermissionId ' +
-		'INNER JOIN (SELECT rowid, MAX(CollectionDate) FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 6) apk2 ON apk2.rowid = apk.rowid ' +
-		'WHERE Overpermissions IS NOT NULL';
+		'INNER JOIN (SELECT rowid, MAX(CollectionDate) FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 5) apk2 ON apk2.rowid = apk.rowid';
 
 	db.all(query, function (err, apks) {
 

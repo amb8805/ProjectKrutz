@@ -48,13 +48,13 @@ angular.module('androidApp.controllers', []).
 
       ApkService.topApks.query(function (topApks) {
         ApkListService.topApks = topApks;
-        $scope.topApks = topApks.slice(0, 5);
+        $scope.topApks = topApks;
 
-        //ApkService.topOverprivilegedGenres.query(function (genres) {
-        //  ApkListService.topOverprivilegedGenres = genres;
-        //  $scope.topOverprivilegedGenres = genres;
+        ApkService.topOverprivilegedGenres.query(function (genres) {
+          ApkListService.topOverprivilegedGenres = genres;
+          $scope.topOverprivilegedGenres = genres;
           $scope.chartsLoading = false;
-        //})
+        })
       });
 
     }
