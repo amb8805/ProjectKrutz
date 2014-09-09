@@ -21,7 +21,9 @@ angular.module('androidApp.services', ['ngResource']).
 
 		return {
 			apks: undefined,
-			topApks: undefined
+			filteredApks: undefined,
+			topApks: undefined,
+			topOverprivilegedGenres: undefined
 		};
 
 	}).

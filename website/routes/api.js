@@ -131,9 +131,9 @@ exports.getTopOverprivilegedGenres = function (req, res) {
 		'LEFT OUTER JOIN (SELECT COUNT(PermissionId) AS OprivCount, ApkId FROM Overprivilege GROUP BY ApkId) OverprivCount ' +
 		'ON (OverprivCount.ApkId) = apk.rowid ' +
 		'INNER JOIN (SELECT Genre, COUNT(Genre) AS TotalGenreCount ' +
-		'FROM ApkInformation WHERE LowerDownloads >=10000 GROUP BY Genre) TotalGenre ' +
+		'FROM ApkInformation GROUP BY Genre) TotalGenre ' +
 		'ON TotalGenre.Genre = apk.Genre ' +
-		'WHERE Oprivcount > 0 AND apk.LowerDownloads >=10000 ' +
+		'WHERE Oprivcount > 0 ' +
 		'GROUP BY apk.Genre ORDER BY AtleastXOverPrivPercentage DESC LIMIT 5';
 
 	db.all(query, function (err, genres) {

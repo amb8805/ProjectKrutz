@@ -39,10 +39,6 @@ p {
 
 a {
   color: #99cc00;
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
 }
 
 a:hover {
@@ -59,24 +55,20 @@ a:hover {
   hyphens: auto;
 }
 
-.btn {
-  -webkit-transition: all 0.2s ease-in-out;
-  -moz-transition: all 0.2s ease-in-out;
-  -ms-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-}
-
 .btn-theme {
   background: #99cc00;
-  border: 1px solid #99cc00;
+  border-color: #83b600;
+  border-width: 0 1px 4px 1px;
   color: #fff;
   outline: 0;
 }
 
 .btn-theme:hover {
-  background: #83b600;
+  background: #8cbf09;
+  border-color: #6ea203;
+  margin-top: 1px;
+  border-bottom-width: 3px;
   color: #fff;
-  border: 1px solid #83b600;
 }
 
 .btn-theme:focus,
@@ -304,11 +296,7 @@ a:hover {
 }
 
 .promo .content .lead {
-  padding: 0 20%;
-}
-
-.promo .content .btn-theme {
-  margin-top: 20px;
+  padding: 0 20% 20px;
 }
 
 
@@ -329,13 +317,34 @@ a:hover {
 }
 
 .overview .content {
-  padding: 30px;
+  padding: 20px 30px 30px;
 }
 
 .overview .content .subtitle {
   color: #99cc00;
   font-size: 18px;
   margin-top: 0;
+}
+
+.overview .fa-stack {
+  transition: all 0.2s;
+}
+
+.overview .fa-stack:hover {
+  -webkit-transform: translate(0px, -5px);
+  -moz-transform: translate(0px, -5px);
+  -ms-transform: translate(0px, -5px);
+  -o-transform: translate(0px, -5px);
+  transform: translate(0px, -5px);
+  transition: all 0.2s;
+}
+
+.overview .fa-stack-2x {
+  color: #333;
+}
+
+.overview .fa-stack:hover .fa-stack-2x {
+  color: #3d3d3d;
 }
 
 
@@ -365,25 +374,28 @@ a:hover {
   margin-top: 0;
 }
 
+.results .chart-row {
+  padding-top: 30px;
+}
+
 .results .chart-container {
   min-height: 300px;
   width: 100%;
 }
 
-.results .chart-container .canvas-holder {
+.results .chart-container .canvas1-holder {
   min-height: 225px; 
   max-width: 225px; 
   margin-left: auto; 
-  margin-right: auto; 
-  padding-left: 1px;
+  margin-right: auto;
 }
 
 .results .chart-container .doughnut-legend {
   list-style: none;
-  width: 250px;
+  width: 225px;
+  padding-top: 30px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 30px;
 }
 
 .results .chart-container .doughnut-legend li {
@@ -413,6 +425,11 @@ a:hover {
   width: 20px;
   height: 100%;
   border-radius: 5px;
+}
+
+.results .chart-container .canvas2-holder {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .results .chart-container .chart-loading {
@@ -557,13 +574,9 @@ a:hover {
     width: 300;
   }
 
-  .results .chart-container .canvas-holder {
+  .results .chart-container .canvas1-holder {
     min-height: 300px; 
     max-width: 300px;
-  }
-
-  .results .chart-container .doughnut-legend {
-    width: 300px;
   }
 
 }
@@ -590,12 +603,11 @@ a:hover {
     margin-top: 40px;
   }
 
-  .results .chart-container.right {
-    padding-left: 10%;
-  }
-
-  .results .chart-container .doughnut-legend {
-    width: auto;
+  .results .chart-container .canvas2-holder {
+    margin: 0;
+    padding: 0;
+    max-width: 550px;
+    max-height: 305px;
   }
 
   .footer .copyright {
@@ -609,10 +621,22 @@ a:hover {
     padding: 0;
   }
 
+  .results .chart-container .canvas2-holder {
+    padding-top: 30px;
+  }
+
 }
 
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {
+
+  .results .chart-container .canvas1-holder-wrapper {
+    padding-left: 18%;
+  }
+
+  .results .chart-container .canvas2-holder {
+    padding: 0;
+  }
 
 }
 

@@ -1,14 +1,14 @@
 section#data.data
 	div.container(loading-spinner='dataViewLoading')
 		div.row
-			div.col-lg-6.col-lg-offset-6.col-md-7.col-md-offset-5
+			div.col-md-7.col-md-offset-5
 				form.form-horizontal.filter-form(role='form')
 					div.form-group
-						div.col-md-2
+						div.col-md-1
 							label.control-label Filter
-						div.col-md-7(ng-controller='FilterController')
+						div.col-md-9(ng-controller='FilterController')
 							input.form-control(type='text', ng-model='search', ng-change='change()', placeholder='Search for an app by name...')
-						div.col-md-3
+						div.col-md-2
 							button.btn.btn-theme(type='button', ng-controller='ModalController', ng-click='open()') Advanced
 		
 		div.row

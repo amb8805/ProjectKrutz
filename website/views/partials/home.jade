@@ -12,16 +12,18 @@ section#home.home
 			div.row
 				h1.title.text-center Project Overview
 				div.col-md-6.col-sm-6.col-xs-12.text-center
-					span.fa-stack.fa-5x
-						i.fa.fa-circle.fa-stack-2x
-						i.fa.fa-download.fa-stack-1x.fa-inverse
+					a(target='_blank', href='https://github.com/DroidDarwin/AnalyzingCode')
+						span.fa-stack.fa-5x
+							i.fa.fa-circle.fa-stack-2x
+							i.fa.fa-download.fa-stack-1x.fa-inverse
 					div.content 
 						h2.subtitle Data Collection
 						p We created a web scraper using Scrapy, a web scraping framework for Python, to collect over 30,000 APK files, as well as information on these files.
 				div.col-md-6.col-sm-6.col-xs-12.text-center
-					span.fa-stack.fa-5x
-						i.fa.fa-circle.fa-stack-2x
-						i.fa.fa-cogs.fa-stack-1x.fa-inverse
+					a(target='_blank', href='https://github.com/DroidDarwin/DarwinData')
+						span.fa-stack.fa-5x
+							i.fa.fa-circle.fa-stack-2x
+							i.fa.fa-cogs.fa-stack-1x.fa-inverse
 					div.content 
 						h2.subtitle Data Analysis
 						p We used a variety of existing tools to analyze the over- and underpermissions, risk level for potential malware, and other metrics of the collected files.
@@ -33,23 +35,26 @@ section#home.home
 			div.row
 				div.col-md-7.col-md-push-5
 					div.container.chart-container.right
-						div.row
-							div.col-md-7.canvas-holder
-								canvas(id='chart1', height='225', width='225')
+						div.row.canvas1-holder-wrapper
+							div.col-md-7.canvas1-holder
+								canvas#chart1(height='225', width='225')
 							div.col-md-5
 						//- Hack with loadingSpinner so that chart renders without first resizing the browser window
 						div.chart-loading(loading-spinner='chartsLoading')
 				div.col-md-5.col-md-pull-7
 					div.content.left
-						h2.subtitle Overpermissions
+						h2.subtitle Popular Overprivileged Apps
 						p Using Stowaway, a tool that determines the permissions in which an app is over- and underprivileged, we found that even some of the most-downloaded apps on Google Play violate the principle of least privilege.
-			//- div.row
-			//- 	div.col-md-5.text-center
-			//- 		img(src='http://placehold.it/225')
-			//- 	div.col-md-7
-			//- 		div.content.right
-			//- 			h2.subtitle Lorem Ipsum
-			//- 			p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
+			div.row.chart-row
+				div.col-md-7
+					div.container.chart-container
+						div.canvas2-holder
+							canvas#chart2(height='275', width='525')
+						div.chart-loading(loading-spinner='chartsLoading')
+				div.col-md-5
+					div.content.right
+						h2.subtitle Overprivileged Apps by Genre
+						p We found that at least 20% of apps in each genre are overprivileged, and the majority of apps in 19 out of the 41 genres are overprivileged. These are the top 5 genres in which there are the highest percentage of overprivileged apps.
 			//- div.row
 			//- 	div.col-md-5.col-md-push-7.text-center
 			//- 		img(src='http://placehold.it/225')

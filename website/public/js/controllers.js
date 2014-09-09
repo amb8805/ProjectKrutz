@@ -36,16 +36,27 @@ angular.module('androidApp.controllers', []).
   }).
   controller('HomeController', function ($scope, ApkService, ApkListService) {
 
-    if (ApkListService.topApks) {
+    // Load the data for the charts
+    if (ApkListService.topApks && ApkListService.topOverprivilegedGenres) {
+
       $scope.topApks = ApkListService.topApks;
+      $scope.topOverprivilegedGenres = ApkListService.topOverprivilegedGenres;
+
     } else {
+
       $scope.chartsLoading = true;
 
       ApkService.topApks.query(function (topApks) {
         ApkListService.topApks = topApks;
         $scope.topApks = topApks.slice(0, 5);
-        $scope.chartsLoading = false;
+
+        ApkService.topOverprivilegedGenres.query(function (genres) {
+          ApkListService.topOverprivilegedGenres = genres;
+          $scope.topOverprivilegedGenres = genres;
+          $scope.chartsLoading = false;
+        })
       });
+
     }
 
     // Chart colors
@@ -87,27 +98,66 @@ angular.module('androidApp.controllers', []).
 
     }
 
-    // When the list of top APKs loads, create the chart
+    // When the list of top APKs loads, create the respective chart
     $scope.$watch('topApks', function () {
+
       if ($scope.topApks) {
+
         $scope.segments = [];
+
         for (var i = 0; i < $scope.topApks.length; i++) {
+
           var segment = {
             label: $scope.topApks[i].Name,
             value: $scope.topApks[i].Overpermissions.length,
             color: colors[i],
             highlight: getHighlight(colors[i], 10)
           };
+
           $scope.segments.push(segment);
+
         }
       }
+
     });
 
-    // When all data has been fetched from the database, render the chart
+    // When the list of top overprivileged genres loads, create the respective chart
+    $scope.$watch('topOverprivilegedGenres', function () {
+
+      if ($scope.topOverprivilegedGenres) {
+        
+        var labels = [];
+        var dataValues = [];
+
+        for (var i = 0; i < $scope.topOverprivilegedGenres.length; i++) {
+          labels.push($scope.topOverprivilegedGenres[i].Genre);
+          dataValues.push($scope.topOverprivilegedGenres[i].AtLeastXOverPrivPercentage);
+        }
+
+        $scope.barChartData = {
+          labels: labels,
+          datasets: [
+            {
+              label: 'foo',
+              fillColor: 'rgba(153, 204, 0, 1)',
+              strokeColor: 'rgba(131, 182, 0, 1)',
+              highlightFill: 'rgba(169, 212, 35, 1)',
+              highlightStroke: 'rgba(147, 199, 9, 1)',
+              data: dataValues
+            }
+          ]
+        };
+      }
+
+    });
+
+    // When all data has been fetched from the database, render the charts
     $scope.$watch('chartsLoading', function () {
+
+      // Chart #1
       if ($scope.segments) {
-        $scope.options =  {
-          animation: true,
+
+        var chartOptions1 = {
           animationSteps: 100,
           animationEasing: 'easeOutBounce',
           animateRotate: true,
@@ -126,8 +176,8 @@ angular.module('androidApp.controllers', []).
         };
 
         var helpers = Chart.helpers;
-        var canvas = document.getElementById('chart1');
-        var chart1 = new Chart(canvas.getContext('2d')).Doughnut($scope.segments, $scope.options);
+        var canvas1 = document.getElementById('chart1');
+        var chart1 = new Chart(canvas1.getContext('2d')).Doughnut($scope.segments, chartOptions1);
         var legendHolder = document.createElement('div');
 
         legendHolder.innerHTML = chart1.generateLegend();
@@ -146,8 +196,26 @@ angular.module('androidApp.controllers', []).
           chart1.draw();
         });
 
-        canvas.parentNode.parentNode.lastChild.appendChild(legendHolder.firstChild);
+        canvas1.parentNode.parentNode.lastChild.appendChild(legendHolder.firstChild);
+
       }
+
+      // Chart #2
+      if ($scope.barChartData) {
+
+        var chartOptions2 = {
+          animationSteps: 100,
+          responsive: true,
+          maintainAspectRatio: false,
+          scaleShowGridLines: false,
+          tooltipTemplate: '<%=label%>: <%= value %>%'
+        }
+
+        var canvas2 = document.getElementById('chart2');
+        var chart2 = new Chart(canvas2.getContext('2d')).Bar($scope.barChartData, chartOptions2);
+
+      }
+
     });
 
   }).
@@ -168,15 +236,18 @@ angular.module('androidApp.controllers', []).
     // When the APK list is filtered, update the list
     $scope.$on('filterApks', function (event, filteredApks) {
       $scope.displayedApks = filteredApks;
+      ApkListService.filteredApks = filteredApks;
     });
 
+    // Load the data for the table
     if (ApkListService.apks) {
-      $scope.displayedApks = ApkListService.apks;
+      $scope.displayedApks = ApkListService.filteredApks;
     } else {
       $scope.dataViewLoading = true;
 
       ApkService.apks.query(function (apks) {
         ApkListService.apks = apks;
+        ApkListService.filteredApks = apks;
         $scope.displayedApks = apks;
         $scope.dataViewLoading = false;
       });
@@ -270,6 +341,7 @@ angular.module('androidApp.controllers', []).
   }).
   controller('FilterController', function ($scope, $filter, ApkListService, SearchService) {
 
+    // Retrieve the filter term currently entered by the user
     $scope.search = SearchService.search;
 
     // Filter the displayed table of APKs
@@ -308,14 +380,13 @@ angular.module('androidApp.controllers', []).
       name: undefined,
       version: undefined,
       developer: undefined,
-      genre: {},
+      genre: undefined,
       userRatingFrom: undefined,
       userRatingTo: undefined
     };
 
     // Serve filter parameters to the modal instance
     $scope.search = function () {
-
       $modalInstance.close({
         name: $scope.filter.name, 
         version: $scope.filter.version, 
@@ -324,7 +395,6 @@ angular.module('androidApp.controllers', []).
         userRatingFrom: $scope.filter.userRatingFrom,
         userRatingTo: $scope.filter.userRatingTo
       });
-
     };
 
   }).
