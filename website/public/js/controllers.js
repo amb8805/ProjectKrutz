@@ -390,7 +390,7 @@ angular.module('androidApp.controllers', []).
       name: undefined,
       version: undefined,
       developer: undefined,
-      genre: undefined,
+      genre: {},
       userRatingFrom: undefined,
       userRatingTo: undefined
     };
