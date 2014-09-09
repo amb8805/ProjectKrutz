@@ -58,39 +58,18 @@ a:hover {
 .btn-theme {
   background: #99cc00;
   border-color: #83b600;
-  border-width: 0 1px 4px 1px;
   color: #fff;
   outline: 0;
 }
 
 .btn-theme:hover {
   background: #8cbf09;
-  border-color: #6ea203;
-  margin-top: 1px;
-  border-bottom-width: 3px;
   color: #fff;
 }
 
 .btn-theme:focus,
 .btn-theme:active {
   color: #fff;
-}
-
-.btn-transparent {
-  background: transparent;
-  border: 2px solid #fff;
-  color: #fff;
-}
-
-.btn-transparent:hover {
-  color: #444;
-  background: #fff;
-}
-
-.btn-transparent:focus,
-.btn-transparent:active {
-  color: #fff;
-  outline: 0;
 }
 
 .control-label {
@@ -242,10 +221,6 @@ a:hover {
   background: #fff;
   padding: 30px 0;
   text-align: center;
-}
-
-.footer .repo-link {
-  padding-top: 5px;
 }
 
 
@@ -613,12 +588,6 @@ a:hover {
   .footer .copyright {
     text-align: left;
     float: left;
-  }
-
-  .footer .repo-link {
-    text-align: right;
-    float: right;
-    padding: 0;
   }
 
   .results .chart-container .canvas2-holder {

@@ -138,7 +138,6 @@ angular.module('androidApp.controllers', []).
           labels: labels,
           datasets: [
             {
-              label: 'foo',
               fillColor: 'rgba(153, 204, 0, 1)',
               strokeColor: 'rgba(131, 182, 0, 1)',
               highlightFill: 'rgba(169, 212, 35, 1)',
@@ -147,6 +146,7 @@ angular.module('androidApp.controllers', []).
             }
           ]
         };
+
       }
 
     });
@@ -211,9 +211,19 @@ angular.module('androidApp.controllers', []).
           tooltipTemplate: '<%=label%>: <%= value %>%'
         }
 
+        var helpers = Chart.helpers;
         var canvas2 = document.getElementById('chart2');
         var chart2 = new Chart(canvas2.getContext('2d')).Bar($scope.barChartData, chartOptions2);
 
+        /*
+        helpers.each(chart2.datasets[0].bars, function (bar, index) {
+            bar.fillColor = colors[index];
+            bar.strokeColor = colors[index];
+            bar.highlightFill = colors[index];
+            bar.highlightStroke = colors[index];
+        });
+        */
+        
       }
 
     });
