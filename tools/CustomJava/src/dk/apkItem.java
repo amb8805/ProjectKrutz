@@ -12,7 +12,7 @@ import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 import org.w3c.dom.Node;
 
-// AThis class will hold all of the apk information
+// This class will hold all of the apk information
 // A class is created since there may be timing issues between the reading from an apk file and writing to the DB.
 
 public class apkItem {
