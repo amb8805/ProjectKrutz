@@ -18,6 +18,7 @@
 	### These can cause problems
 	rm -rf logs/AndroRiskOutput/
 
+
 	echo "Start Stowaway Analysis:" `date` >> $logLocation
 #	./tools/stowaway/run_stowaway.sh $APK_Input_Path
 
@@ -33,31 +34,14 @@
 
 
 	### Gather apk information
-	#echo "Start Java APK Parser:" `date` >> $logLocation
-	#cd tools/CustomJava/src/
-	#javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../$APK_Input_Path
-	#cd ../../../
-	#echo "End Java APK Parser:" `date` >> $logLocation
-
-
-	### Loop through all files in the apk directory and pass them to the APK parser script
-	###		This is done on an individual apk file basis to limit the impact of problems.
-
-
-	FILES=$(find $APK_Input_Path -maxdepth 1 -type f  -name '*.apk')
-	for f in $FILES
-	do
-
-		## Create a log for each one
-
-	#echo $f
-	#javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../$APK_Input_Path
-
-	done
-
+	echo "Start Java APK Parser:" `date` >> $logLocation
+	cd tools/CustomJava/src/
+	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../$APK_Input_Path
+	cd ../../../
+	echo "End Java APK Parser:" `date` >> $logLocation
 
 	#### Log the conclusion time
-	date2=$(date +"%s") 
+	date2=$(date +"%s")
 	diff=$(($date2-$date1))
 	echo "toolsScript Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
 	echo "toolsScript End:" `date` >> $logLocation
