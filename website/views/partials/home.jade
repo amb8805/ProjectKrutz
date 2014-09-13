@@ -2,9 +2,11 @@ section#home.home
 	section#promo.promo
 		div.container
 			div.row
-				div.content.col-md-12
+				div.col-md-12.text-center
 					h1.title.animated.fadeInUp.delayp2 Reverse Engineering of Android™ Applications
-					p.lead.animated.fadeInUp.delayp2 Our goal is to better understand mobile applications and how various software metrics may impact one another
+					div.content
+						p.lead.goal.animated.fadeInUp.delayp2 Our goal is to better understand mobile applications and how various software metrics may impact one another
+						p.lead.animated.fadeInUp.delayp2 We have analyzed {{ apkCount | number }} applications to date
 					a.btn.btn-lg.btn-theme(target='_blank', href='https://github.com/DroidDarwin/DarwinData') Download on GitHub
 
 	section#overview.overview
@@ -39,7 +41,6 @@ section#home.home
 							div.col-md-7.canvas1-holder
 								canvas#chart1(height='225', width='225')
 							div.col-md-5
-						//- Hack with loadingSpinner so that chart renders without first resizing the browser window
 						div.chart-loading(loading-spinner='chartsLoading')
 				div.col-md-5.col-md-pull-7
 					div.content.left
@@ -55,11 +56,3 @@ section#home.home
 					div.content.right
 						h2.subtitle Overprivileged Apps by Genre
 						p We found that at least 20% of apps in each genre are overprivileged, and the majority of apps in 19 out of the 41 genres are overprivileged. These are the top 5 genres in which there are the highest percentage of overprivileged apps.
-			//- div.row
-			//- 	div.col-md-5.col-md-push-7.text-center
-			//- 		img(src='http://placehold.it/225')
-			//- 	div.col-md-7.col-md-pull-5
-			//- 		div.content.left
-			//- 			h2.subtitle Lorem Ipsum
-			//- 			p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nec nisi in felis sodales mollis. Curabitur nec nisi id nibh porta blandit.
-
