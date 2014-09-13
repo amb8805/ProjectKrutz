@@ -376,7 +376,7 @@ angular.module('androidApp.controllers', []).
 
     // When a table row is selected, display the page for that individual APK
     $scope.selectTableRow = function () {
-      $location.path('apk/' + this.apk.rowid);
+      $location.path('analytics/' + this.apk.rowid);
     };
 
     // Determine which icon to display based on sort order

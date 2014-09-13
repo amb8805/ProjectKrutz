@@ -21,7 +21,7 @@ androidApp.config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/data',
       controller: 'DataController'
     })
-    .when('/apk/:apkId', {
+    .when('/analytics/:apkId', {
       templateUrl: 'partials/apk-detail',
       controller: 'ApkDetailController'
     })
