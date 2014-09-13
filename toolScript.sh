@@ -36,7 +36,7 @@
 
 
 	echo "Start APKParser:" `date` >> $logLocation
-	./tools/runAPKParser.sh $APK_Input_Path
+#	./tools/runAPKParser.sh $APK_Input_Path
 
 	#### Log the conclusion time
 	date2=$(date +"%s") 
