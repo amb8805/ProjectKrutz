@@ -39,3 +39,10 @@ tools/java_Analysis/javaOutput/
 # Stowaway Test output #
 tools/stowaway/output/
 
+# AndroriskOutput #
+logs/AndroRiskOutput/
+
+# Simcad Output #
+tools/java_Analysis/CloneDetection/SimCad-2.2/
+
+
