@@ -51,6 +51,7 @@ section#apk-detail.apk-detail
 			div.row.comparison
 				div.col-md-12
 					h3 Comparison to Other Versions
-	div.container.chart-container
+					p(ng-hide='allVersionsOfApk.length > 1') No other versions
+	div.container.chart-container(ng-hide='allVersionsOfApk.length == 1')
 		div.canvas-holder
 			canvas#apkDetailChart
