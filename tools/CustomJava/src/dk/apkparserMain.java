@@ -32,48 +32,50 @@ Dan-macbook:src dan$ javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" 
 
 public class apkparserMain {
 	util u = new util();
-	
-	//Name of the application being examined 
 
 	private List<apkItem>MasterapkList=new ArrayList<apkItem>();
 	final String sqliteDBLocation = "../../EvolutionOfAndroidApplications.sqlite";	// location of the SQLDB that the information will be written to
-	
-	// shut this off in "real" version, it will be read in as an input variable.
-	//final String inputLocation = "src/testinput/testAPKInput"; 
-	
-	
-//	final String inputLocation = "/Users/dan/Desktop/temp/"; 
-	
-	static String inputLocation = ""; 
+// For testing only	final String sqliteDBLocation = "EvolutionOfAndroidApplications.sqlite";	// location of the SQLDB that the information will be written to
+
+
+
+	// This will need to be passed into the java application
+	//	This is done individually since the java portion has crashed in the past, which has 
+	//		Made it so 
+//	static String ifile = "C:\\Users\\dkrutz\\Desktop\\testinput\\1TP.apk"; 
+//	static String inputLocation = "C:\\Users\\dkrutz\\Desktop\\testinput\\1TP.apk"; 
+
+	static String ifile="";
 	
 	public static void main(String[] args) throws IOException, InterruptedException, ParserConfigurationException, SAXException {
+
+
 		
-	
 		if(args.length!=1){
-			System.out.println("A single argument with the application name was expected");
+			System.out.println("No file was given for input");
 		}else{
-			 inputLocation = args[0];
+			 ifile = args[0];
 			apkparserMain ap = new apkparserMain();
-			ap.Run();		
+			ap.Run(ifile);		
 		}
 		
-		
-	
+
+	//	System.out.println("hi dan");
 	//	apkparserMain ap = new apkparserMain();
-	//	ap.Run();	
-		
+	//	ap.Run(ifile);	
+
 	}
 	
-	public void Run() throws IOException, InterruptedException, ParserConfigurationException, SAXException{	
-	
-		
-		System.out.println("Input Location: " + inputLocation);
-	//	System.exit(0);
-		
+	public void Run(String inputFile) throws IOException, InterruptedException, ParserConfigurationException, SAXException{	
+
+
+		System.out.println("Input File: " + inputFile);
+		//System.exit(0);
+
 		// These actions are done in seperate steps to eliminate the possibility of locking or other timing issues
 	
 		// Create the raw version of the list
-		MasterapkList = buildAPKItems(inputLocation);
+		MasterapkList = buildAPKItems(inputFile);
 		
 		
 		// Gather the necessary apk information from apk object
@@ -378,42 +380,23 @@ public class apkparserMain {
 					e.printStackTrace();
 				}
 			}
-	
-		
-		
-		
 
 	}
 	
 	// Add a check to ensure that some input files exist
 	// errors could occur later on if this is not done
-	private List<apkItem> buildAPKItems(String inputLocation) throws IOException, InterruptedException{
+	private List<apkItem> buildAPKItems(String inputFile) throws IOException, InterruptedException{
 		
 		List<apkItem>apkList=new ArrayList<apkItem>();
+		File f = new File(inputFile);
 		
-		// loop through all of the apk files in the input directory
-		File path = new File(inputLocation);
-		File [] files = path.listFiles();
-		
-		    for (int i = 0; i < files.length; i++){
-		        if (files[i].isFile()){ //this line weeds out other directories/folders
-		        	// Make sure the file is an apk file
-		        	// String ext = FilenameUtils.getExtension("/path/to/file/foo.txt");
-		        	//if(FilenameUtils.){String extension = "";
-		        	String extension = "";
-					int a = files[i].getName().lastIndexOf('.');
-					//if (i > 0) {
-					    extension = files[i].getName().substring(a+1);
-					//}
-				
-						if(extension.toLowerCase().equals("apk")){
-						//	System.out.println(files[i].getName());
-							apkList.add(new apkItem(files[i].getName(),RunAPKParser(files[i])));
-						}
-		        	}
-		        }
-		
-
+       	String extension = "";
+		int a = f.getName().lastIndexOf('.');
+		extension = f.getName().substring(a+1);
+		if(extension.toLowerCase().equals("apk")){
+			//	System.out.println(files[i].getName());
+			apkList.add(new apkItem(f.getName(),RunAPKParser(f)));				
+		}
 		return apkList;
 	}
 	
@@ -465,5 +448,9 @@ public class apkparserMain {
 			//	System.out.println("The final output: " + sb.toString());
 	        return sb.toString();    
 	}
+	
+	private File convertFileNameToFile(String FileName){
+		return new File(FileName); 
+		}
 
 }
