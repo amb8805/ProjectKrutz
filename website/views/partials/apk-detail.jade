@@ -21,7 +21,7 @@ section#apk-detail.apk-detail
 				p {{ apk.LowerDownloads | number }} - {{ apk.UpperDownloads | number }}
 		div.analysis-results
 			div.row
-				div.col-md-3
+				div.col-md-12
 					h3 Analysis Results
 			div.row.content
 				div.col-md-6
@@ -36,15 +36,21 @@ section#apk-detail.apk-detail
 					p(ng-hide='apk.Underpermissions.length > 0') No Underpermissions
 			div.row.content
 				div.col-md-6
-					h2.subtitle Number of Java Files
-					p {{ apk.JavaFiles | number }}
-				div.col-md-6
 					h2.subtitle Androrisk Score
 					p {{ apk.FuzzyRiskValue | number }}
+				div.col-md-6
+					h2.subtitle Java Files
+					p {{ apk.JavaFiles | number }}
 			div.row.content
 				div.col-md-6
 					h2.subtitle Coding Standard Violations
 					p {{ apk.DefectCount | number }}
 				div.col-md-6
-					h2.subtitle Number of Defects
+					h2.subtitle Defects
 					p {{ apk.JlintResult | number }}
+			div.row.comparison
+				div.col-md-12
+					h3 Comparison to Other Versions
+	div.container.chart-container
+		div.canvas-holder
+			canvas#apkDetailChart

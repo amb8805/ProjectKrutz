@@ -53,12 +53,11 @@ app.get('/partials/:name', routes.partials);
 // API to query the database
 app.get('/apk', api.getApk);
 app.get('/apks', api.getApks);
-app.get('/topApks', api.getTopApks);
-app.get('/topOverprivilegedGenres', api.getTopOverprivilegedGenres);
+app.get('/apkCount', api.getApkCount);
+app.get('/topApks', api.getOverprivilegeCountsForTopApks);
+app.get('/topGenres', api.getTopOverprivilegedGenres);
 app.get('/genres', api.getGenres);
 app.get('/filter', api.getFilteredApks);
-app.get('/overpermissions', api.getOverprivileges);
-app.get('/underpermissions', api.getUnderprivileges);
 
 // Redirect all others to the index (HTML5 history)
 app.get('*', routes.index);

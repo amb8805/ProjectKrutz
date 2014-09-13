@@ -17,13 +17,17 @@ androidApp.config(function ($routeProvider, $locationProvider) {
       templateUrl: 'partials/home',
       controller: 'HomeController'
     })
-    .when('/data', {
+    .when('/analytics', {
       templateUrl: 'partials/data',
       controller: 'DataController'
     })
-    .when('/data/:apkId', {
+    .when('/apk/:apkId', {
       templateUrl: 'partials/apk-detail',
       controller: 'ApkDetailController'
+    })
+    .when('/reports', {
+      templateUrl: 'partials/reports',
+      controller: 'ReportsController'
     })
     .when('/about', {
       templateUrl: 'partials/about',

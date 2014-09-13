@@ -95,29 +95,33 @@ exports.getApks = function (req, res, next) {
 	});
 };
 
-exports.getTopApks = function (req, res, next) {
+exports.getApkCount = function (req, res, next) {
 
-	var query = 'SELECT apk.rowid, apk.Name, ' + 
-		'p.Name as Overpermissions, p2.Name as Underpermissions ' +
-		'FROM ApkInformation apk ' +
-		'LEFT JOIN Overprivilege o ON apk.rowid = o.ApkId ' +
-		'LEFT JOIN Underprivilege u ON apk.rowid = u.ApkId ' +
-		'LEFT JOIN Permissions p on p.pid = o.PermissionId ' +
-		'LEFT JOIN Permissions p2 on p2.pid = u.PermissionId ' +
-		'INNER JOIN (SELECT rowid, MAX(CollectionDate) FROM ApkInformation GROUP BY Name ORDER BY UpperDownloads DESC LIMIT 5) apk2 ON apk2.rowid = apk.rowid';
+	var query = 'SELECT COUNT(Name) AS TotalCount from ApkInformation';
 
-	db.all(query, function (err, apks) {
-
+	db.all(query, function (err, count) {
 		if (err) return next(err);
-		if (!apks || apks.length == 0) return next(new Error());
-
-		res.send(mergeApkList(apks));
-
+		res.send({ TotalCount: count[0].TotalCount });
 	});
 
 };
 
-exports.getTopOverprivilegedGenres = function (req, res) {
+exports.getOverprivilegeCountsForTopApks = function (req, res, next) {
+
+	var query = 'SELECT apk.Name, MAX(apk.ModifiedDatePublished), IFNULL(oprivCount.oCount, 0) as OverPrivCount ' +
+		'FROM ApkInformation apk ' +
+		'LEFT JOIN (SELECT ApkId, COUNT(o.ApkId) AS oCount FROM Overprivilege o GROUP BY ApkId) oprivCount ON oprivcount.apkid = apk.rowid ' +
+		'GROUP BY Name ' +
+		'ORDER BY UpperDownloads DESC LIMIT 5';
+
+	db.all(query, function (err, apks) {
+		if (err) return next(err);
+		res.send(apks);
+	});
+
+};
+
+exports.getTopOverprivilegedGenres = function (req, res, next) {
 
 	var query = 'SELECT apk.Genre, ROUND(CAST(COUNT(apk.Genre) AS FLOAT) / CAST(TotalGenre.TotalGenreCount AS FLOAT), 2) * 100 as AtLeastXOverPrivPercentage ' +
 		'FROM ApkInformation apk ' +
@@ -130,26 +134,35 @@ exports.getTopOverprivilegedGenres = function (req, res) {
 		'GROUP BY apk.Genre ORDER BY AtleastXOverPrivPercentage DESC LIMIT 5';
 
 	db.all(query, function (err, genres) {
+		if (err) return next(err);
 		res.send(genres);
 	});
 
 };
 
-exports.getGenres = function (req, res) {
+exports.getGenres = function (req, res, next) {
 
 	db.all('SELECT DISTINCT Genre FROM ApkInformation ORDER BY Genre', function (err, genres) {
+		if (err) return next(err);
 		res.send(genres);
 	});
 
 };
 
-exports.getFilteredApks = function (req, res) {
+exports.getFilteredApks = function (req, res, next) {
 	
-	var statement = 'SELECT ' + apkProperties + ' FROM ApkInformation apk';
+	var statement = 'SELECT ' + apkProperties + ', tr.FuzzyRiskValue, ' +
+		'tr.JavaFiles, tr.DefectCount, tr.JlintResult, tr.Simcad_CloneFragment, ' +
+		'o.OverprivCount, u.UnderprivCount ' +
+		'FROM ApkInformation apk ' +
+		'INNER JOIN ToolResults tr on tr.ApkId = apk.rowid ' +
+		'LEFT OUTER JOIN (SELECT COUNT(PermissionId) AS OverprivCount, ApkId FROM Overprivilege GROUP BY ApkId) o ON (o.ApkId) = apk.rowid ' +
+		'LEFT OUTER JOIN (SELECT COUNT(PermissionId) AS UnderprivCount, ApkId FROM Underprivilege GROUP BY ApkId) u ON (u.ApkId) = apk.rowid ';
+
 	var multipleConditions = false;
 
 	if (req.query.name) {
-		statement += ' WHERE Name LIKE "%' + req.query.name + '%"';
+		statement += ' WHERE apk.Name ="' + req.query.name + '"';
 		multipleConditions = true;
 	}
 	if (req.query.version) {
@@ -160,7 +173,7 @@ exports.getFilteredApks = function (req, res) {
 			statement += ' WHERE';
 			multipleConditions = true;
 		}
-		statement += ' Version LIKE "%' + req.query.version + '%"';
+		statement += ' apk.Version ="' + req.query.version + '"';
 	}
 	if (req.query.developer) {
 		if (multipleConditions) {
@@ -170,7 +183,7 @@ exports.getFilteredApks = function (req, res) {
 			statement += ' WHERE';
 			multipleConditions = true;
 		}
-		statement += ' Developer LIKE "%' + req.query.developer + '%"';
+		statement += ' apk.Developer LIKE "%' + req.query.developer + '%"';
 		multipleConditions = true;
 	}
 	if (req.query.genre) {
@@ -181,7 +194,7 @@ exports.getFilteredApks = function (req, res) {
 			statement += ' WHERE';
 			multipleConditions = true;
 		}
-		statement += ' Genre LIKE"%' + req.query.genre + '%"';
+		statement += ' apk.Genre = "' + req.query.genre + '"';
 		multipleConditions = true;
 	}
 	if (req.query.userRatingFrom && req.query.userRatingTo) {
@@ -192,27 +205,15 @@ exports.getFilteredApks = function (req, res) {
 			statement += ' WHERE';
 			multipleConditions = true;
 		}
-		statement += ' UserRating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
+		statement += ' apk.UserRating BETWEEN ' + req.query.userRatingFrom + ' AND ' + req.query.userRatingTo;
+	}
+	if (req.query.sort) {
+		statement += ' ORDER BY ' + req.query.sort;
 	}
 
 	db.all(statement, function (err, apks) {
+		if (err) return next(err);
 		res.send(apks);
 	});
 	
-};
-
-exports.getOverprivileges = function (req, res) {
-
-	db.all('SELECT * FROM Overprivilege', function (err, overpermissions) {
-		res.send(overpermissions);
-	})
-
-};
-
-exports.getUnderprivileges = function (req, res) {
-
-	db.all('SELECT * FROM Underprivilege', function (err, underpermissions) {
-		res.send(underpermissions);
-	})
-
 };

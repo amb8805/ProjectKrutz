@@ -219,7 +219,7 @@ a:hover {
   font-size: 13px;
   color: #b3b3b3;
   background: #fff;
-  padding: 30px 0;
+  padding: 30px 15px;
   text-align: center;
 }
 
@@ -257,21 +257,21 @@ a:hover {
  */
 
 .promo {
-  background-image: url('/img/congruent_pentagon.png');
+  background-image: url('/assets/img/congruent_pentagon.png');
   background-color: #f5f5f5;
   padding: 60px 0 70px;
 }
 
-.promo .content {
-  text-align: center;
-}
-
-.promo .content .title {
+.promo .title {
   margin-bottom: 20px;
 }
 
-.promo .content .lead {
-  padding: 0 20% 20px;
+.promo .content {
+  padding: 0 15% 20px;
+}
+
+.promo .content .goal {
+  margin-bottom: 10px;
 }
 
 
@@ -425,7 +425,7 @@ a:hover {
   padding: 40px 0 65px;
 }
 
-.data .filter-form .form-control {
+.data .filter-form .input-group {
   margin-bottom: 5px;
 }
 
@@ -446,7 +446,7 @@ a:hover {
 
 /**
  * --------------------------------------------------
- * Data Page
+ * APK Detail Page
  * --------------------------------------------------
  */
 
@@ -479,6 +479,36 @@ a:hover {
   margin-top: 10px;
   list-style-type: none; 
   padding: 0;
+}
+
+.apk-detail .comparison {
+  padding-top: 10px;
+}
+
+.apk-detail .chart-container {
+  margin-top: 10px;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Reports Page
+ * --------------------------------------------------
+ */
+
+.reports {
+  background: #fff;
+  padding: 35px 0 70px;
+}
+
+.reports .subtitle {
+  color: #99cc00;
+  font-size: 18px;
+}
+
+.reports .table .csv-download:hover {
+  cursor: pointer;
+  cursor: hand;
 }
 
 

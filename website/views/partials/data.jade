@@ -7,7 +7,12 @@ section#data.data
 						div.col-md-1
 							label.control-label Filter
 						div.col-md-9(ng-controller='FilterController')
-							input.form-control(type='text', ng-model='search', ng-change='change()', placeholder='Search for an app by name...')
+							div.input-group
+								input.form-control(type='text', ng-model='search', ng-change='change()', placeholder='Search for an app by name...')
+								span.input-group-btn
+									button.btn.btn-default(type='button', ng-click='clearSearch()')
+										i.fa.fa-trash-o
+							//- input.form-control(type='text', ng-model='search', ng-change='change()', placeholder='Search for an app by name...')
 						div.col-md-2
 							button.btn.btn-theme(type='button', ng-controller='ModalController', ng-click='open()') Advanced
 		

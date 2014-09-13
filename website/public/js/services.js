@@ -6,14 +6,13 @@ angular.module('androidApp.services', ['ngResource']).
 	factory('ApkService', function ($resource) {
 
 		return {
-			apk:						$resource('/apk', {}, {'query': {isArray: false}}),
-			apks:						$resource('/apks', {}),
-			topApks:					$resource('/topApks', {}),
-			topOverprivilegedGenres:	$resource('/topOverprivilegedGenres', {}),
-			genres:						$resource('/genres', {}),
-			filter:						$resource('/filter', {}),
-			overpermissions:			$resource('/overpermissions', {}),
-			underpermissions:			$resource('/underpermissions', {}) 
+			apk:		$resource('/apk', {}),
+			apks:		$resource('/apks', {}),
+			apkCount:	$resource('/apkCount', {}),
+			topApks:	$resource('/topApks', {}),
+			topGenres:	$resource('/topGenres', {}),
+			genres:		$resource('/genres', {}),
+			filter:		$resource('/filter', {})
 		};
 
 	}).
@@ -23,7 +22,8 @@ angular.module('androidApp.services', ['ngResource']).
 			apks: undefined,
 			filteredApks: undefined,
 			topApks: undefined,
-			topOverprivilegedGenres: undefined
+			topGenres: undefined,
+			sort: { column: '', sortOrder: 1 }
 		};
 
 	}).

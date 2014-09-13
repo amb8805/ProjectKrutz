@@ -3,7 +3,56 @@
 /* Controllers */
 
 angular.module('androidApp.controllers', []).
-  controller('AppController', function ($scope, $location, $window, $filter) {
+  controller('AppController', function ($scope, $location, $window, $filter, ApkService) {
+
+    // Get the total number of applications analyzed
+    ApkService.apkCount.get(function (count) {
+      $scope.apkCount = count.TotalCount;
+    });
+
+    // Chart colors
+    $scope.chartColors = [
+      '#99cc00',
+      '#33b5e5',
+      '#aa66cc',
+      '#ff4444',
+      '#ffbb33'
+    ];
+
+    // If more than 5 colors are needed, begin again at the first color
+    $scope.getColorForIndex = function (index) {
+      return $scope.chartColors[index % $scope.chartColors.length];
+    }
+
+    // Helper function that returns a tint for the given color
+    $scope.getHue = function (color, amount) {
+
+      var usePound = false;
+
+      if (color[0] == '#') {
+        color = color.slice(1);
+        usePound = true;
+      }
+
+      var num = parseInt(color, 16);
+      var r = (num >> 16) + amount;
+
+      if (r > 255) r = 255;
+      else if  (r < 0) r = 0;
+
+      var b = ((num >> 8) & 0x00ff) + amount;
+
+      if (b > 255) b = 255;
+      else if  (b < 0) b = 0;
+
+      var g = (num & 0x0000ff) + amount;
+
+      if (g > 255) g = 255;
+      else if (g < 0) g = 0;
+
+      return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
+
+    }
 
     // Logic for navbar
     $scope.isCollapsed = true;
@@ -37,10 +86,10 @@ angular.module('androidApp.controllers', []).
   controller('HomeController', function ($scope, ApkService, ApkListService) {
 
     // Load the data for the charts
-    if (ApkListService.topApks && ApkListService.topOverprivilegedGenres) {
+    if (ApkListService.topApks && ApkListService.topGenres) {
 
       $scope.topApks = ApkListService.topApks;
-      $scope.topOverprivilegedGenres = ApkListService.topOverprivilegedGenres;
+      $scope.topGenres = ApkListService.topGenres;
 
     } else {
 
@@ -50,51 +99,12 @@ angular.module('androidApp.controllers', []).
         ApkListService.topApks = topApks;
         $scope.topApks = topApks;
 
-        ApkService.topOverprivilegedGenres.query(function (genres) {
-          ApkListService.topOverprivilegedGenres = genres;
-          $scope.topOverprivilegedGenres = genres;
+        ApkService.topGenres.query(function (genres) {
+          ApkListService.topGenres = genres;
+          $scope.topGenres = genres;
           $scope.chartsLoading = false;
         })
       });
-
-    }
-
-    // Chart colors
-    var colors = [
-      '#33b5e5',
-      '#aa66cc',
-      '#99cc00',
-      '#ffbb33',
-      '#ff4444'
-    ];
-
-    // Helper function that returns a tint for the given color
-    var getHighlight = function (color, amount) {
-
-      var usePound = false;
-
-      if (color[0] == '#') {
-        color = color.slice(1);
-        usePound = true;
-      }
-
-      var num = parseInt(color, 16);
-      var r = (num >> 16) + amount;
-
-      if (r > 255) r = 255;
-      else if  (r < 0) r = 0;
-
-      var b = ((num >> 8) & 0x00ff) + amount;
-
-      if (b > 255) b = 255;
-      else if  (b < 0) b = 0;
-
-      var g = (num & 0x0000ff) + amount;
-
-      if (g > 255) g = 255;
-      else if (g < 0) g = 0;
-
-      return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
 
     }
 
@@ -109,9 +119,9 @@ angular.module('androidApp.controllers', []).
 
           var segment = {
             label: $scope.topApks[i].Name,
-            value: $scope.topApks[i].Overpermissions.length,
-            color: colors[i],
-            highlight: getHighlight(colors[i], 10)
+            value: $scope.topApks[i].OverPrivCount,
+            color: $scope.getColorForIndex(i),
+            highlight: $scope.getHue($scope.getColorForIndex(i), 10)
           };
 
           $scope.segments.push(segment);
@@ -122,26 +132,26 @@ angular.module('androidApp.controllers', []).
     });
 
     // When the list of top overprivileged genres loads, create the respective chart
-    $scope.$watch('topOverprivilegedGenres', function () {
+    $scope.$watch('topGenres', function () {
 
-      if ($scope.topOverprivilegedGenres) {
+      if ($scope.topGenres) {
         
         var labels = [];
         var dataValues = [];
 
-        for (var i = 0; i < $scope.topOverprivilegedGenres.length; i++) {
-          labels.push($scope.topOverprivilegedGenres[i].Genre);
-          dataValues.push($scope.topOverprivilegedGenres[i].AtLeastXOverPrivPercentage);
+        for (var i = 0; i < $scope.topGenres.length; i++) {
+          labels.push($scope.topGenres[i].Genre);
+          dataValues.push($scope.topGenres[i].AtLeastXOverPrivPercentage);
         }
 
         $scope.barChartData = {
           labels: labels,
           datasets: [
             {
-              fillColor: 'rgba(153, 204, 0, 1)',
-              strokeColor: 'rgba(131, 182, 0, 1)',
-              highlightFill: 'rgba(169, 212, 35, 1)',
-              highlightStroke: 'rgba(147, 199, 9, 1)',
+              fillColor: $scope.getColorForIndex(0),
+              strokeColor: $scope.getHue($scope.getColorForIndex(0), -20),
+              highlightFill: $scope.getHue($scope.getColorForIndex(0), 10),
+              highlightStroke: $scope.getHue($scope.getColorForIndex(0), -10),
               data: dataValues
             }
           ]
@@ -211,18 +221,8 @@ angular.module('androidApp.controllers', []).
           tooltipTemplate: '<%=label%>: <%= value %>%'
         }
 
-        var helpers = Chart.helpers;
         var canvas2 = document.getElementById('chart2');
         var chart2 = new Chart(canvas2.getContext('2d')).Bar($scope.barChartData, chartOptions2);
-
-        /*
-        helpers.each(chart2.datasets[0].bars, function (bar, index) {
-            bar.fillColor = colors[index];
-            bar.strokeColor = colors[index];
-            bar.highlightFill = colors[index];
-            bar.highlightStroke = colors[index];
-        });
-        */
         
       }
 
@@ -235,9 +235,67 @@ angular.module('androidApp.controllers', []).
     $scope.detailViewLoading = true;
 
     // Get the singluar APK object to display
-    ApkService.apk.query({rowid: $routeParams.apkId}, function (response) {
-      $scope.apk = response;
-      $scope.detailViewLoading = false;
+    ApkService.apk.get({ rowid: $routeParams.apkId }, function (apk) {
+      $scope.apk = apk;
+
+      ApkService.filter.query({ name: apk.Name, developer: apk.Developer, sort: 'apk.Version, apk.ModifiedDatePublished' }, function (apks) {
+        $scope.allVersionsOfApk = apks;
+        $scope.detailViewLoading = false;
+      })
+    });
+
+    // Create the data for the "Comparison to Other Versions" chart
+    $scope.$watch('allVersionsOfApk', function () {
+
+      if ($scope.allVersionsOfApk) {
+
+        var labels = ['Coding Standard Violations', 'Androrisk Score', 'Java Files (in tens)', 'Defect Count (in tens)', 'Overpermissions', 'Underpermissions'];
+        var datasets = [];
+
+        for (var i = 0; i < $scope.allVersionsOfApk.length; i++) {
+
+          var a = $scope.allVersionsOfApk[i];
+
+          var dataset = {
+            label: a.Version == 'Varies with device' ? a.DatePublished : a.Version,
+            fillColor: $scope.getColorForIndex(i),
+            strokeColor: $scope.getHue($scope.getColorForIndex(i), -20),
+            highlightFill: $scope.getHue($scope.getColorForIndex(i), 10),
+            highlightStroke: $scope.getHue($scope.getColorForIndex(i), -10),
+            data: [a.DefectCount, a.FuzzyRiskValue, a.JavaFiles / 10, a.JlintResult / 10, $scope.apk.Overpermissions.length, $scope.apk.Underpermissions.length]
+          };
+
+          datasets.push(dataset);
+
+        }
+
+        $scope.barChartData = {
+          labels: labels,
+          datasets: datasets
+        };
+
+      }
+
+      // When all data has finished loading, render the "Comparison to Other Versions" chart
+      $scope.$watch('detailViewLoading', function () {
+
+        if ($scope.barChartData) {
+
+          var chartOptions = {
+            animationSteps: 100,
+            responsive: true,
+            maintainAspectRatio: false,
+            scaleShowGridLines: false,
+            multiTooltipTemplate: '<%=datasetLabel %>: <%= value %>'
+          }
+
+          var canvas = document.getElementById('apkDetailChart');
+          var chart = new Chart(canvas.getContext('2d')).Bar($scope.barChartData, chartOptions);
+
+        }
+
+      });
+
     });
 
   }).
@@ -270,10 +328,7 @@ angular.module('androidApp.controllers', []).
     $scope.maxSize = 5;
 
     // The current table sort
-    $scope.sort = {
-      column: '',
-      sortOrder: 1
-    };
+    $scope.sort = ApkListService.sort;
 
     // Table columns, with a display label and object property for each
     $scope.tableColumns = [
@@ -321,12 +376,12 @@ angular.module('androidApp.controllers', []).
 
     // When a table row is selected, display the page for that individual APK
     $scope.selectTableRow = function () {
-      $location.path('data/' + this.apk.rowid);
+      $location.path('apk/' + this.apk.rowid);
     };
 
     // Determine which icon to display based on sort order
     $scope.getSortIconClass = function (column) {
-      return $scope.sort.sortOrder == 1 ? 'fa-caret-down' : 'fa-caret-up';
+      return $scope.sort.column == column && $scope.sort.sortOrder == 1 ? 'fa-caret-down' : 'fa-caret-up';
     };
 
     // Sort the table according to the given column and current sort
@@ -335,11 +390,13 @@ angular.module('androidApp.controllers', []).
       var sort = $scope.sort;
       
       if (sort.column == column) {
-          sort.sortOrder = sort.sortOrder * -1;
-        } else {
-          sort.column = column;
-          sort.sortOrder = 1;
-        }
+        sort.sortOrder = sort.sortOrder * -1;
+      } else {
+        sort.column = column;
+        sort.sortOrder = 1;
+      }
+
+      ApkListService.sort = sort;
 
       $scope.displayedApks.sort(function (a, b) {
         var result = (a[column] < b[column]) ? -1 : (a[column] > b[column]) ? 1 : 0;
@@ -354,15 +411,21 @@ angular.module('androidApp.controllers', []).
     // Retrieve the filter term currently entered by the user
     $scope.search = SearchService.search;
 
+    // Clears the current search
+    $scope.clearSearch = function () {
+      $scope.search = undefined;
+      $scope.change();
+    };
+    
     // Filter the displayed table of APKs
     $scope.change = function () {
       SearchService.changeSearchQuery($scope.search);
-      var filteredApks = $filter('filter')(ApkListService.apks, {Name: $scope.search});
+      var filteredApks = $filter('filter')(ApkListService.apks, { Name: $scope.search });
       $scope.$emit('filterApks', filteredApks);
     };
 
   }).
-  controller('ModalController', function ($scope, $modal, $log, ApkService) {
+  controller('ModalController', function ($scope, $modal, $log, ApkService, ApkListService) {
 
     // Opens the modal window
     $scope.open = function () {
@@ -376,6 +439,7 @@ angular.module('androidApp.controllers', []).
       // Filter the APK table with the advanced serach results
       modalInstance.result.then(function (params) {
         ApkService.filter.query(params, function (response) {
+          ApkListService.sort.column = '';
           $scope.$emit('filterApks', response);
         });
       });
@@ -422,5 +486,8 @@ angular.module('androidApp.controllers', []).
     $scope.clear = function () {
       $scope.filter.genre.selected = undefined;
     };
+
+  }).
+  controller('ReportsController', function ($scope, $window) {
 
   });
