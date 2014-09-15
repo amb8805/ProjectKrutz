@@ -86,10 +86,11 @@ angular.module('androidApp.controllers', []).
   controller('HomeController', function ($scope, ApkService, ApkListService) {
 
     // Load the data for the charts
-    if (ApkListService.topApks && ApkListService.topGenres) {
+    if (ApkListService.topApks && ApkListService.topGenres && ApkListService.versionGroupAvgs) {
 
       $scope.topApks = ApkListService.topApks;
       $scope.topGenres = ApkListService.topGenres;
+      $scope.versionGroupAvgs = ApkListService.versionGroupAvgs;
 
     } else {
 
@@ -102,8 +103,13 @@ angular.module('androidApp.controllers', []).
         ApkService.topGenres.query(function (genres) {
           ApkListService.topGenres = genres;
           $scope.topGenres = genres;
-          $scope.chartsLoading = false;
-        })
+
+          ApkService.versionGroupAvgs.get(function (averages) {
+            ApkListService.versionGroupAvgs = averages;
+            $scope.versionGroupAvgs = averages;
+            
+          });
+        });
       });
 
     }
@@ -158,6 +164,54 @@ angular.module('androidApp.controllers', []).
         };
 
       }
+
+      // When the list of average overpermissions by version group loads, create the respective chart
+      $scope.$watch('versionGroupAvgs', function () {
+
+        if ($scope.versionGroupAvgs) {
+
+          var labels = ['0', '1', '2', '3', '4', '5'];
+          var datasets = [];
+          var j = 0;
+
+          for (var genre in $scope.versionGroupAvgs) {
+
+            if ($scope.versionGroupAvgs.hasOwnProperty(genre) && $scope.versionGroupAvgs[genre] instanceof Array) {
+
+              var dataValues = [];
+              for (var i = 0; i < 6; i++) {
+                dataValues.push($scope.versionGroupAvgs[genre][i].OverPrivCount);
+              }
+
+              var dataset = {
+                label: $scope.versionGroupAvgs[genre][0].Genre,
+                fillColor: 'rgba(255, 255, 255, 0)',
+                strokeColor: $scope.getColorForIndex(j),
+                pointColor: $scope.getColorForIndex(j),
+                pointStrokeColor: '#fff',
+                pointHighlightFill: '#fff',
+                pointHighlightStroke: $scope.getColorForIndex(j),
+                data: dataValues
+              };
+
+              datasets.push(dataset);
+              j++;
+
+            }
+
+          }
+          
+          $scope.chart3Data = {
+            labels: labels,
+            datasets: datasets
+          };
+
+          // The data for all three charts has been created
+          $scope.chartsLoading = false;
+
+        }
+
+      });
 
     });
 
@@ -224,6 +278,23 @@ angular.module('androidApp.controllers', []).
         var canvas2 = document.getElementById('chart2');
         var chart2 = new Chart(canvas2.getContext('2d')).Bar($scope.barChartData, chartOptions2);
         
+      }
+
+      // Chart #3
+      if ($scope.chart3Data) {
+
+        var chartOptions3 = {
+          animationSteps: 100,
+          responsive: true,
+          maintainAspectRatio: false,
+          scaleShowGridLines: false,
+          scaleBeginAtZero: true,
+          multiTooltipTemplate: '<%=datasetLabel %>: <%= value %>'
+        }
+
+        var canvas3 = document.getElementById('chart3');
+        var chart3 = new Chart(canvas3.getContext('2d')).Line($scope.chart3Data, chartOptions3);
+
       }
 
     });

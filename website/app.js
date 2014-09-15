@@ -56,6 +56,7 @@ app.get('/apks', api.getApks);
 app.get('/apkCount', api.getApkCount);
 app.get('/topApks', api.getOverprivilegeCountsForTopApks);
 app.get('/topGenres', api.getTopOverprivilegedGenres);
+app.get('/versionGroupAvgs', api.getAvgOverpermissionsByVersionGroup);
 app.get('/genres', api.getGenres);
 app.get('/filter', api.getFilteredApks);
 
