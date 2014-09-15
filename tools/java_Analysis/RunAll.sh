@@ -5,6 +5,10 @@
 	###		Analyzes the .class and .java files
 
 
+
+echo "Start Run All"
+
+
 	### Check to make sure that an argument is actually passed in
 	### This input paramter will be the input location of the apk files to be analyzed
 	EXPECTED_ARGS=1
@@ -68,11 +72,11 @@
 
 		#### CheckStyle
 		echo "CheckStyle:" `date` >> $logDir/$logFile
-		./tools/java_Analysis/checkstyle/checkStyle.sh
+#		./tools/java_Analysis/checkstyle/checkStyle.sh
 
 		### Run JLint
 		echo "Start Running JLint:" `date` >> $logDir/$logFile
-		./tools/java_Analysis/jlint/run_jlint.sh
+#		./tools/java_Analysis/jlint/run_jlint.sh
 
 
 		### Remove the created javaoutput.

@@ -140,6 +140,71 @@ exports.getTopOverprivilegedGenres = function (req, res, next) {
 
 };
 
+exports.getAvgOverpermissionsByVersionGroup = function (req, res, next) {
+
+	var query = function (genre) {
+		return 'SELECT apk.Genre as Genre, apk2.Range, ' +
+			'ROUND(AVG(overprivCount.oprivcount), 2) AS OverPrivCount ' +
+			'FROM ApkInformation apk ' +
+			'INNER JOIN ToolResults tr ON tr.ApkId = apk.RowId ' +
+			'INNER JOIN (SELECT apk2.RowId, apk2.Range ' +
+			'FROM (SELECT rowid, Name, Version, CASE ' +
+			'WHEN Version BETWEEN 0 AND 1 THEN "0" ' +
+			'WHEN Version BETWEEN 1 AND 2 THEN "1" ' +
+			'WHEN Version BETWEEN 2 AND 3 THEN "2" ' +
+			'WHEN Version BETWEEN 3 AND 4 THEN "3" ' +
+			'WHEN Version BETWEEN 4 AND 5 THEN "4" ' +
+			'WHEN Version BETWEEN 5 AND 6 THEN "5" ' +
+			'WHEN Version BETWEEN 6 AND 7 THEN "6" ' +
+			'WHEN Version BETWEEN 7 AND 8 THEN "7" ' +
+			'ELSE "x" END AS Range FROM ApkInformation) apk2) apk2 ' +
+			'ON apk2.rowid = apk.rowid ' +
+			'LEFT OUTER JOIN (SELECT COUNT(PermissionId) AS oprivcount, ApkId FROM Overprivilege GROUP BY ApkId) overprivCount ' +
+			'ON (overprivCount.ApkId) = apk.rowid ' +
+			'WHERE LowerDownloads >= 10000 ' +
+			'AND GENRE = "' + genre + '" ' +
+			'GROUP BY apk2.Range ' +
+			'ORDER BY apk2.Range';
+	};
+
+	var result = {
+		tools: undefined,
+		entertainment: undefined,
+		music: undefined,
+		puzzle: undefined,
+		education: undefined
+	};
+
+	db.serialize(function () {
+		db.all(query('Tools'), function (err, tools) {
+			if (err) return next(err);
+			result.tools = tools;
+		});
+
+		db.all(query('Entertainment'), function (err, entertainment) {
+			if (err) return next(err);
+			result.entertainment = entertainment;
+		});
+
+		db.all(query('Music & Audio'), function (err, music) {
+			if (err) return next(err);
+			result.music = music;
+		});
+
+		db.all(query('Puzzle'), function (err, puzzle) {
+			if (err) return next(err);
+			result.puzzle = puzzle;
+		});
+
+		db.all(query('Education'), function (err, education) {
+			if (err) return next(err);
+			result.education = education;
+			res.send(result);
+		});
+	});
+
+};
+
 exports.getGenres = function (req, res, next) {
 
 	db.all('SELECT DISTINCT Genre FROM ApkInformation ORDER BY Genre', function (err, genres) {

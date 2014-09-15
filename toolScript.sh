@@ -1,5 +1,8 @@
 #!/bin/bash
 
+	### Description: 
+	##	Invokes all analysis scripts on apk files
+
 	clear
 
 	date1=$(date +"%s") ## Start date of the script
@@ -18,7 +21,6 @@
 	### These can cause problems
 	rm -rf logs/AndroRiskOutput/
 
-
 	echo "Start Stowaway Analysis:" `date` >> $logLocation
 #	./tools/stowaway/run_stowaway.sh $APK_Input_Path
 
@@ -33,18 +35,20 @@
 #	./modifyAPKInformationDB.sh $APK_Input_Path
 
 
-	### Gather apk information
-	echo "Start Java APK Parser:" `date` >> $logLocation
-	cd tools/CustomJava/src/
-	javac dk/*.java; java -classpath ".:sqlite-jdbc-3.7.2.jar" dk/apkparserMain ../../../$APK_Input_Path
-	cd ../../../
-	echo "End Java APK Parser:" `date` >> $logLocation
+	### Run script to get information from the manifest.xml file
+	echo "Start APKParser:" `date` >> $logLocation
+#	./tools/runAPKParser.sh $APK_Input_Path
+
+	### Get the Key used to sign the apk
+	echo "Start Getting Signing Key:" `date` >> $logLocation
+	./tools/signingkey/runGetSigningKey.sh $APK_Input_Path
+
+
 
 	#### Log the conclusion time
-	date2=$(date +"%s")
+	date2=$(date +"%s") 
 	diff=$(($date2-$date1))
 	echo "toolsScript Total Running Time $(($diff / 60)) minutes and $(($diff % 60)) seconds."  >> $logLocation
 	echo "toolsScript End:" `date` >> $logLocation
 
 	echo "!!!!!!!!!!!!!!!!!DONE!!!!!!!!!!!!!!!!!!!!!!!!!"
-
