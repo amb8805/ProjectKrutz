@@ -301,11 +301,13 @@ angular.module('androidApp.controllers', []).
   }).
   controller('DataController', function ($scope, $sce, $location, $window, ApkService, ApkListService) {
 
-    // When the APK list is filtered, update the list
-    $scope.$on('filterApks', function (event, filteredApks) {
-      $scope.displayedApks = filteredApks;
-      ApkListService.filteredApks = filteredApks;
-    });
+    // Helper function to sort the table of APKs based on column and sort order
+    var compareApks = function (sort) {
+      return function (a, b) {
+        var result = (a[sort.column] < b[sort.column]) ? -1 : (a[sort.column] > b[sort.column]) ? 1 : 0;
+        return result * sort.sortOrder;
+      }
+    };
 
     // Load the data for the table
     if (ApkListService.apks) {
@@ -369,6 +371,18 @@ angular.module('androidApp.controllers', []).
       }
     });
 
+    // When the APK list is filtered, update the list
+    $scope.$on('filterApks', function (event, filteredApks) {
+
+      if (ApkListService.sort.column) {
+        filteredApks.sort(compareApks(ApkListService.sort));
+      }
+
+      $scope.displayedApks = filteredApks;
+      ApkListService.filteredApks = filteredApks;
+
+    });
+
     // Used to avoid an error with the ui-select component
     $scope.trustAsHtml = function (value) {
       return $sce.trustAsHtml(value);
@@ -398,10 +412,7 @@ angular.module('androidApp.controllers', []).
 
       ApkListService.sort = sort;
 
-      $scope.displayedApks.sort(function (a, b) {
-        var result = (a[column] < b[column]) ? -1 : (a[column] > b[column]) ? 1 : 0;
-        return result * sort.sortOrder;
-      });
+      $scope.displayedApks.sort(compareApks(sort));
 
     };
 
