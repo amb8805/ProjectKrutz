@@ -67,8 +67,7 @@ echo "Start Run All"
 
 		### Find the clones in the system
 		echo "Clones:" `date` >> $logDir/$logFile
-			#	./tools/java_Analysis/CloneDetection/runclones.sh $inputLocation
-#		./tools/java_Analysis/CloneDetection/SimCad-2.2/run_simcad.sh tools/java_Analysis/javaOutput
+		./tools/java_Analysis/CloneDetection/SimCad-2.2/run_simcad.sh tools/java_Analysis/javaOutput
 
 
 		#### CheckStyle
@@ -82,7 +81,7 @@ echo "Start Run All"
 
 		### Remove the created javaoutput.
 		echo "Remove Java Output" `date` >> $logDir/$logFile
-#		rm -rf tools/java_Analysis/javaOutput/*
+		rm -rf tools/java_Analysis/javaOutput/*
 
 	fi
 
