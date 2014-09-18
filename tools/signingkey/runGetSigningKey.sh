@@ -53,7 +53,7 @@
 		### Get the key
 		### notroot@ubuntu:~/shared/ProjectKrutz/tempanalyze/Gmail$ keytool -printcert -v -file META-INF/CERT.RSA 
 		keytooloutput=`keytool -printcert -v -file $tempUnzipDir/META-INF/CERT.RSA`
-		#echo $keytooloutput >>temp.txt
+		echo $keytooloutput >>temp.txt
 		#keytooloutput=`cat temp.txt`
 
 		### Break the output into groups
@@ -63,18 +63,10 @@
 		### Issuer Info
 		IssuerInfo=`sed 's/^.*Issuer: //; s/Serial number:.*$//' <<< $keytooloutput`
 
-		#echo $OwnerInfo
-
-
-
-		### 		cloneCount=`sed 's/^.*ResultStart //; s/ResultEnd.*$//' <<< $cloneResults`
-		### Get the owner information
-
-
-		### These if statements are in here since problems may arise if the attribute being searched for is not contained
+		
+		### These "IF" statements are in here since problems may arise if the attribute being searched for is not contained
 		###			if the string. It is not the most efficient way to do things, but it seems to work.
 
-		## ? WHY CN= for all at the end of the statement?
 
 		if [[ $OwnerInfo == *CN=* ]]
 		then
@@ -83,46 +75,37 @@
 			Owner_CN="" # Make empty since string item does not exist
 		fi
 
-
 		if [[ $OwnerInfo == *OU=* ]]
 		then
-			Owner_OU=`sed 's/^.*OU=//; s/,.*$//' <<< $OwnerInfo | sed 's/CN=//'`
+			Owner_OU=`sed 's/^.*OU=//; s/,.*$//' <<< $OwnerInfo | sed 's/OU=//'`
 		else
 			Owner_OU="" # Make empty since string item does not exist
 		fi
 
-
 		if [[ $OwnerInfo == *O=* ]]
 		then
-			Owner_O=`sed 's/^.*O=//; s/,.*$//' <<< $OwnerInfo | sed 's/CN=//'`
+			Owner_O=`sed 's/^.*O=//; s/,.*$//' <<< $OwnerInfo | sed 's/O=//'`
 		else
 			Owner_O="" # Make empty since string item does not exist
 		fi
 
-
-
-
 		if [[ $OwnerInfo == *L=* ]]
 		then
-			Owner_L=`sed 's/^.*, L=//; s/,.*$//' <<< $OwnerInfo | sed 's/CN=//'`
+			Owner_L=`sed 's/^.*, L=//; s/,.*$//' <<< $OwnerInfo | sed 's/L=//'`
 		else
 			Owner_L="" # Make empty since string item does not exist
 		fi
 
-
 		if [[ $OwnerInfo == *ST=* ]]
 		then
-			Owner_ST=`sed 's/^.*, ST=//; s/,.*$//' <<< $OwnerInfo | sed 's/CN=//'`
+			Owner_ST=`sed 's/^.*, ST=//; s/,.*$//' <<< $OwnerInfo | sed 's/ST=//'`
 		else
 			Owner_ST="" # Make empty since string item does not exist
 		fi
 
-
-
-
 		if [[ $OwnerInfo == *C=* ]]
 		then
-			Owner_C=`sed 's/^.*, C=//; s/,.*$//' <<< $OwnerInfo | sed 's/CN=//'`
+			Owner_C=`sed 's/^.*, C=//; s/,.*$//' <<< $OwnerInfo | sed 's/C=//'`
 		else
 			Owner_C="" # Make empty since string item does not exist
 		fi
@@ -130,11 +113,7 @@
 
 
 
-
-
 		# Get the issuer information
-
-
 		if [[ $IssuerInfo == *CN=* ]]
 		then
 			# -- Initial version Issuer_CN=`sed 's/^.*Serial number: //; s/Valid from:.*$//' <<< $IssuerInfo | sed 's/CN=//'`
@@ -143,61 +122,42 @@
 			Issuer_CN="" # Make empty since string item does not exist
 		fi
 
-
-
-
-
 		if [[ $IssuerInfo == *OU=* ]]
 		then
-			Issuer_OU=`sed 's/^.*OU=//; s/,.*$//' <<< $IssuerInfo | sed 's/CN=//'`
+			Issuer_OU=`sed 's/^.*OU=//; s/,.*$//' <<< $IssuerInfo | sed 's/OU=//'`
 		else
 			Issuer_OU="" # Make empty since string item does not exist
 		fi
 
-
-
-
-
 		if [[ $IssuerInfo == *O=* ]]
 		then
-			Issuer_O=`sed 's/^.*O=//; s/,.*$//' <<< $IssuerInfo | sed 's/CN=//'`
+			Issuer_O=`sed 's/^.*O=//; s/,.*$//' <<< $IssuerInfo | sed 's/O=//'`
 		else
 			Issuer_O="" # Make empty since string item does not exist
 		fi
 
-
-
-
-
 		if [[ $IssuerInfo == *L=* ]]
 		then
-			Issuer_L=`sed 's/^.*, L=//; s/,.*$//' <<< $IssuerInfo | sed 's/CN=//'`
+			Issuer_L=`sed 's/^.*, L=//; s/,.*$//' <<< $IssuerInfo | sed 's/L=//'`
 
 		else
 			Issuer_L="" # Make empty since string item does not exist
 		fi
 
-
-
-
 		if [[ $IssuerInfo == *ST=* ]]
 		then
-			Issuer_ST=`sed 's/^.*, ST=//; s/,.*$//' <<< $IssuerInfo | sed 's/CN=//'`
+			Issuer_ST=`sed 's/^.*, ST=//; s/,.*$//' <<< $IssuerInfo | sed 's/ST=//'`
 		else
 			Issuer_ST="" # Make empty since string item does not exist
 		fi
 
 
-
-
-
 		if [[ $IssuerInfo == *C=* ]]
 		then
-			Issuer_C=`sed 's/^.*, C=//; s/,.*$//' <<< $IssuerInfo | sed 's/CN=//'`
+			Issuer_C=`sed 's/^.*, C=//; s/,.*$//' <<< $IssuerInfo | sed 's/C=//'`
 		else
 			Issuer_C="" # Make empty since string item does not exist
 		fi
-
 
 
 		tempString="Serial number:" ### Do this so the space will be allowed.
