@@ -531,7 +531,7 @@ a:hover {
 .about .contact {
   font-size: 15px;
   font-weight: 300;
-  margin-top: -5px;
+  margin: -5px 0 5px;
   color: #b3b3b3;
 }
 
