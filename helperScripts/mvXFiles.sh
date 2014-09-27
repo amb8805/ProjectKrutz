@@ -60,7 +60,7 @@ FILES=$(find $inputDir -type f -name '*.apk')
 	then
 		echo $loopCount - Copy $f to: $targetDir
 
-		### Copy the actual file
+		### Move the actual file
 		mv $f $targetDir
 
 		### Increment the number of files copied
