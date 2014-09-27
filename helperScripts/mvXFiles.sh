@@ -58,7 +58,7 @@ FILES=$(find $inputDir -type f -name '*.apk')
 	### Check to see if the loopcount is between two numbers
 	if (($startFile<=$loopCount && $loopCount<=$endFile)); 
 	then
-		echo $loopCount - Copy $f to: $targetDir
+		echo $loopCount - Move: $f to: $targetDir
 
 		### Move the actual file
 		mv $f $targetDir
