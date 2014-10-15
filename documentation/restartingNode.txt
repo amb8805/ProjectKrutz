@@ -13,3 +13,6 @@ If you need to restart node.js, you need to do the following:
         6. Exit the darwin user's shell:
                 logout or Control-d
 
+Note: Node will have to be reset whenever the sqlite DB is updated
+
+
