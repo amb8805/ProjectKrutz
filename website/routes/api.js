@@ -83,7 +83,7 @@ exports.getApk = function (req, res, next) {
 
 exports.getApks = function (req, res, next) {
 
-	var query = 'SELECT ' + apkProperties + ' FROM ApkInformation apk';
+	var query = 'SELECT ' + apkProperties + ' FROM ApkInformation apk INNER JOIN ToolResults tr on tr.ApkId = apk.rowid';
 
 	db.all(query, function (err, apks) {
 
@@ -97,7 +97,7 @@ exports.getApks = function (req, res, next) {
 
 exports.getApkCount = function (req, res, next) {
 
-	var query = 'SELECT COUNT(Name) AS TotalCount from ApkInformation';
+	var query = 'SELECT COUNT(Name) AS TotalCount from ApkInformation apk INNER JOIN ToolResults tr on tr.ApkId = apk.rowid';
 
 	db.all(query, function (err, count) {
 		if (err) return next(err);
@@ -110,7 +110,7 @@ exports.getOverprivilegeCountsForTopApks = function (req, res, next) {
 
 	var query = 'SELECT apk.Name, MAX(apk.ModifiedDatePublished), IFNULL(oprivCount.oCount, 0) as OverPrivCount ' +
 		'FROM ApkInformation apk ' +
-		'LEFT JOIN (SELECT ApkId, COUNT(o.ApkId) AS oCount FROM Overprivilege o GROUP BY ApkId) oprivCount ON oprivcount.apkid = apk.rowid ' +
+		'INNER JOIN (SELECT ApkId, COUNT(o.ApkId) AS oCount FROM Overprivilege o GROUP BY ApkId) oprivCount ON oprivcount.apkid = apk.rowid ' +
 		'GROUP BY Name ' +
 		'ORDER BY UpperDownloads DESC LIMIT 5';
 
