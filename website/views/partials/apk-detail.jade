@@ -15,7 +15,7 @@ section#apk-detail.apk-detail
 				p {{ apk.DatePublished }}
 			div.col-md-3.col-sm-6
 				h2.subtitle File Size
-				p {{ apk.FileSize }}
+				p {{ apk.FileSize | fileSize }}
 			div.col-md-3.col-sm-6
 				h2.subtitle Number of Downloads
 				p {{ apk.LowerDownloads | number }} - {{ apk.UpperDownloads | number }}

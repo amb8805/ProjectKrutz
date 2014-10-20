@@ -18,4 +18,15 @@ angular.module('androidApp.filters', []).
 				}).slice(0, end);
 			}
 		};
+	}).
+	filter('fileSize', function () {
+		return function (fileSize) {
+			if (fileSize >= 1048576) {
+				// Convert to megabytes
+				return (fileSize * 0.000001).toFixed(1) + 'M';
+			} else {
+				// Convert to kilobytes
+				return (fileSize * 0.001).toFixed(0) + 'k';
+			}
+		}
 	});

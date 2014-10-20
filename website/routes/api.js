@@ -5,7 +5,7 @@ var file = 'public/assets/sqlite/EvolutionOfAndroidApplications.sqlite';
 var db = new sqlite3.Database(file, sqlite3.OPEN_READONLY);
 
 var apkProperties = 'apk.rowid, apk.Name, apk.Version, apk.Developer, apk.Genre, ' +
-	'apk.UserRating, apk.DatePublished, apk.FileSize, apk.LowerDownloads, apk.UpperDownloads';
+	'apk.UserRating, apk.DatePublished, apk.GeneratedFileSize as FileSize, apk.LowerDownloads, apk.UpperDownloads';
 
 var mergeApkList = function (apks) {
 

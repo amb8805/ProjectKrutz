@@ -503,6 +503,10 @@ a:hover {
   padding: 35px 0 70px;
 }
 
+.reports p.lead {
+  margin-bottom: 10px;
+}
+
 .reports .subtitle {
   color: #99cc00;
   font-size: 18px;

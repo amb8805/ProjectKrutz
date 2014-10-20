@@ -428,10 +428,6 @@ angular.module('androidApp.controllers', []).
       {
         id: 'DatePublished',
         label: 'Release Date'
-      },
-      {
-        id: 'FileSize',
-        label: 'File Size'
       }
     ];
 
