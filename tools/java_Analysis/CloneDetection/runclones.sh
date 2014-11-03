@@ -39,6 +39,9 @@
 		
 		### Get the total result set from nicad. It is dirty
 		cloneResults=`./nicad3 blocks java $i blindrename 2>&1`
+echo dan
+echo $cloneResults
+
 
 		### Clean the resultset from Nicad to only get the clone count
 		### This information can also be used to put into the database
@@ -54,6 +57,9 @@
 		echo "Total Clones Found: " $(basename $i) $cloneCount >> ../../../$logLocation
 
 		cd ../../../  #moving to the directory with the database
+
+exit
+
 		
 		rowid=`sqlite3 EvolutionOfAndroidApplications.sqlite  "SELECT rowid FROM ApkInformation WHERE ApkId='$APKFile';"`
 		sqlite3 EvolutionOfAndroidApplications.sqlite  "UPDATE ToolResults SET CodeCloneCount=$cloneCount WHERE ApkId=$rowid;"	
