@@ -1,0 +1,2 @@
+dxkvse@vm-007:/home/darwin/ProjectKrutz/tools/java_Analysis$ ln -s javaOutput/ /scratch/
+
