@@ -43,6 +43,6 @@ tools/stowaway/output/
 logs/AndroRiskOutput/
 
 # Simcad Output #
-tools/java_Analysis/CloneDetection/SimCad-2.2/
+#tools/java_Analysis/CloneDetection/SimCad-2.2/
 
 
