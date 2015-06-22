@@ -63,9 +63,6 @@ clear;
 		then
 			echo File does not exist
 			echo "-----File does not exist: " $f `date` >> $logLocation
-			## The value does not exist, so add it to the table.
-#			sqlite3 ../../EvolutionOfAndroidApplications.sqlite  "INSERT INTO Permissions (Name) VALUES ('$1');"
-			#echo Add $1 to Permissions
 		else
 			### File exists, so update the date created information
 
