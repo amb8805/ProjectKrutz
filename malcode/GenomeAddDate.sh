@@ -70,7 +70,7 @@ clear;
 			### Get the rowID
 
 			rowID=`sqlite3 $dbname "SELECT rowID FROM apkInformation WHERE Name='$appName' and ParentFolder='$dirName';"`
-			modDate=`stat --printf "%z\n" $f`
+			modDate=`stat --printf "%y\n" $f`
 			sqlite3 $dbname "update ApkInformation set FileCreated='$modDate' WHERE rowID=$rowID;"
 
 
