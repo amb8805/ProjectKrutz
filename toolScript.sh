@@ -11,6 +11,8 @@
 
 	# Check to make sure that an argument is actually passed in
 	APK_Input_Path="scraper/downloads/full/"
+#	APK_Input_Path="tempInput/"
+
 	EXPECTED_ARGS=1
 	if [ $# -eq $EXPECTED_ARGS ]
 	then

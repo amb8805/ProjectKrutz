@@ -19,12 +19,12 @@
 	echo "StartAll:" `date` >> $logDir/$logFile
 
 	## Start scraper here
-	echo "Start Scraper:" `date` >> $logDir/$logFile
+#	echo "Start Scraper:" `date` >> $logDir/$logFile
 	# cd scraper/
 	# scrapy crawl googleplay
 	# cd ..
 	# ./cleanDatabase.sh
-	echo "Scraper Completed:" `date` >> $logDir/$logFile
+#	echo "Scraper Completed:" `date` >> $logDir/$logFile
 
 
 	### Analyze the collected apk files

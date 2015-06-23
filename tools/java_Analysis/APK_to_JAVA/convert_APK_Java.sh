@@ -34,6 +34,7 @@ convertAPK (){
 	### Application Name without .apk
 	appName=${1//.apk/""}
 
+
 	## Replace all the periods in the apk to allow the better creation of the output foldername
 	## Replace . with %
 	## 		This should probably be fixed to just strip out the apk entirely.
@@ -42,6 +43,8 @@ convertAPK (){
 
 	### Main directory all of the generated java output
 	javaOutputLocation=tools/java_Analysis/javaOutput
+        #javaOutputLocation=/home/darwin/ProjectKrutz/tempOutput
+
 	mkdir -p $javaOutputLocation
 
 	JavaOutputDir=$javaOutputLocation/$outputFolderName
@@ -56,7 +59,7 @@ convertAPK (){
 	
 	### Not sure why it creates an output file here, but delete it
 	### This is a messy fix
-	rm -rf $inputFileName
+#	rm -rf $inputFileName
 
 	## Create the dex file
 	jar xvf $JavaOutputDir/$1 classes.dex

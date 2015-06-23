@@ -93,7 +93,10 @@
 	FILES=$(find $inputDir -type f -name '*.apk')
 	for f in $FILES
 	do
-		#echo $f
+		echo "File:"
+		echo $f
+
+echo $f >> AAAfiles.txt
 
 		## Run Stowaway
 		APKFile=$(basename $f)

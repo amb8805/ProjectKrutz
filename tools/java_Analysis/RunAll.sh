@@ -43,7 +43,7 @@ echo "Start Run All"
 	mkdir -p $logDir 
 
 	### Delete the log file if it exists
-	rm -f $logDir/*.log  ##This is now in the toolsScript.sh instead - Shannon
+# REMOVE?	rm -f $logDir/*.log  ##This is now in the toolsScript.sh instead - Shannon
 
 	touch $logDir/$logFile
 
@@ -72,16 +72,16 @@ echo "Start Run All"
 
 		#### CheckStyle
 		echo "CheckStyle:" `date` >> $logDir/$logFile
-#		./tools/java_Analysis/checkstyle/checkStyle.sh
+		./tools/java_Analysis/checkstyle/checkStyle.sh
 
 		### Run JLint
 		echo "Start Running JLint:" `date` >> $logDir/$logFile
-#		./tools/java_Analysis/jlint/run_jlint.sh
+		./tools/java_Analysis/jlint/run_jlint.sh
 
 
 		### Remove the created javaoutput.
 		echo "Remove Java Output" `date` >> $logDir/$logFile
-		rm -rf tools/java_Analysis/javaOutput/*
+#		rm -rf tools/java_Analysis/javaOutput/*
 
 	fi
 

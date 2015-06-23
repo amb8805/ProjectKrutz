@@ -9,8 +9,7 @@
 
 	#### Directory of APK files to be analyzed
 	#apkInputDir=scraper/downloads/full
-	apkInputDir=testGenome
-
+	apkInputDir=/home/darwin/ProjectKrutz/June_2015/samples
 
 	#### clear specific database table
 	clearTable () {
