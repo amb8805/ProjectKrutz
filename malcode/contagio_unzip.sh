@@ -15,10 +15,13 @@ clear;
 
 	dbname=MalwareInfo.sqlite
 	tempOutput=tempOutput
-	apkInputDir=input/mila_short
+	fullOutput=fullOutput # Mimic downloads/full
+	apkInputDir=milainput
 	
 	password=infected666
 	mkdir -p $tempOutput
+	mkdir -p $fullOutput
+
 
 
 	#echo "Contagio Date Add  Start:" `date` >> $logLocation
@@ -105,19 +108,51 @@ clear;
 
 	}
 
-#	clearDatabase ### Clear the database if necessary 
-#	extractFiles ## Extract all zip files from their source
+
+	### Get files ready for Static analysis
+	prepForStaticAnalysis(){
+		echo "prep for SA"
+
+		# loop through all of the output files
+		FILES=$(find $tempOutput  -type f -name '*.apk')
+		for f in $FILES
+		do
+
+			## Get the parent folder of the file
+			dirName=$(dirname $f)
+			dirName=${dirName/$apkInputDir//""}
+			dirName=${dirName////""}
+			#echo $dirName
+
+			appName=${f//.apk/""}
+			appName=${appName//%/""}
+			appName=$(basename $appName)
+
+			#modDate='3/1/2011'
+			modDate=`stat --printf "%y\n" $f`
+
+
+			sqlite3 $dbname "Insert into apkinformation (Name, SourceID, apkID, Developer, DatePublished, FileCreated, ParentFolder) values (\"$appName\",1, \"$appName\", \"$counter\", \"$counter\", \"$modDate\", \"$dirName\");"	
+			
+			counter=$((counter+1))
+
+			## copy the apk file into the analysis directory
+
+			echo "-->Copy: " $f
+			cp $f $fullOutput	
+
+		done
+
+	}
+
+
+	clearDatabase ### Clear the database if necessary 
+	extractFiles ## Extract all zip files from their source
 	checkForAPK ## Check to see if the output files are apk
+	prepForStaticAnalysis ## Get ready for static analysis
 
 
-
-
-
-	
-
-
-
-#	rm -rf $tempOutput
+	rm -rf $tempOutput
 
 
 	date2=$(date +"%s")
