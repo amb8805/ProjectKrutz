@@ -6,7 +6,7 @@ If you need to restart node.js, you need to do the following:
         1. Become the darwin user and run the it as a login shell:
                 sudo -iu darwin
         2. Attach to the running screen session holding the node.js process:
-                screen -r node
+                screen -r node  --- If no screen is found, just run "screen -r"
         3. Control-C the running node.js process:
                 Control-C
         4. Rerun node.js:
