@@ -1,2 +1,0 @@
-MAILTO=dan7800@yahoo.com
-12 4 * * * /home/notroot/shared/ProjectKrutz/StartAll.sh

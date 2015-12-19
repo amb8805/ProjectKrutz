@@ -1,4 +1,0 @@
-ProjectKrutz
-============
-
-Android Permissions Gap

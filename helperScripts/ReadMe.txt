@@ -1,1 +1,0 @@
-This is a repository for scripts which are useful to the Darwin project, but don't really have any place else to go.
