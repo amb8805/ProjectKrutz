@@ -1,0 +1,660 @@
+
+/**
+ * --------------------------------------------------
+ * Default styles
+ * --------------------------------------------------
+ */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  color: #444;
+  font-weight: normal;
+}
+
+h1 {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 600;
+  font-size: 39px;
+  line-height: 39px;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-weight: normal;
+  font-size: 21px;
+  line-height: 23px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+p {
+  font-weight: normal;
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+a {
+  color: #99cc00;
+}
+
+a:hover {
+  text-decoration: none;
+  color: #83b600;
+}
+
+.hyphenated {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+.btn-theme {
+  background: #99cc00;
+  border-color: #83b600;
+  color: #fff;
+  outline: 0;
+}
+
+.btn-theme:hover {
+  background: #8cbf09;
+  color: #fff;
+}
+
+.btn-theme:focus,
+.btn-theme:active {
+  color: #fff;
+}
+
+.control-label {
+  font-weight: 600;
+}
+
+.form-control {
+  outline: 0;
+  font-weight: normal;
+  -webkit-appearance: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.form-control:focus {
+  border-color: #99cc00;
+  -webkit-appearance: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background: #99cc00;
+}
+
+.ui-select-bootstrap .ui-select-choices-row.active > a {
+  background: #99cc00;
+}
+
+.modal-dialog {
+  padding-top: 100px;
+}
+
+.table > thead > tr > th {
+  font-weight: 600;
+}
+
+.pagination > li > a,
+.pagination > li > span {
+  color: #99cc00;
+}
+
+.pagination > li > a:hover, 
+.pagination > li > span:hover, 
+.pagination > li > a:focus, 
+.pagination > li > span:focus {
+  color: #83b600;
+}
+
+.pagination > .active > a, 
+.pagination > .active > span, 
+.pagination > .active > a:hover, 
+.pagination > .active > span:hover, 
+.pagination > .active > a:focus, 
+.pagination > .active > span:focus {
+  color: #fff;
+  background: #99cc00;
+  border-color: #99cc00;
+}
+
+.delayp2 {
+  animation-delay: .2s;
+  -moz-animation-delay: .2s;
+  -webkit-animation-delay: .2s;
+  -o-animation-delay: .2s;
+  transition-delay: .2s;
+  -webkit-transition-delay: .2s;
+  -moz-transition-delay: .2s;
+  -o-transition-delay: .2s;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Header
+ * --------------------------------------------------
+ */
+
+.header {
+  padding: 15px 0;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+}
+
+.header .main-nav button {
+  background: #99cc00;
+  color: #fff;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.header .main-nav button:focus {
+  outline: none;
+}
+
+.header .main-nav button .icon-bar {
+  background: #fff;
+}
+
+.header .main-nav .nav .nav-item {
+  font-weight: normal;
+  text-transform: uppercase;
+  margin-right: 10px;
+}
+
+.header .main-nav .nav .nav-item.active a {
+  color: #99cc00;
+  background: none;
+}
+
+.header .main-nav .nav .nav-item a {
+  color: #444;
+}
+
+.header .main-nav .nav .nav-item a:hover {
+  color: #99cc00;
+  background: none;
+}
+
+.header .main-nav .nav .nav-item a:focus,
+.header .main-nav .nav .nav-item a:active {
+  outline: none;
+  background: none;
+}
+
+.header .main-nav .nav .nav-item.active {
+  color: #99cc00;
+}
+
+.header .main-nav .nav .nav-item.last {
+  margin-right: 0;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Footer
+ * --------------------------------------------------
+ */
+
+.footer {
+  font-size: 13px;
+  color: #b3b3b3;
+  background: #fff;
+  padding: 30px 15px;
+  text-align: center;
+}
+
+
+/**
+ * --------------------------------------------------
+ * ngView
+ * --------------------------------------------------
+ */
+
+.main {
+  height: auto;
+  width: 100%;
+  min-height: 100% !important;
+  margin: -50px 0;
+  padding: 50px 0;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Home Page
+ * --------------------------------------------------
+ */
+
+.home {
+  background: #fff;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Promo Section
+ * --------------------------------------------------
+ */
+
+.promo {
+  background-image: url('/assets/img/congruent_pentagon.png');
+  background-color: #f5f5f5;
+  padding: 60px 0 70px;
+}
+
+.promo .title {
+  margin-bottom: 20px;
+}
+
+.promo .content {
+  padding: 0 10% 20px;
+}
+
+.promo .content .goal {
+  margin-bottom: 10px;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Overview Section
+ * --------------------------------------------------
+ */
+
+.overview {
+  background: #fff;
+  padding: 60px 0 110px;
+}
+
+.overview .title {
+  margin-bottom: 60px;
+  padding: 0 15px;
+}
+
+.overview .content {
+  padding: 20px 30px 30px;
+}
+
+.overview .content .subtitle {
+  color: #99cc00;
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.overview .fa-stack {
+  transition: all 0.2s;
+}
+
+.overview .fa-stack:hover {
+  -webkit-transform: translate(0px, -5px);
+  -moz-transform: translate(0px, -5px);
+  -ms-transform: translate(0px, -5px);
+  -o-transform: translate(0px, -5px);
+  transform: translate(0px, -5px);
+  transition: all 0.2s;
+}
+
+.overview .fa-stack-2x {
+  color: #333;
+}
+
+.overview .fa-stack:hover .fa-stack-2x {
+  color: #2b2b2b;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Results Section
+ * --------------------------------------------------
+ */
+
+.results {
+  background: #f5f5f5;
+  padding: 60px 0 110px;
+}
+
+.results .title {
+  margin-bottom: 60px;
+}
+
+.results .content {
+  padding: 30px 10px;
+  text-align: center;
+}
+
+.results .content .subtitle {
+  color: #99cc00;
+  font-size: 18px;
+  margin-top: 0;
+}
+
+.results .chart-row {
+  padding-top: 30px;
+}
+
+.results .chart-container {
+  min-height: 300px;
+  width: 100%;
+}
+
+.results .chart-container .canvas1-holder {
+  min-height: 225px; 
+  max-width: 225px; 
+  margin-left: auto; 
+  margin-right: auto;
+}
+
+.results .chart-container .doughnut-legend {
+  list-style: none;
+  width: 225px;
+  padding-top: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.results .chart-container .doughnut-legend li {
+  display: block;
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 4px;
+  border-radius: 5px;
+  padding: 2px 8px 2px 28px;
+  font-size: 14px;
+  cursor: default;
+  -webkit-transition: background-color 0.2s ease-in-out;
+  -moz-transition: background-color 0.2s ease-in-out;
+  -o-transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.results .chart-container .doughnut-legend li:hover {
+  background: #fafafa;
+}
+
+.results .chart-container .doughnut-legend li span {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 100%;
+  border-radius: 5px;
+}
+
+.results .chart-container .canvas2-holder {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.results .chart-container .chart-loading {
+  height: 100;
+  width: 100;
+  padding: 0 15px;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Data Page
+ * --------------------------------------------------
+ */
+
+.data {
+  background: #fff;
+  padding: 40px 0 65px;
+}
+
+.data .filter-form .input-group {
+  margin-bottom: 5px;
+}
+
+.data .filter-form .btn-theme {
+  float: right;
+}
+
+.data .th-sort-arrow {
+  padding-top: 3px;
+}
+
+.data .table > thead > tr > th,
+.data .table > tbody > tr {
+  cursor: pointer;
+  cursor: hand;
+}
+
+
+/**
+ * --------------------------------------------------
+ * APK Detail Page
+ * --------------------------------------------------
+ */
+
+.apk-detail {
+  background: #fff;
+  padding: 40px 0 80px;
+}
+
+.apk-detail .content .subtitle {
+  color: #99cc00;
+  font-size: 18px;
+}
+
+.apk-detail .analysis-results {
+  padding-top: 10px;
+}
+
+.apk-detail .analysis-results h3 {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.apk-detail .analysis-results .subtitle {
+  margin-top: 10px;
+}
+
+.apk-detail .analysis-results .permissions-list {
+  margin-top: 10px;
+  list-style-type: none; 
+  padding: 0;
+}
+
+.apk-detail .comparison {
+  padding-top: 10px;
+}
+
+.apk-detail .chart-container {
+  margin-top: 10px;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Reports Page
+ * --------------------------------------------------
+ */
+
+.reports {
+  background: #fff;
+  padding: 35px 0 70px;
+}
+
+.reports p.lead {
+  margin-bottom: 10px;
+}
+
+.reports .subtitle {
+  color: #99cc00;
+  font-size: 18px;
+}
+
+.reports .table .csv-download:hover {
+  cursor: pointer;
+  cursor: hand;
+}
+
+
+/**
+ * --------------------------------------------------
+ * About Page
+ * --------------------------------------------------
+ */
+
+.about {
+  background: #fff;
+  padding: 35px 0 80px;
+}
+
+.about .subtitle {
+  color: #99cc00;
+  font-size: 18px;
+}
+
+.about .contact {
+  font-size: 15px;
+  font-weight: normal;
+  margin: -5px 0 5px;
+  color: #b3b3b3;
+}
+
+.about .collaborators,
+.about .acknowledgments {
+  padding-top: 20px;
+}
+
+
+/**
+ * --------------------------------------------------
+ * Media Queries
+ * --------------------------------------------------
+ */
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) and (max-device-width : 480px) and (orientation : landscape) {
+
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) and (orientation : portrait) {
+
+}
+
+/* Extra small devices (phones, less than 768px) */
+@media (max-width: 767px) {
+
+}
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+
+  .overview .content {
+    padding-bottom: 0;
+  }
+
+  .results .chart-container .chart-loading {
+    height: 300;
+    width: 300;
+  }
+
+  .results .chart-container .canvas1-holder {
+    min-height: 300px; 
+    max-width: 300px;
+  }
+
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+  .promo .content {
+    padding: 0 18% 20px;
+  }
+
+  .results .content {
+    margin-top: 45px;
+  }
+
+  .results .chart-container .canvas2-holder {
+    margin: 0;
+    padding: 0;
+    max-width: 550px;
+    max-height: 305px;
+  }
+
+  .footer .copyright {
+    text-align: left;
+    float: left;
+  }
+
+  .results .chart-container .canvas2-holder {
+    padding-top: 30px;
+  }
+
+}
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+  .results .chart-container .canvas1-holder-wrapper {
+    padding-left: 18%;
+  }
+
+  .results .chart-container .canvas2-holder {
+    padding: 0;
+  }
+
+}
+
+/* Desktops and laptops ----------- */
+@media only screen and (min-width : 1224px) {
+
+}
+
+/* Large screens ----------- */
+@media only screen and (min-width : 1824px) {
+
+}

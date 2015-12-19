@@ -1,0 +1,10 @@
+dxkvse@vm-007:/home/darwin/ProjectKrutz/website/public/assets/sqlite$ pwd
+/home/darwin/ProjectKrutz/website/public/assets/sqlite
+
+1) Backup existing DB
+2) Copy  cp /home/darwin/ProjectKrutz/EvolutionOfAndroidApplications.sqlite EvolutionOfAndroidApplications.sqlite
+
+
+3) Restart Node using the appropriate instructions - See "restartingNode.txt"
+
+

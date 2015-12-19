@@ -1,0 +1,23 @@
+If you need to restart node.js, you need to do the following:
+
+
+        0. Ensure that you are in the "website" directory
+
+        1. Become the darwin user and run the it as a login shell:
+                sudo -iu darwin
+        2. Attach to the running screen session holding the node.js process:
+                screen -r node  --- If no screen is found, just run "screen -r"
+        3. Control-C the running node.js process:
+                Control-C
+        4. Rerun node.js:
+                node app.js
+        5. Detach from the screen:
+                Control-a, d
+        6. Exit the darwin user's shell:
+                logout or Control-d
+
+Note: Node will have to be reset whenever the sqlite DB is updated
+
+
+- If starting from scratch (a server reboot) You should run the command "screen node"
+

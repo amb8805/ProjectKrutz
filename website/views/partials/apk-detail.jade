@@ -1,0 +1,57 @@
+section#apk-detail.apk-detail
+	div.container(loading-spinner='detailViewLoading')
+		div.row
+			div.col-md-12
+				h1 {{ apk.Name }} 
+					small {{ apk.Version }}
+				h4 {{ apk.Developer }}
+				h5 {{ apk.Genre }}
+		div.row.content
+			div.col-md-3.col-sm-6
+				h2.subtitle User Rating
+				p {{ apk.UserRating }} / 5
+			div.col-md-3.col-sm-6
+				h2.subtitle Release Date
+				p {{ apk.DatePublished }}
+			div.col-md-3.col-sm-6
+				h2.subtitle File Size
+				p {{ apk.FileSize | fileSize }}
+			div.col-md-3.col-sm-6
+				h2.subtitle Number of Downloads
+				p {{ apk.LowerDownloads | number }} - {{ apk.UpperDownloads | number }}
+		div.analysis-results
+			div.row
+				div.col-md-12
+					h3 Analysis Results
+			div.row.content
+				div.col-md-6
+					h2.subtitle Overpermissions
+					ul.permissions-list
+						li(ng-repeat='o in apk.Overpermissions') {{ o }}
+					p(ng-hide='apk.Overpermissions.length > 0') No Overpermissions
+				div.col-md-6
+					h2.subtitle Underpermissions
+					ul.permissions-list
+						li(ng-repeat='u in apk.Underpermissions') {{ u }}
+					p(ng-hide='apk.Underpermissions.length > 0') No Underpermissions
+			div.row.content
+				div.col-md-6
+					h2.subtitle Androrisk Score
+					p {{ apk.FuzzyRiskValue | number }}
+				div.col-md-6
+					h2.subtitle Java Files
+					p {{ apk.JavaFiles | number }}
+			div.row.content
+				div.col-md-6
+					h2.subtitle Coding Standard Violations
+					p {{ apk.DefectCount | number }}
+				div.col-md-6
+					h2.subtitle Defects
+					p {{ apk.JlintResult | number }}
+			div.row.comparison
+				div.col-md-12
+					h3 Comparison to Other Versions
+					p(ng-hide='allVersionsOfApk.length > 1') No other versions
+	div.container.chart-container(ng-hide='allVersionsOfApk.length == 1')
+		div.canvas-holder
+			canvas#apkDetailChart

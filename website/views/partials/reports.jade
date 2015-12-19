@@ -1,0 +1,93 @@
+section#reports.reports
+	div.container
+		div.row
+			div.col-md-10
+				h1 CSV Reports
+				p.lead The following tables contain a series of CSV files, which contain the results from various SQL statements executed on our database
+				p Note: These reports only provide statistics on approximately the first 30,000 APK files that were analyzed.
+		div.row
+			div.col-md-12
+				h2.subtitle Overprivileges
+				p The following reports provide various metrics related to overprivileges. These results only include applications with at least 10,000 downloads.
+				div.table-responsive
+					table.table.table-striped
+						thead
+							tr
+								th Description
+								th.col-sm-3.col-md-2 Download
+						tbody
+							tr
+								td The top 10 genres with the highest rate of overprivileges. This is for all applications, regardless of download count.
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/Overprivilege-A.csv') Overprivilege-A.csv
+							tr
+								td The percentage of times each overprivilege occurs in all applications.
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/Overprivilege-B.csv') Overprivilege-B.csv
+							tr
+								td The rate at which two overprivileges appear together in all applications.
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/Overprivilege-C.csv') Overprivilege-C.csv
+							tr
+								td The count of applications with at least n overprivileges.
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/Overprivilege-D.csv') Overprivilege-D.csv
+							tr
+								td The rate at which overprivileges occur in each genres. This is computed by taking the total number of overprivileges for a genre, and then dividing that by the total number of applications in each genre.
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/Overprivilege-E.csv') Overprivilege-E.csv
+							tr
+								td The percentage of applications that have at least 1 overprivilege in each genre.
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/Overprivilege-F.csv') Overprivilege-F.csv
+		div.row
+			div.col-md-12
+				h2.subtitle Genres
+				p Each of the following reports contains the number of applications within a given genre that we have analyzed, as well as averages for user rating, number of downloads, number of errors reported by Jlint, Androrisk score, number of overprivileges, and code clones within each genre.
+				div.table-responsive
+					table.table.table-striped
+						thead
+							tr
+								th Genre
+								th.col-xs-4.col-sm-3.col-md-2 Download
+						tbody
+							tr
+								td Books &amp; Reference
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Books&Reference.csv') G-Books&amp;Reference.csv
+							tr
+								td Business
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Business.csv') G-Business.csv
+							tr
+								td Education
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Education.csv') G-Education.csv
+							tr
+								td Entertainment
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Entertainment.csv') G-Entertainment.csv
+							tr
+								td Lifestyle
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Lifestyle.csv') G-Lifestyle.csv
+							tr
+								td Music &amp; Audio
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Music&Audio.csv') G-Music&amp;Audio.csv
+							tr
+								td Personalization
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Personalization.csv') G-Personalization.csv
+							tr
+								td Puzzle
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Puzzle.csv') G-Puzzle.csv
+							tr
+								td Tools
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Tools.csv') G-Tools.csv
+							tr
+								td Travel &amp; Local
+								td 
+									a.csv-download(target='_blank', href='/assets/csv/G-Travel&Local.csv') G-Travel&amp;Local.csv
