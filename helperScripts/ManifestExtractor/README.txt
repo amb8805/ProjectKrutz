@@ -1,7 +1,7 @@
 SETTING ManifestExtractor.xml
 -----------------------------
 
-1. Copy the script the to relative root folder of .apk folder hierarchy.
+1. Copy the script to the relative root folder of .apk folder hierarchy.
 
 2. Open a Terminal console.
 
