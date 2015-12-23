@@ -1,10 +1,16 @@
 #!/bin/bash
 
 # Written by: Cesar Armando Perez Fernandez
+# ProjectKrutz - Android Permissions Gap
 
 # SCRIPT SETTINGS
+
+# folders
 apk_copies_folder="apk_copies"
 android_manifest_dest="android_manifests"
+
+# files
+log_file="android_manifest_logs.txt"
 
 # *** SCRIPT START ***
 
@@ -21,7 +27,7 @@ create_directory(){
 }
 
 # ==========================================
-# changes the extension of the .apk to .zip.
+# Changes the extension of the .apk to .zip.
 # ==========================================
 change_extension(){
     apk_files=($apk_copies_folder/*.apk)
@@ -42,6 +48,13 @@ copy_apk_files(){
     do
         cp -uf $apk_file $apk_copies_folder
     done
+}
+
+# ===================================
+# Logs the number of files processed.
+# ===================================
+log(){
+    echo "Number of .apk files processed: "  $1 >> $log_file
 }
 
 # ===================================
@@ -67,7 +80,7 @@ extract_android_manifest(){
         unzip "$android_zipped_apk" "AndroidManifest.xml" -d "$android_manifest_dest/$new_directory_name" 
     done
     
-    echo " *** -- Total number of files obtained: $total_num_files -- *** "
+    log $total_num_files
 }
 
 # ===================
