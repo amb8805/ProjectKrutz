@@ -60,11 +60,10 @@ app.get('/topGenres', api.getTopOverprivilegedGenres);
 app.get('/versionGroupAvgs', api.getAvgOverpermissionsByVersionGroup);
 app.get('/genres', api.getGenres);
 app.get('/filter', api.getFilteredApks);
+app.get('/process-query/:query', api.processQuery);
 
-// Redirect all others to the index (HTML5 history)
+// Redirect to the index (HTML5 history)
 app.get('*', routes.index);
-
-
 /**
  * Start Server
  */

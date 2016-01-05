@@ -22,7 +22,7 @@ angular.module('androidApp.controllers', []).
     // If more than 5 colors are needed, begin again at the first color
     $scope.getColorForIndex = function (index) {
       return $scope.chartColors[index % $scope.chartColors.length];
-    }
+    };
 
     // Helper function that returns a tint for the given color
     $scope.getHue = function (color, amount) {
@@ -52,7 +52,7 @@ angular.module('androidApp.controllers', []).
 
       return (usePound ? '#' : '') + (g | (b << 8) | (r << 16)).toString(16);
 
-    }
+    };
 
     // Logic for navbar
     $scope.isCollapsed = true;
@@ -273,7 +273,7 @@ angular.module('androidApp.controllers', []).
           maintainAspectRatio: false,
           scaleShowGridLines: false,
           tooltipTemplate: '<%=label%>: <%= value %>%'
-        }
+        };
 
         var canvas2 = document.getElementById('chart2');
         var chart2 = new Chart(canvas2.getContext('2d')).Bar($scope.barChartData, chartOptions2);
@@ -290,7 +290,7 @@ angular.module('androidApp.controllers', []).
           scaleShowGridLines: false,
           scaleBeginAtZero: true,
           multiTooltipTemplate: '<%=datasetLabel %>: <%= value %>'
-        }
+        };
 
         var canvas3 = document.getElementById('chart3');
         var chart3 = new Chart(canvas3.getContext('2d')).Line($scope.chart3Data, chartOptions3);
@@ -358,7 +358,7 @@ angular.module('androidApp.controllers', []).
             maintainAspectRatio: false,
             scaleShowGridLines: false,
             multiTooltipTemplate: '<%=datasetLabel %>: <%= value %>'
-          }
+          };
 
           var canvas = document.getElementById('apkDetailChart');
           var chart = new Chart(canvas.getContext('2d')).Bar($scope.barChartData, chartOptions);
@@ -567,5 +567,20 @@ angular.module('androidApp.controllers', []).
 
   }).
   controller('ReportsController', function ($scope, $window) {
+    // empty controller
+  }).
+  controller('ExploreDataController', function($scope, $http){
+      $scope.results = ['NO RESULTS TO SHOW.']; // default values in list.
 
-  });
+      $scope.executeQuery = function() {
+
+        if ($scope.query !== undefined) {
+          $http.get('http://127.0.0.1:8080/process-query/' + $scope.query).success(
+              function (response) {
+                $scope.results = response;
+              }
+          );
+        }
+
+      }
+ });

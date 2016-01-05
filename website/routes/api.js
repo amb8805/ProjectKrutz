@@ -282,3 +282,12 @@ exports.getFilteredApks = function (req, res, next) {
 	});
 	
 };
+
+exports.processQuery = function(req, res){
+
+    db.all(req.params.query, function (err, result) {
+        if (err) return next(err);
+        res.send(result);
+    });
+
+};

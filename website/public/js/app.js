@@ -32,7 +32,12 @@ androidApp.config(function ($routeProvider, $locationProvider) {
     .when('/about', {
       templateUrl: 'partials/about',
       controller: 'AppController'
-    });
+    })
+    .when('/explore-data', {
+      templateUrl: 'partials/explore-data',
+      controller: 'ExploreDataController'
+    }
+    );
 
   $locationProvider.html5Mode(true);
 });
