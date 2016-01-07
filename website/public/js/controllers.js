@@ -569,18 +569,52 @@ angular.module('androidApp.controllers', []).
   controller('ReportsController', function ($scope, $window) {
     // empty controller
   }).
-  controller('ExploreDataController', function($scope, $http){
-      $scope.results = ['NO RESULTS TO SHOW.']; // default values in list.
+  controller('ExploreDataController', function($scope, $http, $sce){
 
-      $scope.executeQuery = function() {
+        $scope.trustedHTML = function(html){
+            return $sce.trustAsHtml(html);
+        };
 
-        if ($scope.query !== undefined) {
-          $http.get('http://127.0.0.1:8080/process-query/' + $scope.query).success(
-              function (response) {
-                $scope.results = response;
-              }
-          );
+        $scope.executeQuery = function(){
+
+            if ($scope.query !== undefined) {
+                $http.get('http://127.0.0.1:8080/process-query/' + $scope.query).success(function (response){
+                    var lines = [];
+                    var headers = [];
+
+                    var line = '<table class="table">';
+
+                    $scope.content = undefined;
+
+                    line = line + '<tr>';
+
+                    for(var property in response[0]){
+                        if(response[0].hasOwnProperty(property)){
+                            headers.push(property);
+                            line = line + '<td class="query-table-header-elem">' + property + '</td>';
+                        }
+                    }
+
+                    line = line + '</tr>';
+
+                    for(var i = 0; i < response.length; i++){
+                        line = line + '<tr>';
+
+                        for(var u = 0; u < headers.length; u++){
+                            line =  line + '<td>' + response[i][headers[u]] + '</td>';
+                        }
+
+                        line = line + '</tr>';
+
+                        if((i + 1) == response.length){
+                          line = line + '</table>';
+                        }
+
+                        lines.push(line);
+                        line = '';
+                    }
+                    $scope.content = String(lines.join(""));
+                });
+            }
         }
-
-      }
  });

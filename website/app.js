@@ -4,13 +4,12 @@
  */
 
 var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
-  http = require('http'),
-  path = require('path');
+    routes = require('./routes'),
+    api = require('./routes/api'),
+    http = require('http'),
+    path = require('path');
 
 var app = module.exports = express();
-
 
 /**
  * Configuration
@@ -60,7 +59,15 @@ app.get('/topGenres', api.getTopOverprivilegedGenres);
 app.get('/versionGroupAvgs', api.getAvgOverpermissionsByVersionGroup);
 app.get('/genres', api.getGenres);
 app.get('/filter', api.getFilteredApks);
-app.get('/process-query/:query', api.processQuery);
+
+app.get('/process-query/:query', function(req, res){
+
+  api.db.all(req.params.query, function (err, result) {
+      if (err) return next(err);
+      res.send(result);
+    });
+
+});
 
 // Redirect to the index (HTML5 history)
 app.get('*', routes.index);

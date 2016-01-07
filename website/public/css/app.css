@@ -529,8 +529,15 @@ a:hover {
 }
 
 .query_result{
-  max-height: 30%;
+  max-height: 500px;
   overflow: scroll;
+  border: 1px gray solid;
+  margin: 0 auto;
+}
+
+.query-table-header-elem{
+  font-weight: bold;
+  background-color: lightgreen;
 }
 
 /**

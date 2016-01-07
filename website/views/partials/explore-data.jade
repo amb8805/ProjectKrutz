@@ -3,10 +3,9 @@ div(class="container", data-ng-controller="ExploreDataController")
         div.col-md-4.col-sm-5
             h2 Type your query
             form(data-ng-submit="executeQuery()")
-                textarea(cols="40", rows="5", name='query', class="form-control textarea", data-ng-model="query")
+                textarea(cols="40", rows="5", name="query", class="form-control textarea", data-ng-model="query")
                 input(type="submit", value="Execute Query", class="btn btn-primary")
-
-        div.col-md-8.col-sm7
+        div.col-md-8.col-sm-7
             h2 Tables in DB
             table.table
                 tr
@@ -25,9 +24,5 @@ div(class="container", data-ng-controller="ExploreDataController")
                     td apkParser_privs_join
                     td
 
-    div.row
-        div.col-md-12.col-sm-12
-            h3 Query Results
-            div.row.query_result
-                ul
-                    li(data-ng-repeat="result in results") {{ result }}
+    h3 Query Results
+    div(data-ng-bind-html="(content)", class="query_result")
