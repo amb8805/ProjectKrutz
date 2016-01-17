@@ -62,7 +62,7 @@
 			#echo $f
 			echo "copy " $f
 # Lets wait on copying the file
-#			cp $f $outputdir
+			cp $f $outputdir
 
 			## Write it to the log
 			echo "copy " $f `date` >> $logLocation
