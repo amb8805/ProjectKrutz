@@ -9,6 +9,7 @@
 
 	clear;
 
+
 	outputdir=output
 	mkdir -p $outputdir
 	mkdir -p logs
