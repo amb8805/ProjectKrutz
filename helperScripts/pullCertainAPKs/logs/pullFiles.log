@@ -42,3 +42,8 @@ copy  testtarget/sub/sub/test2.apk Thu Jan 14 22:30:47 EST 2016
 copy  testtarget/sub/subanother/test3.apk Thu Jan 14 22:30:47 EST 2016
 copy  testtarget/test5.apk Thu Jan 14 22:30:47 EST 2016
  ----------------- Done -----------  testtarget/test5.apk Thu Jan 14 22:30:47 EST 2016
+ ----------------- Done -----------  Sun Jan 17 11:34:16 EST 2016
+copy  testtarget/sub/sub/test2.apk Sun Jan 17 11:34:28 EST 2016
+copy  testtarget/sub/subanother/test3.apk Sun Jan 17 11:34:28 EST 2016
+copy  testtarget/test5.apk Sun Jan 17 11:34:28 EST 2016
+ ----------------- Done -----------  testtarget/test5.apk Sun Jan 17 11:34:28 EST 2016
