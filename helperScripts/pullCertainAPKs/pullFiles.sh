@@ -22,7 +22,9 @@
 	NotfoundLog=logs/Notfound.log
 	touch $NotfoundLog
 
-	inputDir=testtarget
+	#inputDir=testtarget
+	inputDir=/scratch/alreadyscanned
+
 
 #	inputlist=pullList.txt
 	inputlist=combined.lst
