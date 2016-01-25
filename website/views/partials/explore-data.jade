@@ -2,9 +2,12 @@ div(class="container", data-ng-controller="ExploreDataController")
     div.row
         div.col-md-4.col-sm-5
             h2 Type your query
+
+            p#error_message {{invalid_query_error_message}}
+
             form(data-ng-submit="executeQuery()")
                 textarea(cols="40", rows="5", name="query", class="form-control textarea", data-ng-model="query")
-                input(type="submit", value="Execute Query", class="btn btn-primary")
+                input(type="submit", value="Execute Query", class="btn btn-theme")
         div.col-md-8.col-sm-7
             h2 Tables in DB
             table.table
@@ -24,5 +27,6 @@ div(class="container", data-ng-controller="ExploreDataController")
                     td apkParser_privs_join
                     td
 
-    h3 Query Results
-    div(data-ng-bind-html="(content)", class="query_result")
+    div#query_result_section
+        h3 Query Results
+        div(data-ng-bind-html="(content)", class="query_result")

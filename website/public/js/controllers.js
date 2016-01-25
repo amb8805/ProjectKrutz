@@ -570,51 +570,80 @@ angular.module('androidApp.controllers', []).
     // empty controller
   }).
   controller('ExploreDataController', function($scope, $http, $sce){
+        var errorMessageHTML = document.getElementById('error_message');
 
+        // sets the error message displayed at the query page (local function)
+        function processErrorMessage(visibility, errorMessage){
+            errorMessageHTML.style.visibility = visibility;
+            $scope.invalid_query_error_message = errorMessage;
+        }
+
+        // validates HTML
         $scope.trustedHTML = function(html){
             return $sce.trustAsHtml(html);
         };
 
+        // process query and format it
         $scope.executeQuery = function(){
-
             if ($scope.query !== undefined) {
-                $http.get('http://127.0.0.1:8080/process-query/' + $scope.query).success(function (response){
-                    var lines = [];
-                    var headers = [];
+                var errorMessage = 'Invalid query. Please make sure that the query being entered is a "SELECT" statement or that any token in the "SELECT" statement is correct.';
+                var queryType = $scope.query.split(' ')[0];
 
-                    var line = '<table class="table">';
-
-                    $scope.content = undefined;
-
-                    line = line + '<tr>';
-
-                    for(var property in response[0]){
-                        if(response[0].hasOwnProperty(property)){
-                            headers.push(property);
-                            line = line + '<td class="query-table-header-elem">' + property + '</td>';
-                        }
+                if(queryType.toUpperCase() != 'SELECT') {
+                    processErrorMessage('visible', errorMessage);
+                }
+                else {
+                    if(errorMessageHTML.style.visibility == 'visible'){
+                        processErrorMessage('hidden', undefined);
                     }
 
-                    line = line + '</tr>';
+                    $http.get('http://127.0.0.1:8080/process-query/' + $scope.query).success(function (response) {
+                        var lines = [];
+                        var headers = [];
 
-                    for(var i = 0; i < response.length; i++){
-                        line = line + '<tr>';
+                        if(response == 'fail'){
+                          processErrorMessage('visible', errorMessage);
+                        }
+                        else {
+                            document.getElementById('query_result_section').style.visibility = 'visible';
 
-                        for(var u = 0; u < headers.length; u++){
-                            line =  line + '<td>' + response[i][headers[u]] + '</td>';
+                            var line = '<table class="table">';
+
+                            $scope.content = undefined;
+
+                            line = line + '<tr>';
+
+                            for (var property in response[0]) {
+                              if (response[0].hasOwnProperty(property)) {
+                                headers.push(property);
+                                line = line + '<td class="query_table_header_elem">' + property + '</td>';
+                              }
+                            }
+
+                            line = line + '</tr>';
+
+                            for (var i = 0; i < response.length; i++) {
+                              line = line + '<tr>';
+
+                              for (var u = 0; u < headers.length; u++) {
+                                line = line + '<td>' + response[i][headers[u]] + '</td>';
+                              }
+
+                              line = line + '</tr>';
+
+                              if ((i + 1) == response.length) {
+                                line = line + '</table>';
+                              }
+
+                              lines.push(line);
+                              line = '';
+                            }
+
+                            $scope.content = String(lines.join(''));
                         }
 
-                        line = line + '</tr>';
-
-                        if((i + 1) == response.length){
-                          line = line + '</table>';
-                        }
-
-                        lines.push(line);
-                        line = '';
-                    }
-                    $scope.content = String(lines.join(""));
-                });
+                    });
+                }
             }
         }
  });

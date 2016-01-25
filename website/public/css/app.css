@@ -535,9 +535,16 @@ a:hover {
   margin: 0 auto;
 }
 
-.query-table-header-elem{
+.query_table_header_elem{
   font-weight: bold;
-  background-color: lightgreen;
+}
+
+#error_message{
+    color: red;
+}
+
+#query_result_section{
+    visibility: hidden;
 }
 
 /**

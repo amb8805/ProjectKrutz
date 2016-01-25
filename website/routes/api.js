@@ -282,7 +282,16 @@ exports.getFilteredApks = function (req, res, next) {
 	
 };
 
-exports.db = db;
+exports.processQuery = function(req, res){
+	db.all(req.params.query, function (err, result) {
+		//if (err) return next(err);
+		if (err) res.send('fail');
+
+		res.send(result);
+    });
+};
+
+//exports.db = db;
 
 //exports.processQuery = function(req, res){
 //
