@@ -6,27 +6,69 @@ div(class="container", data-ng-controller="ExploreDataController")
             p#error_message {{invalid_query_error_message}}
 
             form(data-ng-submit="executeQuery()")
-                textarea(cols="40", rows="5", name="query", class="form-control textarea", data-ng-model="query")
+                textarea(cols="40", placeholder="Example: SELECT * FROM ApkInformation", rows="5", name="query", class="form-control textarea", data-ng-model="query")
                 input(type="submit", value="Execute Query", class="btn btn-theme")
+            br
+            p
+                a(href="/downloadPDF/TableDescription", target="_blank") Click here for a full description of all tables and views
+            div#query-message
+                p Due to resource constraints, only the top 45 rows are returned. For full results, please download the CSV files by clicking on the table or view name located at the right or you may download the
+                    br
+                    a(href="https://github.com/DroidDarwin/DarwinData", target="_blank") .sqlite dataset
         div.col-md-8.col-sm-7
-            h2 Tables in DB
+            h2 Tables in Database
             table.table
                 tr
-                    td ApkInformation
-                    td ApkSources
-                    td Overprivilege
-                    td Permissions
-                tr
-                    td SigningInfo
-                    td ToolResults
-                    td Underprivilege
-                    td apkParser_intents
-                tr
-                    td apkParser_intents_join
-                    td apkParser_privs
-                    td apkParser_privs_join
                     td
-
+                        a(href="/download/ApkInformation", title="Download pre-loaded ApkInformation.csv", target="_blank", class="explore-data-datal-set-ink") ApkInformation
+                    td
+                        a(href="/download/ApkSources", title="Download pre-loaded ApkSources.csv", target="_blank", class="explore-data-datal-set-ink") ApkSources
+                    td
+                        a(href="/download/Overprivilege", title="Download pre-loaded Overprivilege.csv", target="_blank", class="explore-data-datal-set-ink") Overprivilege
+                    td
+                        a(href="/download/Permissions", title="Download pre-loaded Permissions.csv",target="_blank", class="explore-data-datal-set-ink") Permissions
+                tr
+                    td
+                        a(href="/download/SigningInfo", title="Download pre-loaded SigningInfo.csv", target="_blank", class="explore-data-datal-set-ink") SigningInfo
+                    td
+                        a(href="/download/ToolResults", title="Download pre-loaded ToolResults.csv", target="_blank", class="explore-data-datal-set-ink") ToolResults
+                    td
+                        a(href="/download/Underprivilege", title="Download pre-loaded Underprivilege.csv", target="_blank", class="explore-data-datal-set-ink") Underprivilege
+                    td
+                        a(href="/download/apkParser_intents", title="Download pre-loaded apkParser_intents.csv", target="_blank", class="explore-data-datal-set-ink") apkParser_intents
+                tr
+                    td
+                        a(href="/download/apkParser_intents_join", title="Download pre-loaded apkParser_intents_join.csv", target="_blank", class="explore-data-datal-set-ink") apkParser_intents_join
+                    td
+                        a(href="/download/apkParser_privs", title="Download pre-loaded apkParser_privs.csv", target="_blank", class="explore-data-datal-set-ink") apkParser_privs
+                    td
+                        a(href="/download/apkParser_privs_join", title="Download pre-loaded apkParser_privs_join.csv",target="_blank", class="explore-data-datal-set-ink") apkParser_privs_join
+                    td
+            h2 Views in Database
+            table.table
+                tr
+                    th Name
+                    th Description
+                tr
+                    td
+                        a(href="/download/OPrivCount", title="Download pre-loaded OPrivCount.csv", target="_blank", class="explore-data-datal-set-ink") OPrivCount
+                    td Returns the top occurring overprivileges
+                tr
+                    td
+                        a(href="/download/UPrivCount", title="Download pre-loaded UPriCount.csv", target="_blank", class="explore-data-datal-set-ink") UPrivCount
+                    td Returns the top occurring underprivileges
+                tr
+                    td
+                        a(href="/download/PermissionCount", title="Download pre-loaded PerimissionCount.csv", target="_blank", class="explore-data-datal-set-ink") PermissionCount
+                    td Displays the most requested app permissions
+                tr
+                    td
+                        a(href="/download/avgAppValues", title="Download pre-loaded avgAppValues.csv", target="_blank", class="explore-data-datal-set-ink") avgAppValues
+                    td Returns an aggregate average score of all values for all apps
+                tr
+                    td
+                        a(href="/download/App_ToolInfo", title="Download pre-loaded App_ToolInfo.csv", target="_blank", class="explore-data-datal-set-ink") App_ToolInfo
+                    td Displays GooglePlay and static analysis tool information for each app
     div#query_result_section
         h3 Query Results
         div(data-ng-bind-html="(content)", class="query_result")

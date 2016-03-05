@@ -523,6 +523,18 @@ a:hover {
  * --------------------------------------------------
  */
 
+#explore-data-span{
+  font-weight: bold;
+}
+
+.explore-data-datal-set-ink{
+  color: black;
+}
+
+.explore-data-datal-set-ink:hover{
+  text-decoration: underline;
+}
+
 .textarea{
   margin-bottom: 2%;
   resize: none;
@@ -545,6 +557,20 @@ a:hover {
 
 #query_result_section{
     visibility: hidden;
+}
+
+#query-message{
+  visibility: hidden;
+  text-align: center;
+  padding: 30px 10px 30px 10px;
+  margin-top: 10px;
+  background-color: whitesmoke;
+  border: solid 1px #888888;
+  border-radius: 3px;
+}
+
+#query-message > a:hover{
+  text-decoration: underline;
 }
 
 /**

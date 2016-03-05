@@ -569,6 +569,9 @@ angular.module('androidApp.controllers', []).
   controller('ReportsController', function ($scope, $window) {
     // empty controller
   }).
+  controller('DownloadCSVFileController', function($scope){
+    // empty controller
+  }).
   controller('ExploreDataController', function($scope, $http, $sce){
         var errorMessageHTML = document.getElementById('error_message');
 
@@ -586,7 +589,7 @@ angular.module('androidApp.controllers', []).
         // process query and format it
         $scope.executeQuery = function(){
             if ($scope.query !== undefined) {
-                var errorMessage = 'Invalid query. Please make sure that the query being entered is a "SELECT" statement or that any token in the "SELECT" statement is correct.';
+                var errorMessage = 'Invalid query. Please make sure that the query being entered is a "SELECT" statement or that any token in the "SELECT" statement is correct. Also, run simple SELECT statements, such as SELECT * FROM ApkInformation.';
                 var queryType = $scope.query.split(' ')[0];
 
                 if(queryType.toUpperCase() != 'SELECT') {
@@ -597,14 +600,19 @@ angular.module('androidApp.controllers', []).
                         processErrorMessage('hidden', undefined);
                     }
 
-                    $http.get('http://127.0.0.1:8080/process-query/' + $scope.query).success(function (response) {
-                        var lines = [];
-                        var headers = [];
+                    if($scope.query.slice(-1) === ';'){
+                      $scope.query = $scope.query.substr(0, $scope.query.length - 1);
+                    }
 
+                    $http.get('http://darwin.rit.edu/process-query/' + $scope.query + ' LIMIT 45').success(function (response) {
                         if(response == 'fail'){
-                          processErrorMessage('visible', errorMessage);
+                            processErrorMessage('visible', errorMessage);
                         }
                         else {
+                            var lines = [];
+                            var headers = [];
+
+                            document.getElementById('query-message').style.visibility = 'visible';
                             document.getElementById('query_result_section').style.visibility = 'visible';
 
                             var line = '<table class="table">';
@@ -641,7 +649,6 @@ angular.module('androidApp.controllers', []).
 
                             $scope.content = String(lines.join(''));
                         }
-
                     });
                 }
             }

@@ -284,20 +284,15 @@ exports.getFilteredApks = function (req, res, next) {
 
 exports.processQuery = function(req, res){
 	db.all(req.params.query, function (err, result) {
-		//if (err) return next(err);
 		if (err) res.send('fail');
-
 		res.send(result);
     });
 };
 
-//exports.db = db;
+exports.downloadCSVFile = function(req, res){
+	res.download('/home/darwin/ProjectKrutz/website/public/assets/csv/' + req.params.filename + '.csv', req.params.filename + '.csv');
+};
 
-//exports.processQuery = function(req, res){
-//
-//    db.all(req.params.query, function (err, result) {
-//        if (err) return next(err);
-//        res.send(result);
-//    });
-//
-//};
+exports.downloadPDFFile = function(req, res){
+	res.download('/home/darwin/ProjectKrutz/website/public/assets/pdf/' + req.params.filename + '.pdf', req.params.filename + '.pdf');
+}

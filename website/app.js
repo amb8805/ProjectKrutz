@@ -60,14 +60,8 @@ app.get('/versionGroupAvgs', api.getAvgOverpermissionsByVersionGroup);
 app.get('/genres', api.getGenres);
 app.get('/filter', api.getFilteredApks);
 app.get('/process-query/:query', api.processQuery);
-
-//
-//  api.db.all(req.params.query, function (err, result) {
-//      if (err) return next(err);
-//      res.send(result);
-//    });
-//
-//});
+app.get('/download/:filename', api.downloadCSVFile);
+app.get('/downloadPDF/:filename', api.downloadPDFFile);
 
 // Redirect to the index (HTML5 history)
 app.get('*', routes.index);

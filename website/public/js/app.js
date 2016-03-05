@@ -36,8 +36,11 @@ androidApp.config(function ($routeProvider, $locationProvider) {
     .when('/explore-data', {
       templateUrl: 'partials/explore-data',
       controller: 'ExploreDataController'
-    }
-    );
+    })
+    .when('/download/:filename', {
+      templateUrl: 'partials/explore-data',
+      controller: 'DownloadCSVFileController'
+    });
 
   $locationProvider.html5Mode(true);
 });
